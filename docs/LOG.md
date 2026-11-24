@@ -724,3 +724,4 @@ the vertical/column alarms that make up most of the top 20.
 - 2026-11-24: public repository created: https://github.com/mayank26saxena/connect-four-neurons (fresh history, snapshot of bcf99e6, commit 1370ce6); post's "Code and data" now links there (site 2057588).
 - 2026-11-24: title changed to "An AI Agent Found Most of the Neurons That Block a Connect Four Threat" (author's choice; not a question); slug unchanged.
 - 2026-11-24: neuron atlas gets "How to read this page" guides (Layers, Map, Library, every neuron page), open by default, closed state remembered per browser.
+- 2026-11-24: atlas: two computed takeaways per view and per neuron page ("What this shows"); reading guides moved to the bottom, closed by default.
