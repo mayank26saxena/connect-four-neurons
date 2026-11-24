@@ -1,0 +1,9 @@
+{
+  "unit": "U01",
+  "description": "No clean concept found. It is strongest in sparse, early positions where I own the bottom-left corner (0,0) while the opponent holds bottom-row stones at the right edge (col 6) and in cols 1/2 (often stacked), and their stone sits on mine at (2,4); an opponent stone at bottom centre (0,3) suppresses it. It is side-to-move specific and left/right asymmetric. It fades as the centre fills, and many firings fit no simple rule.",
+  "effect": "None measurable: forcing it to max or zero changes every column's probability by at most 0.04.",
+  "program": "W = {\n    (0, 0, 1): 2, (0, 6, 2): 2, (0, 3, 1): 1, (0, 1, 2): 1, (0, 4, 2): 1,\n    (1, 4, 1): 2, (1, 1, 2): 1, (1, 1, 1): -2, (1, 6, 1): -1,\n    (2, 4, 2): 3, (2, 2, 2): -3, (2, 5, 2): -2, (2, 3, 1): -2,\n    (3, 4, 1): 2, (3, 3, 2): -2, (3, 1, 2): 1,\n    (4, 4, 1): 1, (4, 3, 1): -2,\n    (5, 5, 2): 1,\n}\n\ndef points(b):\n    s = 0\n    for (r, c, p), w in W.items():\n        if b.grid[r][c] == p:\n            s += w\n    return s\n\ndef fires(b):\n    return points(b) >= 8\n\ndef level(b):\n    return max(0, min(9, points(b) - 2))\n",
+  "synthesis": [[2, 3, 6, 0, 2, 3, 5], [6, 0, 2, 3, 2, 3, 5], [2, 3, 6, 0, 2, 3, 0]],
+  "confidence": "low",
+  "notes": "4 of 8 score calls used. p1 their-threat-above-landing-cell F1 0.05 (wrong). p2 additive weights on about 20 (cell, owner) features, chosen from single-cell band histograms and act minimal pairs: F1 0.227, AUROC 0.69, sim share 0.05 (submitted). p3 two-corner rule F1 0.09. p4 gated additive F1 0.22. Strong interactions between stones (3-stone scan: O at c1+c1 1.9 but c1+c2 0.04), mirror positions do not fire, and it fades in late games. This looks like a distributed mixture or a random direction. Synthesis 2,3,6,0,2,3,5 reaches 7.03 against a dev max of 5.53."
+}

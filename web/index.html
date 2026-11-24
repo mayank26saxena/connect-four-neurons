@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect Four neurons: live demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;7..72,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="demo.css">
+<style> :root { --split-a: #2563b0; --split-b: #d09017; } </style>
+</head>
+<body>
+<main class="col">
+  <header class="top">
+    <p class="kicker">Live demo</p>
+    <h1>Play the model, and switch off its neurons</h1>
+    <p class="standfirst">A 6-layer transformer that learned Connect Four from move sequences alone. Each neuron listed below fires on a
+      concept checked against the exact rules of the game. Switch one off and the model plays on without it.</p>
+  </header>
+  <figure class="fig"><div id="demo"></div></figure>
+</main>
+<script src="c4model.js"></script>
+<script src="concepts.js"></script>
+<script src="demo.js"></script>
+<script>C4Demo.mount(document.getElementById("demo"), { base: "./" });</script>
+</body>
+</html>

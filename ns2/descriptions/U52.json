@@ -1,0 +1,57 @@
+{
+ "unit": "U52",
+ "description": "No clean rule found. Clearest trigger: a bottom-row three in columns 2-4 (or 2 and 4 with 3 empty) of one colour, usually the opponent's, with cells (0,1) and (0,5) both still empty (a double threat on the bottom row). It also fires weakly more often when the opponent has a must-block or there are threat cells in column 4. Most mid and late game firing has no pattern I could identify.",
+ "effect": "none measurable: zeroing or maxing it changes every column's probability by at most 0.02 (5 positions).",
+ "program": "def _w(b):\n    t = set(b.their_wins) | set(b.my_wins)\n    s = 0\n    if (0, 1) in t and (0, 5) in t:\n        s += 4\n    for r in range(1, 6):\n        if (r, 4) in t:\n            s += 2\n    if len(b.their_playable_wins) >= 1:\n        s += 1\n    return s\n\ndef fires(b):\n    return _w(b) >= 3\n\ndef level(b):\n    return min(9, _w(b) * 2)\n",
+ "synthesis": [
+  [
+   4,
+   6,
+   2,
+   6,
+   3,
+   6,
+   0
+  ],
+  [
+   4,
+   6,
+   3,
+   6,
+   2,
+   6,
+   0
+  ],
+  [
+   3,
+   6,
+   2,
+   6,
+   4,
+   6,
+   0
+  ],
+  [
+   2,
+   6,
+   3,
+   6,
+   4,
+   6,
+   0
+  ],
+  [
+   3,
+   6,
+   4,
+   6,
+   2,
+   6,
+   0
+  ]
+ ],
+ "confidence": "low",
+ "notes": "4 score calls. p1 must-block: F1 0.114. p2 bottom (0,1)+(0,5) threat cells + col-4 threats + must-block: F1 0.131, AUROC 0.60, sim share 0.07 (best). p3 bottom 2-3-4 shape only: F1 0.09, P 0.25. p4 late-game col-4-open: F1 0.114. Minimal pairs confirm the bottom-row shape (the same shape shifted to 1-3 or 3-5 does not fire) but tiny positions also fire unpredictably (2,5,0,2 2.18 vs 0,5,0,2 -0.24). Looks polysemantic or random. Synth 5.134 beats dev max 5.077.",
+ "dev_calls_used": 4,
+ "submitted": "2026-11-21T18:59:41"
+}

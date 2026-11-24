@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "{REPO}/scripts/31_ns_tool.py", line 287, in <module>
+    main()
+  File "{REPO}/scripts/31_ns_tool.py", line 282, in main
+    {"units": cmd_units, "examples": cmd_examples, "act": cmd_act, "facts": cmd_facts, "steer": cmd_steer, "score": cmd_score,
+  File "{REPO}/scripts/31_ns_tool.py", line 186, in cmd_score
+    pred_v = ns.run_program(fires_fn, bs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "{REPO}/c4n/ns.py", line 160, in run_program
+    return np.array([float(fn(bs.board(int(i)))) for i in idx], dtype=np.float64)
+                           ^^^^^^^^^^^^^^^^^^^^
+  File "<agent program>", line 2, in fires
+  File "<agent program>", line 16, in level
+TypeError: '>=' not supported between instances of 'NoneType' and 'int'

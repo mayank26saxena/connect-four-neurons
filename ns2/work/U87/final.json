@@ -1,0 +1,64 @@
+{
+ "unit": "U87",
+ "description": "Fires when the opponent has three stones stacked vertically at the top of column 0 (leftmost) with the cell above empty, so I must block there; strongest early in the game, weaker late. The same three in another column, horizontal or diagonal threats at column 0, my own three there, or an already-blocked three do not fire. Many weak near-threshold firings have no clear pattern.",
+ "effect": "None measurable: forcing it on or off changes move probabilities by at most about 0.1 (in threat positions the model already plays column 0 with probability ~1.0).",
+ "program": "def vert3(b, c):\n    h = b.heights[c]\n    if h < 3 or h >= 6:\n        return False\n    return all(b.grid[h - 1 - k][c] == 2 for k in range(3))\n\ndef fires(b):\n    return vert3(b, 0)\n\ndef level(b):\n    if not vert3(b, 0):\n        return 0\n    if b.ply <= 14:\n        return 9\n    if b.ply <= 22:\n        return 8\n    if b.ply <= 30:\n        return 6\n    return 4\n",
+ "synthesis": [
+  [
+   0,
+   1,
+   5,
+   4,
+   0,
+   5,
+   3,
+   4,
+   0
+  ],
+  [
+   0,
+   1,
+   5,
+   4,
+   0,
+   5,
+   3,
+   3,
+   0
+  ],
+  [
+   1,
+   0,
+   5,
+   4,
+   1,
+   0,
+   6,
+   0
+  ],
+  [
+   0,
+   6,
+   5,
+   4,
+   0,
+   5,
+   3,
+   4,
+   0
+  ],
+  [
+   0,
+   1,
+   5,
+   4,
+   0,
+   5,
+   6,
+   4,
+   0
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "H1 (opponent open vertical three in col 0) gives dev F1 0.448, precision 0.91, recall 0.30, sim share 0.26. Minimal pairs agree strongly (col 0: 1-9, other columns: -2 to -5; blocked: off). The remaining ~70% of firing is low-amplitude (0.34-1.0) and diffuse; horizontal threats near col 0 and other cues were tested and rejected. A ply cutoff lowered F1 (0.378). Synthesis peaks around 9.5, below dev max 11.5."
+}

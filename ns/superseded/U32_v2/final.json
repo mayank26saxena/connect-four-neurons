@@ -1,0 +1,53 @@
+{
+ "unit": "U32",
+ "description": "Fires when columns 0-1 are (nearly) empty and the left-centre shows an interlocked checkerboard: an opponent stone at row 1 of column 2 with my stone on top of it (row 2), and/or my stone at row 1 of column 4 with an opponent stone on top (row 2), often with opponent stones at the bottom of columns 4-5. Stones stacked in columns 0-1, or my stone in the bottom-left corner, switch it off; shifted copies do not fire.",
+ "effect": "Weak: forcing it on/off moves the move distribution by at most about 0.15 (e.g. at its dev max, turning it off raises column 6 by 0.16; elsewhere forcing it high shifted 0.14 from column 4 to column 3). No consistent column effect.",
+ "program": "# signature cells (row, col, owner): 1 = me, 2 = opponent\nSIG = [(1, 2, 2), (1, 2, 2), (2, 2, 1), (1, 4, 1), (2, 4, 2), (1, 5, 1), (0, 5, 2), (0, 4, 2),\n       (0, 2, 1), (3, 3, 2), (3, 4, 1), (0, 3, 1)]\nBAD = [(2, 2, 2), (2, 4, 1), (1, 2, 1), (0, 0, 1)]\n\ndef score(b):\n    g = b.grid\n    h0, h1 = b.heights[0], b.heights[1]\n    if h0 + h1 > 4:\n        return 0\n    s = sum(g[r][c] == v for r, c, v in SIG) - sum(g[r][c] == v for r, c, v in BAD)\n    if g[1][2] == 2 and g[2][2] == 1:\n        s += 2\n    if g[1][4] == 1 and g[2][4] == 2:\n        s += 2\n    if b.heights[2] >= 5:\n        s -= 2\n    s -= max(0, h0 - 1) * 2 + max(0, h1 - 1) * 2\n    return s\n\ndef fires(b):\n    return score(b) >= 7\n\ndef level(b):\n    return max(0, min(9, score(b) - 2))\n",
+ "synthesis": [
+  [
+   4,
+   6,
+   5,
+   4,
+   3,
+   2,
+   2,
+   2,
+   4,
+   5,
+   4,
+   6,
+   1
+  ],
+  [
+   4,
+   6,
+   5,
+   4,
+   3,
+   2,
+   2,
+   2,
+   4,
+   5,
+   4,
+   1,
+   0
+  ],
+  [
+   4,
+   6,
+   5,
+   4,
+   3,
+   2,
+   2,
+   2,
+   4,
+   5,
+   4
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Hypotheses: (1) O at (1,2) + empty left cols: F1 0.30. (2) two vertical motifs A=(1,2)O/(2,2)X, B=(1,4)X/(2,4)O gated by empty cols 0-1: F1 0.38. (3) hand-weighted signature-cell count: F1 0.47 best (P 0.46, R 0.47, AUROC 0.73, sim share 0.34). Minimal pairs confirm A, B, left-emptiness and (0,0)X veto, but ~20% of strong firing lacks both motifs; looks like a distributed position-specific pattern, possibly a mixture."
+}

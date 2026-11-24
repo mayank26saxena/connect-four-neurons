@@ -1,0 +1,50 @@
+{
+ "unit": "U13",
+ "description": "Mostly fires at exactly 6 stones (move 7): strongest when the first player's stones are in columns 0/2/4 (not 3/5), the opponent's in 2/5, and the opponent's last move was in 4 or 6. A weaker second case is the late middlegame (28-32 stones) right after the opponent plays column 0, with columns 1, 3 and 6 tall and 2 and 4 short. Threats are irrelevant.",
+ "effect": "None measurable: forcing it to max or zero changes the move probabilities by less than 0.01 on the 3 positions tested.",
+ "program": "# ply-6 regime: additive score over the six opening moves (from act minimal pairs)\nWX = {0: 3, 1: 0, 2: 2, 3: -2, 4: 3, 5: -3, 6: 0}\nWO = {0: 1, 1: 0, 2: 6, 3: 3, 4: 3, 5: 6, 6: 0}\nWL = {0: 1, 1: 3, 2: 0, 3: 2, 4: 5, 5: -1, 6: 5}\n# later regime: opponent just played column 0 (or 2) in the late middlegame, with columns 1/3/6 tall and 2/4 short\nWH = {0: 0, 1: 1.5, 2: -1, 3: 2.5, 4: -2.5, 5: 0, 6: 2.5}\n\ndef opening_score(b):\n    m = b.moves\n    return WX[m[0]] + WX[m[2]] + WX[m[4]] + WO[m[1]] + WO[m[3]] + WL[m[5]]\n\ndef fill_score(b):\n    return sum(WH[c] * b.heights[c] for c in range(7))\n\ndef late(b):\n    return b.ply in (28, 30, 32) and b.last_col == 0 and fill_score(b) >= 8\n\ndef fires(b):\n    if b.ply == 6:\n        return opening_score(b) >= 9\n    return late(b)\n\ndef level(b):\n    if b.ply == 6:\n        return max(0, min(9, (opening_score(b) - 2) // 3))\n    if b.ply in (28, 30, 32) and b.last_col == 0:\n        return max(0, min(8, int((fill_score(b) - 2) // 3)))\n    return 0\n",
+ "synthesis": [
+  [
+   4,
+   2,
+   0,
+   5,
+   4,
+   4
+  ],
+  [
+   4,
+   2,
+   4,
+   5,
+   0,
+   4
+  ],
+  [
+   4,
+   2,
+   0,
+   5,
+   4,
+   6
+  ],
+  [
+   4,
+   2,
+   4,
+   5,
+   0,
+   6
+  ],
+  [
+   4,
+   5,
+   0,
+   5,
+   2,
+   4
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Layer 0 unit driven by token position: band 9 is all ply 6. Within ply 6 the per-move column contributions are roughly additive (from act substitutions). The late component is diffuse (many small per-token effects) and only partly captured. Dev F1: p1 0.471, p2 0.484, p5 0.592 (best; P .605, R .580, AUROC .784), widening the late plies hurt (0.528). Simulation is nan on every call. Synthesis 4,2,0,5,4,4 = 0.040 > dev max 0.038."
+}

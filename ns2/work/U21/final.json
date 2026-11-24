@@ -1,0 +1,44 @@
+{
+ "unit": "U21",
+ "description": "No clean concept found. Firing leans toward early, sparse boards and toward the opponent's last stone landing on a few cells, mainly (row 3, col 6), (row 2, col 0) and (row 2, col 4), for example column 6 reading theirs/mine/mine/theirs from the bottom. Single stones elsewhere swing it strongly and inconsistently, and every board rule tested is near chance (best F1 0.12). Probably a random direction or a mixture.",
+ "effect": "None measurable: forcing it to max or to zero changes every column's probability by at most 0.02 on 5 positions.",
+ "program": "HOT = {(3, 6): 4, (2, 0): 3, (2, 4): 3, (1, 6): 2, (0, 5): 2, (0, 6): 2, (4, 3): 2}\n\ndef _k(b):\n    if b.last_col is None:\n        return 0\n    return HOT.get((b.last_row, b.last_col), 0)\n\ndef fires(b):\n    return _k(b) >= 3\n\ndef level(b):\n    return 2 * _k(b)\n",
+ "synthesis": [
+  [
+   3,
+   6,
+   6,
+   3,
+   3,
+   4,
+   6,
+   6
+  ],
+  [
+   3,
+   6,
+   6,
+   3,
+   3,
+   4
+  ],
+  [
+   3,
+   6,
+   6,
+   3,
+   3,
+   5,
+   6,
+   6
+  ],
+  [
+   6,
+   4,
+   4,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Scored 5 hypotheses: early game/empty columns F1 0.09; column-height shape 0.10; checkerboard cols 3-4 0.06; last-move cell lookup 0.12 (best, AUROC 0.56, sim share -0.03); last stone capping a sandwich 0.05. Minimal pairs are erratic (6,4,4,4=1.66 vs 6,3,3,3=-0.36; 3,6,6,3,3,4=1.86 vs 3,0,6,3,3,4=0.26). No steer effect. Synthesis 3,6,6,3,3,4,6,6 = 1.951 beats dev max 1.927."
+}

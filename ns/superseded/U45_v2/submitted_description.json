@@ -1,0 +1,52 @@
+{
+ "unit": "U45",
+ "description": "Weak, distributed early/middlegame feature (plies 6-20). Best single cue: column 2 (left of centre) is still empty, or built to exactly 5 stones; the board profile is jagged (tall columns beside empty ones); I own the bottom of the centre column; no opponent stone at rows 1-2 of column 4. Depends on whose turn it is and is not mirror-symmetric. Late-game positions almost never fire.",
+ "effect": "None measurable: forcing it high or off changes move probabilities by at most about 0.08 (usually under 0.02), in no consistent direction.",
+ "program": "def own(b, r, c, wmine, wtheirs):\n    v = b.grid[r][c]\n    if v == 1:\n        return wmine\n    if v == 2:\n        return wtheirs\n    return 0\n\ndef score(b):\n    h = b.heights\n    s = 0.0\n    if h[2] == 0:\n        s += 3\n    elif h[2] == 5:\n        s += 2\n    if b.ply < 6 or b.ply > 22:\n        s -= 3\n    elif b.ply > 16:\n        s -= 1\n    rough = sum(abs(h[c] - h[c + 1]) for c in range(6))\n    s += 0.4 * (rough - (0.6 * b.ply + 3.5))\n    s += own(b, 0, 3, 1, -1)\n    s += own(b, 1, 3, -0.5, 0.5)\n    s += own(b, 2, 3, 0.5, -0.5)\n    s += own(b, 1, 4, 0.5, -1)\n    s += own(b, 2, 4, 0.5, -1.5)\n    for r in range(3):\n        s += own(b, r, 0, -0.3, 0.3)\n    s += own(b, 0, 1, -0.5, 0.3)\n    return s\n\ndef fires(b):\n    s = score(b)\n    return max(0.0, min(1.0, (s - 2.0) / 3.0))\n\ndef level(b):\n    return int(max(0, min(9, round((score(b) - 1.0) * 2))))\n",
+ "synthesis": [
+  [
+   0,
+   6,
+   6,
+   2,
+   0,
+   2,
+   4,
+   2,
+   2,
+   2
+  ],
+  [
+   5,
+   6,
+   6,
+   2,
+   0,
+   2,
+   4,
+   2,
+   2,
+   2
+  ],
+  [
+   0,
+   6,
+   6,
+   0,
+   0,
+   0,
+   4,
+   5,
+   4,
+   1,
+   4,
+   4,
+   4,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Col2-empty & ply 6-20 alone: F1 0.28 (recall .61, precision .18). Adding a col-1 condition hurt. A hand-weighted score (col2 empty/5-high, ply window, roughness above ply-expected, a few stone-ownership cells in cols 0,3,4) gives best dev F1 0.34, AUROC 0.81, sim share 0.10. Activation flips sign from ply to ply in many games, so whose stones they are matters. Mirrored positions don't fire. Could be a random direction or a mixture. Synthesis matched the dev max (6.455) but did not beat it.",
+ "dev_calls_used": 7,
+ "submitted": "2026-11-21T14:35:43"
+}

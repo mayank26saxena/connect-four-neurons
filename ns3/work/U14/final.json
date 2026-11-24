@@ -1,0 +1,59 @@
+{
+ "unit": "U14",
+ "description": "Fires when the opponent threatens to win in column 1 right above their own stone: strongest (20-47) when they have three stones stacked on top of column 1 with the cell above empty; weaker (1-12) when their last move went into column 1 and the cell directly above it completes a horizontal or diagonal four. Vertical threes in other columns, my own three in column 1, and column-1 threats made by moves elsewhere do not fire.",
+ "effect": "Pushes the move toward column 1 (the block): forcing it high moved column 1 from 0.03 to 1.00 in one position and +0.14 in another; zeroing it changes little when the block is already obvious.",
+ "program": "def vert1(b):\n    h = b.heights[1]\n    if h < 3 or h >= 6:\n        return False\n    return all(b.grid[h - 1 - k][1] == 2 for k in range(3))\n\ndef above_threat(b):\n    c = b.last_col\n    if c is None or b.last_row is None or b.last_row >= 5:\n        return False\n    return (b.last_row + 1, c) in b.their_wins\n\ndef fires(b):\n    return vert1(b) or (b.last_col == 1 and above_threat(b))\n\ndef level(b):\n    if vert1(b):\n        return 9\n    if b.last_col == 1 and above_threat(b):\n        return 4\n    return 0\n",
+ "synthesis": [
+  [
+   4,
+   2,
+   2,
+   3,
+   1,
+   4,
+   1,
+   6,
+   1
+  ],
+  [
+   4,
+   2,
+   2,
+   3,
+   1,
+   4,
+   1,
+   5,
+   1
+  ],
+  [
+   4,
+   3,
+   1,
+   4,
+   1,
+   6,
+   1
+  ],
+  [
+   4,
+   2,
+   1,
+   3,
+   1,
+   6,
+   1
+  ],
+  [
+   4,
+   2,
+   1,
+   4,
+   1,
+   6,
+   1
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Dev F1: col-1 vertical only 0.427 (P 0.99), +any col-1 must-block 0.515 (P 0.59), +threat directly above opponent's last col-1 stone 0.513 (P 0.71, chosen), diagonal-only 0.482, late-game cutoff 0.488. The top 1% is almost entirely the col-1 vertical three; the 97-98th pct band is diffuse (last-move column ~uniform) and unexplained. Simulation ceiling negative, share nan. Synthesis 49.3 beats dev max 47.5."
+}

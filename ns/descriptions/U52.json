@@ -1,0 +1,53 @@
+{
+ "unit": "U52",
+ "description": "Mostly an early-game (opening, ply under ~10) unit with no clean concept. Strongest when the opponent has just stacked high in a centre column (column 3 at row 2+, column 4 at row 3+, e.g. 4,4,4,4). Also often fires early when columns 3 and 4 are both still empty and the last move went to columns 0-2 or 6. A stone at the bottom of column 3 or 4 suppresses it. Many exceptions.",
+ "effect": "None measurable: forcing it to max or zero changes every column's probability by at most 0.01 on 7 positions.",
+ "program": "def fires(b):\n    if b.ply < 1:\n        return False\n    c, r = b.last_col, b.last_row\n    if c == 3 and r >= 2 and b.ply <= 12:\n        return True\n    if c == 4 and r >= 3 and b.ply <= 12:\n        return True\n    if b.ply <= 9 and b.heights[3] == 0 and b.heights[4] == 0 and c in (0, 1, 2, 6):\n        return True\n    return False\n\ndef level(b):\n    if b.ply < 1:\n        return 0\n    c, r = b.last_col, b.last_row\n    if c in (3, 4) and r >= 3 and b.ply <= 12:\n        return 9\n    if fires(b):\n        return 6\n    if b.ply <= 9 and (b.heights[3] == 0 or b.heights[4] == 0):\n        return 3\n    return 0\n",
+ "synthesis": [
+  [
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  [
+   2,
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  [
+   2,
+   4,
+   1,
+   4,
+   4,
+   4,
+   4
+  ],
+  [
+   2,
+   1,
+   4,
+   4,
+   4,
+   4,
+   4
+  ],
+  [
+   4,
+   1,
+   4,
+   4,
+   4,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "5 of 8 score calls. Best dev F1 0.284 (P 0.19, R 0.55, AUROC 0.74), sim share 0.05 (h4). Other tries: early-game-only 0.195; centre-empty 0.195; +late col-4-empty 0.219. Ply-3 act tables show irregular context dependence; layer 1; zero steering effect. Looks like a random direction or a mixture of last-move-column, ply and centre-occupancy signals. Two synthesis positions beat the dev max (1.413, 1.406).",
+ "dev_calls_used": 5,
+ "submitted": "2026-11-21T14:39:41"
+}

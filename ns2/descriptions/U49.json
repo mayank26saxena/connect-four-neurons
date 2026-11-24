@@ -1,0 +1,72 @@
+{
+ "unit": "U49",
+ "description": "No clean board concept found. The unit fires sparsely, mostly in early or middle games with all columns open, often right after the opponent plays in the centre column 3, but which positions fire depends on the exact last move and even on move order, so it behaves like a mixture or lookup. Example motif: opponent has two stacked at the bottom of column 1 while I have stones in columns 4-6.",
+ "effect": "Small: forcing it high takes about 3-15 points from column 3 and moves them to column 2 or column 6; switching it off changes moves by under 5 points.",
+ "program": "def fires(b):\n    # early/mid game, all columns open, opponent just played in the centre column\n    return b.ply <= 20 and len(b.legal) == 7 and b.last_col == 3\n\ndef level(b):\n    s = 0\n    if len(b.legal) == 7:\n        s += 2\n    if b.ply <= 20:\n        s += 2\n    if b.last_col == 3:\n        s += 3\n    elif b.last_col in (2, 4):\n        s += 1\n    return min(9, s)\n",
+ "synthesis": [
+  [
+   4,
+   6,
+   4,
+   6,
+   3,
+   2,
+   2,
+   3,
+   3,
+   2,
+   3
+  ],
+  [
+   4,
+   6,
+   3,
+   6,
+   4,
+   2,
+   2,
+   3,
+   3,
+   2,
+   3
+  ],
+  [
+   3,
+   6,
+   4,
+   6,
+   4,
+   2,
+   2,
+   3,
+   3,
+   2,
+   3
+  ],
+  [
+   4,
+   6,
+   4,
+   6,
+   3,
+   2,
+   2,
+   3,
+   3,
+   2,
+   3,
+   0,
+   0
+  ],
+  [
+   6,
+   1,
+   4,
+   1
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Tried H1 early game + last move col 3 (dev F1 0.071, AUROC 0.53) and H2 threat-creating-move counts (F1 0.075, AUROC 0.53): both chance. Minimal pairs show very selective dependence on the exact last move and move order (same board 3.62 vs 3.92). 4-ply grid fires only for a few specific X/O column pairs. Likely random direction or polysemantic. Synthesis 4,6,4,6,3,2,2,3,3,2,3 reaches 3.915 > dev max 3.726.",
+ "dev_calls_used": 2,
+ "submitted": "2026-11-21T19:00:01"
+}

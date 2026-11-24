@@ -1,0 +1,47 @@
+{
+ "unit": "U27",
+ "description": "Fires in the opening (5-7 stones) when the opponent's last stone went in columns 0-4, strongest in centre column 3, helped by opponent stones in columns 4-5 and mine in column 0. Also fires late (37+ stones) when the last stone went in column 5 or 6. Early last moves in columns 5-6 and most mid-game positions do not fire it.",
+ "effect": "none measurable: forcing it to max or to zero changes no column's probability by even 0.01 (5 positions tested)",
+ "program": "def fires(b):\n    p = b.ply\n    c = b.last_col\n    if c is None:\n        return False\n    if p in (5, 7):\n        return c <= 4\n    if p == 6:\n        return c == 3\n    if p >= 37:\n        return c >= 5\n    return False\n\ndef level(b):\n    p = b.ply\n    c = b.last_col\n    if c is None:\n        return 0\n    if p == 5:\n        return 8 if c <= 4 else 2\n    if p == 7:\n        return 6 if c <= 4 else 1\n    if 19 <= p <= 28:\n        return 4 if c <= 3 else 1\n    if p >= 34:\n        return 6 if c >= 5 else 2\n    return 0\n",
+ "synthesis": [
+  [
+   4,
+   0,
+   5,
+   3,
+   3
+  ],
+  [
+   4,
+   0,
+   4,
+   3,
+   3
+  ],
+  [
+   5,
+   0,
+   4,
+   3,
+   3
+  ],
+  [
+   4,
+   3,
+   4,
+   0,
+   3
+  ],
+  [
+   4,
+   0,
+   5,
+   0,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer 0. Dev F1 0.423 (P 0.30, R 0.74), AUROC 0.84, sim share 0.73. A mid-game branch (ply 19-28, left columns) raised recall but cut F1 to 0.19. Adding a stone-composition count hurt (F1 0.39). Mid-game column preference flips with ply parity depending on the game, which looks like a sequence-position x last-token interaction. Earlier move order does not matter. Synthesis only ties the dev max (0.014). No steering effect. Possibly a random direction or a mixture.",
+ "dev_calls_used": 5,
+ "submitted": "2026-11-21T18:33:39"
+}

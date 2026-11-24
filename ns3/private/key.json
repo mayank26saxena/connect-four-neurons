@@ -1,0 +1,352 @@
+{
+ "U01": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 81,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U02": {
+  "kind": "random_direction",
+  "layer": 5,
+  "seed": 40522246005,
+  "sign": -1,
+  "stratum": "random"
+ },
+ "U03": {
+  "kind": "random_direction",
+  "layer": 3,
+  "seed": 40522246003,
+  "sign": -1,
+  "stratum": "random"
+ },
+ "U04": {
+  "kind": "neuron",
+  "layer": 2,
+  "neuron": 830,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U05": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 324,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U06": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 417,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U07": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 87,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U08": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 1000,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U09": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 186,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U10": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 180,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U11": {
+  "kind": "random_direction",
+  "layer": 3,
+  "seed": 40522246009,
+  "sign": 1,
+  "stratum": "random"
+ },
+ "U12": {
+  "kind": "neuron",
+  "layer": 0,
+  "neuron": 283,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U13": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 62,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U14": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 476,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U15": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 629,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U16": {
+  "kind": "random_direction",
+  "layer": 4,
+  "seed": 40522246004,
+  "sign": 1,
+  "stratum": "random"
+ },
+ "U17": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 383,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U18": {
+  "kind": "neuron",
+  "layer": 0,
+  "neuron": 600,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U19": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 250,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U20": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 267,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U21": {
+  "kind": "random_direction",
+  "layer": 0,
+  "seed": 40522246006,
+  "sign": 1,
+  "stratum": "random"
+ },
+ "U22": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 699,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U23": {
+  "kind": "random_direction",
+  "layer": 0,
+  "seed": 40522246000,
+  "sign": 1,
+  "stratum": "random"
+ },
+ "U24": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 631,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U25": {
+  "kind": "neuron",
+  "layer": 4,
+  "neuron": 15,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U26": {
+  "kind": "neuron",
+  "layer": 4,
+  "neuron": 254,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U27": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 420,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U28": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 18,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U29": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 626,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U30": {
+  "kind": "random_direction",
+  "layer": 2,
+  "seed": 40522246008,
+  "sign": -1,
+  "stratum": "random"
+ },
+ "U31": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 802,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U32": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 864,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U33": {
+  "kind": "neuron",
+  "layer": 0,
+  "neuron": 157,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U34": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 940,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U35": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 1004,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U36": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 348,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U37": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 152,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U38": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 976,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U39": {
+  "kind": "neuron",
+  "layer": 0,
+  "neuron": 9,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U40": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 698,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U41": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 694,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U42": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 344,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U43": {
+  "kind": "neuron",
+  "layer": 2,
+  "neuron": 93,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U44": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 981,
+  "sign": -1,
+  "stratum": "blind"
+ },
+ "U45": {
+  "kind": "random_direction",
+  "layer": 1,
+  "seed": 40522246001,
+  "sign": -1,
+  "stratum": "random"
+ },
+ "U46": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 635,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U47": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 754,
+  "sign": 1,
+  "stratum": "blind"
+ },
+ "U48": {
+  "kind": "random_direction",
+  "layer": 1,
+  "seed": 40522246007,
+  "sign": -1,
+  "stratum": "random"
+ },
+ "U49": {
+  "kind": "random_direction",
+  "layer": 2,
+  "seed": 40522246002,
+  "sign": 1,
+  "stratum": "random"
+ },
+ "U50": {
+  "kind": "neuron",
+  "layer": 5,
+  "neuron": 335,
+  "sign": -1,
+  "stratum": "blind"
+ }
+}

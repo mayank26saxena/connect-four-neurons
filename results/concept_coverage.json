@@ -1,0 +1,4841 @@
+{
+ "model": {
+  "n_layer": 6,
+  "d_model": 256,
+  "n_head": 8,
+  "d_ff": 1024,
+  "vocab": 8,
+  "ctx": 43
+ },
+ "checkpoint": "checkpoints/main/step_008000.pt",
+ "n_games": 5000,
+ "n_concepts": 659,
+ "n_units": 12288,
+ "coverage": {
+  "neuron": {
+   "share": 0.30804248861911987,
+   "ci95": [
+    0.30121394991874695,
+    0.31487101316452026
+   ],
+   "mean_f1": 0.4231022894382477
+  },
+  "rotation": {
+   "share": 0.06069802731411229,
+   "ci95": [
+    0.05918057635426521,
+    0.06676782667636871
+   ],
+   "mean_f1": 0.2572441101074219
+  },
+  "probe": {
+   "share": 0.5591805766312595,
+   "ci95": [
+    0.5553869009017944,
+    0.5622154474258423
+   ],
+   "mean_f1": 0.5645647644996643
+  }
+ },
+ "by_family": {
+  "block_now": {
+   "n": 9,
+   "neuron": 0.8888888888888888,
+   "rotation": 0.2222222222222222,
+   "probe": 0.8888888888888888
+  },
+  "cell": {
+   "n": 210,
+   "neuron": 0.2523809523809524,
+   "rotation": 0.09285714285714286,
+   "probe": 1.0
+  },
+  "eval_ahead": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 0.0
+  },
+  "eval_behind": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "eval_loss": {
+   "n": 1,
+   "neuron": 1.0,
+   "rotation": 1.0,
+   "probe": 1.0
+  },
+  "eval_win": {
+   "n": 1,
+   "neuron": 1.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "full": {
+   "n": 7,
+   "neuron": 0.8571428571428571,
+   "rotation": 0.8571428571428571,
+   "probe": 1.0
+  },
+  "land": {
+   "n": 42,
+   "neuron": 0.9761904761904762,
+   "rotation": 0.07142857142857142,
+   "probe": 1.0
+  },
+  "last_blocked": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 0.0
+  },
+  "last_col": {
+   "n": 7,
+   "neuron": 1.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "last_made_threat": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "last_stacked": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "line": {
+   "n": 255,
+   "neuron": 0.21568627450980393,
+   "rotation": 0.025490196078431372,
+   "probe": 0.1568627450980392
+  },
+  "me_first_player": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "my_even_threat": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "my_odd_threat": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "my_threat_r": {
+   "n": 41,
+   "neuron": 0.0975609756097561,
+   "rotation": 0.0,
+   "probe": 0.14634146341463414
+  },
+  "my_threats_ge1": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "my_threats_ge2": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "opp_even_threat": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "opp_odd_threat": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "opp_threat_r": {
+   "n": 42,
+   "neuron": 0.35714285714285715,
+   "rotation": 0.0,
+   "probe": 0.34523809523809523
+  },
+  "opp_threats_ge1": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "opp_threats_ge2": {
+   "n": 1,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "ply": {
+   "n": 7,
+   "neuron": 0.6428571428571429,
+   "rotation": 0.2857142857142857,
+   "probe": 1.0
+  },
+  "poison": {
+   "n": 7,
+   "neuron": 0.5714285714285714,
+   "rotation": 0.0,
+   "probe": 0.7142857142857143
+  },
+  "teacher_best": {
+   "n": 7,
+   "neuron": 0.0,
+   "rotation": 0.0,
+   "probe": 1.0
+  },
+  "win_now": {
+   "n": 9,
+   "neuron": 0.3888888888888889,
+   "rotation": 0.0,
+   "probe": 0.1111111111111111
+  }
+ },
+ "diff": {
+  "neuron_minus_rotation": {
+   "mean": 0.2473444613050076,
+   "ci95": [
+    0.23708270490169525,
+    0.2530539035797119
+   ]
+  },
+  "probe_minus_neuron": {
+   "mean": 0.25113808801213966,
+   "ci95": [
+    0.2435508370399475,
+    0.2587253451347351
+   ]
+  }
+ },
+ "concepts": [
+  {
+   "name": "cell_r0c0_mine",
+   "family": "cell",
+   "neuron": 0.3833072781562805,
+   "rotation": 0.21881818771362305,
+   "probe": 0.899502158164978
+  },
+  {
+   "name": "cell_r0c0_theirs",
+   "family": "cell",
+   "neuron": 0.32284414768218994,
+   "rotation": 0.24899572134017944,
+   "probe": 0.9056436419487
+  },
+  {
+   "name": "cell_r0c0_empty",
+   "family": "cell",
+   "neuron": 0.5136568546295166,
+   "rotation": 0.4596380889415741,
+   "probe": 0.9711929559707642
+  },
+  {
+   "name": "cell_r0c1_mine",
+   "family": "cell",
+   "neuron": 0.3161512017250061,
+   "rotation": 0.212131530046463,
+   "probe": 0.8853062987327576
+  },
+  {
+   "name": "cell_r0c1_theirs",
+   "family": "cell",
+   "neuron": 0.3002968728542328,
+   "rotation": 0.23803278803825378,
+   "probe": 0.9034837484359741
+  },
+  {
+   "name": "cell_r0c1_empty",
+   "family": "cell",
+   "neuron": 0.5509125590324402,
+   "rotation": 0.5141336917877197,
+   "probe": 0.9851993322372437
+  },
+  {
+   "name": "cell_r0c2_mine",
+   "family": "cell",
+   "neuron": 0.31855520606040955,
+   "rotation": 0.2231365442276001,
+   "probe": 0.9085675477981567
+  },
+  {
+   "name": "cell_r0c2_theirs",
+   "family": "cell",
+   "neuron": 0.3535061180591583,
+   "rotation": 0.23298750817775726,
+   "probe": 0.9315892457962036
+  },
+  {
+   "name": "cell_r0c2_empty",
+   "family": "cell",
+   "neuron": 0.5699188709259033,
+   "rotation": 0.5318804979324341,
+   "probe": 0.9982660412788391
+  },
+  {
+   "name": "cell_r0c3_mine",
+   "family": "cell",
+   "neuron": 0.32631704211235046,
+   "rotation": 0.2207598090171814,
+   "probe": 0.9562596082687378
+  },
+  {
+   "name": "cell_r0c3_theirs",
+   "family": "cell",
+   "neuron": 0.31828609108924866,
+   "rotation": 0.2318643033504486,
+   "probe": 0.9782721996307373
+  },
+  {
+   "name": "cell_r0c3_empty",
+   "family": "cell",
+   "neuron": 0.703951358795166,
+   "rotation": 0.6475001573562622,
+   "probe": 0.9949716329574585
+  },
+  {
+   "name": "cell_r0c4_mine",
+   "family": "cell",
+   "neuron": 0.3162355422973633,
+   "rotation": 0.22630611062049866,
+   "probe": 0.9016799926757812
+  },
+  {
+   "name": "cell_r0c4_theirs",
+   "family": "cell",
+   "neuron": 0.32182955741882324,
+   "rotation": 0.24257135391235352,
+   "probe": 0.9298473596572876
+  },
+  {
+   "name": "cell_r0c4_empty",
+   "family": "cell",
+   "neuron": 0.5698944330215454,
+   "rotation": 0.4835936725139618,
+   "probe": 0.9984273910522461
+  },
+  {
+   "name": "cell_r0c5_mine",
+   "family": "cell",
+   "neuron": 0.3575551211833954,
+   "rotation": 0.2334367036819458,
+   "probe": 0.8795876502990723
+  },
+  {
+   "name": "cell_r0c5_theirs",
+   "family": "cell",
+   "neuron": 0.3511233925819397,
+   "rotation": 0.26067817211151123,
+   "probe": 0.8874828219413757
+  },
+  {
+   "name": "cell_r0c5_empty",
+   "family": "cell",
+   "neuron": 0.5320994853973389,
+   "rotation": 0.46501922607421875,
+   "probe": 0.9909772872924805
+  },
+  {
+   "name": "cell_r0c6_mine",
+   "family": "cell",
+   "neuron": 0.36628615856170654,
+   "rotation": 0.2362251579761505,
+   "probe": 0.8928576707839966
+  },
+  {
+   "name": "cell_r0c6_theirs",
+   "family": "cell",
+   "neuron": 0.34175726771354675,
+   "rotation": 0.2703624963760376,
+   "probe": 0.8951112031936646
+  },
+  {
+   "name": "cell_r0c6_empty",
+   "family": "cell",
+   "neuron": 0.5158060789108276,
+   "rotation": 0.4806252121925354,
+   "probe": 0.9766907691955566
+  },
+  {
+   "name": "cell_r1c0_mine",
+   "family": "cell",
+   "neuron": 0.40703386068344116,
+   "rotation": 0.28445470333099365,
+   "probe": 0.8080016374588013
+  },
+  {
+   "name": "cell_r1c0_theirs",
+   "family": "cell",
+   "neuron": 0.3547855615615845,
+   "rotation": 0.28666654229164124,
+   "probe": 0.9108922481536865
+  },
+  {
+   "name": "cell_r1c0_empty",
+   "family": "cell",
+   "neuron": 0.3250049948692322,
+   "rotation": 0.31197795271873474,
+   "probe": 0.9685106873512268
+  },
+  {
+   "name": "cell_r1c1_mine",
+   "family": "cell",
+   "neuron": 0.4452579617500305,
+   "rotation": 0.2610265016555786,
+   "probe": 0.9162784814834595
+  },
+  {
+   "name": "cell_r1c1_theirs",
+   "family": "cell",
+   "neuron": 0.36155301332473755,
+   "rotation": 0.25733768939971924,
+   "probe": 0.9583192467689514
+  },
+  {
+   "name": "cell_r1c1_empty",
+   "family": "cell",
+   "neuron": 0.3651396632194519,
+   "rotation": 0.35318154096603394,
+   "probe": 0.9705173969268799
+  },
+  {
+   "name": "cell_r1c2_mine",
+   "family": "cell",
+   "neuron": 0.40802884101867676,
+   "rotation": 0.2630355954170227,
+   "probe": 0.962801456451416
+  },
+  {
+   "name": "cell_r1c2_theirs",
+   "family": "cell",
+   "neuron": 0.5053241848945618,
+   "rotation": 0.2547181248664856,
+   "probe": 0.9923574924468994
+  },
+  {
+   "name": "cell_r1c2_empty",
+   "family": "cell",
+   "neuron": 0.38277286291122437,
+   "rotation": 0.3686085045337677,
+   "probe": 0.9852175116539001
+  },
+  {
+   "name": "cell_r1c3_mine",
+   "family": "cell",
+   "neuron": 0.4017163813114166,
+   "rotation": 0.2521454095840454,
+   "probe": 0.9655293226242065
+  },
+  {
+   "name": "cell_r1c3_theirs",
+   "family": "cell",
+   "neuron": 0.4159398674964905,
+   "rotation": 0.23830950260162354,
+   "probe": 0.9945259094238281
+  },
+  {
+   "name": "cell_r1c3_empty",
+   "family": "cell",
+   "neuron": 0.486253023147583,
+   "rotation": 0.4709681272506714,
+   "probe": 0.9815117120742798
+  },
+  {
+   "name": "cell_r1c4_mine",
+   "family": "cell",
+   "neuron": 0.4508655369281769,
+   "rotation": 0.2480567842721939,
+   "probe": 0.9511343836784363
+  },
+  {
+   "name": "cell_r1c4_theirs",
+   "family": "cell",
+   "neuron": 0.504236102104187,
+   "rotation": 0.254497766494751,
+   "probe": 0.982508659362793
+  },
+  {
+   "name": "cell_r1c4_empty",
+   "family": "cell",
+   "neuron": 0.3809484839439392,
+   "rotation": 0.36192387342453003,
+   "probe": 0.9888494610786438
+  },
+  {
+   "name": "cell_r1c5_mine",
+   "family": "cell",
+   "neuron": 0.3767033815383911,
+   "rotation": 0.26506614685058594,
+   "probe": 0.9168483018875122
+  },
+  {
+   "name": "cell_r1c5_theirs",
+   "family": "cell",
+   "neuron": 0.3517167568206787,
+   "rotation": 0.2610797882080078,
+   "probe": 0.9455747604370117
+  },
+  {
+   "name": "cell_r1c5_empty",
+   "family": "cell",
+   "neuron": 0.35597068071365356,
+   "rotation": 0.3499780595302582,
+   "probe": 0.9837068915367126
+  },
+  {
+   "name": "cell_r1c6_mine",
+   "family": "cell",
+   "neuron": 0.3545663356781006,
+   "rotation": 0.2835104465484619,
+   "probe": 0.8154699802398682
+  },
+  {
+   "name": "cell_r1c6_theirs",
+   "family": "cell",
+   "neuron": 0.36071324348449707,
+   "rotation": 0.2994565963745117,
+   "probe": 0.865791916847229
+  },
+  {
+   "name": "cell_r1c6_empty",
+   "family": "cell",
+   "neuron": 0.32373300194740295,
+   "rotation": 0.31507790088653564,
+   "probe": 0.9694081544876099
+  },
+  {
+   "name": "cell_r2c0_mine",
+   "family": "cell",
+   "neuron": 0.5008896589279175,
+   "rotation": 0.3591174781322479,
+   "probe": 0.8600009083747864
+  },
+  {
+   "name": "cell_r2c0_theirs",
+   "family": "cell",
+   "neuron": 0.5496870875358582,
+   "rotation": 0.34035199880599976,
+   "probe": 0.8509613275527954
+  },
+  {
+   "name": "cell_r2c0_empty",
+   "family": "cell",
+   "neuron": 0.2559455931186676,
+   "rotation": 0.2569139003753662,
+   "probe": 0.9862101078033447
+  },
+  {
+   "name": "cell_r2c1_mine",
+   "family": "cell",
+   "neuron": 0.45702800154685974,
+   "rotation": 0.32198846340179443,
+   "probe": 0.9482904672622681
+  },
+  {
+   "name": "cell_r2c1_theirs",
+   "family": "cell",
+   "neuron": 0.3975544571876526,
+   "rotation": 0.30557894706726074,
+   "probe": 0.9857896566390991
+  },
+  {
+   "name": "cell_r2c1_empty",
+   "family": "cell",
+   "neuron": 0.2927566170692444,
+   "rotation": 0.2898001968860626,
+   "probe": 0.9885120391845703
+  },
+  {
+   "name": "cell_r2c2_mine",
+   "family": "cell",
+   "neuron": 0.39297720789909363,
+   "rotation": 0.30054771900177,
+   "probe": 0.9663313031196594
+  },
+  {
+   "name": "cell_r2c2_theirs",
+   "family": "cell",
+   "neuron": 0.569093644618988,
+   "rotation": 0.2967277765274048,
+   "probe": 0.9887151718139648
+  },
+  {
+   "name": "cell_r2c2_empty",
+   "family": "cell",
+   "neuron": 0.3145662546157837,
+   "rotation": 0.3086113929748535,
+   "probe": 0.9982538223266602
+  },
+  {
+   "name": "cell_r2c3_mine",
+   "family": "cell",
+   "neuron": 0.4225331246852875,
+   "rotation": 0.26578444242477417,
+   "probe": 0.9808676242828369
+  },
+  {
+   "name": "cell_r2c3_theirs",
+   "family": "cell",
+   "neuron": 0.496412992477417,
+   "rotation": 0.28534287214279175,
+   "probe": 0.9960298538208008
+  },
+  {
+   "name": "cell_r2c3_empty",
+   "family": "cell",
+   "neuron": 0.38296782970428467,
+   "rotation": 0.37271666526794434,
+   "probe": 0.9941744804382324
+  },
+  {
+   "name": "cell_r2c4_mine",
+   "family": "cell",
+   "neuron": 0.3621355891227722,
+   "rotation": 0.3143954277038574,
+   "probe": 0.9571434259414673
+  },
+  {
+   "name": "cell_r2c4_theirs",
+   "family": "cell",
+   "neuron": 0.4942953586578369,
+   "rotation": 0.2921762466430664,
+   "probe": 0.9898809194564819
+  },
+  {
+   "name": "cell_r2c4_empty",
+   "family": "cell",
+   "neuron": 0.30922001600265503,
+   "rotation": 0.3051110506057739,
+   "probe": 0.9987330436706543
+  },
+  {
+   "name": "cell_r2c5_mine",
+   "family": "cell",
+   "neuron": 0.3957015573978424,
+   "rotation": 0.3344413638114929,
+   "probe": 0.9340161085128784
+  },
+  {
+   "name": "cell_r2c5_theirs",
+   "family": "cell",
+   "neuron": 0.4388980269432068,
+   "rotation": 0.31396228075027466,
+   "probe": 0.9753488302230835
+  },
+  {
+   "name": "cell_r2c5_empty",
+   "family": "cell",
+   "neuron": 0.2883489429950714,
+   "rotation": 0.2864399552345276,
+   "probe": 0.9888407588005066
+  },
+  {
+   "name": "cell_r2c6_mine",
+   "family": "cell",
+   "neuron": 0.4702128767967224,
+   "rotation": 0.3559597432613373,
+   "probe": 0.8150025606155396
+  },
+  {
+   "name": "cell_r2c6_theirs",
+   "family": "cell",
+   "neuron": 0.5630494356155396,
+   "rotation": 0.3404684364795685,
+   "probe": 0.8428149223327637
+  },
+  {
+   "name": "cell_r2c6_empty",
+   "family": "cell",
+   "neuron": 0.2610253095626831,
+   "rotation": 0.25511759519577026,
+   "probe": 0.982764482498169
+  },
+  {
+   "name": "cell_r3c0_mine",
+   "family": "cell",
+   "neuron": 0.4510079026222229,
+   "rotation": 0.3940916657447815,
+   "probe": 0.7690906524658203
+  },
+  {
+   "name": "cell_r3c0_theirs",
+   "family": "cell",
+   "neuron": 0.5482327938079834,
+   "rotation": 0.4041898548603058,
+   "probe": 0.8052194118499756
+  },
+  {
+   "name": "cell_r3c0_empty",
+   "family": "cell",
+   "neuron": 0.2374734878540039,
+   "rotation": 0.23511239886283875,
+   "probe": 0.9894986152648926
+  },
+  {
+   "name": "cell_r3c1_mine",
+   "family": "cell",
+   "neuron": 0.3880767822265625,
+   "rotation": 0.36599990725517273,
+   "probe": 0.8878958225250244
+  },
+  {
+   "name": "cell_r3c1_theirs",
+   "family": "cell",
+   "neuron": 0.47291892766952515,
+   "rotation": 0.36185556650161743,
+   "probe": 0.9312069416046143
+  },
+  {
+   "name": "cell_r3c1_empty",
+   "family": "cell",
+   "neuron": 0.261624276638031,
+   "rotation": 0.26050353050231934,
+   "probe": 0.992363691329956
+  },
+  {
+   "name": "cell_r3c2_mine",
+   "family": "cell",
+   "neuron": 0.399910569190979,
+   "rotation": 0.3403424024581909,
+   "probe": 0.9538031816482544
+  },
+  {
+   "name": "cell_r3c2_theirs",
+   "family": "cell",
+   "neuron": 0.4577457904815674,
+   "rotation": 0.3253033459186554,
+   "probe": 0.9718239307403564
+  },
+  {
+   "name": "cell_r3c2_empty",
+   "family": "cell",
+   "neuron": 0.27944719791412354,
+   "rotation": 0.27827516198158264,
+   "probe": 0.9970567226409912
+  },
+  {
+   "name": "cell_r3c3_mine",
+   "family": "cell",
+   "neuron": 0.4359269142150879,
+   "rotation": 0.3030249774456024,
+   "probe": 0.9748145341873169
+  },
+  {
+   "name": "cell_r3c3_theirs",
+   "family": "cell",
+   "neuron": 0.49701642990112305,
+   "rotation": 0.276566743850708,
+   "probe": 0.9819912314414978
+  },
+  {
+   "name": "cell_r3c3_empty",
+   "family": "cell",
+   "neuron": 0.34758442640304565,
+   "rotation": 0.329873263835907,
+   "probe": 0.9960521459579468
+  },
+  {
+   "name": "cell_r3c4_mine",
+   "family": "cell",
+   "neuron": 0.3618527054786682,
+   "rotation": 0.34989413619041443,
+   "probe": 0.9402937889099121
+  },
+  {
+   "name": "cell_r3c4_theirs",
+   "family": "cell",
+   "neuron": 0.40799081325531006,
+   "rotation": 0.3319789171218872,
+   "probe": 0.9563767910003662
+  },
+  {
+   "name": "cell_r3c4_empty",
+   "family": "cell",
+   "neuron": 0.27121055126190186,
+   "rotation": 0.27197927236557007,
+   "probe": 0.9978054761886597
+  },
+  {
+   "name": "cell_r3c5_mine",
+   "family": "cell",
+   "neuron": 0.3826216459274292,
+   "rotation": 0.3608613610267639,
+   "probe": 0.9093133807182312
+  },
+  {
+   "name": "cell_r3c5_theirs",
+   "family": "cell",
+   "neuron": 0.5447711944580078,
+   "rotation": 0.3737639784812927,
+   "probe": 0.9383591413497925
+  },
+  {
+   "name": "cell_r3c5_empty",
+   "family": "cell",
+   "neuron": 0.26060545444488525,
+   "rotation": 0.25960588455200195,
+   "probe": 0.9938449859619141
+  },
+  {
+   "name": "cell_r3c6_mine",
+   "family": "cell",
+   "neuron": 0.5812550783157349,
+   "rotation": 0.37744179368019104,
+   "probe": 0.7466049194335938
+  },
+  {
+   "name": "cell_r3c6_theirs",
+   "family": "cell",
+   "neuron": 0.5797160863876343,
+   "rotation": 0.3912009000778198,
+   "probe": 0.7858742475509644
+  },
+  {
+   "name": "cell_r3c6_empty",
+   "family": "cell",
+   "neuron": 0.23800432682037354,
+   "rotation": 0.2362809181213379,
+   "probe": 0.98909592628479
+  },
+  {
+   "name": "cell_r4c0_mine",
+   "family": "cell",
+   "neuron": 0.5655142068862915,
+   "rotation": 0.5111454725265503,
+   "probe": 0.6549627780914307
+  },
+  {
+   "name": "cell_r4c0_theirs",
+   "family": "cell",
+   "neuron": 0.5706355571746826,
+   "rotation": 0.44644853472709656,
+   "probe": 0.7348341941833496
+  },
+  {
+   "name": "cell_r4c0_empty",
+   "family": "cell",
+   "neuron": 0.21553203463554382,
+   "rotation": 0.2134162187576294,
+   "probe": 0.9937130212783813
+  },
+  {
+   "name": "cell_r4c1_mine",
+   "family": "cell",
+   "neuron": 0.4766850471496582,
+   "rotation": 0.4598678946495056,
+   "probe": 0.7781625390052795
+  },
+  {
+   "name": "cell_r4c1_theirs",
+   "family": "cell",
+   "neuron": 0.5457629561424255,
+   "rotation": 0.4234740138053894,
+   "probe": 0.8614633083343506
+  },
+  {
+   "name": "cell_r4c1_empty",
+   "family": "cell",
+   "neuron": 0.23117390275001526,
+   "rotation": 0.228485107421875,
+   "probe": 0.9944815635681152
+  },
+  {
+   "name": "cell_r4c2_mine",
+   "family": "cell",
+   "neuron": 0.5756604671478271,
+   "rotation": 0.40023237466812134,
+   "probe": 0.9030207991600037
+  },
+  {
+   "name": "cell_r4c2_theirs",
+   "family": "cell",
+   "neuron": 0.4658811688423157,
+   "rotation": 0.39229726791381836,
+   "probe": 0.9453965425491333
+  },
+  {
+   "name": "cell_r4c2_empty",
+   "family": "cell",
+   "neuron": 0.24749647080898285,
+   "rotation": 0.24275553226470947,
+   "probe": 0.9961806535720825
+  },
+  {
+   "name": "cell_r4c3_mine",
+   "family": "cell",
+   "neuron": 0.411442369222641,
+   "rotation": 0.3288760185241699,
+   "probe": 0.9824159145355225
+  },
+  {
+   "name": "cell_r4c3_theirs",
+   "family": "cell",
+   "neuron": 0.4829997420310974,
+   "rotation": 0.3401429355144501,
+   "probe": 0.9853447675704956
+  },
+  {
+   "name": "cell_r4c3_empty",
+   "family": "cell",
+   "neuron": 0.29430443048477173,
+   "rotation": 0.2882501482963562,
+   "probe": 0.995369553565979
+  },
+  {
+   "name": "cell_r4c4_mine",
+   "family": "cell",
+   "neuron": 0.4807569682598114,
+   "rotation": 0.41300976276397705,
+   "probe": 0.9025163650512695
+  },
+  {
+   "name": "cell_r4c4_theirs",
+   "family": "cell",
+   "neuron": 0.548696756362915,
+   "rotation": 0.3869224786758423,
+   "probe": 0.9373365640640259
+  },
+  {
+   "name": "cell_r4c4_empty",
+   "family": "cell",
+   "neuron": 0.24284183979034424,
+   "rotation": 0.2424549162387848,
+   "probe": 0.9957531690597534
+  },
+  {
+   "name": "cell_r4c5_mine",
+   "family": "cell",
+   "neuron": 0.50281822681427,
+   "rotation": 0.4870014786720276,
+   "probe": 0.7882536053657532
+  },
+  {
+   "name": "cell_r4c5_theirs",
+   "family": "cell",
+   "neuron": 0.4954283535480499,
+   "rotation": 0.42254316806793213,
+   "probe": 0.8669072985649109
+  },
+  {
+   "name": "cell_r4c5_empty",
+   "family": "cell",
+   "neuron": 0.23042723536491394,
+   "rotation": 0.22994385659694672,
+   "probe": 0.9940329790115356
+  },
+  {
+   "name": "cell_r4c6_mine",
+   "family": "cell",
+   "neuron": 0.5645448565483093,
+   "rotation": 0.49364781379699707,
+   "probe": 0.6320059299468994
+  },
+  {
+   "name": "cell_r4c6_theirs",
+   "family": "cell",
+   "neuron": 0.5606456995010376,
+   "rotation": 0.4235791563987732,
+   "probe": 0.7189412117004395
+  },
+  {
+   "name": "cell_r4c6_empty",
+   "family": "cell",
+   "neuron": 0.2143489420413971,
+   "rotation": 0.21534380316734314,
+   "probe": 0.9939621686935425
+  },
+  {
+   "name": "cell_r5c0_mine",
+   "family": "cell",
+   "neuron": 0.6060988306999207,
+   "rotation": 0.5070416331291199,
+   "probe": 0.6367833614349365
+  },
+  {
+   "name": "cell_r5c0_theirs",
+   "family": "cell",
+   "neuron": 0.6662454605102539,
+   "rotation": 0.587332010269165,
+   "probe": 0.7316620349884033
+  },
+  {
+   "name": "cell_r5c0_empty",
+   "family": "cell",
+   "neuron": 0.20105209946632385,
+   "rotation": 0.2010403871536255,
+   "probe": 0.997277557849884
+  },
+  {
+   "name": "cell_r5c1_mine",
+   "family": "cell",
+   "neuron": 0.5707992315292358,
+   "rotation": 0.5163538455963135,
+   "probe": 0.6779752373695374
+  },
+  {
+   "name": "cell_r5c1_theirs",
+   "family": "cell",
+   "neuron": 0.6512399911880493,
+   "rotation": 0.5494187474250793,
+   "probe": 0.7931772470474243
+  },
+  {
+   "name": "cell_r5c1_empty",
+   "family": "cell",
+   "neuron": 0.2122843712568283,
+   "rotation": 0.20920997858047485,
+   "probe": 0.9966198205947876
+  },
+  {
+   "name": "cell_r5c2_mine",
+   "family": "cell",
+   "neuron": 0.6993578672409058,
+   "rotation": 0.48555147647857666,
+   "probe": 0.7759184837341309
+  },
+  {
+   "name": "cell_r5c2_theirs",
+   "family": "cell",
+   "neuron": 0.7683718204498291,
+   "rotation": 0.4868844151496887,
+   "probe": 0.9152977466583252
+  },
+  {
+   "name": "cell_r5c2_empty",
+   "family": "cell",
+   "neuron": 0.22284945845603943,
+   "rotation": 0.21881096065044403,
+   "probe": 0.9955152273178101
+  },
+  {
+   "name": "cell_r5c3_mine",
+   "family": "cell",
+   "neuron": 0.6262953877449036,
+   "rotation": 0.4064750671386719,
+   "probe": 0.9173306822776794
+  },
+  {
+   "name": "cell_r5c3_theirs",
+   "family": "cell",
+   "neuron": 0.5208728313446045,
+   "rotation": 0.3885209560394287,
+   "probe": 0.9491201639175415
+  },
+  {
+   "name": "cell_r5c3_empty",
+   "family": "cell",
+   "neuron": 0.2550387382507324,
+   "rotation": 0.2580842971801758,
+   "probe": 0.9936869740486145
+  },
+  {
+   "name": "cell_r5c4_mine",
+   "family": "cell",
+   "neuron": 0.5660001039505005,
+   "rotation": 0.4731059968471527,
+   "probe": 0.6717674732208252
+  },
+  {
+   "name": "cell_r5c4_theirs",
+   "family": "cell",
+   "neuron": 0.6342171430587769,
+   "rotation": 0.4939040541648865,
+   "probe": 0.890885591506958
+  },
+  {
+   "name": "cell_r5c4_empty",
+   "family": "cell",
+   "neuron": 0.21996520459651947,
+   "rotation": 0.2195112407207489,
+   "probe": 0.9957842826843262
+  },
+  {
+   "name": "cell_r5c5_mine",
+   "family": "cell",
+   "neuron": 0.5547645092010498,
+   "rotation": 0.519273579120636,
+   "probe": 0.6935992240905762
+  },
+  {
+   "name": "cell_r5c5_theirs",
+   "family": "cell",
+   "neuron": 0.7265872955322266,
+   "rotation": 0.5669007301330566,
+   "probe": 0.8054339289665222
+  },
+  {
+   "name": "cell_r5c5_empty",
+   "family": "cell",
+   "neuron": 0.21013391017913818,
+   "rotation": 0.21158906817436218,
+   "probe": 0.9945753812789917
+  },
+  {
+   "name": "cell_r5c6_mine",
+   "family": "cell",
+   "neuron": 0.6335979700088501,
+   "rotation": 0.4921012222766876,
+   "probe": 0.5963211059570312
+  },
+  {
+   "name": "cell_r5c6_theirs",
+   "family": "cell",
+   "neuron": 0.7202457189559937,
+   "rotation": 0.5848440527915955,
+   "probe": 0.7262024283409119
+  },
+  {
+   "name": "cell_r5c6_empty",
+   "family": "cell",
+   "neuron": 0.20164701342582703,
+   "rotation": 0.1950906217098236,
+   "probe": 0.996661901473999
+  },
+  {
+   "name": "cell_r0c0_first",
+   "family": "cell",
+   "neuron": 0.29647329449653625,
+   "rotation": 0.23337982594966888,
+   "probe": 0.722041130065918
+  },
+  {
+   "name": "cell_r0c0_second",
+   "family": "cell",
+   "neuron": 0.2657349109649658,
+   "rotation": 0.22392719984054565,
+   "probe": 0.6270880699157715
+  },
+  {
+   "name": "cell_r0c1_first",
+   "family": "cell",
+   "neuron": 0.2908947169780731,
+   "rotation": 0.21439239382743835,
+   "probe": 0.7222821712493896
+  },
+  {
+   "name": "cell_r0c1_second",
+   "family": "cell",
+   "neuron": 0.23380118608474731,
+   "rotation": 0.20712058246135712,
+   "probe": 0.6369897723197937
+  },
+  {
+   "name": "cell_r0c2_first",
+   "family": "cell",
+   "neuron": 0.24598033726215363,
+   "rotation": 0.2114555537700653,
+   "probe": 0.7233737707138062
+  },
+  {
+   "name": "cell_r0c2_second",
+   "family": "cell",
+   "neuron": 0.25447219610214233,
+   "rotation": 0.20409153401851654,
+   "probe": 0.6566144227981567
+  },
+  {
+   "name": "cell_r0c3_first",
+   "family": "cell",
+   "neuron": 0.24705779552459717,
+   "rotation": 0.2188372015953064,
+   "probe": 0.7174860239028931
+  },
+  {
+   "name": "cell_r0c3_second",
+   "family": "cell",
+   "neuron": 0.29553237557411194,
+   "rotation": 0.20127254724502563,
+   "probe": 0.6890871524810791
+  },
+  {
+   "name": "cell_r0c4_first",
+   "family": "cell",
+   "neuron": 0.23880568146705627,
+   "rotation": 0.22000223398208618,
+   "probe": 0.7009962797164917
+  },
+  {
+   "name": "cell_r0c4_second",
+   "family": "cell",
+   "neuron": 0.23635083436965942,
+   "rotation": 0.21753069758415222,
+   "probe": 0.655097484588623
+  },
+  {
+   "name": "cell_r0c5_first",
+   "family": "cell",
+   "neuron": 0.28019341826438904,
+   "rotation": 0.23515301942825317,
+   "probe": 0.718651533126831
+  },
+  {
+   "name": "cell_r0c5_second",
+   "family": "cell",
+   "neuron": 0.2394830733537674,
+   "rotation": 0.20904123783111572,
+   "probe": 0.646044135093689
+  },
+  {
+   "name": "cell_r0c6_first",
+   "family": "cell",
+   "neuron": 0.27612626552581787,
+   "rotation": 0.23022037744522095,
+   "probe": 0.7289437651634216
+  },
+  {
+   "name": "cell_r0c6_second",
+   "family": "cell",
+   "neuron": 0.23714850842952728,
+   "rotation": 0.22648678719997406,
+   "probe": 0.6271296739578247
+  },
+  {
+   "name": "cell_r1c0_first",
+   "family": "cell",
+   "neuron": 0.2951699495315552,
+   "rotation": 0.283036470413208,
+   "probe": 0.6136826872825623
+  },
+  {
+   "name": "cell_r1c0_second",
+   "family": "cell",
+   "neuron": 0.3081143796443939,
+   "rotation": 0.27500730752944946,
+   "probe": 0.6516043543815613
+  },
+  {
+   "name": "cell_r1c1_first",
+   "family": "cell",
+   "neuron": 0.2813069820404053,
+   "rotation": 0.260017991065979,
+   "probe": 0.6539997458457947
+  },
+  {
+   "name": "cell_r1c1_second",
+   "family": "cell",
+   "neuron": 0.27075618505477905,
+   "rotation": 0.2518007159233093,
+   "probe": 0.645828127861023
+  },
+  {
+   "name": "cell_r1c2_first",
+   "family": "cell",
+   "neuron": 0.2710520625114441,
+   "rotation": 0.26069551706314087,
+   "probe": 0.6794370412826538
+  },
+  {
+   "name": "cell_r1c2_second",
+   "family": "cell",
+   "neuron": 0.26616501808166504,
+   "rotation": 0.24202996492385864,
+   "probe": 0.6402287483215332
+  },
+  {
+   "name": "cell_r1c3_first",
+   "family": "cell",
+   "neuron": 0.22372257709503174,
+   "rotation": 0.2189173698425293,
+   "probe": 0.6977438926696777
+  },
+  {
+   "name": "cell_r1c3_second",
+   "family": "cell",
+   "neuron": 0.2559630274772644,
+   "rotation": 0.216870978474617,
+   "probe": 0.6326168775558472
+  },
+  {
+   "name": "cell_r1c4_first",
+   "family": "cell",
+   "neuron": 0.26285743713378906,
+   "rotation": 0.2418530285358429,
+   "probe": 0.6597240567207336
+  },
+  {
+   "name": "cell_r1c4_second",
+   "family": "cell",
+   "neuron": 0.26632028818130493,
+   "rotation": 0.24796977639198303,
+   "probe": 0.6584969758987427
+  },
+  {
+   "name": "cell_r1c5_first",
+   "family": "cell",
+   "neuron": 0.2739899158477783,
+   "rotation": 0.2754684388637543,
+   "probe": 0.6592843532562256
+  },
+  {
+   "name": "cell_r1c5_second",
+   "family": "cell",
+   "neuron": 0.27724283933639526,
+   "rotation": 0.2509917616844177,
+   "probe": 0.6488795280456543
+  },
+  {
+   "name": "cell_r1c6_first",
+   "family": "cell",
+   "neuron": 0.3064877986907959,
+   "rotation": 0.2862107753753662,
+   "probe": 0.6145973205566406
+  },
+  {
+   "name": "cell_r1c6_second",
+   "family": "cell",
+   "neuron": 0.31795990467071533,
+   "rotation": 0.2793705463409424,
+   "probe": 0.6443473100662231
+  },
+  {
+   "name": "cell_r2c0_first",
+   "family": "cell",
+   "neuron": 0.39646995067596436,
+   "rotation": 0.3503335118293762,
+   "probe": 0.6490823030471802
+  },
+  {
+   "name": "cell_r2c0_second",
+   "family": "cell",
+   "neuron": 0.3881446421146393,
+   "rotation": 0.3482663631439209,
+   "probe": 0.6310042142868042
+  },
+  {
+   "name": "cell_r2c1_first",
+   "family": "cell",
+   "neuron": 0.33849069476127625,
+   "rotation": 0.3200215995311737,
+   "probe": 0.6683059930801392
+  },
+  {
+   "name": "cell_r2c1_second",
+   "family": "cell",
+   "neuron": 0.31346210837364197,
+   "rotation": 0.3058212399482727,
+   "probe": 0.625800609588623
+  },
+  {
+   "name": "cell_r2c2_first",
+   "family": "cell",
+   "neuron": 0.30136504769325256,
+   "rotation": 0.29183316230773926,
+   "probe": 0.655752420425415
+  },
+  {
+   "name": "cell_r2c2_second",
+   "family": "cell",
+   "neuron": 0.3439093828201294,
+   "rotation": 0.2873385548591614,
+   "probe": 0.659278154373169
+  },
+  {
+   "name": "cell_r2c3_first",
+   "family": "cell",
+   "neuron": 0.2658800780773163,
+   "rotation": 0.2665894627571106,
+   "probe": 0.660483181476593
+  },
+  {
+   "name": "cell_r2c3_second",
+   "family": "cell",
+   "neuron": 0.2795536518096924,
+   "rotation": 0.25159475207328796,
+   "probe": 0.6572800278663635
+  },
+  {
+   "name": "cell_r2c4_first",
+   "family": "cell",
+   "neuron": 0.3067229688167572,
+   "rotation": 0.29846060276031494,
+   "probe": 0.675808310508728
+  },
+  {
+   "name": "cell_r2c4_second",
+   "family": "cell",
+   "neuron": 0.29983460903167725,
+   "rotation": 0.2862541079521179,
+   "probe": 0.6382664442062378
+  },
+  {
+   "name": "cell_r2c5_first",
+   "family": "cell",
+   "neuron": 0.3367849886417389,
+   "rotation": 0.3284761309623718,
+   "probe": 0.6509445905685425
+  },
+  {
+   "name": "cell_r2c5_second",
+   "family": "cell",
+   "neuron": 0.3312116861343384,
+   "rotation": 0.315835177898407,
+   "probe": 0.6518806219100952
+  },
+  {
+   "name": "cell_r2c6_first",
+   "family": "cell",
+   "neuron": 0.39382708072662354,
+   "rotation": 0.3418765068054199,
+   "probe": 0.6498863697052002
+  },
+  {
+   "name": "cell_r2c6_second",
+   "family": "cell",
+   "neuron": 0.37297379970550537,
+   "rotation": 0.3389095664024353,
+   "probe": 0.6176753640174866
+  },
+  {
+   "name": "cell_r3c0_first",
+   "family": "cell",
+   "neuron": 0.4282795786857605,
+   "rotation": 0.3920631408691406,
+   "probe": 0.6095312237739563
+  },
+  {
+   "name": "cell_r3c0_second",
+   "family": "cell",
+   "neuron": 0.4532315135002136,
+   "rotation": 0.4075923562049866,
+   "probe": 0.6586968898773193
+  },
+  {
+   "name": "cell_r3c1_first",
+   "family": "cell",
+   "neuron": 0.36308813095092773,
+   "rotation": 0.3477843403816223,
+   "probe": 0.6164907217025757
+  },
+  {
+   "name": "cell_r3c1_second",
+   "family": "cell",
+   "neuron": 0.38664937019348145,
+   "rotation": 0.36891621351242065,
+   "probe": 0.6722042560577393
+  },
+  {
+   "name": "cell_r3c2_first",
+   "family": "cell",
+   "neuron": 0.3430185914039612,
+   "rotation": 0.33023950457572937,
+   "probe": 0.6526551246643066
+  },
+  {
+   "name": "cell_r3c2_second",
+   "family": "cell",
+   "neuron": 0.3423428535461426,
+   "rotation": 0.3333222270011902,
+   "probe": 0.6464865803718567
+  },
+  {
+   "name": "cell_r3c3_first",
+   "family": "cell",
+   "neuron": 0.27755963802337646,
+   "rotation": 0.28360992670059204,
+   "probe": 0.658608078956604
+  },
+  {
+   "name": "cell_r3c3_second",
+   "family": "cell",
+   "neuron": 0.29143279790878296,
+   "rotation": 0.2834435701370239,
+   "probe": 0.6576398015022278
+  },
+  {
+   "name": "cell_r3c4_first",
+   "family": "cell",
+   "neuron": 0.33843475580215454,
+   "rotation": 0.3230125308036804,
+   "probe": 0.6370596885681152
+  },
+  {
+   "name": "cell_r3c4_second",
+   "family": "cell",
+   "neuron": 0.35019785165786743,
+   "rotation": 0.34177717566490173,
+   "probe": 0.6687523722648621
+  },
+  {
+   "name": "cell_r3c5_first",
+   "family": "cell",
+   "neuron": 0.3610689043998718,
+   "rotation": 0.34592771530151367,
+   "probe": 0.6312618255615234
+  },
+  {
+   "name": "cell_r3c5_second",
+   "family": "cell",
+   "neuron": 0.3878089487552643,
+   "rotation": 0.3874014616012573,
+   "probe": 0.6708862781524658
+  },
+  {
+   "name": "cell_r3c6_first",
+   "family": "cell",
+   "neuron": 0.41616761684417725,
+   "rotation": 0.3748336434364319,
+   "probe": 0.6124241352081299
+  },
+  {
+   "name": "cell_r3c6_second",
+   "family": "cell",
+   "neuron": 0.45514827966690063,
+   "rotation": 0.3964458703994751,
+   "probe": 0.6595015525817871
+  },
+  {
+   "name": "cell_r4c0_first",
+   "family": "cell",
+   "neuron": 0.5474912524223328,
+   "rotation": 0.48969894647598267,
+   "probe": 0.658278226852417
+  },
+  {
+   "name": "cell_r4c0_second",
+   "family": "cell",
+   "neuron": 0.5271315574645996,
+   "rotation": 0.465384304523468,
+   "probe": 0.6264668703079224
+  },
+  {
+   "name": "cell_r4c1_first",
+   "family": "cell",
+   "neuron": 0.4792819619178772,
+   "rotation": 0.44672852754592896,
+   "probe": 0.6550276279449463
+  },
+  {
+   "name": "cell_r4c1_second",
+   "family": "cell",
+   "neuron": 0.4588254392147064,
+   "rotation": 0.4350629448890686,
+   "probe": 0.6311196088790894
+  },
+  {
+   "name": "cell_r4c2_first",
+   "family": "cell",
+   "neuron": 0.4005314111709595,
+   "rotation": 0.383220911026001,
+   "probe": 0.647441029548645
+  },
+  {
+   "name": "cell_r4c2_second",
+   "family": "cell",
+   "neuron": 0.4157956838607788,
+   "rotation": 0.40344369411468506,
+   "probe": 0.6587671041488647
+  },
+  {
+   "name": "cell_r4c3_first",
+   "family": "cell",
+   "neuron": 0.34147119522094727,
+   "rotation": 0.3420288562774658,
+   "probe": 0.6515501737594604
+  },
+  {
+   "name": "cell_r4c3_second",
+   "family": "cell",
+   "neuron": 0.3177322745323181,
+   "rotation": 0.3133177161216736,
+   "probe": 0.6484428644180298
+  },
+  {
+   "name": "cell_r4c4_first",
+   "family": "cell",
+   "neuron": 0.41377097368240356,
+   "rotation": 0.40086475014686584,
+   "probe": 0.6570738554000854
+  },
+  {
+   "name": "cell_r4c4_second",
+   "family": "cell",
+   "neuron": 0.4091929793357849,
+   "rotation": 0.40114638209342957,
+   "probe": 0.6533318758010864
+  },
+  {
+   "name": "cell_r4c5_first",
+   "family": "cell",
+   "neuron": 0.4709150493144989,
+   "rotation": 0.45738494396209717,
+   "probe": 0.6461687088012695
+  },
+  {
+   "name": "cell_r4c5_second",
+   "family": "cell",
+   "neuron": 0.45503926277160645,
+   "rotation": 0.4436268210411072,
+   "probe": 0.6457871198654175
+  },
+  {
+   "name": "cell_r4c6_first",
+   "family": "cell",
+   "neuron": 0.5416421890258789,
+   "rotation": 0.4652790427207947,
+   "probe": 0.6543796062469482
+  },
+  {
+   "name": "cell_r4c6_second",
+   "family": "cell",
+   "neuron": 0.522194504737854,
+   "rotation": 0.4508320093154907,
+   "probe": 0.6339936256408691
+  },
+  {
+   "name": "cell_r5c0_first",
+   "family": "cell",
+   "neuron": 0.6346756219863892,
+   "rotation": 0.5410939455032349,
+   "probe": 0.6153510808944702
+  },
+  {
+   "name": "cell_r5c0_second",
+   "family": "cell",
+   "neuron": 0.6416516304016113,
+   "rotation": 0.5548036098480225,
+   "probe": 0.6275048851966858
+  },
+  {
+   "name": "cell_r5c1_first",
+   "family": "cell",
+   "neuron": 0.5517619848251343,
+   "rotation": 0.5287396907806396,
+   "probe": 0.635772705078125
+  },
+  {
+   "name": "cell_r5c1_second",
+   "family": "cell",
+   "neuron": 0.5654399394989014,
+   "rotation": 0.5409459471702576,
+   "probe": 0.6643749475479126
+  },
+  {
+   "name": "cell_r5c2_first",
+   "family": "cell",
+   "neuron": 0.493102490901947,
+   "rotation": 0.47233426570892334,
+   "probe": 0.6552613973617554
+  },
+  {
+   "name": "cell_r5c2_second",
+   "family": "cell",
+   "neuron": 0.48770570755004883,
+   "rotation": 0.4703823924064636,
+   "probe": 0.6428956389427185
+  },
+  {
+   "name": "cell_r5c3_first",
+   "family": "cell",
+   "neuron": 0.3893119692802429,
+   "rotation": 0.37839895486831665,
+   "probe": 0.6570342779159546
+  },
+  {
+   "name": "cell_r5c3_second",
+   "family": "cell",
+   "neuron": 0.38927513360977173,
+   "rotation": 0.3793080151081085,
+   "probe": 0.6372190117835999
+  },
+  {
+   "name": "cell_r5c4_first",
+   "family": "cell",
+   "neuron": 0.4952394962310791,
+   "rotation": 0.4774920642375946,
+   "probe": 0.6347061991691589
+  },
+  {
+   "name": "cell_r5c4_second",
+   "family": "cell",
+   "neuron": 0.5258388519287109,
+   "rotation": 0.4961952567100525,
+   "probe": 0.6541540622711182
+  },
+  {
+   "name": "cell_r5c5_first",
+   "family": "cell",
+   "neuron": 0.5425124168395996,
+   "rotation": 0.5349266529083252,
+   "probe": 0.6323757171630859
+  },
+  {
+   "name": "cell_r5c5_second",
+   "family": "cell",
+   "neuron": 0.5702875852584839,
+   "rotation": 0.552250325679779,
+   "probe": 0.6473738551139832
+  },
+  {
+   "name": "cell_r5c6_first",
+   "family": "cell",
+   "neuron": 0.6316614747047424,
+   "rotation": 0.5393549203872681,
+   "probe": 0.6094100475311279
+  },
+  {
+   "name": "cell_r5c6_second",
+   "family": "cell",
+   "neuron": 0.6381268501281738,
+   "rotation": 0.5395376086235046,
+   "probe": 0.6116318702697754
+  },
+  {
+   "name": "land_r0c0",
+   "family": "land",
+   "neuron": 0.5136568546295166,
+   "rotation": 0.4596380889415741,
+   "probe": 0.9711929559707642
+  },
+  {
+   "name": "land_r0c1",
+   "family": "land",
+   "neuron": 0.5509125590324402,
+   "rotation": 0.5141336917877197,
+   "probe": 0.9851993322372437
+  },
+  {
+   "name": "land_r0c2",
+   "family": "land",
+   "neuron": 0.5699188709259033,
+   "rotation": 0.5318804979324341,
+   "probe": 0.9982660412788391
+  },
+  {
+   "name": "land_r0c3",
+   "family": "land",
+   "neuron": 0.703951358795166,
+   "rotation": 0.6475001573562622,
+   "probe": 0.9949716329574585
+  },
+  {
+   "name": "land_r0c4",
+   "family": "land",
+   "neuron": 0.5698944330215454,
+   "rotation": 0.4835936725139618,
+   "probe": 0.9984273910522461
+  },
+  {
+   "name": "land_r0c5",
+   "family": "land",
+   "neuron": 0.5320994853973389,
+   "rotation": 0.46501922607421875,
+   "probe": 0.9909772872924805
+  },
+  {
+   "name": "land_r0c6",
+   "family": "land",
+   "neuron": 0.5158060789108276,
+   "rotation": 0.4806252121925354,
+   "probe": 0.9766907691955566
+  },
+  {
+   "name": "land_r1c0",
+   "family": "land",
+   "neuron": 0.5538164973258972,
+   "rotation": 0.3156532049179077,
+   "probe": 0.9428379535675049
+  },
+  {
+   "name": "land_r1c1",
+   "family": "land",
+   "neuron": 0.6657053828239441,
+   "rotation": 0.32499027252197266,
+   "probe": 0.9814279079437256
+  },
+  {
+   "name": "land_r1c2",
+   "family": "land",
+   "neuron": 0.6478305459022522,
+   "rotation": 0.35480797290802,
+   "probe": 0.9807588458061218
+  },
+  {
+   "name": "land_r1c3",
+   "family": "land",
+   "neuron": 0.7680584192276001,
+   "rotation": 0.34487223625183105,
+   "probe": 0.9742257595062256
+  },
+  {
+   "name": "land_r1c4",
+   "family": "land",
+   "neuron": 0.4869784116744995,
+   "rotation": 0.3425525426864624,
+   "probe": 0.9840439558029175
+  },
+  {
+   "name": "land_r1c5",
+   "family": "land",
+   "neuron": 0.6346740126609802,
+   "rotation": 0.28516703844070435,
+   "probe": 0.9768329858779907
+  },
+  {
+   "name": "land_r1c6",
+   "family": "land",
+   "neuron": 0.5321803689002991,
+   "rotation": 0.2837172746658325,
+   "probe": 0.9338096380233765
+  },
+  {
+   "name": "land_r2c0",
+   "family": "land",
+   "neuron": 0.6070076823234558,
+   "rotation": 0.2882077693939209,
+   "probe": 0.9496763348579407
+  },
+  {
+   "name": "land_r2c1",
+   "family": "land",
+   "neuron": 0.6089328527450562,
+   "rotation": 0.27988338470458984,
+   "probe": 0.9709852933883667
+  },
+  {
+   "name": "land_r2c2",
+   "family": "land",
+   "neuron": 0.7091929912567139,
+   "rotation": 0.28903430700302124,
+   "probe": 0.9552707672119141
+  },
+  {
+   "name": "land_r2c3",
+   "family": "land",
+   "neuron": 0.7093695402145386,
+   "rotation": 0.35890066623687744,
+   "probe": 0.9392504096031189
+  },
+  {
+   "name": "land_r2c4",
+   "family": "land",
+   "neuron": 0.6730325222015381,
+   "rotation": 0.34587931632995605,
+   "probe": 0.9679194688796997
+  },
+  {
+   "name": "land_r2c5",
+   "family": "land",
+   "neuron": 0.5955206155776978,
+   "rotation": 0.2828840911388397,
+   "probe": 0.9698193073272705
+  },
+  {
+   "name": "land_r2c6",
+   "family": "land",
+   "neuron": 0.75303053855896,
+   "rotation": 0.29007861018180847,
+   "probe": 0.9533588886260986
+  },
+  {
+   "name": "land_r3c0",
+   "family": "land",
+   "neuron": 0.6798449158668518,
+   "rotation": 0.2260478138923645,
+   "probe": 0.9456666707992554
+  },
+  {
+   "name": "land_r3c1",
+   "family": "land",
+   "neuron": 0.6377837657928467,
+   "rotation": 0.23311951756477356,
+   "probe": 0.9477517604827881
+  },
+  {
+   "name": "land_r3c2",
+   "family": "land",
+   "neuron": 0.6580311059951782,
+   "rotation": 0.23545412719249725,
+   "probe": 0.9022847414016724
+  },
+  {
+   "name": "land_r3c3",
+   "family": "land",
+   "neuron": 0.8086672425270081,
+   "rotation": 0.26184624433517456,
+   "probe": 0.9206957817077637
+  },
+  {
+   "name": "land_r3c4",
+   "family": "land",
+   "neuron": 0.722814679145813,
+   "rotation": 0.23733928799629211,
+   "probe": 0.9215825200080872
+  },
+  {
+   "name": "land_r3c5",
+   "family": "land",
+   "neuron": 0.5813312530517578,
+   "rotation": 0.23304568231105804,
+   "probe": 0.9672006964683533
+  },
+  {
+   "name": "land_r3c6",
+   "family": "land",
+   "neuron": 0.7683013677597046,
+   "rotation": 0.2396402657032013,
+   "probe": 0.9726479053497314
+  },
+  {
+   "name": "land_r4c0",
+   "family": "land",
+   "neuron": 0.7536467909812927,
+   "rotation": 0.28614333271980286,
+   "probe": 0.9593486785888672
+  },
+  {
+   "name": "land_r4c1",
+   "family": "land",
+   "neuron": 0.5947335958480835,
+   "rotation": 0.2577716112136841,
+   "probe": 0.852535605430603
+  },
+  {
+   "name": "land_r4c2",
+   "family": "land",
+   "neuron": 0.6720736026763916,
+   "rotation": 0.26802515983581543,
+   "probe": 0.8795961141586304
+  },
+  {
+   "name": "land_r4c3",
+   "family": "land",
+   "neuron": 0.7926363945007324,
+   "rotation": 0.2601507902145386,
+   "probe": 0.9070849418640137
+  },
+  {
+   "name": "land_r4c4",
+   "family": "land",
+   "neuron": 0.9195531606674194,
+   "rotation": 0.2518244981765747,
+   "probe": 0.8935077786445618
+  },
+  {
+   "name": "land_r4c5",
+   "family": "land",
+   "neuron": 0.6490663886070251,
+   "rotation": 0.22158007323741913,
+   "probe": 0.9069021940231323
+  },
+  {
+   "name": "land_r4c6",
+   "family": "land",
+   "neuron": 0.7896186709403992,
+   "rotation": 0.29072779417037964,
+   "probe": 0.9548482894897461
+  },
+  {
+   "name": "land_r5c0",
+   "family": "land",
+   "neuron": 0.9098520278930664,
+   "rotation": 0.24956610798835754,
+   "probe": 0.8630681037902832
+  },
+  {
+   "name": "land_r5c1",
+   "family": "land",
+   "neuron": 0.6802699565887451,
+   "rotation": 0.32464370131492615,
+   "probe": 0.8749530911445618
+  },
+  {
+   "name": "land_r5c2",
+   "family": "land",
+   "neuron": 0.8365805149078369,
+   "rotation": 0.29742133617401123,
+   "probe": 0.8933247327804565
+  },
+  {
+   "name": "land_r5c3",
+   "family": "land",
+   "neuron": 0.7995117902755737,
+   "rotation": 0.32071131467819214,
+   "probe": 0.8859012126922607
+  },
+  {
+   "name": "land_r5c4",
+   "family": "land",
+   "neuron": 0.6605885028839111,
+   "rotation": 0.29430603981018066,
+   "probe": 0.8517959713935852
+  },
+  {
+   "name": "land_r5c5",
+   "family": "land",
+   "neuron": 0.750498354434967,
+   "rotation": 0.24905803799629211,
+   "probe": 0.9280805587768555
+  },
+  {
+   "name": "land_r5c6",
+   "family": "land",
+   "neuron": 0.9022700786590576,
+   "rotation": 0.27036383748054504,
+   "probe": 0.8805606365203857
+  },
+  {
+   "name": "full_c0",
+   "family": "full",
+   "neuron": 0.9475653171539307,
+   "rotation": 0.8147835731506348,
+   "probe": 0.97655189037323
+  },
+  {
+   "name": "full_c1",
+   "family": "full",
+   "neuron": 0.7743502259254456,
+   "rotation": 0.7435645461082458,
+   "probe": 0.9819263219833374
+  },
+  {
+   "name": "full_c2",
+   "family": "full",
+   "neuron": 0.6624307632446289,
+   "rotation": 0.6378557682037354,
+   "probe": 0.9819639921188354
+  },
+  {
+   "name": "full_c3",
+   "family": "full",
+   "neuron": 0.4818519353866577,
+   "rotation": 0.4791254997253418,
+   "probe": 0.9861171245574951
+  },
+  {
+   "name": "full_c4",
+   "family": "full",
+   "neuron": 0.6885882616043091,
+   "rotation": 0.6602902412414551,
+   "probe": 0.9818787574768066
+  },
+  {
+   "name": "full_c5",
+   "family": "full",
+   "neuron": 0.7809096574783325,
+   "rotation": 0.7574362754821777,
+   "probe": 0.9712387323379517
+  },
+  {
+   "name": "full_c6",
+   "family": "full",
+   "neuron": 0.9410977363586426,
+   "rotation": 0.7995984554290771,
+   "probe": 0.9719080924987793
+  },
+  {
+   "name": "win_now_c0",
+   "family": "win_now",
+   "neuron": 0.3318150043487549,
+   "rotation": 0.13890311121940613,
+   "probe": 0.061790212988853455
+  },
+  {
+   "name": "win_now_c1",
+   "family": "win_now",
+   "neuron": 0.48674118518829346,
+   "rotation": 0.1790057122707367,
+   "probe": 0.0652773305773735
+  },
+  {
+   "name": "win_now_c2",
+   "family": "win_now",
+   "neuron": 0.5241222381591797,
+   "rotation": 0.3091946542263031,
+   "probe": 0.1398363709449768
+  },
+  {
+   "name": "win_now_c3",
+   "family": "win_now",
+   "neuron": 0.48570114374160767,
+   "rotation": 0.20981764793395996,
+   "probe": 0.17563515901565552
+  },
+  {
+   "name": "win_now_c4",
+   "family": "win_now",
+   "neuron": 0.6130164265632629,
+   "rotation": 0.3743284344673157,
+   "probe": 0.13479532301425934
+  },
+  {
+   "name": "win_now_c5",
+   "family": "win_now",
+   "neuron": 0.44001632928848267,
+   "rotation": 0.22046756744384766,
+   "probe": 0.05037810653448105
+  },
+  {
+   "name": "win_now_c6",
+   "family": "win_now",
+   "neuron": 0.26027315855026245,
+   "rotation": 0.157340869307518,
+   "probe": 0.025563249364495277
+  },
+  {
+   "name": "win_now_any",
+   "family": "win_now",
+   "neuron": 0.6903131008148193,
+   "rotation": 0.3426768183708191,
+   "probe": 0.7097140550613403
+  },
+  {
+   "name": "win_now_double",
+   "family": "win_now",
+   "neuron": 0.3672693967819214,
+   "rotation": 0.27434632182121277,
+   "probe": 0.1369050145149231
+  },
+  {
+   "name": "block_now_c0",
+   "family": "block_now",
+   "neuron": 0.7305985689163208,
+   "rotation": 0.5871378183364868,
+   "probe": 0.6488826274871826
+  },
+  {
+   "name": "block_now_c1",
+   "family": "block_now",
+   "neuron": 0.6121448278427124,
+   "rotation": 0.41011619567871094,
+   "probe": 0.6898878216743469
+  },
+  {
+   "name": "block_now_c2",
+   "family": "block_now",
+   "neuron": 0.5835128426551819,
+   "rotation": 0.41288304328918457,
+   "probe": 0.6370444297790527
+  },
+  {
+   "name": "block_now_c3",
+   "family": "block_now",
+   "neuron": 0.5764241218566895,
+   "rotation": 0.3875621557235718,
+   "probe": 0.6475989818572998
+  },
+  {
+   "name": "block_now_c4",
+   "family": "block_now",
+   "neuron": 0.5205099582672119,
+   "rotation": 0.380527138710022,
+   "probe": 0.644540548324585
+  },
+  {
+   "name": "block_now_c5",
+   "family": "block_now",
+   "neuron": 0.5908944606781006,
+   "rotation": 0.4489191174507141,
+   "probe": 0.6397196650505066
+  },
+  {
+   "name": "block_now_c6",
+   "family": "block_now",
+   "neuron": 0.7536908388137817,
+   "rotation": 0.4913937449455261,
+   "probe": 0.6115419864654541
+  },
+  {
+   "name": "block_now_any",
+   "family": "block_now",
+   "neuron": 0.5970282554626465,
+   "rotation": 0.4925885796546936,
+   "probe": 0.8609890937805176
+  },
+  {
+   "name": "block_now_double",
+   "family": "block_now",
+   "neuron": 0.4913370907306671,
+   "rotation": 0.5241559147834778,
+   "probe": 0.3767426609992981
+  },
+  {
+   "name": "poison_c0",
+   "family": "poison",
+   "neuron": 0.5136162042617798,
+   "rotation": 0.21068096160888672,
+   "probe": 0.3675251603126526
+  },
+  {
+   "name": "poison_c1",
+   "family": "poison",
+   "neuron": 0.5027077794075012,
+   "rotation": 0.29284077882766724,
+   "probe": 0.6327391862869263
+  },
+  {
+   "name": "poison_c2",
+   "family": "poison",
+   "neuron": 0.4156341254711151,
+   "rotation": 0.3275148570537567,
+   "probe": 0.723991870880127
+  },
+  {
+   "name": "poison_c3",
+   "family": "poison",
+   "neuron": 0.5586070418357849,
+   "rotation": 0.39329445362091064,
+   "probe": 0.739300549030304
+  },
+  {
+   "name": "poison_c4",
+   "family": "poison",
+   "neuron": 0.5100172758102417,
+   "rotation": 0.3439413905143738,
+   "probe": 0.6940758228302002
+  },
+  {
+   "name": "poison_c5",
+   "family": "poison",
+   "neuron": 0.37716665863990784,
+   "rotation": 0.25314733386039734,
+   "probe": 0.5758841037750244
+  },
+  {
+   "name": "poison_c6",
+   "family": "poison",
+   "neuron": 0.3969380557537079,
+   "rotation": 0.16942760348320007,
+   "probe": 0.3455929756164551
+  },
+  {
+   "name": "my_threat_r0c0",
+   "family": "my_threat_r",
+   "neuron": 0.13040196895599365,
+   "rotation": 0.10904685407876968,
+   "probe": 0.1446886509656906
+  },
+  {
+   "name": "my_threat_r0c1",
+   "family": "my_threat_r",
+   "neuron": 0.12651993334293365,
+   "rotation": 0.10215651988983154,
+   "probe": 0.06388330459594727
+  },
+  {
+   "name": "my_threat_r0c2",
+   "family": "my_threat_r",
+   "neuron": 0.13629576563835144,
+   "rotation": 0.09590254724025726,
+   "probe": 0.029069768264889717
+  },
+  {
+   "name": "my_threat_r0c4",
+   "family": "my_threat_r",
+   "neuron": 0.14298690855503082,
+   "rotation": 0.12078479677438736,
+   "probe": 0.14298754930496216
+  },
+  {
+   "name": "my_threat_r0c5",
+   "family": "my_threat_r",
+   "neuron": 0.12766672670841217,
+   "rotation": 0.15211671590805054,
+   "probe": 0.06932709366083145
+  },
+  {
+   "name": "my_threat_r0c6",
+   "family": "my_threat_r",
+   "neuron": 0.1124979630112648,
+   "rotation": 0.09096529334783554,
+   "probe": 0.02994011901319027
+  },
+  {
+   "name": "my_threat_r1c0",
+   "family": "my_threat_r",
+   "neuron": 0.25185537338256836,
+   "rotation": 0.04915584623813629,
+   "probe": 0.04089652746915817
+  },
+  {
+   "name": "my_threat_r1c1",
+   "family": "my_threat_r",
+   "neuron": 0.28753072023391724,
+   "rotation": 0.1520662158727646,
+   "probe": 0.2553851306438446
+  },
+  {
+   "name": "my_threat_r1c2",
+   "family": "my_threat_r",
+   "neuron": 0.4398132860660553,
+   "rotation": 0.14103084802627563,
+   "probe": 0.41372284293174744
+  },
+  {
+   "name": "my_threat_r1c3",
+   "family": "my_threat_r",
+   "neuron": 0.5479855537414551,
+   "rotation": 0.36013728380203247,
+   "probe": 0.4141662120819092
+  },
+  {
+   "name": "my_threat_r1c4",
+   "family": "my_threat_r",
+   "neuron": 0.4086334705352783,
+   "rotation": 0.163567453622818,
+   "probe": 0.41544216871261597
+  },
+  {
+   "name": "my_threat_r1c5",
+   "family": "my_threat_r",
+   "neuron": 0.39759567379951477,
+   "rotation": 0.13133040070533752,
+   "probe": 0.3878653049468994
+  },
+  {
+   "name": "my_threat_r1c6",
+   "family": "my_threat_r",
+   "neuron": 0.20907124876976013,
+   "rotation": 0.03540615737438202,
+   "probe": 0.03783125802874565
+  },
+  {
+   "name": "my_threat_r2c0",
+   "family": "my_threat_r",
+   "neuron": 0.34205636382102966,
+   "rotation": 0.09959342330694199,
+   "probe": 0.10305231809616089
+  },
+  {
+   "name": "my_threat_r2c1",
+   "family": "my_threat_r",
+   "neuron": 0.3589501976966858,
+   "rotation": 0.17632198333740234,
+   "probe": 0.3957391679286957
+  },
+  {
+   "name": "my_threat_r2c2",
+   "family": "my_threat_r",
+   "neuron": 0.45829007029533386,
+   "rotation": 0.2289797067642212,
+   "probe": 0.5788816809654236
+  },
+  {
+   "name": "my_threat_r2c3",
+   "family": "my_threat_r",
+   "neuron": 0.45809102058410645,
+   "rotation": 0.3062223196029663,
+   "probe": 0.5812342166900635
+  },
+  {
+   "name": "my_threat_r2c4",
+   "family": "my_threat_r",
+   "neuron": 0.5521703958511353,
+   "rotation": 0.23414073884487152,
+   "probe": 0.6287451982498169
+  },
+  {
+   "name": "my_threat_r2c5",
+   "family": "my_threat_r",
+   "neuron": 0.3251674473285675,
+   "rotation": 0.1610485017299652,
+   "probe": 0.4086790084838867
+  },
+  {
+   "name": "my_threat_r2c6",
+   "family": "my_threat_r",
+   "neuron": 0.5055710673332214,
+   "rotation": 0.05699893459677696,
+   "probe": 0.12630146741867065
+  },
+  {
+   "name": "my_threat_r3c0",
+   "family": "my_threat_r",
+   "neuron": 0.3664345443248749,
+   "rotation": 0.12836690247058868,
+   "probe": 0.38012319803237915
+  },
+  {
+   "name": "my_threat_r3c1",
+   "family": "my_threat_r",
+   "neuron": 0.33503472805023193,
+   "rotation": 0.21559451520442963,
+   "probe": 0.3616827726364136
+  },
+  {
+   "name": "my_threat_r3c2",
+   "family": "my_threat_r",
+   "neuron": 0.40207648277282715,
+   "rotation": 0.2857450246810913,
+   "probe": 0.5730083584785461
+  },
+  {
+   "name": "my_threat_r3c3",
+   "family": "my_threat_r",
+   "neuron": 0.5263986587524414,
+   "rotation": 0.33941662311553955,
+   "probe": 0.6347855925559998
+  },
+  {
+   "name": "my_threat_r3c4",
+   "family": "my_threat_r",
+   "neuron": 0.45958489179611206,
+   "rotation": 0.2753554582595825,
+   "probe": 0.6047136187553406
+  },
+  {
+   "name": "my_threat_r3c5",
+   "family": "my_threat_r",
+   "neuron": 0.3324316143989563,
+   "rotation": 0.20697729289531708,
+   "probe": 0.31311947107315063
+  },
+  {
+   "name": "my_threat_r3c6",
+   "family": "my_threat_r",
+   "neuron": 0.49022185802459717,
+   "rotation": 0.10738947987556458,
+   "probe": 0.39070773124694824
+  },
+  {
+   "name": "my_threat_r4c0",
+   "family": "my_threat_r",
+   "neuron": 0.16763122379779816,
+   "rotation": 0.13377860188484192,
+   "probe": 0.0925910621881485
+  },
+  {
+   "name": "my_threat_r4c1",
+   "family": "my_threat_r",
+   "neuron": 0.2595500349998474,
+   "rotation": 0.19172203540802002,
+   "probe": 0.3133073151111603
+  },
+  {
+   "name": "my_threat_r4c2",
+   "family": "my_threat_r",
+   "neuron": 0.32691824436187744,
+   "rotation": 0.24470186233520508,
+   "probe": 0.34961360692977905
+  },
+  {
+   "name": "my_threat_r4c3",
+   "family": "my_threat_r",
+   "neuron": 0.4767248034477234,
+   "rotation": 0.3672436475753784,
+   "probe": 0.39158809185028076
+  },
+  {
+   "name": "my_threat_r4c4",
+   "family": "my_threat_r",
+   "neuron": 0.31813833117485046,
+   "rotation": 0.24437737464904785,
+   "probe": 0.3189215660095215
+  },
+  {
+   "name": "my_threat_r4c5",
+   "family": "my_threat_r",
+   "neuron": 0.26205480098724365,
+   "rotation": 0.14758092164993286,
+   "probe": 0.2565453350543976
+  },
+  {
+   "name": "my_threat_r4c6",
+   "family": "my_threat_r",
+   "neuron": 0.2717062830924988,
+   "rotation": 0.09268662333488464,
+   "probe": 0.04939475655555725
+  },
+  {
+   "name": "my_threat_r5c0",
+   "family": "my_threat_r",
+   "neuron": 0.11395110189914703,
+   "rotation": 0.13772177696228027,
+   "probe": 0.044827766716480255
+  },
+  {
+   "name": "my_threat_r5c1",
+   "family": "my_threat_r",
+   "neuron": 0.19808611273765564,
+   "rotation": 0.15171030163764954,
+   "probe": 0.09074977040290833
+  },
+  {
+   "name": "my_threat_r5c2",
+   "family": "my_threat_r",
+   "neuron": 0.202249675989151,
+   "rotation": 0.20250347256660461,
+   "probe": 0.12125567346811295
+  },
+  {
+   "name": "my_threat_r5c3",
+   "family": "my_threat_r",
+   "neuron": 0.33361101150512695,
+   "rotation": 0.30144548416137695,
+   "probe": 0.27426907420158386
+  },
+  {
+   "name": "my_threat_r5c4",
+   "family": "my_threat_r",
+   "neuron": 0.19832642376422882,
+   "rotation": 0.17871886491775513,
+   "probe": 0.1255653351545334
+  },
+  {
+   "name": "my_threat_r5c5",
+   "family": "my_threat_r",
+   "neuron": 0.18061670660972595,
+   "rotation": 0.1622508466243744,
+   "probe": 0.11976093798875809
+  },
+  {
+   "name": "my_threat_r5c6",
+   "family": "my_threat_r",
+   "neuron": 0.12239469587802887,
+   "rotation": 0.14406520128250122,
+   "probe": 0.026628799736499786
+  },
+  {
+   "name": "opp_threat_r0c0",
+   "family": "opp_threat_r",
+   "neuron": 0.5009702444076538,
+   "rotation": 0.3191227316856384,
+   "probe": 0.3146486282348633
+  },
+  {
+   "name": "opp_threat_r0c1",
+   "family": "opp_threat_r",
+   "neuron": 0.5053828358650208,
+   "rotation": 0.286847323179245,
+   "probe": 0.3516924977302551
+  },
+  {
+   "name": "opp_threat_r0c2",
+   "family": "opp_threat_r",
+   "neuron": 0.5781160593032837,
+   "rotation": 0.3274900019168854,
+   "probe": 0.3636702299118042
+  },
+  {
+   "name": "opp_threat_r0c3",
+   "family": "opp_threat_r",
+   "neuron": 0.34471938014030457,
+   "rotation": 0.21952489018440247,
+   "probe": 0.13671046495437622
+  },
+  {
+   "name": "opp_threat_r0c4",
+   "family": "opp_threat_r",
+   "neuron": 0.5173709392547607,
+   "rotation": 0.3225429654121399,
+   "probe": 0.290903776884079
+  },
+  {
+   "name": "opp_threat_r0c5",
+   "family": "opp_threat_r",
+   "neuron": 0.5134999752044678,
+   "rotation": 0.4269339442253113,
+   "probe": 0.33675506711006165
+  },
+  {
+   "name": "opp_threat_r0c6",
+   "family": "opp_threat_r",
+   "neuron": 0.40571051836013794,
+   "rotation": 0.20224064588546753,
+   "probe": 0.1873398721218109
+  },
+  {
+   "name": "opp_threat_r1c0",
+   "family": "opp_threat_r",
+   "neuron": 0.5835098028182983,
+   "rotation": 0.19091707468032837,
+   "probe": 0.22548121213912964
+  },
+  {
+   "name": "opp_threat_r1c1",
+   "family": "opp_threat_r",
+   "neuron": 0.39400118589401245,
+   "rotation": 0.16358931362628937,
+   "probe": 0.38037413358688354
+  },
+  {
+   "name": "opp_threat_r1c2",
+   "family": "opp_threat_r",
+   "neuron": 0.7395119667053223,
+   "rotation": 0.2590065598487854,
+   "probe": 0.6010520458221436
+  },
+  {
+   "name": "opp_threat_r1c3",
+   "family": "opp_threat_r",
+   "neuron": 0.7642747163772583,
+   "rotation": 0.4795896112918854,
+   "probe": 0.658919095993042
+  },
+  {
+   "name": "opp_threat_r1c4",
+   "family": "opp_threat_r",
+   "neuron": 0.6706925630569458,
+   "rotation": 0.32091349363327026,
+   "probe": 0.6189868450164795
+  },
+  {
+   "name": "opp_threat_r1c5",
+   "family": "opp_threat_r",
+   "neuron": 0.6428247690200806,
+   "rotation": 0.21386325359344482,
+   "probe": 0.4252939224243164
+  },
+  {
+   "name": "opp_threat_r1c6",
+   "family": "opp_threat_r",
+   "neuron": 0.7015231847763062,
+   "rotation": 0.11573703587055206,
+   "probe": 0.19000312685966492
+  },
+  {
+   "name": "opp_threat_r2c0",
+   "family": "opp_threat_r",
+   "neuron": 0.39225882291793823,
+   "rotation": 0.11757273226976395,
+   "probe": 0.23373889923095703
+  },
+  {
+   "name": "opp_threat_r2c1",
+   "family": "opp_threat_r",
+   "neuron": 0.5974189639091492,
+   "rotation": 0.2427309900522232,
+   "probe": 0.6038548946380615
+  },
+  {
+   "name": "opp_threat_r2c2",
+   "family": "opp_threat_r",
+   "neuron": 0.5559617877006531,
+   "rotation": 0.2603381872177124,
+   "probe": 0.8028932809829712
+  },
+  {
+   "name": "opp_threat_r2c3",
+   "family": "opp_threat_r",
+   "neuron": 0.5659009218215942,
+   "rotation": 0.28974008560180664,
+   "probe": 0.7364020347595215
+  },
+  {
+   "name": "opp_threat_r2c4",
+   "family": "opp_threat_r",
+   "neuron": 0.6124382019042969,
+   "rotation": 0.21954606473445892,
+   "probe": 0.850678563117981
+  },
+  {
+   "name": "opp_threat_r2c5",
+   "family": "opp_threat_r",
+   "neuron": 0.4835776388645172,
+   "rotation": 0.18533247709274292,
+   "probe": 0.5051748752593994
+  },
+  {
+   "name": "opp_threat_r2c6",
+   "family": "opp_threat_r",
+   "neuron": 0.4689188003540039,
+   "rotation": 0.12171822786331177,
+   "probe": 0.2109924852848053
+  },
+  {
+   "name": "opp_threat_r3c0",
+   "family": "opp_threat_r",
+   "neuron": 0.4889942705631256,
+   "rotation": 0.24242791533470154,
+   "probe": 0.5734368562698364
+  },
+  {
+   "name": "opp_threat_r3c1",
+   "family": "opp_threat_r",
+   "neuron": 0.4241653084754944,
+   "rotation": 0.26057833433151245,
+   "probe": 0.6659219861030579
+  },
+  {
+   "name": "opp_threat_r3c2",
+   "family": "opp_threat_r",
+   "neuron": 0.3635900616645813,
+   "rotation": 0.29386258125305176,
+   "probe": 0.7857404947280884
+  },
+  {
+   "name": "opp_threat_r3c3",
+   "family": "opp_threat_r",
+   "neuron": 0.4939686357975006,
+   "rotation": 0.3386070132255554,
+   "probe": 0.7537341117858887
+  },
+  {
+   "name": "opp_threat_r3c4",
+   "family": "opp_threat_r",
+   "neuron": 0.47126251459121704,
+   "rotation": 0.30316752195358276,
+   "probe": 0.7915061116218567
+  },
+  {
+   "name": "opp_threat_r3c5",
+   "family": "opp_threat_r",
+   "neuron": 0.46914759278297424,
+   "rotation": 0.24763403832912445,
+   "probe": 0.6558152437210083
+  },
+  {
+   "name": "opp_threat_r3c6",
+   "family": "opp_threat_r",
+   "neuron": 0.5252463817596436,
+   "rotation": 0.23891711235046387,
+   "probe": 0.5215709209442139
+  },
+  {
+   "name": "opp_threat_r4c0",
+   "family": "opp_threat_r",
+   "neuron": 0.33995696902275085,
+   "rotation": 0.12160816043615341,
+   "probe": 0.27964597940444946
+  },
+  {
+   "name": "opp_threat_r4c1",
+   "family": "opp_threat_r",
+   "neuron": 0.36804497241973877,
+   "rotation": 0.17778491973876953,
+   "probe": 0.41914957761764526
+  },
+  {
+   "name": "opp_threat_r4c2",
+   "family": "opp_threat_r",
+   "neuron": 0.3211272954940796,
+   "rotation": 0.2450661063194275,
+   "probe": 0.3399472236633301
+  },
+  {
+   "name": "opp_threat_r4c3",
+   "family": "opp_threat_r",
+   "neuron": 0.484930157661438,
+   "rotation": 0.3446086049079895,
+   "probe": 0.43589895963668823
+  },
+  {
+   "name": "opp_threat_r4c4",
+   "family": "opp_threat_r",
+   "neuron": 0.31189072132110596,
+   "rotation": 0.25312674045562744,
+   "probe": 0.37936931848526
+  },
+  {
+   "name": "opp_threat_r4c5",
+   "family": "opp_threat_r",
+   "neuron": 0.2754288911819458,
+   "rotation": 0.18180280923843384,
+   "probe": 0.40304702520370483
+  },
+  {
+   "name": "opp_threat_r4c6",
+   "family": "opp_threat_r",
+   "neuron": 0.3103746771812439,
+   "rotation": 0.14597702026367188,
+   "probe": 0.23482641577720642
+  },
+  {
+   "name": "opp_threat_r5c0",
+   "family": "opp_threat_r",
+   "neuron": 0.3550235629081726,
+   "rotation": 0.14808252453804016,
+   "probe": 0.12671902775764465
+  },
+  {
+   "name": "opp_threat_r5c1",
+   "family": "opp_threat_r",
+   "neuron": 0.3246889114379883,
+   "rotation": 0.13060283660888672,
+   "probe": 0.2642627954483032
+  },
+  {
+   "name": "opp_threat_r5c2",
+   "family": "opp_threat_r",
+   "neuron": 0.22943344712257385,
+   "rotation": 0.18868085741996765,
+   "probe": 0.2358817756175995
+  },
+  {
+   "name": "opp_threat_r5c3",
+   "family": "opp_threat_r",
+   "neuron": 0.3368164300918579,
+   "rotation": 0.3221679925918579,
+   "probe": 0.381316602230072
+  },
+  {
+   "name": "opp_threat_r5c4",
+   "family": "opp_threat_r",
+   "neuron": 0.1951264888048172,
+   "rotation": 0.20025892555713654,
+   "probe": 0.2474650740623474
+  },
+  {
+   "name": "opp_threat_r5c5",
+   "family": "opp_threat_r",
+   "neuron": 0.2520853281021118,
+   "rotation": 0.16035354137420654,
+   "probe": 0.30903124809265137
+  },
+  {
+   "name": "opp_threat_r5c6",
+   "family": "opp_threat_r",
+   "neuron": 0.3248349130153656,
+   "rotation": 0.1384747326374054,
+   "probe": 0.10938157141208649
+  },
+  {
+   "name": "my_threats_ge1",
+   "family": "my_threats_ge1",
+   "neuron": 0.3058707118034363,
+   "rotation": 0.2968458831310272,
+   "probe": 0.8481228947639465
+  },
+  {
+   "name": "my_threats_ge2",
+   "family": "my_threats_ge2",
+   "neuron": 0.35079535841941833,
+   "rotation": 0.35559412837028503,
+   "probe": 0.65621018409729
+  },
+  {
+   "name": "opp_threats_ge1",
+   "family": "opp_threats_ge1",
+   "neuron": 0.3023953139781952,
+   "rotation": 0.3007463812828064,
+   "probe": 0.894361138343811
+  },
+  {
+   "name": "opp_threats_ge2",
+   "family": "opp_threats_ge2",
+   "neuron": 0.3833094835281372,
+   "rotation": 0.3802723288536072,
+   "probe": 0.7131636142730713
+  },
+  {
+   "name": "my_odd_threat",
+   "family": "my_odd_threat",
+   "neuron": 0.3319717049598694,
+   "rotation": 0.31461387872695923,
+   "probe": 0.6702641248703003
+  },
+  {
+   "name": "my_even_threat",
+   "family": "my_even_threat",
+   "neuron": 0.30874568223953247,
+   "rotation": 0.30256980657577515,
+   "probe": 0.7270925641059875
+  },
+  {
+   "name": "opp_odd_threat",
+   "family": "opp_odd_threat",
+   "neuron": 0.34419184923171997,
+   "rotation": 0.32560449838638306,
+   "probe": 0.7218246459960938
+  },
+  {
+   "name": "opp_even_threat",
+   "family": "opp_even_threat",
+   "neuron": 0.3222105801105499,
+   "rotation": 0.31424641609191895,
+   "probe": 0.7936097979545593
+  },
+  {
+   "name": "last_col_c0",
+   "family": "last_col",
+   "neuron": 0.8467466235160828,
+   "rotation": 0.27565181255340576,
+   "probe": 1.0
+  },
+  {
+   "name": "last_col_c1",
+   "family": "last_col",
+   "neuron": 0.730945348739624,
+   "rotation": 0.29903945326805115,
+   "probe": 1.0
+  },
+  {
+   "name": "last_col_c2",
+   "family": "last_col",
+   "neuron": 0.7856512665748596,
+   "rotation": 0.31364333629608154,
+   "probe": 1.0
+  },
+  {
+   "name": "last_col_c3",
+   "family": "last_col",
+   "neuron": 0.6198717355728149,
+   "rotation": 0.3237573504447937,
+   "probe": 1.0
+  },
+  {
+   "name": "last_col_c4",
+   "family": "last_col",
+   "neuron": 0.7831050157546997,
+   "rotation": 0.3823443651199341,
+   "probe": 1.0
+  },
+  {
+   "name": "last_col_c5",
+   "family": "last_col",
+   "neuron": 0.8382540941238403,
+   "rotation": 0.34907007217407227,
+   "probe": 1.0
+  },
+  {
+   "name": "last_col_c6",
+   "family": "last_col",
+   "neuron": 0.6999502778053284,
+   "rotation": 0.3058883547782898,
+   "probe": 1.0
+  },
+  {
+   "name": "last_made_threat",
+   "family": "last_made_threat",
+   "neuron": 0.3436509370803833,
+   "rotation": 0.36403948068618774,
+   "probe": 0.5696464776992798
+  },
+  {
+   "name": "last_blocked",
+   "family": "last_blocked",
+   "neuron": 0.2119845449924469,
+   "rotation": 0.16883689165115356,
+   "probe": 0.3548685312271118
+  },
+  {
+   "name": "last_stacked",
+   "family": "last_stacked",
+   "neuron": 0.24587112665176392,
+   "rotation": 0.23550501465797424,
+   "probe": 0.6253722906112671
+  },
+  {
+   "name": "ply_0_5",
+   "family": "ply",
+   "neuron": 0.6783131957054138,
+   "rotation": 0.661056637763977,
+   "probe": 1.0
+  },
+  {
+   "name": "ply_6_11",
+   "family": "ply",
+   "neuron": 0.504490077495575,
+   "rotation": 0.441236674785614,
+   "probe": 1.0
+  },
+  {
+   "name": "ply_12_17",
+   "family": "ply",
+   "neuron": 0.5280162692070007,
+   "rotation": 0.42550501227378845,
+   "probe": 1.0
+  },
+  {
+   "name": "ply_18_23",
+   "family": "ply",
+   "neuron": 0.5193594694137573,
+   "rotation": 0.2973287105560303,
+   "probe": 1.0
+  },
+  {
+   "name": "ply_24_29",
+   "family": "ply",
+   "neuron": 0.4656478762626648,
+   "rotation": 0.31598594784736633,
+   "probe": 1.0
+  },
+  {
+   "name": "ply_30_35",
+   "family": "ply",
+   "neuron": 0.4518558382987976,
+   "rotation": 0.460568368434906,
+   "probe": 1.0
+  },
+  {
+   "name": "ply_36_41",
+   "family": "ply",
+   "neuron": 0.8493119478225708,
+   "rotation": 0.5343434810638428,
+   "probe": 1.0
+  },
+  {
+   "name": "me_first_player",
+   "family": "me_first_player",
+   "neuron": 0.3279188573360443,
+   "rotation": 0.31311288475990295,
+   "probe": 1.0
+  },
+  {
+   "name": "eval_win",
+   "family": "eval_win",
+   "neuron": 0.5031486749649048,
+   "rotation": 0.3650728762149811,
+   "probe": 0.7390444278717041
+  },
+  {
+   "name": "eval_loss",
+   "family": "eval_loss",
+   "neuron": 0.5493059158325195,
+   "rotation": 0.5909960865974426,
+   "probe": 0.7721924781799316
+  },
+  {
+   "name": "eval_ahead",
+   "family": "eval_ahead",
+   "neuron": 0.20761984586715698,
+   "rotation": 0.18030396103858948,
+   "probe": 0.4841063618659973
+  },
+  {
+   "name": "eval_behind",
+   "family": "eval_behind",
+   "neuron": 0.26092231273651123,
+   "rotation": 0.2251707762479782,
+   "probe": 0.5553091764450073
+  },
+  {
+   "name": "teacher_best_c0",
+   "family": "teacher_best",
+   "neuron": 0.35073184967041016,
+   "rotation": 0.4488888084888458,
+   "probe": 0.7373771071434021
+  },
+  {
+   "name": "teacher_best_c1",
+   "family": "teacher_best",
+   "neuron": 0.3318318724632263,
+   "rotation": 0.2804243564605713,
+   "probe": 0.6128699779510498
+  },
+  {
+   "name": "teacher_best_c2",
+   "family": "teacher_best",
+   "neuron": 0.3130568861961365,
+   "rotation": 0.24905399978160858,
+   "probe": 0.6016806364059448
+  },
+  {
+   "name": "teacher_best_c3",
+   "family": "teacher_best",
+   "neuron": 0.4397520422935486,
+   "rotation": 0.4333938956260681,
+   "probe": 0.7989934682846069
+  },
+  {
+   "name": "teacher_best_c4",
+   "family": "teacher_best",
+   "neuron": 0.3470582365989685,
+   "rotation": 0.25995802879333496,
+   "probe": 0.5853445529937744
+  },
+  {
+   "name": "teacher_best_c5",
+   "family": "teacher_best",
+   "neuron": 0.3101137578487396,
+   "rotation": 0.26504677534103394,
+   "probe": 0.5634258389472961
+  },
+  {
+   "name": "teacher_best_c6",
+   "family": "teacher_best",
+   "neuron": 0.34598657488822937,
+   "rotation": 0.31475335359573364,
+   "probe": 0.5785641670227051
+  },
+  {
+   "name": "line_h_r0c0_mine2",
+   "family": "line",
+   "neuron": 0.4325870871543884,
+   "rotation": 0.11161467432975769,
+   "probe": 0.2543598413467407
+  },
+  {
+   "name": "line_h_r0c0_mine3",
+   "family": "line",
+   "neuron": 0.14269407093524933,
+   "rotation": 0.11306282877922058,
+   "probe": 0.1451064646244049
+  },
+  {
+   "name": "line_h_r0c0_theirs2",
+   "family": "line",
+   "neuron": 0.48404181003570557,
+   "rotation": 0.19474104046821594,
+   "probe": 0.49129194021224976
+  },
+  {
+   "name": "line_h_r0c0_theirs3",
+   "family": "line",
+   "neuron": 0.6626589298248291,
+   "rotation": 0.49090632796287537,
+   "probe": 0.567245364189148
+  },
+  {
+   "name": "line_v_r0c0_mine2",
+   "family": "line",
+   "neuron": 0.751548171043396,
+   "rotation": 0.1784183382987976,
+   "probe": 0.5310540199279785
+  },
+  {
+   "name": "line_v_r0c0_theirs2",
+   "family": "line",
+   "neuron": 0.6228536367416382,
+   "rotation": 0.17876344919204712,
+   "probe": 0.5213972330093384
+  },
+  {
+   "name": "line_v_r0c0_theirs3",
+   "family": "line",
+   "neuron": 0.7110275626182556,
+   "rotation": 0.6817183494567871,
+   "probe": 0.5540016889572144
+  },
+  {
+   "name": "line_du_r0c0_mine2",
+   "family": "line",
+   "neuron": 0.37204158306121826,
+   "rotation": 0.12283371388912201,
+   "probe": 0.28662076592445374
+  },
+  {
+   "name": "line_du_r0c0_mine3",
+   "family": "line",
+   "neuron": 0.3388313055038452,
+   "rotation": 0.11983640491962433,
+   "probe": 0.345409631729126
+  },
+  {
+   "name": "line_du_r0c0_theirs2",
+   "family": "line",
+   "neuron": 0.2706748843193054,
+   "rotation": 0.12553222477436066,
+   "probe": 0.26878270506858826
+  },
+  {
+   "name": "line_du_r0c0_theirs3",
+   "family": "line",
+   "neuron": 0.657555103302002,
+   "rotation": 0.13024355471134186,
+   "probe": 0.46434998512268066
+  },
+  {
+   "name": "line_h_r0c1_mine2",
+   "family": "line",
+   "neuron": 0.34899675846099854,
+   "rotation": 0.09905291348695755,
+   "probe": 0.1968385875225067
+  },
+  {
+   "name": "line_h_r0c1_mine3",
+   "family": "line",
+   "neuron": 0.22857992351055145,
+   "rotation": 0.1996389627456665,
+   "probe": 0.1949032098054886
+  },
+  {
+   "name": "line_h_r0c1_theirs2",
+   "family": "line",
+   "neuron": 0.36865246295928955,
+   "rotation": 0.22457505762577057,
+   "probe": 0.45965200662612915
+  },
+  {
+   "name": "line_h_r0c1_theirs3",
+   "family": "line",
+   "neuron": 0.5408364534378052,
+   "rotation": 0.38890212774276733,
+   "probe": 0.508478045463562
+  },
+  {
+   "name": "line_v_r0c1_mine2",
+   "family": "line",
+   "neuron": 0.6075178384780884,
+   "rotation": 0.15513265132904053,
+   "probe": 0.4432048797607422
+  },
+  {
+   "name": "line_v_r0c1_theirs2",
+   "family": "line",
+   "neuron": 0.49588802456855774,
+   "rotation": 0.16553562879562378,
+   "probe": 0.5934398174285889
+  },
+  {
+   "name": "line_v_r0c1_theirs3",
+   "family": "line",
+   "neuron": 0.855026125907898,
+   "rotation": 0.5842311978340149,
+   "probe": 0.6400092840194702
+  },
+  {
+   "name": "line_du_r0c1_mine2",
+   "family": "line",
+   "neuron": 0.34834912419319153,
+   "rotation": 0.13996222615242004,
+   "probe": 0.32248201966285706
+  },
+  {
+   "name": "line_du_r0c1_mine3",
+   "family": "line",
+   "neuron": 0.46653178334236145,
+   "rotation": 0.13302350044250488,
+   "probe": 0.2945632338523865
+  },
+  {
+   "name": "line_du_r0c1_theirs2",
+   "family": "line",
+   "neuron": 0.28578370809555054,
+   "rotation": 0.1620893031358719,
+   "probe": 0.4488292336463928
+  },
+  {
+   "name": "line_du_r0c1_theirs3",
+   "family": "line",
+   "neuron": 0.5725250840187073,
+   "rotation": 0.14858636260032654,
+   "probe": 0.610325813293457
+  },
+  {
+   "name": "line_h_r0c2_mine2",
+   "family": "line",
+   "neuron": 0.4563588500022888,
+   "rotation": 0.12652620673179626,
+   "probe": 0.23103810846805573
+  },
+  {
+   "name": "line_h_r0c2_mine3",
+   "family": "line",
+   "neuron": 0.20590215921401978,
+   "rotation": 0.19473373889923096,
+   "probe": 0.13493865728378296
+  },
+  {
+   "name": "line_h_r0c2_theirs2",
+   "family": "line",
+   "neuron": 0.3359564244747162,
+   "rotation": 0.21247433125972748,
+   "probe": 0.4518747925758362
+  },
+  {
+   "name": "line_h_r0c2_theirs3",
+   "family": "line",
+   "neuron": 0.5194902420043945,
+   "rotation": 0.41657596826553345,
+   "probe": 0.40719830989837646
+  },
+  {
+   "name": "line_v_r0c2_mine2",
+   "family": "line",
+   "neuron": 0.49122291803359985,
+   "rotation": 0.11516095697879791,
+   "probe": 0.44365859031677246
+  },
+  {
+   "name": "line_v_r0c2_theirs2",
+   "family": "line",
+   "neuron": 0.7227319478988647,
+   "rotation": 0.16975519061088562,
+   "probe": 0.6159060001373291
+  },
+  {
+   "name": "line_v_r0c2_theirs3",
+   "family": "line",
+   "neuron": 0.8186618089675903,
+   "rotation": 0.5356423258781433,
+   "probe": 0.6317375898361206
+  },
+  {
+   "name": "line_du_r0c2_mine2",
+   "family": "line",
+   "neuron": 0.3611603379249573,
+   "rotation": 0.15861102938652039,
+   "probe": 0.5998528003692627
+  },
+  {
+   "name": "line_du_r0c2_mine3",
+   "family": "line",
+   "neuron": 0.5123935341835022,
+   "rotation": 0.1391059160232544,
+   "probe": 0.3137839734554291
+  },
+  {
+   "name": "line_du_r0c2_theirs2",
+   "family": "line",
+   "neuron": 0.3545980453491211,
+   "rotation": 0.18937213718891144,
+   "probe": 0.5969706177711487
+  },
+  {
+   "name": "line_du_r0c2_theirs3",
+   "family": "line",
+   "neuron": 0.455300509929657,
+   "rotation": 0.14750009775161743,
+   "probe": 0.48014965653419495
+  },
+  {
+   "name": "line_h_r0c3_mine2",
+   "family": "line",
+   "neuron": 0.4972134828567505,
+   "rotation": 0.11863888800144196,
+   "probe": 0.2421199381351471
+  },
+  {
+   "name": "line_h_r0c3_mine3",
+   "family": "line",
+   "neuron": 0.12208782136440277,
+   "rotation": 0.101459801197052,
+   "probe": 0.0665086954832077
+  },
+  {
+   "name": "line_h_r0c3_theirs2",
+   "family": "line",
+   "neuron": 0.28967347741127014,
+   "rotation": 0.18827731907367706,
+   "probe": 0.3636140525341034
+  },
+  {
+   "name": "line_h_r0c3_theirs3",
+   "family": "line",
+   "neuron": 0.5903041362762451,
+   "rotation": 0.477350652217865,
+   "probe": 0.4460856318473816
+  },
+  {
+   "name": "line_v_r0c3_mine2",
+   "family": "line",
+   "neuron": 0.5449500679969788,
+   "rotation": 0.18942806124687195,
+   "probe": 0.466375470161438
+  },
+  {
+   "name": "line_v_r0c3_theirs2",
+   "family": "line",
+   "neuron": 0.519113302230835,
+   "rotation": 0.18124806880950928,
+   "probe": 0.7228389978408813
+  },
+  {
+   "name": "line_v_r0c3_theirs3",
+   "family": "line",
+   "neuron": 0.6856377720832825,
+   "rotation": 0.4398486912250519,
+   "probe": 0.5080126523971558
+  },
+  {
+   "name": "line_du_r0c3_mine2",
+   "family": "line",
+   "neuron": 0.45332223176956177,
+   "rotation": 0.16733083128929138,
+   "probe": 0.6117035150527954
+  },
+  {
+   "name": "line_du_r0c3_mine3",
+   "family": "line",
+   "neuron": 0.44962215423583984,
+   "rotation": 0.10301174223423004,
+   "probe": 0.33206623792648315
+  },
+  {
+   "name": "line_du_r0c3_theirs2",
+   "family": "line",
+   "neuron": 0.34845057129859924,
+   "rotation": 0.17106378078460693,
+   "probe": 0.6321269273757935
+  },
+  {
+   "name": "line_du_r0c3_theirs3",
+   "family": "line",
+   "neuron": 0.5508228540420532,
+   "rotation": 0.13571493327617645,
+   "probe": 0.3722037672996521
+  },
+  {
+   "name": "line_dd_r0c3_mine2",
+   "family": "line",
+   "neuron": 0.4749314486980438,
+   "rotation": 0.1533627212047577,
+   "probe": 0.588135838508606
+  },
+  {
+   "name": "line_dd_r0c3_mine3",
+   "family": "line",
+   "neuron": 0.5322706699371338,
+   "rotation": 0.09640151262283325,
+   "probe": 0.32770830392837524
+  },
+  {
+   "name": "line_dd_r0c3_theirs2",
+   "family": "line",
+   "neuron": 0.4905621409416199,
+   "rotation": 0.16655057668685913,
+   "probe": 0.6393001079559326
+  },
+  {
+   "name": "line_dd_r0c3_theirs3",
+   "family": "line",
+   "neuron": 0.5328208208084106,
+   "rotation": 0.17201760411262512,
+   "probe": 0.4794386327266693
+  },
+  {
+   "name": "line_v_r0c4_mine2",
+   "family": "line",
+   "neuron": 0.6159148216247559,
+   "rotation": 0.16491788625717163,
+   "probe": 0.4123437702655792
+  },
+  {
+   "name": "line_v_r0c4_theirs2",
+   "family": "line",
+   "neuron": 0.6525754928588867,
+   "rotation": 0.17632374167442322,
+   "probe": 0.6061587929725647
+  },
+  {
+   "name": "line_v_r0c4_theirs3",
+   "family": "line",
+   "neuron": 0.7325802445411682,
+   "rotation": 0.4592767357826233,
+   "probe": 0.5003561973571777
+  },
+  {
+   "name": "line_dd_r0c4_mine2",
+   "family": "line",
+   "neuron": 0.2516525387763977,
+   "rotation": 0.17552602291107178,
+   "probe": 0.563015341758728
+  },
+  {
+   "name": "line_dd_r0c4_mine3",
+   "family": "line",
+   "neuron": 0.4090780019760132,
+   "rotation": 0.12442098557949066,
+   "probe": 0.2928261160850525
+  },
+  {
+   "name": "line_dd_r0c4_theirs2",
+   "family": "line",
+   "neuron": 0.3891645073890686,
+   "rotation": 0.18226753175258636,
+   "probe": 0.6100395917892456
+  },
+  {
+   "name": "line_dd_r0c4_theirs3",
+   "family": "line",
+   "neuron": 0.5992196798324585,
+   "rotation": 0.15639066696166992,
+   "probe": 0.5231103897094727
+  },
+  {
+   "name": "line_v_r0c5_mine2",
+   "family": "line",
+   "neuron": 0.5308800339698792,
+   "rotation": 0.10141422599554062,
+   "probe": 0.43310442566871643
+  },
+  {
+   "name": "line_v_r0c5_theirs2",
+   "family": "line",
+   "neuron": 0.6832221746444702,
+   "rotation": 0.14712679386138916,
+   "probe": 0.5667598247528076
+  },
+  {
+   "name": "line_v_r0c5_theirs3",
+   "family": "line",
+   "neuron": 0.8322045803070068,
+   "rotation": 0.5834823846817017,
+   "probe": 0.7282935380935669
+  },
+  {
+   "name": "line_dd_r0c5_mine2",
+   "family": "line",
+   "neuron": 0.3791077733039856,
+   "rotation": 0.13065758347511292,
+   "probe": 0.36470961570739746
+  },
+  {
+   "name": "line_dd_r0c5_mine3",
+   "family": "line",
+   "neuron": 0.41743457317352295,
+   "rotation": 0.11885769665241241,
+   "probe": 0.3094991445541382
+  },
+  {
+   "name": "line_dd_r0c5_theirs2",
+   "family": "line",
+   "neuron": 0.26989057660102844,
+   "rotation": 0.16019614040851593,
+   "probe": 0.4662792384624481
+  },
+  {
+   "name": "line_dd_r0c5_theirs3",
+   "family": "line",
+   "neuron": 0.5203499794006348,
+   "rotation": 0.14638091623783112,
+   "probe": 0.47689980268478394
+  },
+  {
+   "name": "line_v_r0c6_mine2",
+   "family": "line",
+   "neuron": 0.6593635082244873,
+   "rotation": 0.14721131324768066,
+   "probe": 0.5126028656959534
+  },
+  {
+   "name": "line_v_r0c6_theirs2",
+   "family": "line",
+   "neuron": 0.5401182770729065,
+   "rotation": 0.1499602049589157,
+   "probe": 0.4291846752166748
+  },
+  {
+   "name": "line_v_r0c6_theirs3",
+   "family": "line",
+   "neuron": 0.9095736742019653,
+   "rotation": 0.5572178959846497,
+   "probe": 0.605764627456665
+  },
+  {
+   "name": "line_dd_r0c6_mine2",
+   "family": "line",
+   "neuron": 0.43798351287841797,
+   "rotation": 0.11569762229919434,
+   "probe": 0.2849242687225342
+  },
+  {
+   "name": "line_dd_r0c6_mine3",
+   "family": "line",
+   "neuron": 0.4006379246711731,
+   "rotation": 0.10993320494890213,
+   "probe": 0.32334527373313904
+  },
+  {
+   "name": "line_dd_r0c6_theirs2",
+   "family": "line",
+   "neuron": 0.30047905445098877,
+   "rotation": 0.13288187980651855,
+   "probe": 0.3656371533870697
+  },
+  {
+   "name": "line_dd_r0c6_theirs3",
+   "family": "line",
+   "neuron": 0.48216021060943604,
+   "rotation": 0.1367802619934082,
+   "probe": 0.45175880193710327
+  },
+  {
+   "name": "line_h_r1c0_mine2",
+   "family": "line",
+   "neuron": 0.3464916944503784,
+   "rotation": 0.13306018710136414,
+   "probe": 0.30134713649749756
+  },
+  {
+   "name": "line_h_r1c0_mine3",
+   "family": "line",
+   "neuron": 0.49306052923202515,
+   "rotation": 0.12097173184156418,
+   "probe": 0.35495954751968384
+  },
+  {
+   "name": "line_h_r1c0_theirs2",
+   "family": "line",
+   "neuron": 0.3053152561187744,
+   "rotation": 0.1397663801908493,
+   "probe": 0.34470105171203613
+  },
+  {
+   "name": "line_h_r1c0_theirs3",
+   "family": "line",
+   "neuron": 0.5352551937103271,
+   "rotation": 0.12729713320732117,
+   "probe": 0.37026262283325195
+  },
+  {
+   "name": "line_v_r1c0_mine2",
+   "family": "line",
+   "neuron": 0.37544524669647217,
+   "rotation": 0.0895584300160408,
+   "probe": 0.1032223030924797
+  },
+  {
+   "name": "line_v_r1c0_theirs2",
+   "family": "line",
+   "neuron": 0.6684221625328064,
+   "rotation": 0.3818961977958679,
+   "probe": 0.4739443063735962
+  },
+  {
+   "name": "line_v_r1c0_theirs3",
+   "family": "line",
+   "neuron": 0.494181752204895,
+   "rotation": 0.3037400245666504,
+   "probe": 0.3606092929840088
+  },
+  {
+   "name": "line_du_r1c0_mine2",
+   "family": "line",
+   "neuron": 0.23073679208755493,
+   "rotation": 0.10367577522993088,
+   "probe": 0.30836808681488037
+  },
+  {
+   "name": "line_du_r1c0_mine3",
+   "family": "line",
+   "neuron": 0.32771924138069153,
+   "rotation": 0.10472136735916138,
+   "probe": 0.342049241065979
+  },
+  {
+   "name": "line_du_r1c0_theirs2",
+   "family": "line",
+   "neuron": 0.3656464219093323,
+   "rotation": 0.1086832582950592,
+   "probe": 0.2774636745452881
+  },
+  {
+   "name": "line_du_r1c0_theirs3",
+   "family": "line",
+   "neuron": 0.43559765815734863,
+   "rotation": 0.11079805344343185,
+   "probe": 0.3514348864555359
+  },
+  {
+   "name": "line_h_r1c1_mine2",
+   "family": "line",
+   "neuron": 0.29554927349090576,
+   "rotation": 0.11131389439105988,
+   "probe": 0.3048832416534424
+  },
+  {
+   "name": "line_h_r1c1_mine3",
+   "family": "line",
+   "neuron": 0.393829882144928,
+   "rotation": 0.09562540799379349,
+   "probe": 0.3488180637359619
+  },
+  {
+   "name": "line_h_r1c1_theirs2",
+   "family": "line",
+   "neuron": 0.2934299111366272,
+   "rotation": 0.12205522507429123,
+   "probe": 0.2960129976272583
+  },
+  {
+   "name": "line_h_r1c1_theirs3",
+   "family": "line",
+   "neuron": 0.5253771543502808,
+   "rotation": 0.1515062153339386,
+   "probe": 0.37563037872314453
+  },
+  {
+   "name": "line_v_r1c1_mine2",
+   "family": "line",
+   "neuron": 0.4154106378555298,
+   "rotation": 0.03703620284795761,
+   "probe": 0.10325439274311066
+  },
+  {
+   "name": "line_v_r1c1_theirs2",
+   "family": "line",
+   "neuron": 0.6801711916923523,
+   "rotation": 0.30166947841644287,
+   "probe": 0.5495259761810303
+  },
+  {
+   "name": "line_v_r1c1_theirs3",
+   "family": "line",
+   "neuron": 0.41466739773750305,
+   "rotation": 0.28367114067077637,
+   "probe": 0.30580225586891174
+  },
+  {
+   "name": "line_du_r1c1_mine2",
+   "family": "line",
+   "neuron": 0.3425232768058777,
+   "rotation": 0.12291369587182999,
+   "probe": 0.3426566421985626
+  },
+  {
+   "name": "line_du_r1c1_mine3",
+   "family": "line",
+   "neuron": 0.21704202890396118,
+   "rotation": 0.09865410625934601,
+   "probe": 0.2140333354473114
+  },
+  {
+   "name": "line_du_r1c1_theirs2",
+   "family": "line",
+   "neuron": 0.35419267416000366,
+   "rotation": 0.14086514711380005,
+   "probe": 0.5238350033760071
+  },
+  {
+   "name": "line_du_r1c1_theirs3",
+   "family": "line",
+   "neuron": 0.34874629974365234,
+   "rotation": 0.10442329198122025,
+   "probe": 0.3036825656890869
+  },
+  {
+   "name": "line_h_r1c2_mine2",
+   "family": "line",
+   "neuron": 0.3433215618133545,
+   "rotation": 0.11770498752593994,
+   "probe": 0.3077208399772644
+  },
+  {
+   "name": "line_h_r1c2_mine3",
+   "family": "line",
+   "neuron": 0.4093858003616333,
+   "rotation": 0.09562744200229645,
+   "probe": 0.33434945344924927
+  },
+  {
+   "name": "line_h_r1c2_theirs2",
+   "family": "line",
+   "neuron": 0.2692241072654724,
+   "rotation": 0.13553044199943542,
+   "probe": 0.31640756130218506
+  },
+  {
+   "name": "line_h_r1c2_theirs3",
+   "family": "line",
+   "neuron": 0.4461982846260071,
+   "rotation": 0.10800212621688843,
+   "probe": 0.37747615575790405
+  },
+  {
+   "name": "line_v_r1c2_mine2",
+   "family": "line",
+   "neuron": 0.530275821685791,
+   "rotation": 0.0357862152159214,
+   "probe": 0.20022118091583252
+  },
+  {
+   "name": "line_v_r1c2_theirs2",
+   "family": "line",
+   "neuron": 0.7951561212539673,
+   "rotation": 0.2597121596336365,
+   "probe": 0.4704950153827667
+  },
+  {
+   "name": "line_v_r1c2_theirs3",
+   "family": "line",
+   "neuron": 0.36589446663856506,
+   "rotation": 0.3216668367385864,
+   "probe": 0.1706990897655487
+  },
+  {
+   "name": "line_du_r1c2_mine2",
+   "family": "line",
+   "neuron": 0.3297284245491028,
+   "rotation": 0.16459432244300842,
+   "probe": 0.5690801739692688
+  },
+  {
+   "name": "line_du_r1c2_mine3",
+   "family": "line",
+   "neuron": 0.1797960102558136,
+   "rotation": 0.09158116579055786,
+   "probe": 0.17351123690605164
+  },
+  {
+   "name": "line_du_r1c2_theirs2",
+   "family": "line",
+   "neuron": 0.39528483152389526,
+   "rotation": 0.16138294339179993,
+   "probe": 0.6413515210151672
+  },
+  {
+   "name": "line_du_r1c2_theirs3",
+   "family": "line",
+   "neuron": 0.24328291416168213,
+   "rotation": 0.10620050132274628,
+   "probe": 0.3298195004463196
+  },
+  {
+   "name": "line_h_r1c3_mine2",
+   "family": "line",
+   "neuron": 0.3510768413543701,
+   "rotation": 0.1001826673746109,
+   "probe": 0.2949867844581604
+  },
+  {
+   "name": "line_h_r1c3_mine3",
+   "family": "line",
+   "neuron": 0.4116789698600769,
+   "rotation": 0.08393549919128418,
+   "probe": 0.2853573262691498
+  },
+  {
+   "name": "line_h_r1c3_theirs2",
+   "family": "line",
+   "neuron": 0.3965502381324768,
+   "rotation": 0.13299161195755005,
+   "probe": 0.3002129793167114
+  },
+  {
+   "name": "line_h_r1c3_theirs3",
+   "family": "line",
+   "neuron": 0.5563027858734131,
+   "rotation": 0.1637195348739624,
+   "probe": 0.3825778067111969
+  },
+  {
+   "name": "line_v_r1c3_mine2",
+   "family": "line",
+   "neuron": 0.2874561846256256,
+   "rotation": 0.0867837592959404,
+   "probe": 0.12401635944843292
+  },
+  {
+   "name": "line_v_r1c3_theirs2",
+   "family": "line",
+   "neuron": 0.8050463199615479,
+   "rotation": 0.23531988263130188,
+   "probe": 0.44452667236328125
+  },
+  {
+   "name": "line_v_r1c3_theirs3",
+   "family": "line",
+   "neuron": 0.29524365067481995,
+   "rotation": 0.22223985195159912,
+   "probe": 0.07657761871814728
+  },
+  {
+   "name": "line_du_r1c3_mine2",
+   "family": "line",
+   "neuron": 0.40728503465652466,
+   "rotation": 0.15711766481399536,
+   "probe": 0.6345348954200745
+  },
+  {
+   "name": "line_du_r1c3_mine3",
+   "family": "line",
+   "neuron": 0.21742820739746094,
+   "rotation": 0.09097523242235184,
+   "probe": 0.07292195409536362
+  },
+  {
+   "name": "line_du_r1c3_theirs2",
+   "family": "line",
+   "neuron": 0.3385144770145416,
+   "rotation": 0.1691868007183075,
+   "probe": 0.6643451452255249
+  },
+  {
+   "name": "line_du_r1c3_theirs3",
+   "family": "line",
+   "neuron": 0.29001420736312866,
+   "rotation": 0.09656292200088501,
+   "probe": 0.1736796796321869
+  },
+  {
+   "name": "line_dd_r1c3_mine2",
+   "family": "line",
+   "neuron": 0.3634296655654907,
+   "rotation": 0.14355787634849548,
+   "probe": 0.603993833065033
+  },
+  {
+   "name": "line_dd_r1c3_mine3",
+   "family": "line",
+   "neuron": 0.1918722689151764,
+   "rotation": 0.10194866359233856,
+   "probe": 0.08657171577215195
+  },
+  {
+   "name": "line_dd_r1c3_theirs2",
+   "family": "line",
+   "neuron": 0.3991492688655853,
+   "rotation": 0.15572455525398254,
+   "probe": 0.6622775793075562
+  },
+  {
+   "name": "line_dd_r1c3_theirs3",
+   "family": "line",
+   "neuron": 0.2859850823879242,
+   "rotation": 0.0908098965883255,
+   "probe": 0.15490424633026123
+  },
+  {
+   "name": "line_v_r1c4_mine2",
+   "family": "line",
+   "neuron": 0.4051859974861145,
+   "rotation": 0.06019025668501854,
+   "probe": 0.21982432901859283
+  },
+  {
+   "name": "line_v_r1c4_theirs2",
+   "family": "line",
+   "neuron": 0.5859733819961548,
+   "rotation": 0.24646414816379547,
+   "probe": 0.3948881924152374
+  },
+  {
+   "name": "line_v_r1c4_theirs3",
+   "family": "line",
+   "neuron": 0.41405749320983887,
+   "rotation": 0.3234412670135498,
+   "probe": 0.1653347909450531
+  },
+  {
+   "name": "line_dd_r1c4_mine2",
+   "family": "line",
+   "neuron": 0.3571206331253052,
+   "rotation": 0.14283153414726257,
+   "probe": 0.5092296004295349
+  },
+  {
+   "name": "line_dd_r1c4_mine3",
+   "family": "line",
+   "neuron": 0.23286882042884827,
+   "rotation": 0.10422467440366745,
+   "probe": 0.19430114328861237
+  },
+  {
+   "name": "line_dd_r1c4_theirs2",
+   "family": "line",
+   "neuron": 0.3209095597267151,
+   "rotation": 0.14186203479766846,
+   "probe": 0.6223291158676147
+  },
+  {
+   "name": "line_dd_r1c4_theirs3",
+   "family": "line",
+   "neuron": 0.35757365822792053,
+   "rotation": 0.11865298449993134,
+   "probe": 0.36150944232940674
+  },
+  {
+   "name": "line_v_r1c5_mine2",
+   "family": "line",
+   "neuron": 0.3695763349533081,
+   "rotation": 0.05277638882398605,
+   "probe": 0.15701694786548615
+  },
+  {
+   "name": "line_v_r1c5_theirs2",
+   "family": "line",
+   "neuron": 0.5709950923919678,
+   "rotation": 0.28556644916534424,
+   "probe": 0.5772509574890137
+  },
+  {
+   "name": "line_v_r1c5_theirs3",
+   "family": "line",
+   "neuron": 0.4656544327735901,
+   "rotation": 0.3615404963493347,
+   "probe": 0.32062777876853943
+  },
+  {
+   "name": "line_dd_r1c5_mine2",
+   "family": "line",
+   "neuron": 0.3260391354560852,
+   "rotation": 0.15263015031814575,
+   "probe": 0.3313380479812622
+  },
+  {
+   "name": "line_dd_r1c5_mine3",
+   "family": "line",
+   "neuron": 0.1963195502758026,
+   "rotation": 0.0943509042263031,
+   "probe": 0.23023203015327454
+  },
+  {
+   "name": "line_dd_r1c5_theirs2",
+   "family": "line",
+   "neuron": 0.3249647617340088,
+   "rotation": 0.15144307911396027,
+   "probe": 0.47294485569000244
+  },
+  {
+   "name": "line_dd_r1c5_theirs3",
+   "family": "line",
+   "neuron": 0.3369221091270447,
+   "rotation": 0.09968788921833038,
+   "probe": 0.26401716470718384
+  },
+  {
+   "name": "line_v_r1c6_mine2",
+   "family": "line",
+   "neuron": 0.3325231075286865,
+   "rotation": 0.08013962209224701,
+   "probe": 0.10668821632862091
+  },
+  {
+   "name": "line_v_r1c6_theirs2",
+   "family": "line",
+   "neuron": 0.6612634658813477,
+   "rotation": 0.316925585269928,
+   "probe": 0.4593977928161621
+  },
+  {
+   "name": "line_v_r1c6_theirs3",
+   "family": "line",
+   "neuron": 0.48859649896621704,
+   "rotation": 0.2577608525753021,
+   "probe": 0.1746167540550232
+  },
+  {
+   "name": "line_dd_r1c6_mine2",
+   "family": "line",
+   "neuron": 0.2852480411529541,
+   "rotation": 0.10172175616025925,
+   "probe": 0.29854780435562134
+  },
+  {
+   "name": "line_dd_r1c6_mine3",
+   "family": "line",
+   "neuron": 0.3178165555000305,
+   "rotation": 0.10303051769733429,
+   "probe": 0.32460224628448486
+  },
+  {
+   "name": "line_dd_r1c6_theirs2",
+   "family": "line",
+   "neuron": 0.30305880308151245,
+   "rotation": 0.10923261940479279,
+   "probe": 0.28071707487106323
+  },
+  {
+   "name": "line_dd_r1c6_theirs3",
+   "family": "line",
+   "neuron": 0.48180288076400757,
+   "rotation": 0.1314963549375534,
+   "probe": 0.3399410843849182
+  },
+  {
+   "name": "line_h_r2c0_mine2",
+   "family": "line",
+   "neuron": 0.3681284487247467,
+   "rotation": 0.13421356678009033,
+   "probe": 0.3845890164375305
+  },
+  {
+   "name": "line_h_r2c0_mine3",
+   "family": "line",
+   "neuron": 0.462861031293869,
+   "rotation": 0.11196241527795792,
+   "probe": 0.366219699382782
+  },
+  {
+   "name": "line_h_r2c0_theirs2",
+   "family": "line",
+   "neuron": 0.33745843172073364,
+   "rotation": 0.13745786249637604,
+   "probe": 0.39543578028678894
+  },
+  {
+   "name": "line_h_r2c0_theirs3",
+   "family": "line",
+   "neuron": 0.49494728446006775,
+   "rotation": 0.13492393493652344,
+   "probe": 0.3471989333629608
+  },
+  {
+   "name": "line_v_r2c0_mine2",
+   "family": "line",
+   "neuron": 0.2637607455253601,
+   "rotation": 0.12079966068267822,
+   "probe": 0.04778601974248886
+  },
+  {
+   "name": "line_v_r2c0_theirs2",
+   "family": "line",
+   "neuron": 0.4971187114715576,
+   "rotation": 0.17388644814491272,
+   "probe": 0.46696001291275024
+  },
+  {
+   "name": "line_v_r2c0_theirs3",
+   "family": "line",
+   "neuron": 0.45465755462646484,
+   "rotation": 0.2748926877975464,
+   "probe": 0.057608310133218765
+  },
+  {
+   "name": "line_du_r2c0_mine2",
+   "family": "line",
+   "neuron": 0.18526175618171692,
+   "rotation": 0.09859739243984222,
+   "probe": 0.27975183725357056
+  },
+  {
+   "name": "line_du_r2c0_mine3",
+   "family": "line",
+   "neuron": 0.20209434628486633,
+   "rotation": 0.09202249348163605,
+   "probe": 0.12396329641342163
+  },
+  {
+   "name": "line_du_r2c0_theirs2",
+   "family": "line",
+   "neuron": 0.33654457330703735,
+   "rotation": 0.1215294599533081,
+   "probe": 0.29020047187805176
+  },
+  {
+   "name": "line_du_r2c0_theirs3",
+   "family": "line",
+   "neuron": 0.42280709743499756,
+   "rotation": 0.09303666651248932,
+   "probe": 0.3099062144756317
+  },
+  {
+   "name": "line_h_r2c1_mine2",
+   "family": "line",
+   "neuron": 0.24268940091133118,
+   "rotation": 0.13104522228240967,
+   "probe": 0.3801221251487732
+  },
+  {
+   "name": "line_h_r2c1_mine3",
+   "family": "line",
+   "neuron": 0.2631462812423706,
+   "rotation": 0.11826767027378082,
+   "probe": 0.35028430819511414
+  },
+  {
+   "name": "line_h_r2c1_theirs2",
+   "family": "line",
+   "neuron": 0.253641813993454,
+   "rotation": 0.1486572027206421,
+   "probe": 0.4061383008956909
+  },
+  {
+   "name": "line_h_r2c1_theirs3",
+   "family": "line",
+   "neuron": 0.4051915407180786,
+   "rotation": 0.12943793833255768,
+   "probe": 0.3422117233276367
+  },
+  {
+   "name": "line_v_r2c1_mine2",
+   "family": "line",
+   "neuron": 0.6904329061508179,
+   "rotation": 0.06160770729184151,
+   "probe": 0.15834665298461914
+  },
+  {
+   "name": "line_v_r2c1_theirs2",
+   "family": "line",
+   "neuron": 0.5916847586631775,
+   "rotation": 0.20247069001197815,
+   "probe": 0.4620310366153717
+  },
+  {
+   "name": "line_v_r2c1_theirs3",
+   "family": "line",
+   "neuron": 0.4617767333984375,
+   "rotation": 0.34763962030410767,
+   "probe": 0.16540569067001343
+  },
+  {
+   "name": "line_du_r2c1_mine2",
+   "family": "line",
+   "neuron": 0.3080345392227173,
+   "rotation": 0.1521095633506775,
+   "probe": 0.2719935178756714
+  },
+  {
+   "name": "line_du_r2c1_mine3",
+   "family": "line",
+   "neuron": 0.1721271276473999,
+   "rotation": 0.1042025089263916,
+   "probe": 0.08423636108636856
+  },
+  {
+   "name": "line_du_r2c1_theirs2",
+   "family": "line",
+   "neuron": 0.3938145935535431,
+   "rotation": 0.147243469953537,
+   "probe": 0.3668375015258789
+  },
+  {
+   "name": "line_du_r2c1_theirs3",
+   "family": "line",
+   "neuron": 0.22687652707099915,
+   "rotation": 0.1125183179974556,
+   "probe": 0.1863977611064911
+  },
+  {
+   "name": "line_h_r2c2_mine2",
+   "family": "line",
+   "neuron": 0.2314799427986145,
+   "rotation": 0.13632386922836304,
+   "probe": 0.2947908043861389
+  },
+  {
+   "name": "line_h_r2c2_mine3",
+   "family": "line",
+   "neuron": 0.30484527349472046,
+   "rotation": 0.11760476976633072,
+   "probe": 0.36044663190841675
+  },
+  {
+   "name": "line_h_r2c2_theirs2",
+   "family": "line",
+   "neuron": 0.2550237774848938,
+   "rotation": 0.13764330744743347,
+   "probe": 0.3182600736618042
+  },
+  {
+   "name": "line_h_r2c2_theirs3",
+   "family": "line",
+   "neuron": 0.3445206880569458,
+   "rotation": 0.1553683876991272,
+   "probe": 0.33975857496261597
+  },
+  {
+   "name": "line_v_r2c2_mine2",
+   "family": "line",
+   "neuron": 0.5251049995422363,
+   "rotation": 0.06878584623336792,
+   "probe": 0.21337135136127472
+  },
+  {
+   "name": "line_v_r2c2_theirs2",
+   "family": "line",
+   "neuron": 0.4700494110584259,
+   "rotation": 0.19146309792995453,
+   "probe": 0.45509278774261475
+  },
+  {
+   "name": "line_v_r2c2_theirs3",
+   "family": "line",
+   "neuron": 0.5778547525405884,
+   "rotation": 0.4918738603591919,
+   "probe": 0.30228090286254883
+  },
+  {
+   "name": "line_du_r2c2_mine2",
+   "family": "line",
+   "neuron": 0.3275068700313568,
+   "rotation": 0.15873950719833374,
+   "probe": 0.4539838135242462
+  },
+  {
+   "name": "line_du_r2c2_mine3",
+   "family": "line",
+   "neuron": 0.2369656264781952,
+   "rotation": 0.10403034090995789,
+   "probe": 0.1090846061706543
+  },
+  {
+   "name": "line_du_r2c2_theirs2",
+   "family": "line",
+   "neuron": 0.3116251528263092,
+   "rotation": 0.16893607378005981,
+   "probe": 0.4831661880016327
+  },
+  {
+   "name": "line_du_r2c2_theirs3",
+   "family": "line",
+   "neuron": 0.30700740218162537,
+   "rotation": 0.10663670301437378,
+   "probe": 0.16384361684322357
+  },
+  {
+   "name": "line_h_r2c3_mine2",
+   "family": "line",
+   "neuron": 0.23753011226654053,
+   "rotation": 0.11396656930446625,
+   "probe": 0.29412007331848145
+  },
+  {
+   "name": "line_h_r2c3_mine3",
+   "family": "line",
+   "neuron": 0.22799721360206604,
+   "rotation": 0.1194894090294838,
+   "probe": 0.3761970102787018
+  },
+  {
+   "name": "line_h_r2c3_theirs2",
+   "family": "line",
+   "neuron": 0.3379034101963043,
+   "rotation": 0.12914180755615234,
+   "probe": 0.31176337599754333
+  },
+  {
+   "name": "line_h_r2c3_theirs3",
+   "family": "line",
+   "neuron": 0.45048651099205017,
+   "rotation": 0.1258692741394043,
+   "probe": 0.33535897731781006
+  },
+  {
+   "name": "line_v_r2c3_mine2",
+   "family": "line",
+   "neuron": 0.3911692500114441,
+   "rotation": 0.06837192177772522,
+   "probe": 0.1749512255191803
+  },
+  {
+   "name": "line_v_r2c3_theirs2",
+   "family": "line",
+   "neuron": 0.7204511761665344,
+   "rotation": 0.16989415884017944,
+   "probe": 0.4703161418437958
+  },
+  {
+   "name": "line_v_r2c3_theirs3",
+   "family": "line",
+   "neuron": 0.6065611839294434,
+   "rotation": 0.48869654536247253,
+   "probe": 0.46308207511901855
+  },
+  {
+   "name": "line_du_r2c3_mine2",
+   "family": "line",
+   "neuron": 0.21586649119853973,
+   "rotation": 0.15019744634628296,
+   "probe": 0.39902159571647644
+  },
+  {
+   "name": "line_du_r2c3_mine3",
+   "family": "line",
+   "neuron": 0.12443810701370239,
+   "rotation": 0.0945533961057663,
+   "probe": 0.052193742245435715
+  },
+  {
+   "name": "line_du_r2c3_theirs2",
+   "family": "line",
+   "neuron": 0.30908483266830444,
+   "rotation": 0.18559834361076355,
+   "probe": 0.49184441566467285
+  },
+  {
+   "name": "line_du_r2c3_theirs3",
+   "family": "line",
+   "neuron": 0.3412027955055237,
+   "rotation": 0.13050484657287598,
+   "probe": 0.10621340572834015
+  },
+  {
+   "name": "line_dd_r2c3_mine2",
+   "family": "line",
+   "neuron": 0.2704847455024719,
+   "rotation": 0.15127557516098022,
+   "probe": 0.3482315242290497
+  },
+  {
+   "name": "line_dd_r2c3_mine3",
+   "family": "line",
+   "neuron": 0.13407474756240845,
+   "rotation": 0.0872545838356018,
+   "probe": 0.07314185798168182
+  },
+  {
+   "name": "line_dd_r2c3_theirs2",
+   "family": "line",
+   "neuron": 0.3587614893913269,
+   "rotation": 0.16215524077415466,
+   "probe": 0.45588332414627075
+  },
+  {
+   "name": "line_dd_r2c3_theirs3",
+   "family": "line",
+   "neuron": 0.3061339259147644,
+   "rotation": 0.1201014593243599,
+   "probe": 0.12556716799736023
+  },
+  {
+   "name": "line_v_r2c4_mine2",
+   "family": "line",
+   "neuron": 0.4153457283973694,
+   "rotation": 0.062178872525691986,
+   "probe": 0.28936800360679626
+  },
+  {
+   "name": "line_v_r2c4_theirs2",
+   "family": "line",
+   "neuron": 0.5026015043258667,
+   "rotation": 0.19204947352409363,
+   "probe": 0.42908912897109985
+  },
+  {
+   "name": "line_v_r2c4_theirs3",
+   "family": "line",
+   "neuron": 0.5353361964225769,
+   "rotation": 0.4930039644241333,
+   "probe": 0.23287954926490784
+  },
+  {
+   "name": "line_dd_r2c4_mine2",
+   "family": "line",
+   "neuron": 0.2562655210494995,
+   "rotation": 0.16882938146591187,
+   "probe": 0.34454888105392456
+  },
+  {
+   "name": "line_dd_r2c4_mine3",
+   "family": "line",
+   "neuron": 0.1338169425725937,
+   "rotation": 0.08908446133136749,
+   "probe": 0.07744689285755157
+  },
+  {
+   "name": "line_dd_r2c4_theirs2",
+   "family": "line",
+   "neuron": 0.3678325414657593,
+   "rotation": 0.1419413983821869,
+   "probe": 0.451077938079834
+  },
+  {
+   "name": "line_dd_r2c4_theirs3",
+   "family": "line",
+   "neuron": 0.2686464190483093,
+   "rotation": 0.12142154574394226,
+   "probe": 0.17333126068115234
+  },
+  {
+   "name": "line_v_r2c5_mine2",
+   "family": "line",
+   "neuron": 0.5664099454879761,
+   "rotation": 0.08990953117609024,
+   "probe": 0.2007613182067871
+  },
+  {
+   "name": "line_v_r2c5_theirs2",
+   "family": "line",
+   "neuron": 0.560634434223175,
+   "rotation": 0.20042069256305695,
+   "probe": 0.5174715518951416
+  },
+  {
+   "name": "line_v_r2c5_theirs3",
+   "family": "line",
+   "neuron": 0.47563207149505615,
+   "rotation": 0.3530718982219696,
+   "probe": 0.23254072666168213
+  },
+  {
+   "name": "line_dd_r2c5_mine2",
+   "family": "line",
+   "neuron": 0.3142278790473938,
+   "rotation": 0.16033867001533508,
+   "probe": 0.2715209722518921
+  },
+  {
+   "name": "line_dd_r2c5_mine3",
+   "family": "line",
+   "neuron": 0.17419540882110596,
+   "rotation": 0.11167201399803162,
+   "probe": 0.08755113184452057
+  },
+  {
+   "name": "line_dd_r2c5_theirs2",
+   "family": "line",
+   "neuron": 0.3078818917274475,
+   "rotation": 0.15183275938034058,
+   "probe": 0.40170615911483765
+  },
+  {
+   "name": "line_dd_r2c5_theirs3",
+   "family": "line",
+   "neuron": 0.30525124073028564,
+   "rotation": 0.1122000515460968,
+   "probe": 0.23438185453414917
+  },
+  {
+   "name": "line_v_r2c6_mine2",
+   "family": "line",
+   "neuron": 0.28695863485336304,
+   "rotation": 0.06616038829088211,
+   "probe": 0.04506503418087959
+  },
+  {
+   "name": "line_v_r2c6_theirs2",
+   "family": "line",
+   "neuron": 0.42389896512031555,
+   "rotation": 0.15434685349464417,
+   "probe": 0.4058644771575928
+  },
+  {
+   "name": "line_v_r2c6_theirs3",
+   "family": "line",
+   "neuron": 0.37236708402633667,
+   "rotation": 0.24505315721035004,
+   "probe": 0.029076680541038513
+  },
+  {
+   "name": "line_dd_r2c6_mine2",
+   "family": "line",
+   "neuron": 0.3707789182662964,
+   "rotation": 0.10382375121116638,
+   "probe": 0.3061632215976715
+  },
+  {
+   "name": "line_dd_r2c6_mine3",
+   "family": "line",
+   "neuron": 0.3736874461174011,
+   "rotation": 0.0950041189789772,
+   "probe": 0.11969083547592163
+  },
+  {
+   "name": "line_dd_r2c6_theirs2",
+   "family": "line",
+   "neuron": 0.33888205885887146,
+   "rotation": 0.13732683658599854,
+   "probe": 0.29157745838165283
+  },
+  {
+   "name": "line_dd_r2c6_theirs3",
+   "family": "line",
+   "neuron": 0.44708842039108276,
+   "rotation": 0.09618185460567474,
+   "probe": 0.34082186222076416
+  },
+  {
+   "name": "line_h_r3c0_mine2",
+   "family": "line",
+   "neuron": 0.25797417759895325,
+   "rotation": 0.1302919089794159,
+   "probe": 0.2792716920375824
+  },
+  {
+   "name": "line_h_r3c0_mine3",
+   "family": "line",
+   "neuron": 0.16661939024925232,
+   "rotation": 0.10831108689308167,
+   "probe": 0.24552565813064575
+  },
+  {
+   "name": "line_h_r3c0_theirs2",
+   "family": "line",
+   "neuron": 0.29156604409217834,
+   "rotation": 0.13455599546432495,
+   "probe": 0.4764661192893982
+  },
+  {
+   "name": "line_h_r3c0_theirs3",
+   "family": "line",
+   "neuron": 0.4631825387477875,
+   "rotation": 0.13234815001487732,
+   "probe": 0.3117271065711975
+  },
+  {
+   "name": "line_h_r3c1_mine2",
+   "family": "line",
+   "neuron": 0.24005454778671265,
+   "rotation": 0.159467875957489,
+   "probe": 0.30916452407836914
+  },
+  {
+   "name": "line_h_r3c1_mine3",
+   "family": "line",
+   "neuron": 0.24414581060409546,
+   "rotation": 0.13295739889144897,
+   "probe": 0.2920452356338501
+  },
+  {
+   "name": "line_h_r3c1_theirs2",
+   "family": "line",
+   "neuron": 0.2695569396018982,
+   "rotation": 0.14976149797439575,
+   "probe": 0.46946996450424194
+  },
+  {
+   "name": "line_h_r3c1_theirs3",
+   "family": "line",
+   "neuron": 0.3490285873413086,
+   "rotation": 0.1371864527463913,
+   "probe": 0.30758947134017944
+  },
+  {
+   "name": "line_h_r3c2_mine2",
+   "family": "line",
+   "neuron": 0.22879910469055176,
+   "rotation": 0.13834989070892334,
+   "probe": 0.265283465385437
+  },
+  {
+   "name": "line_h_r3c2_mine3",
+   "family": "line",
+   "neuron": 0.24072840809822083,
+   "rotation": 0.13796842098236084,
+   "probe": 0.2821171283721924
+  },
+  {
+   "name": "line_h_r3c2_theirs2",
+   "family": "line",
+   "neuron": 0.2672329545021057,
+   "rotation": 0.1532430350780487,
+   "probe": 0.42539504170417786
+  },
+  {
+   "name": "line_h_r3c2_theirs3",
+   "family": "line",
+   "neuron": 0.3257604241371155,
+   "rotation": 0.1265365183353424,
+   "probe": 0.3143371343612671
+  },
+  {
+   "name": "line_h_r3c3_mine2",
+   "family": "line",
+   "neuron": 0.2803388833999634,
+   "rotation": 0.13445857167243958,
+   "probe": 0.2570907473564148
+  },
+  {
+   "name": "line_h_r3c3_mine3",
+   "family": "line",
+   "neuron": 0.23965591192245483,
+   "rotation": 0.12363501638174057,
+   "probe": 0.2461140751838684
+  },
+  {
+   "name": "line_h_r3c3_theirs2",
+   "family": "line",
+   "neuron": 0.3185777962207794,
+   "rotation": 0.13669151067733765,
+   "probe": 0.405348002910614
+  },
+  {
+   "name": "line_h_r3c3_theirs3",
+   "family": "line",
+   "neuron": 0.46800699830055237,
+   "rotation": 0.13882523775100708,
+   "probe": 0.3184797763824463
+  },
+  {
+   "name": "line_h_r4c0_mine2",
+   "family": "line",
+   "neuron": 0.21786059439182281,
+   "rotation": 0.14169219136238098,
+   "probe": 0.2665650248527527
+  },
+  {
+   "name": "line_h_r4c0_mine3",
+   "family": "line",
+   "neuron": 0.1266137957572937,
+   "rotation": 0.11917078495025635,
+   "probe": 0.09551116824150085
+  },
+  {
+   "name": "line_h_r4c0_theirs2",
+   "family": "line",
+   "neuron": 0.2787673771381378,
+   "rotation": 0.15443100035190582,
+   "probe": 0.2712169885635376
+  },
+  {
+   "name": "line_h_r4c0_theirs3",
+   "family": "line",
+   "neuron": 0.43010807037353516,
+   "rotation": 0.11386993527412415,
+   "probe": 0.2865540385246277
+  },
+  {
+   "name": "line_h_r4c1_mine2",
+   "family": "line",
+   "neuron": 0.2683377265930176,
+   "rotation": 0.16047167778015137,
+   "probe": 0.27370473742485046
+  },
+  {
+   "name": "line_h_r4c1_mine3",
+   "family": "line",
+   "neuron": 0.1513649970293045,
+   "rotation": 0.11584506928920746,
+   "probe": 0.11599817872047424
+  },
+  {
+   "name": "line_h_r4c1_theirs2",
+   "family": "line",
+   "neuron": 0.25982895493507385,
+   "rotation": 0.16038069128990173,
+   "probe": 0.28443431854248047
+  },
+  {
+   "name": "line_h_r4c1_theirs3",
+   "family": "line",
+   "neuron": 0.2746400237083435,
+   "rotation": 0.11538174748420715,
+   "probe": 0.344941645860672
+  },
+  {
+   "name": "line_h_r4c2_mine2",
+   "family": "line",
+   "neuron": 0.26482662558555603,
+   "rotation": 0.14172402024269104,
+   "probe": 0.2696893811225891
+  },
+  {
+   "name": "line_h_r4c2_mine3",
+   "family": "line",
+   "neuron": 0.2142573446035385,
+   "rotation": 0.1015399694442749,
+   "probe": 0.1372767835855484
+  },
+  {
+   "name": "line_h_r4c2_theirs2",
+   "family": "line",
+   "neuron": 0.27164584398269653,
+   "rotation": 0.14703702926635742,
+   "probe": 0.2812068462371826
+  },
+  {
+   "name": "line_h_r4c2_theirs3",
+   "family": "line",
+   "neuron": 0.3128345310688019,
+   "rotation": 0.12060889601707458,
+   "probe": 0.3418523371219635
+  },
+  {
+   "name": "line_h_r4c3_mine2",
+   "family": "line",
+   "neuron": 0.22844292223453522,
+   "rotation": 0.14529183506965637,
+   "probe": 0.2615854740142822
+  },
+  {
+   "name": "line_h_r4c3_mine3",
+   "family": "line",
+   "neuron": 0.1774975210428238,
+   "rotation": 0.09634587168693542,
+   "probe": 0.06635405123233795
+  },
+  {
+   "name": "line_h_r4c3_theirs2",
+   "family": "line",
+   "neuron": 0.3633551597595215,
+   "rotation": 0.1569281816482544,
+   "probe": 0.27088242769241333
+  },
+  {
+   "name": "line_h_r4c3_theirs3",
+   "family": "line",
+   "neuron": 0.42896610498428345,
+   "rotation": 0.10424067080020905,
+   "probe": 0.21183866262435913
+  },
+  {
+   "name": "line_h_r5c0_mine2",
+   "family": "line",
+   "neuron": 0.22706004977226257,
+   "rotation": 0.15124236047267914,
+   "probe": 0.2996523976325989
+  },
+  {
+   "name": "line_h_r5c0_mine3",
+   "family": "line",
+   "neuron": 0.1062275618314743,
+   "rotation": 0.0746975690126419,
+   "probe": 0.04677675664424896
+  },
+  {
+   "name": "line_h_r5c0_theirs2",
+   "family": "line",
+   "neuron": 0.31838005781173706,
+   "rotation": 0.16341808438301086,
+   "probe": 0.3100694417953491
+  },
+  {
+   "name": "line_h_r5c0_theirs3",
+   "family": "line",
+   "neuron": 0.41989070177078247,
+   "rotation": 0.10885302722454071,
+   "probe": 0.16301247477531433
+  },
+  {
+   "name": "line_h_r5c1_mine2",
+   "family": "line",
+   "neuron": 0.20034047961235046,
+   "rotation": 0.1500188559293747,
+   "probe": 0.2837475538253784
+  },
+  {
+   "name": "line_h_r5c1_mine3",
+   "family": "line",
+   "neuron": 0.1393115222454071,
+   "rotation": 0.08583125472068787,
+   "probe": 0.04318492114543915
+  },
+  {
+   "name": "line_h_r5c1_theirs2",
+   "family": "line",
+   "neuron": 0.33038949966430664,
+   "rotation": 0.1538388878107071,
+   "probe": 0.3242083787918091
+  },
+  {
+   "name": "line_h_r5c1_theirs3",
+   "family": "line",
+   "neuron": 0.4100068211555481,
+   "rotation": 0.0998641774058342,
+   "probe": 0.20405246317386627
+  },
+  {
+   "name": "line_h_r5c2_mine2",
+   "family": "line",
+   "neuron": 0.19911381602287292,
+   "rotation": 0.14677616953849792,
+   "probe": 0.2792910039424896
+  },
+  {
+   "name": "line_h_r5c2_mine3",
+   "family": "line",
+   "neuron": 0.1505739390850067,
+   "rotation": 0.07018047571182251,
+   "probe": 0.041849009692668915
+  },
+  {
+   "name": "line_h_r5c2_theirs2",
+   "family": "line",
+   "neuron": 0.31550973653793335,
+   "rotation": 0.16579633951187134,
+   "probe": 0.31685715913772583
+  },
+  {
+   "name": "line_h_r5c2_theirs3",
+   "family": "line",
+   "neuron": 0.3828442096710205,
+   "rotation": 0.09459438920021057,
+   "probe": 0.1633976697921753
+  },
+  {
+   "name": "line_h_r5c3_mine2",
+   "family": "line",
+   "neuron": 0.1826285570859909,
+   "rotation": 0.14870361983776093,
+   "probe": 0.2692038118839264
+  },
+  {
+   "name": "line_h_r5c3_mine3",
+   "family": "line",
+   "neuron": 0.11227496713399887,
+   "rotation": 0.0821840763092041,
+   "probe": 0.0390804186463356
+  },
+  {
+   "name": "line_h_r5c3_theirs2",
+   "family": "line",
+   "neuron": 0.3103767931461334,
+   "rotation": 0.18651704490184784,
+   "probe": 0.2947733402252197
+  },
+  {
+   "name": "line_h_r5c3_theirs3",
+   "family": "line",
+   "neuron": 0.3497045338153839,
+   "rotation": 0.11791489273309708,
+   "probe": 0.10396832227706909
+  }
+ ]
+}

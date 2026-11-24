@@ -1,0 +1,72 @@
+{
+ "unit": "U20",
+ "description": "Fires when the opponent threatens an immediate win in column 2 that I must block: strongest (activation 20-45) when they have three stacked vertically in column 2 with the cell above empty; moderate (2-15) when the playable threat cell is exactly row 3 of column 2 (third cell from the bottom) via a diagonal or row. Threats in other columns, unplayable column-2 threats, and positions with several must-blocks do not fire. Many weak near-threshold firings have no clear pattern.",
+ "effect": "Pushes the move to column 2: forcing it high raises column 2 to 0.84-1.00 probability in tactical positions (+0.16 in a quiet one), taking mass from the model's other choices; zeroing it changes nothing measurable (redundant).",
+ "program": "def col2_threat(b):\n    best = 0\n    for (r, c) in b.their_playable_wins:\n        if c != 2:\n            continue\n        if r >= 3 and all(b.grid[r - k][2] == 2 for k in (1, 2, 3)):\n            best = max(best, 9)\n        elif r == 2:\n            best = max(best, 6)\n        else:\n            best = max(best, 3)\n    return best\n\ndef fires(b):\n    if len(b.their_playable_wins) > 1:\n        return False\n    return col2_threat(b) >= 6\n\ndef level(b):\n    t = col2_threat(b)\n    if t >= 6 and len(b.their_playable_wins) > 1:\n        t = 3\n    return t\n",
+ "synthesis": [
+  [
+   2,
+   4,
+   2,
+   2,
+   4,
+   0,
+   6,
+   2,
+   1,
+   2
+  ],
+  [
+   2,
+   4,
+   2,
+   2,
+   6,
+   0,
+   4,
+   2,
+   1,
+   2
+  ],
+  [
+   2,
+   4,
+   2,
+   2,
+   3,
+   0,
+   4,
+   2,
+   1,
+   2
+  ],
+  [
+   2,
+   4,
+   2,
+   2,
+   5,
+   0,
+   4,
+   2,
+   1,
+   2
+  ],
+  [
+   2,
+   4,
+   2,
+   2,
+   6,
+   3,
+   6,
+   2,
+   1,
+   2
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Best dev F1 0.498 (P 0.84, R 0.35, AUROC 0.68). Column-2 specificity confirmed by minimal pairs (same vertical three in columns 0,1,3,4,5 gives ~0). Diagonal must-blocks in column 2 at rows 1/3/4 fire weakly or not at all; at row 2 they fire. Broadening to any column-2 threat cell collapsed precision (F1 0.16). Recall stays capped around 0.35 by diffuse near-threshold firing (act 1-4) in early/mid game, often with column 2 at height 2, that I could not explain. Simulation metric negative for all programs (-45% vs -70% for a perfect reader; share nan).",
+ "dev_calls_used": 6,
+ "submitted": "2026-11-23T01:39:40"
+}

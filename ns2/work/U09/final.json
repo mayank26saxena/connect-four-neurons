@@ -1,0 +1,51 @@
+{
+ "unit": "U09",
+ "description": "Mostly early-game: a bottom-row configuration where the opponent has stones at the bottom of columns 1 and 5 (often 4 too) and I have the bottom of columns 3 and 6, with no opponent stone at the bottom of 3 or 6. Opponent stones directly above theirs in row 2 (columns 1,4,5,6) suppress it; my stone on (row 2, col 3) boosts it. Firing fades as the board fills; late-game firing is only partly explained.",
+ "effect": "None measurable: forcing it high or off changes move probabilities by at most about 0.09 (4 positions tested).",
+ "program": "def score(b):\n    g = b.grid\n    t0 = [0.0, 3.0, 1.0, -0.5, 2.0, 3.0, -2.0]\n    m0 = [0.0, -2.0, 1.0, 2.5, -1.0, -1.0, 2.0]\n    s = 0.0\n    for c in range(7):\n        v = g[0][c]\n        if v == 2:\n            s += t0[c]\n        elif v == 1:\n            s += m0[c]\n    for c in (1, 4, 5, 6):\n        if g[1][c] == 2:\n            s -= 2.5\n    if g[1][3] == 1:\n        s += 1.0\n    s -= 0.25 * max(0, b.ply - 7)\n    return s\n\ndef fires(b):\n    return score(b) >= 8.0\n\ndef level(b):\n    s = score(b)\n    if s < 6.5:\n        return 0\n    return max(0, min(9, int((s - 6.5) * 1.5)))\n",
+ "synthesis": [
+  [
+   3,
+   4,
+   3,
+   5,
+   6,
+   1
+  ],
+  [
+   3,
+   4,
+   6,
+   5,
+   3,
+   1
+  ],
+  [
+   3,
+   1,
+   6,
+   5,
+   3,
+   4
+  ],
+  [
+   1,
+   3,
+   4,
+   6,
+   5,
+   3,
+   0
+  ],
+  [
+   3,
+   1,
+   6,
+   4,
+   3,
+   5
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Best dev F1 0.243 (P 0.28, R 0.21), AUROC 0.60 (graded variant 0.705), sim share 0.07. Minimal pairs confirm the bottom-row core (them{1,4,5}+me{3,6} = 5.5 at ply 5; dropping col1 or col5 stones halves it; mirror image ~0.3) but per-cell effects are context dependent and late-game firing depends on assorted upper stacks (e.g. their stone at (2,6)). Behaves like a diffuse positional mixture; may be a random direction. 5 of 8 score calls used."
+}

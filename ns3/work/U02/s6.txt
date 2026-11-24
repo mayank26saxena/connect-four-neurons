@@ -1,0 +1,71 @@
+U02 dev call 6/8 (4s)
+  detection: F1 0.517 (precision 0.404, recall 0.718), AUROC 0.843; unit fires on 2.9% of scored positions, program on 5.2%
+  simulation: recovers 31.1% of the zero-ablation damage; a perfect 10-level reader recovers 87.6%; share of ceiling 0.35
+
+--- FALSE POSITIVES (program says fires, unit does not): 1869 positions; examples ---
+[pos 46128] pole act 2.957, program 1.00, moves 0,6,6,4,3,3,3,0,4,4,3,4,3,3,2,1,4,0,5,0,0,1,2,4,5,1,1,1,0,5,5
+O..XX..
+OX.OO..
+XO.OXO.
+XX.OXX.
+XXOXOOO
+OXOOXOX
+0123456   X = me (to move), O = them
+[pos 1965] pole act 3.667, program 1.00, moves 3,3,4,5,3,4,4,1,5,3,1,5,4,1,3,3,0,2,4,4,6,0,0,1,0,0,6,0,5,2,2,1,1,5,6
+XO.XX..
+XX.OOX.
+OX.XOO.
+OXOOOXO
+XOXXXOO
+OXXOOXO
+0123456   X = me (to move), O = them
+[pos 55519] pole act 1.757, program 1.00, moves 4,5,3,3,3,1,3,6,4,3,3,4,1,1,4,0,1,4,2,6,4,5,2,5,5,5,0,0,1,0,2,2,2,1,6,6,6,6,0,5,0
+OX.OOXX
+OOOXXXO
+XOXOOOX
+XXOOXXO
+OOOXOXX
+XXOOOXX
+0123456   X = me (to move), O = them
+[pos 55201] pole act 2.702, program 1.00, moves 0,6,0,3,3,0,0,3,3,3,5,5,5,5,0,4,2,3,2,2,0,2,2,2,5
+O.XX...
+O.OX.O.
+O.XO.X.
+X.XX.O.
+O.OO.X.
+O.OXXOX
+0123456   X = me (to move), O = them
+
+--- MISSES (unit fires, program does not): 498 positions; examples ---
+[pos 3896] pole act 4.611, program 0.00, moves 4,4,1,5,4,5,2,3,3,3,4,1,3,3,2,6,1,1,4,4,1,3,1,2,2,2,2,6,0,6,6,0,0,0,6,6,0,0,5,5,5
+XOOXX.X
+OOXXOOO
+XXOOOXO
+OOXXOOX
+XXOOXXX
+OOOXOXX
+0123456   X = me (to move), O = them
+[pos 21935] pole act 4.123, program 0.00, moves 2,3,1,3,3,2,1,2,3,4,4,6,5,2,2,4,3,3,2,6,4,4,0,1,1,4,1,1,6,6,6,6,0,0,0
+.XOXX.X
+.OOOX.O
+OOXOO.X
+XXXOX.O
+OOXXO.X
+OOOXXOX
+0123456   X = me (to move), O = them
+[pos 21512] pole act 4.425, program 0.00, moves 4,2,6,3,0,2,3,2,2,3,2,1,3,0,0,0,4,6,3,0,3,5,0,6,2,6,6
+O.OO...
+X.OO..O
+X.OO..X
+O.XX..X
+X.XOO.X
+OXXXOXO
+0123456   X = me (to move), O = them
+[pos 66183] pole act 4.351, program 0.00, moves 1,1,0,1,0,3,5,6,6,2,3,6,0,0,2,1,1,3,1,3,3,5,6,3,5,6,6,2,2,2,2,0,4,5,0
+OOOX..O
+XOXO..X
+XXOX.XO
+OXXX.OX
+OXOO.XO
+OOXXOOX
+0123456   X = me (to move), O = them

@@ -1,0 +1,58 @@
+{
+ "unit": "U41",
+ "description": "Fires when I must block an opponent's immediate win in column 1 (second from left). Strongest when they have three stacked vertically in column 1 with the cell above empty; moderate for a horizontal or diagonal threat at column 1's landing cell in rows 2-4. Does not fire for a bottom-row threat there, vertical threes in other columns, when I have an immediate win, or when facing a double threat.",
+ "effect": "Pushes the model toward playing column 1: forcing it to max raises column 1 by about 45-60 points of probability in positions that would otherwise play elsewhere; zeroing it changes nothing when the block is already chosen (redundant with other circuitry).",
+ "program": "def vert3(b, c):\n    h = b.heights[c]\n    if h < 3 or h >= 6:\n        return False\n    return all(b.grid[h - 1 - k][c] == 2 for k in range(3))\n\ndef level(b):\n    r = b.landing(1)\n    if r is None or r < 1:\n        return 0\n    if len(b.my_playable_wins) > 0 or (r, 1) not in b.their_playable_wins:\n        return 0\n    n = len(b.their_playable_wins)\n    if vert3(b, 1):\n        return 9 if n == 1 else 5\n    if n == 1 and r <= 3 and (r + 1, 1) not in b.their_wins:\n        return 6\n    return 0\n\ndef fires(b):\n    return level(b) > 0\n",
+ "synthesis": [
+  [
+   6,
+   4,
+   3,
+   1,
+   3,
+   1,
+   0,
+   1
+  ],
+  [
+   3,
+   4,
+   6,
+   1,
+   3,
+   1,
+   0,
+   1
+  ],
+  [
+   3,
+   4,
+   3,
+   1,
+   6,
+   1,
+   0,
+   1
+  ],
+  [
+   6,
+   4,
+   3,
+   1,
+   3,
+   1,
+   4,
+   1
+  ],
+  [
+   3,
+   1,
+   0,
+   1,
+   6,
+   1
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Best dev F1 0.604 (precision 0.88, recall 0.46, AUROC 0.73) with p4. Minimal pairs: vertical three col1 21.9 vs col0 0.8, col2 3.7, cols3-6 ~0.1; blocked -> -0.1; my own three -> 0.25; row-0 horizontal threat at (0,1) ~0.1 but row-1 threat at (1,1) 6-8; double threat suppresses. Tried adding non-playable col-1 threats, opponent forks via col 1, and col 0/2 must-blocks: all lowered F1. About half the firing is diffuse near-threshold activity around threats in/near column 1 that the program misses. Simulation share reported nan."
+}

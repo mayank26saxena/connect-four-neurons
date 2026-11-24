@@ -1,0 +1,78 @@
+{
+ "unit": "U19",
+ "description": "Fires when the opponent has three stones stacked on top of column 5 (second from the right) with the cell above empty, a vertical threat I must block; strongest (25-47) right after they play the third stone, still clear a move later, weak if the three is mine. Weaker near-threshold firing (2-6) when the opponent's last stone just created a four-threat, mostly in columns 1-2. Vertical threes in columns 0,3,4,6 and horizontal threats do not fire it.",
+ "effect": "Pushes the move toward column 5 (the block): e.g. column 5 rises from 0.55 to 0.94 when forced high; on quiet positions it shifts about 20-35 points from the center column to columns 5 and 2. No effect when the block is already certain.",
+ "program": "DIRS = ((0, 1), (1, 0), (1, 1), (1, -1))\n\ndef vthree(b, c, who):\n    h = b.heights[c]\n    if h < 3 or h >= 6:\n        return False\n    return all(b.grid[h - 1 - k][c] == who for k in range(3))\n\ndef made_by_last(b, r, c):\n    # is there a line of four through empty cell (r,c) whose other three are theirs and include the last stone?\n    lr, lc = b.last_row, b.last_col\n    if lr is None:\n        return False\n    for dr, dc in DIRS:\n        for s in range(4):\n            cells = [(r + (k - s) * dr, c + (k - s) * dc) for k in range(4)]\n            if not all(0 <= rr < 6 and 0 <= cc < 7 for rr, cc in cells):\n                continue\n            others = [x for x in cells if x != (r, c)]\n            if (lr, lc) in others and all(b.grid[rr][cc] == 2 for rr, cc in others):\n                return True\n    return False\n\ndef weak(b):\n    for (r, c) in b.their_playable_wins:\n        if c in (1, 2, 5) and made_by_last(b, r, c):\n            return True\n    return False\n\ndef fires(b):\n    return vthree(b, 5, 2) or vthree(b, 5, 1) or weak(b)\n\ndef level(b):\n    if vthree(b, 5, 2):\n        return 9 if b.last_col == 5 else 6\n    if vthree(b, 5, 1):\n        return 3\n    if weak(b):\n        return 2\n    return 0\n",
+ "synthesis": [
+  [
+   3,
+   2,
+   3,
+   3,
+   1,
+   1,
+   5,
+   4,
+   5,
+   0,
+   5
+  ],
+  [
+   3,
+   4,
+   3,
+   3,
+   1,
+   1,
+   5,
+   2,
+   5,
+   0,
+   5
+  ],
+  [
+   3,
+   2,
+   3,
+   3,
+   1,
+   1,
+   0,
+   4,
+   5,
+   0,
+   5,
+   6,
+   5
+  ],
+  [
+   3,
+   2,
+   3,
+   3,
+   1,
+   1,
+   5,
+   4,
+   5,
+   6,
+   5
+  ],
+  [
+   0,
+   5,
+   6,
+   6,
+   1,
+   2,
+   1,
+   5,
+   1,
+   1,
+   4,
+   5
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Core (vertical three on col 5) precision 0.94, recall 0.28 (F1 0.43). Adding newly created opponent threats in cols 1/2/5 gives best F1 0.458 (P 0.39 R 0.55). Weak band 2-6 is diffuse and context-dependent. Simulation share nan: a perfect 10-level reader recovers -28% of zero-ablation damage, so the simulation metric is undefined for this unit. Minimal pairs: same three in col 1/2 ~3.7, cols 0/3/4/6 ~0.1, full column ~0, horizontal 3-in-row ~0.2."
+}

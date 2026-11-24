@@ -1,0 +1,58 @@
+{
+ "unit": "U04",
+ "description": "No clean concept found. Firing is only weakly enriched for early, sparse boards (ply <= 10, empty columns), and strongest in synthetic openings where several of my bottom stones (especially in columns 0 and 6) are each capped by one opponent stone. The same pattern in fuller boards does not fire, activation swings sharply from ply to ply, and it depends on move order, not just the board.",
+ "effect": "None measurable: steering to zero or to max changes move probabilities by at most 0.03.",
+ "program": "W = [2, 0, -1, 1, 1, 1, 2]\n\ndef total(b):\n    s = 0\n    if b.ply <= 6:\n        s += 3\n    elif b.ply <= 10:\n        s += 1\n    else:\n        return 0\n    s += sum(1 for c in (1, 2, 4) if b.heights[c] == 0)\n    for c in range(7):\n        if b.heights[c] == 2 and b.grid[0][c] == 1 and b.grid[1][c] == 2:\n            s += W[c]\n    return s\n\ndef fires(b):\n    return total(b) >= 6\n\ndef level(b):\n    s = total(b)\n    return 9 if s >= 8 else (7 if s >= 7 else (5 if s >= 6 else 0))\n",
+ "synthesis": [
+  [
+   5,
+   5,
+   6,
+   6,
+   3,
+   3,
+   0,
+   0
+  ],
+  [
+   5,
+   5,
+   6,
+   6,
+   0,
+   0
+  ],
+  [
+   5,
+   5,
+   0,
+   0,
+   6,
+   6,
+   3,
+   3
+  ],
+  [
+   6,
+   6,
+   5,
+   5,
+   0,
+   0,
+   3,
+   3
+  ],
+  [
+   5,
+   5,
+   6,
+   6,
+   0,
+   0,
+   3,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Tried: last move horizontally isolated + early game (F1 0.108), >=3 empty columns (0.111), additive sparse-board score (0.139), capped-pair count (0.050, does not generalize), sparse score + capped pairs (0.144, best; AUROC 0.55, sim share -0.07). No tactical features (must-block, wins, vertical runs, last-move column) are enriched. Order dependence: 0,0,3,3 0.55 vs 3,3,0,0 1.00. Steering has no effect. Likely random direction or diffuse mixture."
+}

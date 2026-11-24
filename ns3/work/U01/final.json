@@ -1,0 +1,77 @@
+{
+ "unit": "U01",
+ "description": "Fires when column 3 (the centre) holds an immediate four-completion, above all when the opponent has three stacked in column 3 with the cell above empty (strongest early in the game, at the bottom). Horizontal or diagonal win/block cells in column 3, my own immediate wins early on, and opponent vertical threes in columns 1 or 6 give weaker firing. Must-blocks in other columns mostly do not fire; crowded late boards damp it.",
+ "effect": "Pushes the model to play column 3: forcing it to max sends column 3 to ~100% (e.g. 0.18->1.00, 0.41->1.00); zeroing it at a col-3 vertical block drops column 3 from 1.00 to 0.67.",
+ "program": "def vert3(b, c, who):\n    h = b.heights[c]\n    if h < 3 or h >= 6:\n        return False\n    return all(b.grid[h - 1 - k][c] == who for k in range(3))\n\ndef col3_threat(b):\n    cells = set(b.their_playable_wins) | set(b.my_playable_wins)\n    return any(c == 3 for (r, c) in cells)\n\ndef fires(b):\n    if vert3(b, 3, 2) or vert3(b, 3, 1):\n        return True\n    if col3_threat(b) and b.ply < 30:\n        return True\n    if b.my_playable_wins and b.ply < 20:\n        return True\n    if (vert3(b, 1, 2) or vert3(b, 6, 2)) and b.ply < 30:\n        return True\n    return False\n\ndef level(b):\n    if vert3(b, 3, 2):\n        return 9 if b.ply < 24 else 7\n    if vert3(b, 3, 1):\n        return 7\n    if col3_threat(b):\n        return 6 if b.ply < 30 else 1\n    if fires(b):\n        return 4\n    return 0\n",
+ "synthesis": [
+  [
+   6,
+   6,
+   6,
+   0,
+   1,
+   1,
+   3,
+   2,
+   3,
+   4,
+   3
+  ],
+  [
+   6,
+   6,
+   6,
+   0,
+   3,
+   2,
+   3,
+   4,
+   3
+  ],
+  [
+   6,
+   6,
+   6,
+   0,
+   1,
+   1,
+   6,
+   0,
+   3,
+   2,
+   3,
+   4,
+   3
+  ],
+  [
+   6,
+   6,
+   6,
+   0,
+   1,
+   1,
+   1,
+   1,
+   3,
+   2,
+   3,
+   4,
+   3
+  ],
+  [
+   6,
+   6,
+   6,
+   0,
+   6,
+   0,
+   3,
+   2,
+   3,
+   4,
+   3
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Best dev F1 0.437 (P 0.42, R 0.45, AUROC 0.72). Any must-block: F1 0.23; col-3 win/block only: 0.35; adding col-3 verticals with ply limits, side-column verticals and early own wins: 0.44. Minimal pairs: opp vertical three by column 0..6 = 1.0,4.3,0.6,51,-0.1,1.4,4.2; horizontal block at row 0 fires only when the cell is in col 3. Some early threat-free openings fire (2,6,2,2 = 9.9 vs 2,0,2,2 = -0.2), looking like a 'play column 3' output feature not captured by board rules. Simulation ceiling negative (share nan). Synthesis max 83.5 < dev max 97.4."
+}

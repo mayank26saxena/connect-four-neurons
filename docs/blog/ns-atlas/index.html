@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neuron Scientist atlas</title>
+<meta name="description" content="Neurons of a Connect Four transformer described by an AI agent and checked on games it never saw, next to random-direction controls and the neurons it could not explain.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="ns.css">
+</head>
+<body>
+<header class="top"><div class="col">
+  <p class="kicker">Neuron atlas · Connect Four · draft</p>
+  <h1>Neurons an agent described, <span class="hi">checked on games it never saw</span></h1>
+  <p class="standfirst">An AI agent ran experiments on 120 neurons of a small Connect Four transformer and wrote down what each one detects, in English and as a rule over the board. We scored every rule on held-out games, next to 40 random directions the agent was not told were random.</p>
+  <div class="meta"><span><b>Draft, not published</b></span><span>Studies (q) and (r), pre-registered in docs/PLAN.md</span><span id="meta-counts"></span></div>
+</div></header>
+<main><div class="col">
+  <h2 id="how"><span class="no">01</span><span class="nl">How each description was checked</span></h2>
+  <p>Following Goodfire's "Neuron Scientist" (<a href="https://www.goodfire.com/research/neurons-as-an-interpretable-basis" target="_blank" rel="noopener noreferrer">Tigges et al. 2026</a>), a describing agent looked at positions where a unit fires, tested hypotheses by playing out its own positions, steered the unit, and could ask a scoring tool for feedback up to eight times. Its final answer was frozen, then checked on validation games it never had access to.</p>
+  <table class="plain key">
+    <thead><tr><th>On each card</th><th>What it measures</th></tr></thead>
+    <tbody>
+      <tr><td><b>Held-out F1</b></td><td>How well the agent's rule predicts when the unit fires, on unseen games (0 to 1). The unit "fires" when it is beyond its own top 3% of activations.</td></tr>
+      <tr><td><b>Dictionary</b></td><td>The best of our 659 hand-written concepts for the same unit, chosen the same way. The agent should beat it. The concept list numbers columns and rows from 1; the agents' descriptions number them from 0.</td></tr>
+      <tr><td><b>Judge</b></td><td>A fresh model saw only the English description and 20 pairs of boards, one firing and one not, and had to pick the firing one. Chance is 50%.</td></tr>
+      <tr><td><b>Simulation</b></td><td>Replace the unit's activation with the level the rule predicts and measure how much of the model's behaviour comes back, as a share of what a perfect 10-level reader recovers (it can exceed 100% when the rule's levels happen to suit the model better).</td></tr>
+      <tr><td><b>Synthesis</b></td><td>Whether a position the agent built drove the unit above its strongest value in 5,000 recorded games.</td></tr>
+      <tr><td><b>Confidence</b></td><td>The agent's own rating, given before scoring. "Low" means it found no clean concept.</td></tr>
+    </tbody>
+  </table>
+  <p class="hnote">Example boards are drawn from the player about to move: <i class="sw me"></i>their stones, <i class="sw op"></i>the opponent's, a ring marks the last stone played. For real neurons they are the four strongest firings in the recorded games, with the pole's activation; for random directions, the positions the agent built. Columns are numbered 0 to 6 from the left in the descriptions.</p>
+
+  <h2 id="atlas"><span class="no">02</span><span class="nl">The units</span></h2>
+  <div class="controls" role="group" aria-label="Filter units">
+    <label>Show<select id="f-cat">
+      <option value="verified">Well described (held-out F1 ≥ 0.5)</option>
+      <option value="below">Real neurons below the bar</option>
+      <option value="control">Random-direction controls</option>
+      <option value="all">All units</option>
+    </select></label>
+    <label>Layer<select id="f-layer"><option value="">all</option></select></label>
+    <label>Study<select id="f-study"><option value="">both</option><option value="q">(q)</option><option value="r">(r)</option></select></label>
+    <label>Sort<select id="f-sort"><option value="f1">held-out F1</option><option value="layer">layer</option><option value="judge">judge</option></select></label>
+    <label class="grow">Search<input id="f-q" type="search" placeholder="e.g. column 0, threat, full"></label>
+  </div>
+  <p class="count" id="count"></p>
+  <div id="cards"></div>
+
+  <h2 id="tests"><span class="no">03</span><span class="nl">What held, and what did not</span></h2>
+  <p>Both studies were pre-registered with the same tests. Study (r) repeated (q) after removing an artefact: every game starts from the same few positions, so any direction that happens to be extreme on, say, the empty board "fires" there and gets an exact one-line rule. (r) excluded positions with fewer than four stones and used 30 random directions instead of 10.</p>
+  <div class="tscroll"><table class="plain" id="preds"></table></div>
+  <p class="hnote" id="opening-note"></p>
+
+  <h2 id="limits"><span class="no">04</span><span class="nl">How to read this atlas</span></h2>
+  <ul class="limits">
+    <li>A good description shows that a unit tracks something, not that the neuron basis is special: several random directions were described about as well, and in (r) real neurons beat random directions by less than the pre-registered margin.</li>
+    <li>Rules describe <i>when</i> a unit fires much better than <i>how much</i>: the simulation share is low for most units, so these are detectors, not full accounts of what the neuron does.</li>
+    <li>The 0.5 bar for "well described" was set after the studies finished, for this atlas, and is not a pre-registered threshold. The opening-unit label is a post-hoc check with a fixed rule; no score was changed.</li>
+    <li>Four (r) units used local analysis close to the protocol's limits, and five judges answered 19 of 20 pairs; excluding them changes no verdict (docs/NS_RESULTS.md).</li>
+  </ul>
+</div></main>
+<footer><div class="col">Data: ns/report.json, ns2/report.json and the frozen descriptions; boards from the neuron atlas's recorded games. Built by scripts/33_ns_atlas_export.py.</div></footer>
+<script src="../demo/concepts.js"></script>
+<script src="data/ns.js"></script>
+<script src="ns.js"></script>
+</body>
+</html>

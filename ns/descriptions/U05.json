@@ -1,0 +1,21 @@
+{
+ "unit": "U05",
+ "description": "Fires when exactly one stone is on the board: the opponent has made the first move and I am about to make my first. Strongest if that stone is in column 5, then column 0, then 4; columns 1-3 barely fire, column 6 does not. A few later positions also just cross the threshold, mostly right after the opponent plays column 0 or on the 41st move, with no clean rule.",
+ "effect": "None measurable: forcing it to max or zero changed no move probability by even 0.01 on [5], [3], [6], [3,3,4].",
+ "program": "def fires(b):\n    return b.ply == 1 and b.last_col != 6\n\ndef level(b):\n    if b.ply == 1:\n        return {0: 7, 1: 4, 2: 4, 3: 4, 4: 6, 5: 9, 6: 2}[b.last_col]\n    return 0\n",
+ "synthesis": [
+  [
+   5
+  ],
+  [
+   0
+  ],
+  [
+   4
+  ]
+ ],
+ "confidence": "high",
+ "notes": "Layer 0. p1 (ply==1 and last_col!=6) dev F1 0.910, P 1.00, R 0.835, AUROC 0.918; simulation recovers 78.3% of zero-ablation damage but perfect-reader ceiling is negative (-75.1%), so share is nan. Adding ply 41 (F1 0.888) or last-col-0 mid-game (F1 0.652) hurt. Synthesis [5] reaches the dev max 0.012 exactly but cannot beat it; the max is that deterministic position. Steering shows no effect.",
+ "dev_calls_used": 3,
+ "submitted": "2026-11-21T13:34:17"
+}

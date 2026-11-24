@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vertical blocker</title>
+<meta name="description" content="Play Connect Four against a small transformer and watch, step by step, how it spots a vertical threat and blocks it: one attention head, a handful of directions, and seven column alarms in its last layer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="vertical.css">
+</head>
+<body>
+<header class="top"><div class="col">
+  <p class="kicker">Connect Four · one tactic, end to end · draft</p>
+  <h1>How a small transformer spots a <span class="hi">vertical threat</span></h1>
+  <p class="standfirst">The model only ever sees a list of column numbers. To block three stacked stones it has to work out, from that list, that the opponent's last few moves went into the same column. Below you can watch the three parts that carry this, and switch each one off to see the block disappear.</p>
+  <div class="meta"><span><b>Draft, not published</b></span><span>Pre-registered in docs/PLAN.md, addenda (s), (t), (u)</span><span id="meta-n"></span></div>
+</div></header>
+<main><div class="col">
+
+  <h2 id="play"><span class="no">01</span><span class="nl">Watch it block</span></h2>
+  <p>Click a column to drop a stone; the two colours alternate, and the board is always drawn from the side of the player about to move: <i class="sw me"></i>their stones and <i class="sw op"></i>the opponent's. Make the opponent stack three in a column and see how the model reacts, or load a ready-made position.</p>
+
+  <figure class="fig demo" id="demo">
+    <div class="presets" id="presets" role="group" aria-label="Example positions"></div>
+    <div class="stage">
+      <div class="boardwrap">
+        <svg id="board" viewBox="0 0 364 330" role="img" aria-label="Connect Four board"></svg>
+        <div class="boardbtns"><button id="undo" type="button">Undo</button><button id="reset" type="button">Clear</button><span id="status" class="status"></span></div>
+      </div>
+      <div class="pipe" id="pipe">
+        <div class="step" id="st-head">
+          <div class="sh"><span class="sn">1</span>Gather the opponent's recent moves <span class="where">layer 0, head 2</span></div>
+          <p class="sx" id="head-text"></p>
+        </div>
+        <div class="step" id="st-dirs">
+          <div class="sh"><span class="sn">2</span>Carry the threat <span class="where">3 directions in each of layers 0–4</span></div>
+          <div class="meters" id="meters"></div>
+        </div>
+        <div class="step" id="st-alarm">
+          <div class="sh"><span class="sn">3</span>Ring the column alarm <span class="where" id="alarm-where">layer-5 neurons</span></div>
+          <p class="sx">Shown as lamps above the board.</p>
+        </div>
+        <div class="step" id="st-move">
+          <div class="sh"><span class="sn">4</span>Choose the move</div>
+          <div class="probs" id="probs"></div>
+          <p class="sx" id="move-text"></p>
+        </div>
+      </div>
+    </div>
+    <div class="switches" id="switches" role="group" aria-label="Switch parts off"></div>
+    <figcaption id="demo-cap"></figcaption>
+    <details class="setup"><summary></summary><div class="body" id="demo-setup"></div></details>
+  </figure>
+
+  <h2 id="how"><span class="no">02</span><span class="nl">What each step does</span></h2>
+  <h3><span class="sub">02.1</span>One head gathers the opponent's recent moves</h3>
+  <p id="p-head"></p>
+  <h3><span class="sub">02.2</span>A few directions carry the threat, spread over many neurons</h3>
+  <p id="p-dirs"></p>
+  <h3><span class="sub">02.3</span>Seven column alarms make the move</h3>
+  <p id="p-alarm"></p>
+
+  <h2 id="tests"><span class="no">03</span><span class="nl">What we tested, and what held</span></h2>
+  <p>Every claim on this page was written down before the numbers were computed, then measured on games the analysis never used.</p>
+  <div class="tscroll"><table class="plain" id="preds"></table></div>
+  <div class="tscroll"><table class="plain" id="sw-table"></table></div>
+  <p class="hnote" id="sw-note"></p>
+
+  <h2 id="limits"><span class="no">04</span><span class="nl">Limits</span></h2>
+  <ul class="limits" id="limits-list"></ul>
+</div></main>
+<footer><div class="col">Data: results/vertical_map.json, results/block_circuit.json, results/orientation_followup.json via scripts/41_vertical_demo_export.py. The model runs in your browser (web/c4model.js), checked against PyTorch under every switch by tests/check_vertical_port.js.</div></footer>
+<script src="c4model.js"></script>
+<script src="switches.js"></script>
+<script src="data/vertical.js"></script>
+<script src="vertical.js"></script>
+</body>
+</html>

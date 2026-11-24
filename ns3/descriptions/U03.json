@@ -1,0 +1,71 @@
+{
+ "unit": "U03",
+ "description": "No clean concept found. Weak, diffuse tendency: fires more in early, sparse positions where the center column is built up (my stone in its third cell, row 2), column 4 (right of center) is empty, and the opponent has stones low on the left while I do not. Many firing positions lack this pattern (even an empty center), so treat it as a loose lean, not a rule.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by at most about 0.06, mostly 0.00 (9 positions).",
+ "program": "def score_(b):\n    g = b.grid\n    s = 0.0\n    # center column built up with my stone in the third cell\n    if g[2][3] == 1:\n        s += 2\n    if g[1][3] != 0:\n        s += 1\n    # right-of-center column empty\n    s -= 0.7 * b.heights[4]\n    if g[0][4] == 2:\n        s -= 1\n    # their stones low on the left, mine absent there\n    s += 0.5 * sum(1 for c in (0, 1, 2) if g[0][c] == 2)\n    s -= 0.5 * sum(1 for c in (0, 1, 2) for r in (0, 1, 2) if g[r][c] == 1)\n    # fewer stones overall\n    s -= 0.08 * b.ply\n    return s\n\ndef fires(b):\n    s = score_(b)\n    return max(0.0, min(1.0, (s + 1.0) / 4.0))\n\ndef level(b):\n    return max(0, min(9, int(round(2 * score_(b) + 2))))\n",
+ "synthesis": [
+  [
+   2,
+   4,
+   3,
+   2,
+   3,
+   2,
+   2,
+   3,
+   0,
+   3,
+   3
+  ],
+  [
+   2,
+   4,
+   3,
+   2,
+   3,
+   2,
+   2,
+   3,
+   1,
+   3,
+   3
+  ],
+  [
+   2,
+   4,
+   3,
+   2,
+   3,
+   2,
+   5,
+   3,
+   0,
+   3,
+   3
+  ],
+  [
+   3,
+   3,
+   6,
+   5,
+   3,
+   1,
+   6,
+   0
+  ],
+  [
+   3,
+   3,
+   5,
+   0,
+   3,
+   1,
+   6,
+   2
+  ]
+ ],
+ "confidence": "low",
+ "notes": "5 score calls. Best dev F1 0.117 (P 0.107, R 0.130, AUROC 0.61), sim share 0.05. Single-cell (2,3)-mine/(1,3)-theirs rule AUROC 0.53. Minimal pairs show context-dependent, mirror-asymmetric effects (col 4 stones and my left-side stones suppress; their bottom-left stones raise), activation alternates by ply within a game. No steer effect. Likely a diffuse or random direction. Synthesis 3.391 beats dev max 3.284.",
+ "dev_calls_used": 5,
+ "submitted": "2026-11-23T00:56:16"
+}

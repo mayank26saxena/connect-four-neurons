@@ -1,0 +1,47 @@
+{
+ "unit": "U23",
+ "description": "Fires mainly in the first ~20 plies when the opponent has just dropped a stone low in column 1 (less often column 0, or column 2 as its first stone), provided I (side to move) have no stone in column 1 and few in column 4; my centre stones (col 4, also 3/5) and stacked column-1 stones suppress it. It almost never fires at ply 20-29; a separate, unexplained late-game (ply 30+) firing is not covered.",
+ "effect": "None measurable: forcing it to max or zero changed move probabilities by at most 0.01 on 4 positions.",
+ "program": "LAST = [2.2, 3.0, 1.6, 0.0, 0.0, 0.0, 1.4]\n\ndef frac(b, who):\n    cnt = [0] * 7\n    tot = 0\n    for r in range(6):\n        for c in range(7):\n            if b.grid[r][c] == who:\n                cnt[c] += 1\n                tot += 1\n    return [x / max(1, tot) for x in cnt]\n\ndef score(b):\n    c = b.last_col\n    if c is None or b.ply >= 20:\n        return -9\n    m = frac(b, 1)\n    t = frac(b, 2)\n    s = LAST[c]\n    s -= 3.0 * m[4] + 3.0 * m[1] + 1.0 * (m[3] + m[5])\n    s -= 1.0 * t[4]\n    s += 0.5 * (t[0] + t[1] + t[2])\n    if c == 1 and b.heights[1] > 2:\n        s -= 1.0\n    if b.ply >= 16:\n        s -= 0.5\n    return s\n\ndef fires(b):\n    c = b.last_col\n    if c is None or b.ply >= 20:\n        return False\n    m = frac(b, 1)\n    if m[1] > 0 or m[4] >= 0.5:\n        return False\n    if c == 1:\n        return b.heights[1] <= 2\n    if c == 0:\n        return b.heights[0] == 1 and b.ply <= 10\n    if c == 2:\n        return b.heights[2] == 1 and b.ply <= 8\n    return False\n\ndef level(b):\n    s = score(b)\n    if s < 0.5:\n        return 0\n    v = int(round((s - 0.5) * 3))\n    if fires(b):\n        v = max(v, 5)\n    else:\n        v = min(v, 4)\n    return max(0, min(9, v))\n",
+ "synthesis": [
+  [
+   0,
+   6,
+   2,
+   6,
+   1
+  ],
+  [
+   2,
+   6,
+   0,
+   6,
+   1
+  ],
+  [
+   0,
+   6,
+   2,
+   3,
+   1
+  ],
+  [
+   0,
+   6,
+   2,
+   0,
+   1
+  ],
+  [
+   2,
+   0,
+   0,
+   6,
+   1
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer-0 unit, behaves like a token mixture (last-move column + which columns earlier stones were played in + position). Best dev F1 0.349 (P .349 R .349, AUROC .665), simulation share 0.17 (p7). Tried: last-col-1 rule (0.31), +no-mine-in-col1 (0.33), weighted column scores (0.29-0.33). Minimal pairs agree on the col-1/col-4 effects, but ~40% of firing (late game where col 1 is instead suppressive and col 3/5 fire; mid-game repeated 4,4/5,5 moves) is unexplained. Synthesis 0,6,2,6,1 reaches 1.120 > dev max 1.104.",
+ "dev_calls_used": 7,
+ "submitted": "2026-11-23T01:38:07"
+}

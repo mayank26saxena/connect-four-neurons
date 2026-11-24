@@ -1,0 +1,2 @@
+cd {REPO} && export C4N_CONFIG=ns2 NS_DIR={REPO}/ns2
+for m in "$@"; do p=${m%,*}; s1=$(uv run python scripts/31_ns_tool.py facts --moves $p 2>&1 | grep teacher | sed 's/.*: //'); s2=$(uv run python scripts/31_ns_tool.py facts --moves $m 2>&1 | grep teacher | sed 's/.*: //'); a=$(uv run python scripts/31_ns_tool.py act U49 --moves $m 2>&1 | grep after | tail -1 | sed 's/.*://'); echo "$m | prev $s1 | now $s2 | $a"; done

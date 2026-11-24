@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect Four neuron atlas</title>
+<meta name="description" content="Every neuron of a small transformer that plays Connect Four: what the board looks like when it fires, which concepts it matches, which columns it pushes, and which tactics it supports.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="atlas.css">
+</head>
+<body>
+<header class="top"><div class="col">
+  <p class="kicker">Neuron atlas · Connect Four</p>
+  <h1>Every neuron of a <span class="hi">Connect Four</span> model</h1>
+  <p class="standfirst">A small transformer learned Connect Four from move sequences alone. Because the game's rules give exact answers, every neuron here is described by what the board looks like when it fires, the concepts it matches, the columns it pushes, and the tactics it supports.</p>
+  <div class="meta" id="card"><span>Loading…</span></div>
+</div></header>
+<main>
+<div class="col">
+  <h2 id="tactics-h"><span class="no">01</span><span class="nl">Which part learns which tactic</span></h2>
+  <p>Four tactics, each a set of positions with a known right answer. For every layer and attention head we replaced its output by its average and measured how much the tactic fell. The <b>control</b> is plain agreement with the teacher on random positions: a part that hurts the control as much as a tactic matters to the model in general, not to that tactic in particular.</p>
+  <div id="tactics"></div>
+
+  <h2 id="map-h"><span class="no">02</span><span class="nl">All 6,144 neurons</span></h2>
+  <p>One square per neuron, six layers of 1,024. Colour by the concept family each neuron matches best, or by how much it supports a tactic (blue supports, red works against). Click a square to open it.</p>
+  <div class="controls"><label>Colour by <select id="colorBy"></select></label></div>
+  <div id="landscape"></div>
+  <div class="legend" id="legend"></div>
+
+  <h2 id="browse-h"><span class="no">03</span><span class="nl">Browse and search</span></h2>
+  <p>Each neuron has two poles: a positive end and a negative end, which usually mean different things. A pole fires when its activation is beyond its own 97th (positive) or 3rd (negative) percentile.</p>
+  <div class="controls">
+    <label>Search<input id="q" type="search" placeholder="e.g. column 4, threat, open three"></label>
+    <label>Layer<select id="layer"><option value="">all</option></select></label>
+    <label>Pole<select id="pole"><option value="">both</option><option value="0">positive</option><option value="1">negative</option></select></label>
+    <label>Sort by<select id="sort"></select></label>
+  </div>
+  <p class="count" id="count"></p>
+  <ol class="rows" id="rows"></ol>
+</div>
+</main>
+<aside id="drawer" aria-hidden="true"><div class="dhead"><b id="dtitle"></b><button id="dclose" aria-label="Close">×</button></div><div id="dbody"></div></aside>
+<div id="scrim"></div>
+<footer><div class="col">Generated from the analysis of one trained model; see the write-up for how each number is computed. Positions are drawn from 5,000 held-out games.</div></footer>
+<script src="../demo/concepts.js"></script>
+<script src="atlas.js"></script>
+</body>
+</html>

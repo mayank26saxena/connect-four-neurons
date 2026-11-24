@@ -1,0 +1,56 @@
+{
+ "unit": "U56",
+ "description": "Fires when the opponent has an immediate win in column 6 (the rightmost column) that I must block, above the bottom row; strongest (20-40) when their last move just made it, typically a vertical three in column 6 or a horizontal three ending at column 6. Weak firing (1-4) for freshly made vertical threes in other columns (0,1,4,5). Bottom-row threats at (0,6) and stale threats barely fire.",
+ "effect": "Pushes the move to column 6: forced to max on neutral positions it moves about 95% of probability onto column 6. Zeroing it changes nothing measurable (the block is already chosen with near-certainty).",
+ "program": "DIRS = [(1, 0), (0, 1), (1, 1), (1, -1)]\n\ndef uses_last(b, r, c):\n    # the win cell (r, c) completes a four for them that includes the stone just played\n    lr, lc = b.last_row, b.last_col\n    if lr is None:\n        return False\n    for dr, dc in DIRS:\n        for s in range(-3, 1):\n            cells = [(r + (s + k) * dr, c + (s + k) * dc) for k in range(4)]\n            if (r, c) not in cells or (lr, lc) not in cells:\n                continue\n            ok = True\n            for (rr, cc) in cells:\n                if rr < 0 or rr > 5 or cc < 0 or cc > 6:\n                    ok = False\n                    break\n                if (rr, cc) != (r, c) and b.grid[rr][cc] != 2:\n                    ok = False\n                    break\n            if ok:\n                return True\n    return False\n\ndef new_blocks(b):\n    return [(r, c) for (r, c) in b.their_playable_wins if uses_last(b, r, c)]\n\ndef col6(b):\n    return any(c == 6 and r >= 1 for (r, c) in b.their_playable_wins)\n\ndef edge_vert(b):\n    for (r, c) in b.their_playable_wins:\n        if c in (0, 1, 4, 5) and r >= 3 and b.last_col == c and all(b.grid[r - k][c] == 2 for k in range(1, 4)):\n            return True\n    return False\n\ndef fires(b):\n    return col6(b) or edge_vert(b)\n\ndef level(b):\n    if any(c == 6 and r >= 1 for (r, c) in new_blocks(b)):\n        return 9\n    if col6(b):\n        return 5\n    if edge_vert(b):\n        return 3\n    if b.their_playable_wins:\n        return 1\n    return 0\n",
+ "synthesis": [
+  [
+   6,
+   3,
+   6,
+   3,
+   6
+  ],
+  [
+   6,
+   3,
+   6,
+   2,
+   6
+  ],
+  [
+   6,
+   3,
+   6,
+   3,
+   2,
+   2,
+   6
+  ],
+  [
+   6,
+   2,
+   6,
+   3,
+   6
+  ],
+  [
+   4,
+   2,
+   3,
+   4,
+   4,
+   3,
+   2,
+   3,
+   3,
+   6,
+   5,
+   5
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "p1 any col6 must-block F1 0.51; p3 fresh col6 must-block row>=1 P 0.89 R 0.32; best p5 (col6 must-block row>=1 or fresh edge-column vertical three) F1 0.528, AUROC 0.82. Strong core is clean and confirmed by minimal pairs (col6 vertical 39.5 vs col0 2.7; same threat 2 plies stale 3.5; unplayable threat 2.0). Weak tail near threshold is diffuse and not captured. Simulation share undefined (nan; ceiling negative). No synthesis beat the dev max (best 39.5 vs 44.4).",
+ "dev_calls_used": 7,
+ "submitted": "2026-11-21T14:41:49"
+}

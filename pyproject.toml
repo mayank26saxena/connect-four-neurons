@@ -1,0 +1,22 @@
+[project]
+name = "c4n"
+version = "0.1.0"
+description = "Neurons as an interpretable basis, tested in a transformer that plays Connect Four"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy==2.3.4",
+    "torch==2.9.0",
+    "pyyaml==6.0.3",
+    "scikit-learn==1.7.2",
+    "python-igraph==0.11.9",
+    "leidenalg==0.10.2",
+    "tqdm==4.67.1",
+    "pytest==8.4.2",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["c4n"]

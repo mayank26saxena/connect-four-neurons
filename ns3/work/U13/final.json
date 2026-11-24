@@ -1,0 +1,81 @@
+{
+ "unit": "U13",
+ "description": "Fires when the opponent has three stones stacked on top of column 6 (the rightmost column) with the cell above empty, i.e. a vertical threat I must block in column 6; strongest right after they played the third stone there. Weakly fires for other must-blocks in column 6 created by their stone just played there (diagonal, horizontal). Same vertical threat in other columns, or a threat into an empty column 6 cell, does not fire.",
+ "effect": "Pushes the move to column 6: forcing it high moves nearly all probability to column 6 (e.g. 0.00 -> 1.00 on positions where the model preferred col 1 or col 3); zeroing it barely changes play (col 6 1.00 -> 0.98), since other units also see the block.",
+ "program": "def vert6(b):\n    h = b.heights[6]\n    if h < 3 or h > 5:\n        return False\n    return all(b.grid[h - 1 - k][6] == 2 for k in range(3))\n\ndef block6(b):\n    return any(c == 6 for (r, c) in b.their_playable_wins)\n\ndef fires(b):\n    if vert6(b):\n        return True\n    return block6(b) and b.last_col == 6\n\ndef level(b):\n    if vert6(b):\n        if b.my_playable_wins:\n            return 5\n        return 9 if b.last_col == 6 else 4\n    if block6(b) and b.last_col == 6:\n        return 3\n    return 0\n",
+ "synthesis": [
+  [
+   0,
+   3,
+   3,
+   3,
+   3,
+   0,
+   4,
+   6,
+   4,
+   6,
+   0,
+   6
+  ],
+  [
+   0,
+   3,
+   3,
+   3,
+   3,
+   0,
+   2,
+   6,
+   4,
+   6,
+   0,
+   6
+  ],
+  [
+   1,
+   0,
+   3,
+   3,
+   3,
+   3,
+   0,
+   4,
+   6,
+   4,
+   6,
+   0,
+   6
+  ],
+  [
+   2,
+   4,
+   6,
+   6,
+   2,
+   6,
+   2,
+   2,
+   4,
+   6
+  ],
+  [
+   1,
+   1,
+   0,
+   3,
+   3,
+   3,
+   3,
+   0,
+   4,
+   6,
+   4,
+   6,
+   0,
+   6
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Minimal pairs: O vertical three in col 6 = 30-60, same in cols 0-5 = -1.2 to 1.0, my own col-6 vertical = 0.8, horizontal three into (0,6) = -11. Best dev F1 0.549 (P 0.86, R 0.40), AUROC 0.70, sim share 52.7 (p1). Broader rules (any col-6 threat cell, verticals in all columns) dropped precision to ~0.3. About 60% of firing is weak (act 1-5) and diffuse; I could not capture it simply. Synthesis best 73.0, below dev max 78.2."
+}

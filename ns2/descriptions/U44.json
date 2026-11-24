@@ -1,0 +1,59 @@
+{
+ "unit": "U44",
+ "description": "No clean concept found. Weak tendency only: fires a bit more often in early-middle game (ply 5-14) right after the opponent's stone lands on the third or fourth row, especially in columns 1, 4 or 5, and when column 4 holds an opponent stone on top of mine at rows 1-2. These cues explain little of the firing. The level flips between consecutive plies as the side to move changes.",
+ "effect": "None measurable: setting it to max or zero changes every column's move probability by at most 0.02.",
+ "program": "def fires(b):\n    return 5 <= b.ply <= 14 and b.last_row in (2, 3) and b.last_col in (1, 3, 4, 5)\n\ndef level(b):\n    s = 0\n    if 5 <= b.ply <= 14:\n        s += 2\n    if b.last_row in (2, 3):\n        s += 2\n    if b.last_col in (1, 4, 5):\n        s += 2\n    if b.grid[2][4] == 2 and b.grid[1][4] == 1:\n        s += 2\n    return min(9, s)\n",
+ "synthesis": [
+  [
+   1,
+   4,
+   6,
+   4,
+   1,
+   5,
+   1,
+   1,
+   2
+  ],
+  [
+   1,
+   4,
+   6,
+   4,
+   1,
+   6,
+   1,
+   1,
+   2
+  ],
+  [
+   1,
+   4,
+   4,
+   1,
+   5,
+   4
+  ],
+  [
+   5,
+   4,
+   4,
+   4
+  ],
+  [
+   1,
+   4,
+   6,
+   5,
+   1,
+   5,
+   1,
+   1,
+   2
+  ]
+ ],
+ "confidence": "low",
+ "notes": "4 score calls. H1 opponent stacked on own stone in col 0/1/4/5: F1 0.06, AUROC 0.52. Col-4 O-over-X pattern: F1 0.086. Last move row 2-3 + ply 5-14 + col 1/3/4/5: F1 0.119, AUROC 0.58, sim share 0.05 (best). The minimal pairs on 4-6 stone positions pointed to col-4/col-1 stacks, but this did not hold on dev games. Level is game-wide and flips with the side to move. Not the engine eval. Steering has no effect. Likely a random direction or a very distributed feature.",
+ "dev_calls_used": 4,
+ "submitted": "2026-11-21T18:49:02"
+}

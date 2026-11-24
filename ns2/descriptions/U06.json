@@ -1,0 +1,81 @@
+{
+ "unit": "U06",
+ "description": "Fires mainly when the opponent's last move is in column 3 (or 2, sometimes 1), the opponent has stones in column 2, I own stones in columns 5/6, and there are few opponent stones in column 3 or of mine in columns 0/4. Each stone adds only a little, so there is no sharp pattern. In very short games a reversed pattern also fires: I hold column 0 and they hold columns 3/4.",
+ "effect": "None measurable: forcing it to its max or to zero left move probabilities unchanged (to 0.01) in 5 positions.",
+ "program": "# per-stone weights (units of 0.001 activation) measured with single-stone substitutions\nWM = [-0.56, -0.05, 0.02, 0.19, -0.30, 0.48, 0.28]\nWT = [0.26, 0.09, 0.38, -0.43, -0.22, 0.18, -0.18]\nLB = [-1.08, -0.13, 0.99, 1.32, -0.28, -0.21, -0.68]\nLA = [0.3, 1.0, -1.5, -1.5, 0.3, 0.3, 0.3]\n\ndef ctx(b):\n    mv = b.moves\n    n = len(mv)\n    s = 0.0\n    for i in range(n - 1):\n        c = mv[i]\n        if (n - 1 - i) % 2 == 0:\n            s += WT[c]\n        else:\n            s += WM[c]\n    return s\n\ndef fires(b):\n    if not b.moves:\n        return False\n    x = ctx(b)\n    L = b.moves[-1]\n    return x + LB[L] >= 2.6 or (len(b.moves) <= 12 and -x + LA[L] >= 2.2)\n\ndef level(b):\n    if not b.moves:\n        return 0\n    x = ctx(b)\n    L = b.moves[-1]\n    s = (x + LB[L] - 0.6) * 2.5\n    if len(b.moves) <= 12:\n        s = max(s, (-x + LA[L] - 0.2) * 2.5)\n    return max(0, min(9, int(round(s))))\n",
+ "synthesis": [
+  [
+   2,
+   5,
+   2,
+   5,
+   2,
+   6,
+   1,
+   6,
+   1,
+   3,
+   1,
+   5,
+   3
+  ],
+  [
+   2,
+   5,
+   2,
+   5,
+   2,
+   6,
+   1,
+   3,
+   1,
+   6,
+   3
+  ],
+  [
+   2,
+   5,
+   2,
+   5,
+   2,
+   6,
+   1,
+   6,
+   1,
+   3,
+   3
+  ],
+  [
+   2,
+   5,
+   2,
+   5,
+   2,
+   6,
+   1,
+   3,
+   1,
+   6,
+   1,
+   3,
+   3
+  ],
+  [
+   2,
+   5,
+   2,
+   5,
+   2,
+   3,
+   1,
+   6,
+   1,
+   6,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer 0, tiny activations. Per-stone weights come from single-stone act substitutions averaged over 6 positions (not fit to labels). Dev F1: p1 0.28, p2 0.27, p3 0.35, p4 0.43, p5 0.28 (reversed mode at all lengths over-fires), p6 0.43 (P 0.36, R 0.54, AUROC 0.76). Simulation share nan (a perfect reader recovers -72%, so the unit has no causal effect). The reversed short-game mode and the diffuse additive behaviour suggest a mixture or random-like direction. Synthesis reaches 0.011 vs dev max 0.009.",
+ "dev_calls_used": 6,
+ "submitted": "2026-11-21T18:17:39"
+}

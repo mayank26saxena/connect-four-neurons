@@ -1,0 +1,72 @@
+{
+ "unit": "U28",
+ "description": "No clean concept found. Loosely: early-to-middle game positions (about 15 stones or fewer) where the opponent owns the bottom cell of column 2, the cell beside it (bottom of column 3) is not theirs, and columns 1 and 4 are still low; often with opponent twos or threes on the bottom rows. Activation depends on many stones at once (e.g. column 6 contents) and is not left-right symmetric.",
+ "effect": "Small: when forced high it lowers the probability of column 2 (by about 0.1-0.3) and shifts a little to columns 5/6; zeroing it in firing positions changes nothing measurable.",
+ "program": "def fires(b):\n    g = b.grid\n    return g[0][2] == 2 and g[0][3] != 2 and b.ply <= 20 and b.heights[1] <= 2 and b.heights[4] <= 2\n\n\ndef level(b):\n    return 6 if fires(b) else 0\n",
+ "synthesis": [
+  [
+   2,
+   3,
+   3,
+   0,
+   3,
+   2,
+   1,
+   6,
+   2,
+   2,
+   2,
+   4,
+   5,
+   3,
+   5
+  ],
+  [
+   2,
+   3,
+   3,
+   0,
+   3,
+   2,
+   1,
+   6,
+   2,
+   2,
+   0,
+   4,
+   5,
+   0,
+   5
+  ],
+  [
+   4,
+   6,
+   2,
+   6,
+   4
+  ],
+  [
+   6,
+   3,
+   2,
+   5,
+   3,
+   2,
+   3,
+   1,
+   5,
+   2,
+   2
+  ],
+  [
+   6,
+   2,
+   2,
+   1,
+   6,
+   6
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Tried: double-threat-creating move for either side (F1 0.05, AUROC 0.50), opponent live horizontal 4-windows (F1 0.08), cell rule on (0,2) (F1 0.10, AUROC 0.55). Edit scans show the opponent stone at (0,2) is critical in most top examples but many other stones matter too; strong left/right asymmetry. Best synthesis 5.68 < dev max 7.39. Possibly a random or highly mixed direction."
+}

@@ -1,0 +1,71 @@
+U24 dev call 1/8 (4s)
+  detection: F1 0.098 (precision 0.064, recall 0.208), AUROC 0.557; unit fires on 3.0% of scored positions, program on 9.8%
+  simulation: recovers 9.6% of the zero-ablation damage; a perfect 10-level reader recovers 27.7%; share of ceiling 0.35
+
+--- FALSE POSITIVES (program says fires, unit does not): 5569 positions; examples ---
+[pos 18549] pole act -0.039, program 1.00, moves 2,0,2,3,2,2,0,3,3,3,5,3,0,2,5,5,5,2,1,4,3,4,0
+..XO...
+..XX...
+O.XX.O.
+O.OO.X.
+O.OXXO.
+XOOXXO.
+0123456   X = me (to move), O = them
+[pos 36700] pole act -0.234, program 1.00, moves 5,3,4,5,4,4,6,4,2,4,4,3,3,3,3,2,2,2,2,0,3,6,6,0,2,1,1,0,0
+..OOO..
+..OOX..
+O.XXX..
+X.OOX.O
+XOXXOXX
+XXOXOOO
+0123456   X = me (to move), O = them
+[pos 59075] pole act 0.001, program 1.00, moves 3,0,3,6,2,4,4,3
+.......
+.......
+.......
+...O...
+...XX..
+O.XXO.O
+0123456   X = me (to move), O = them
+[pos 45334] pole act -0.133, program 1.00, moves 4,2,4,2,1,4,0,2,2,5,5,1,0,1,6,3,6,3,3
+.......
+.......
+..O....
+.XXOX..
+OXXXOOO
+OOXXOXO
+0123456   X = me (to move), O = them
+
+--- MISSES (unit fires, program does not): 1454 positions; examples ---
+[pos 788] pole act 1.146, program 0.00, moves 3,3,5,4,5,1,3,1,2,3,5,5,4,4,0,4,4,5,0,5,2,0,0,1,1,4,1,3,3,0,0,1
+XO.XOO.
+OX.OXO.
+XX.OOO.
+OO.XOX.
+XOXOXX.
+XOXXOX.
+0123456   X = me (to move), O = them
+[pos 55020] pole act 1.308, program 0.00, moves 1,3,3,3,3,1,5,5,1,3,1,1,5,4,4,4,3,2,1,4,4,4,2,6,5,0,0,2,2,2,2,5,5
+.OOOXO.
+.XXXOX.
+.OOOXO.
+.OXXXO.
+OXOOOX.
+XOXXXOX
+0123456   X = me (to move), O = them
+[pos 10824] pole act 2.668, program 0.00, moves 4,4,3,2,5,6,3,5,3,3,4,4,5,5,3,3
+...O...
+...X...
+...OOO.
+...XXX.
+...XOO.
+..OXXXO
+0123456   X = me (to move), O = them
+[pos 43630] pole act 1.287, program 0.00, moves 3,3,0,0,0,4,3,0,1,2,3,2,1,2,2,4,3,3,4,4,2
+...X...
+..OO...
+X.OOX..
+O.XOO..
+XOXXX..
+OOXOX..
+0123456   X = me (to move), O = them

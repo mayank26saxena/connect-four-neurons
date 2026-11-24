@@ -1,0 +1,917 @@
+{
+ "unit": "U28",
+ "description": "No clean concept found. Loosely: early-to-middle game positions (about 15 stones or fewer) where the opponent owns the bottom cell of column 2, the cell beside it (bottom of column 3) is not theirs, and columns 1 and 4 are still low; often with opponent twos or threes on the bottom rows. Activation depends on many stones at once (e.g. column 6 contents) and is not left-right symmetric.",
+ "pairs": [
+  {
+   "A": {
+    "moves": [
+     3,
+     5,
+     6,
+     6,
+     1,
+     0,
+     1,
+     3,
+     5,
+     1,
+     5,
+     1,
+     6,
+     1,
+     1,
+     6,
+     5
+    ],
+    "board": ".O.....\n.X.....\n.X...OX\n.X...OO\n.O.X.OX\nXO.O.XO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     1,
+     3,
+     3,
+     3,
+     5,
+     1,
+     3,
+     2,
+     0,
+     6,
+     6,
+     6,
+     1
+    ],
+    "board": ".......\n.......\n...O...\n.O.X..X\n.X.O..O\nOOXX.OX\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     6,
+     2,
+     1,
+     1,
+     1,
+     4,
+     4,
+     3
+    ],
+    "board": ".......\n.......\n.......\n.X.....\n.O..X..\n.XOOO.X\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     4,
+     1,
+     3,
+     5,
+     4,
+     5,
+     4,
+     4,
+     5,
+     2,
+     6,
+     1,
+     5,
+     2,
+     6,
+     1,
+     1,
+     2,
+     2,
+     4,
+     6,
+     1,
+     4,
+     1
+    ],
+    "board": ".O..X..\n.O..O..\n.XX.OX.\n.OO.XXX\n.OO.XOX\n.OOXXOX\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     6,
+     1,
+     4,
+     5,
+     1,
+     5,
+     3,
+     2,
+     3,
+     3,
+     5,
+     4,
+     1,
+     3,
+     1,
+     1,
+     3
+    ],
+    "board": ".......\n.X.O...\n.O.X...\n.O.X.O.\n.O.OXX.\n.XXOOXO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     5,
+     2,
+     1,
+     0
+    ],
+    "board": ".......\n.......\n.......\n.......\n.......\nOXO..X.\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     3,
+     3,
+     6,
+     1,
+     0,
+     4,
+     1,
+     4,
+     3,
+     3,
+     6,
+     4,
+     4,
+     2,
+     3,
+     4,
+     0,
+     1,
+     2,
+     1,
+     2,
+     4,
+     3,
+     6,
+     0,
+     0,
+     2,
+     2,
+     0
+    ],
+    "board": "...OX..\nO.XOX..\nXXOXO..\nOXOOX.X\nOOOXX.O\nOXXOX.O\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     1,
+     0,
+     0,
+     2,
+     5,
+     3,
+     1,
+     2,
+     0,
+     1,
+     0,
+     0,
+     1,
+     3,
+     3,
+     5
+    ],
+    "board": ".......\nO......\nXX.....\nXO.X...\nXXOO.O.\nOXOO.X.\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     3,
+     3,
+     3,
+     5,
+     1,
+     4,
+     3,
+     5,
+     0,
+     2,
+     3,
+     3,
+     2
+    ],
+    "board": "...X...\n...O...\n...O...\n...O...\n..OX.X.\nOOXOXX.\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     3,
+     1,
+     2,
+     3,
+     2,
+     3,
+     2,
+     2,
+     3,
+     1,
+     1,
+     0,
+     5,
+     4,
+     2,
+     3,
+     5,
+     5,
+     3
+    ],
+    "board": "...O...\n..OX...\n..XO...\n.OOX.X.\n.XOX.O.\nXXOOXO.\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     6,
+     4,
+     3,
+     3,
+     3,
+     4,
+     3,
+     6,
+     1,
+     1
+    ],
+    "board": ".......\n.......\n...X...\n...X...\n.O.OO.O\n.X.XO.X\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     6,
+     1,
+     2,
+     4,
+     5,
+     2,
+     5,
+     5,
+     0,
+     3,
+     3,
+     3
+    ],
+    "board": ".......\n.......\n.......\n...O.O.\n..OX.X.\nXOXOOXX\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     3,
+     2,
+     2,
+     6,
+     1,
+     3,
+     2,
+     3,
+     2
+    ],
+    "board": ".......\n.......\n..O....\n..OX...\n..OX...\n.OXO..X\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     5,
+     2,
+     6,
+     3,
+     0,
+     2,
+     3,
+     4,
+     1,
+     4,
+     2,
+     4,
+     4,
+     2,
+     4,
+     1,
+     3
+    ],
+    "board": ".......\n....O..\n..X.O..\n..OOX..\n.XXOX..\nOOXXXOO\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     6,
+     4,
+     3,
+     2,
+     4,
+     4,
+     5,
+     2,
+     5,
+     6,
+     3,
+     4,
+     5,
+     5,
+     3
+    ],
+    "board": ".......\n.......\n....XX.\n...OXO.\n..XOOOX\n..XOXOO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     4,
+     2,
+     0,
+     5,
+     2,
+     4,
+     1,
+     1,
+     1,
+     5,
+     1,
+     6,
+     0,
+     2,
+     5,
+     2,
+     1,
+     1,
+     6
+    ],
+    "board": ".X.....\n.O.....\n.OX....\n.OX..O.\nOXO.XXO\nOOX.OXX\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     2,
+     4,
+     3,
+     1,
+     2,
+     4,
+     2,
+     2,
+     1,
+     1,
+     5,
+     0,
+     5,
+     4,
+     4,
+     0,
+     5,
+     5,
+     3,
+     3,
+     4,
+     3
+    ],
+    "board": ".......\n....X..\n..OOXO.\n.OXOOX.\nOXXXOX.\nOOXXOX.\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     1,
+     4,
+     5,
+     0,
+     4,
+     4,
+     3,
+     6,
+     3,
+     5,
+     1,
+     5,
+     1
+    ],
+    "board": ".......\n.......\n.......\n.O..XX.\n.O.OOX.\nXO.OXOX\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     4,
+     3,
+     6,
+     0,
+     6,
+     3,
+     3,
+     6,
+     1,
+     3,
+     1,
+     4,
+     1,
+     1,
+     4,
+     4,
+     6,
+     3,
+     6,
+     3,
+     4,
+     1,
+     6,
+     5,
+     5,
+     2,
+     5,
+     1,
+     0,
+     4,
+     5
+    ],
+    "board": ".X.XX.O\n.X.XO.O\n.X.XXOO\n.O.OOOX\nOO.XXOO\nXOXXOXO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     5,
+     6,
+     3,
+     5,
+     2
+    ],
+    "board": ".......\n.......\n.......\n.......\n.....X.\n..OO.OX\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     5,
+     0,
+     0,
+     5,
+     0,
+     3,
+     3,
+     3,
+     1,
+     0,
+     6,
+     1,
+     1,
+     3,
+     1,
+     3,
+     3,
+     1,
+     2,
+     0,
+     4,
+     0,
+     1,
+     5,
+     5,
+     6,
+     6,
+     5,
+     5,
+     6,
+     4,
+     4,
+     4,
+     4
+    ],
+    "board": "OX.X.X.\nOO.OOO.\nOX.OXXO\nXX.OOOX\nXO.XXOO\nOXXOXXX\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     2,
+     2,
+     2,
+     4,
+     0,
+     3,
+     6,
+     5,
+     5,
+     2,
+     3
+    ],
+    "board": ".......\n.......\n..X....\n..O....\n..XO.O.\nO.OXXXO\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     0,
+     5,
+     3,
+     5,
+     6,
+     3,
+     5,
+     2,
+     2,
+     2,
+     3,
+     3,
+     6,
+     5,
+     6,
+     6,
+     3,
+     2,
+     0,
+     1,
+     2,
+     3,
+     4,
+     2,
+     1,
+     0,
+     1,
+     0,
+     1,
+     1,
+     5,
+     5,
+     1,
+     0,
+     0
+    ],
+    "board": "OOXX.X.\nXXOO.O.\nXOXX.XX\nXOXO.OO\nOOOX.XO\nOXXOOXO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     2,
+     6,
+     0,
+     6,
+     6,
+     4,
+     6
+    ],
+    "board": ".......\n.......\n......O\n......O\n......X\nO.O.X.X\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     6,
+     4,
+     6,
+     4,
+     4,
+     4,
+     1,
+     2,
+     6,
+     6,
+     2,
+     3,
+     5,
+     2,
+     3,
+     1,
+     0,
+     2,
+     0,
+     4,
+     0,
+     0,
+     2
+    ],
+    "board": ".......\n..O.X..\nX.X.X.X\nO.X.O.O\nOXOOX.O\nOOXXXOO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     3,
+     2,
+     3,
+     3,
+     6,
+     2,
+     1,
+     2,
+     2,
+     3,
+     0,
+     3,
+     3,
+     6
+    ],
+    "board": "...X...\n...O...\n..XO...\n..OO...\n..OX..O\nXXOX..X\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     6,
+     4,
+     1,
+     1,
+     4,
+     4
+    ],
+    "board": ".......\n.......\n.......\n....O..\n.O..X..\n.X..O.X\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     0,
+     5,
+     0,
+     2,
+     1,
+     5
+    ],
+    "board": ".......\n.......\n.......\n.......\nX....O.\nXXO..O.\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     4,
+     4,
+     5,
+     6,
+     3,
+     2,
+     2,
+     5,
+     4,
+     3,
+     6,
+     4,
+     2,
+     4,
+     2,
+     2,
+     3,
+     5,
+     6,
+     2
+    ],
+    "board": "..O....\n..O.O..\n..X.O..\n..XXXOX\n..XOOOX\n..OXXXO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     0,
+     0,
+     2,
+     5,
+     0,
+     3,
+     2,
+     4,
+     6,
+     5,
+     3,
+     3,
+     1,
+     1,
+     1,
+     6,
+     5
+    ],
+    "board": ".......\n.......\n.......\nOO.X.O.\nXXOO.XX\nOOOXXXO\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     2,
+     2,
+     3,
+     4,
+     2,
+     4,
+     0,
+     1,
+     1,
+     3,
+     1,
+     4,
+     4,
+     2,
+     3,
+     3,
+     3,
+     3,
+     1,
+     1,
+     1,
+     2,
+     4
+    ],
+    "board": ".O.X...\n.XXOO..\n.OXXO..\n.OOOX..\n.OXXX..\nOXOOX..\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     1,
+     1,
+     0,
+     1,
+     3,
+     2,
+     3,
+     1,
+     1,
+     3,
+     6,
+     5,
+     6,
+     5,
+     5,
+     2,
+     5,
+     5
+    ],
+    "board": ".......\n.X...O.\n.O...X.\n.O.O.X.\n.OOX.OX\nXXOX.OX\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     3,
+     1,
+     6,
+     3,
+     3,
+     2,
+     1,
+     4,
+     4,
+     3,
+     4,
+     1,
+     5,
+     3,
+     1
+    ],
+    "board": ".......\n...X...\n.O.X...\n.X.OO..\n.O.XO..\n.XXOXOO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     5,
+     5,
+     5,
+     6,
+     5,
+     1,
+     6,
+     1,
+     2,
+     1,
+     1,
+     2
+    ],
+    "board": ".......\n.......\n.X...X.\n.O...X.\n.OO..OX\n.OX..XO\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     6,
+     5,
+     1,
+     3,
+     5,
+     4,
+     2,
+     3,
+     1,
+     1,
+     1,
+     2,
+     2,
+     4,
+     4,
+     5,
+     0,
+     0,
+     3
+    ],
+    "board": ".......\n.......\n.O.....\n.XOOOX.\nXOXXXO.\nOOOXXXO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     4,
+     6,
+     3,
+     1,
+     5,
+     2,
+     2,
+     3,
+     2,
+     2,
+     3,
+     3,
+     5,
+     5
+    ],
+    "board": ".......\n.......\n..OO...\n..XX.O.\n..XO.X.\n.OOXXXO\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     3,
+     1,
+     3,
+     3,
+     0,
+     2,
+     2,
+     3,
+     1,
+     0,
+     6,
+     5,
+     1,
+     1,
+     3,
+     3,
+     4,
+     4,
+     5,
+     4
+    ],
+    "board": "...O...\n...X...\n.O.O...\n.X.OO..\nOXXXOX.\nXOOXXOX\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     4,
+     6,
+     4,
+     2,
+     5,
+     4,
+     5,
+     2,
+     0,
+     6,
+     5,
+     5,
+     5,
+     2,
+     2,
+     4,
+     1,
+     4,
+     4,
+     3
+    ],
+    "board": "....X..\n....OX.\n..X.OO.\n..O.OX.\n..O.XXO\nXXOOXXO\n0123456   X = me (to move), O = them"
+   }
+  },
+  {
+   "A": {
+    "moves": [
+     3,
+     2,
+     2,
+     3,
+     4,
+     3,
+     5,
+     6,
+     6,
+     2,
+     3,
+     5,
+     0,
+     0,
+     2,
+     5
+    ],
+    "board": ".......\n.......\n..XX...\n..OO.O.\nO.XO.OX\nX.OXXXO\n0123456   X = me (to move), O = them"
+   },
+   "B": {
+    "moves": [
+     4,
+     2,
+     2,
+     6,
+     0,
+     5,
+     5,
+     5,
+     2,
+     4,
+     2,
+     2,
+     3,
+     0,
+     3,
+     2,
+     3,
+     4,
+     1,
+     3,
+     3,
+     4,
+     4,
+     6,
+     1,
+     5,
+     1,
+     6
+    ],
+    "board": "..O....\n..OXX..\n..XOOO.\n.XXXOOO\nOXXXOXO\nXXOXXOO\n0123456   X = me (to move), O = them"
+   }
+  }
+ ]
+}

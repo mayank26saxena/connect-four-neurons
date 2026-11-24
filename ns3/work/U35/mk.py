@@ -1,0 +1,17 @@
+import json
+prog = open('ns3/work/U35/p3.py').read()
+d = {
+ "unit": "U35",
+ "description": "No clean concept found. The strongest firing is in the very late endgame, when only one column is still playable or two are playable just after the opponent filled a column; but similar endgames also swing strongly negative. Weaker firing in mid-game and a few early bottom-row setups depends on the exact stones and is not mirror-symmetric.",
+ "effect": "None measurable: forcing it to the dev maximum or to zero moves no column's probability by more than 0.02 (10 positions tested).",
+ "program": prog,
+ "synthesis": [
+  [5,4,3,3,5,1,1,1,5,5,4,3,5,1,1,0,6,1,2,4,4,0,6,6,4,0,0,0,0,4,5,6,6,6],
+  [5,4,3,3,5,1,1,1,5,5,4,3,5,1,1,1,6,0,2,4,4,0,6,6,4,0,0,0,0,4,5,6,6,6],
+  [5,4,3,3,5,1,1,1,5,5,4,3,5,1,1,0,6,0,2,4,4,1,6,6,4,0,0,0,0,4,5,6,6,6],
+  [5,2,2,2,2,3,0,6,1,5,3,0,3,0,1,2,3,3,3,0,1,2,4,4,5,5,0,1,0,1,4,4,1,5,4,5,4],
+  [6,5,4,6,0,4,1,2,5,1,4,2,1,4,2,1,2,4,5,5,5,5,0,0,1,2,6,6,1,0,2,4,0,6,0,6]],
+ "confidence": "low",
+ "notes": "4 score calls. p1 (one legal column and last move filled a column): F1 0.25 (P 0.50, R 0.17). p2 (adds a central open column): F1 0.26. p3 (one legal column, or two legal right after a fill at ply>=30): best, F1 0.336 (P 0.29, R 0.40, AUROC 0.69). p4 (broader): F1 0.26. Simulation share is about -0.9 for every program (a perfect reader recovers only 37%). Minimal pairs: lone-column endgames with the same structure give +3.6 and -3.6; the early cases flip with single-stone changes (3,5,2,6 fires but 3,6,2,6 does not; 3,3,3,3,2 fires but 3,3,3,3,4 does not). The activation has a huge negative tail (min -131). This looks like a random direction or a heavy mixture. Synthesis found by swapping same-player moves in dev endgames: best 5.16, below the dev max of 5.54."
+}
+json.dump(d, open('ns3/work/U35/final.json','w'), indent=1)

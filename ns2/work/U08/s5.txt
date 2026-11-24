@@ -1,0 +1,71 @@
+U08 dev call 5/8 (4s)
+  detection: F1 0.748 (precision 0.715, recall 0.785), AUROC 0.888; unit fires on 2.9% of scored positions, program on 3.2%
+  simulation: recovers 12.8% of the zero-ablation damage; a perfect 10-level reader recovers 89.2%; share of ceiling 0.14
+
+--- FALSE POSITIVES (program says fires, unit does not): 553 positions; examples ---
+[pos 48041] pole act 1.721, program 1.00, moves 1,2,3,4,3,3,0,3,2,4,1,0,4,1,0,3,3,0,1,1,0,2,2,2,2,1,5,0,5
+XXOO...
+OXXX...
+XOOX...
+OXXXO..
+XOOOXO.
+OOXOXO.
+0123456   X = me (to move), O = them
+[pos 63738] pole act 1.138, program 1.00, moves 6,0,3,1,3,5,3,3,1,0,1,1,0,0,3,0,5,0,5,5,6
+X......
+X..O...
+XX.X.X.
+OO.O.O.
+XO.O.OO
+XX.O.XO
+0123456   X = me (to move), O = them
+[pos 58698] pole act 0.905, program 1.00, moves 6,4,2,6,4,4,2,2,2,3,3,3,3,3,4,4,2,3,6,6,4,6,2,0,0,0,5,5,5,5,5,0,5,0,0
+O.OXOO.
+X.OXXOX
+X.OOOXX
+X.XXXOO
+O.OOOXX
+X.OXXOO
+0123456   X = me (to move), O = them
+[pos 35813] pole act 1.252, program 1.00, moves 0,3,2,0,6,3,3,2,3,0,0,0,0,3,6,2,2,2,6,6,3,6,6,2,4
+O.XO..O
+X.XX..X
+O.OO..X
+X.XO..O
+X.XX..O
+O.OXO.O
+0123456   X = me (to move), O = them
+
+--- MISSES (unit fires, program does not): 381 positions; examples ---
+[pos 8846] pole act 1.892, program 0.00, moves 1,0,4,6,0,4,4,1,1,1,2,3,3,3,3,4,3,6,5,1,4,2,4,3,0,6,6,6,0,0,5,0,6
+X..XO.O
+XX.OO.X
+OX.OX.O
+OO.XO.X
+OXXOXOX
+XOOXOOX
+0123456   X = me (to move), O = them
+[pos 41608] pole act 1.994, program 0.00, moves 1,1,6,3,3,6,0,3,1,0,0,1,2,0,3,1,4,0,4,4,0,2,3,3,6,4,1,5,4,2
+XX.O...
+OO.XX..
+OO.XO..
+XXOOO.X
+OOOXX.O
+XXXOXOX
+0123456   X = me (to move), O = them
+[pos 21756] pole act 1.876, program 0.00, moves 3,0,6,6,6,2,5,4,1,3,4,3,3,4,3,1,0,6,4,1,1,3,0,1,0,0,0,1,6,5,4,2,2
+OX.X...
+XX.OO.O
+OO.OO.X
+OXOXX.O
+OXXXOXX
+XOXOXOO
+0123456   X = me (to move), O = them
+[pos 33604] pole act 1.897, program 0.00, moves 3,5,1,2,2,2,0,3,3,2,3,2,2,1,3,3,4,0,4,5,1,1,0,0,0,0,4,4,5,1,6
+X.OX...
+OXXO...
+XXXOX..
+OOXOOO.
+XXOXOX.
+OOXOOXO
+0123456   X = me (to move), O = them

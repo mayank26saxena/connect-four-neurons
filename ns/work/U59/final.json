@@ -1,0 +1,49 @@
+{
+ "unit": "U59",
+ "description": "Fires mainly at the very start of the game: the opponent has played exactly one stone, in any column except the two edge columns (strongest for column 4, then 3). Single edge stones (columns 0 or 6) stay just below threshold. About a quarter of firing (including the strongest cases, e.g. after 6,6,4) happens in quiet early positions, often right after an opponent move in column 4. That part has no simple board rule.",
+ "effect": "Modest push toward the centre: forcing it high raises column 3 by about 2-8 points; zeroing it lowers column 3 by 1-3 points.",
+ "program": "def fires(b):\n    # the opponent has made exactly one move, in any column except the two edge columns\n    return b.ply == 1 and b.last_col in (1, 2, 3, 4, 5)\n\ndef level(b):\n    if b.ply != 1:\n        return 0\n    return {0: 2, 1: 3, 2: 3, 3: 4, 4: 8, 5: 3, 6: 2}[b.last_col]\n",
+ "synthesis": [
+  [
+   6,
+   6,
+   4
+  ],
+  [
+   6,
+   6,
+   4,
+   4,
+   2
+  ],
+  [
+   5,
+   2,
+   2,
+   5,
+   0,
+   2,
+   5,
+   4,
+   4,
+   3,
+   1
+  ],
+  [
+   2,
+   2,
+   4,
+   4,
+   6
+  ],
+  [
+   6,
+   6,
+   6,
+   6,
+   4
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Opening rule (ply 1, column 1-5): dev F1 0.837 (precision 1.00, recall 0.72), simulation share 0.13. The other 28% of firing (where most of the top activations sit) is order- and configuration-specific in minimal pairs. Capped-three, split-pair and column-height add-ons cut precision to 0.34-0.50, so they were left out. Confidence is medium because F1 clears 0.7 but the unit looks partly like a mixture. Synthesis matches the dev max (6,6,4 = 7.073) but does not beat it."
+}

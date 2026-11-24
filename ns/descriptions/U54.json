@@ -1,0 +1,61 @@
+{
+ "unit": "U54",
+ "description": "No clean concept; a diffuse direction. Only weak tendencies: it fires more in the early-to-middle game (about ply 2-16), when the opponent owns the bottom-centre cell (row 0, column 3) and I have few or no stones in column 3, and when the opponent's stones are not on the bottom of columns 5-6. Almost any single stone change shifts it, so these cues are unreliable.",
+ "effect": "None measurable: forcing it to its max or to zero changes every column's probability by at most 0.01 (7 positions).",
+ "program": "def pts(b):\n    g = b.grid\n    s = 0.0\n    if g[0][3] == 2:\n        s += 1.5\n    if g[0][3] == 1:\n        s -= 1.0\n    if g[0][6] == 2:\n        s -= 1.0\n    if g[0][5] == 2:\n        s -= 1.0\n    if g[0][1] == 2:\n        s -= 0.5\n    if 2 <= b.ply <= 16:\n        s += 1.5\n    elif b.ply > 24:\n        s -= 1.5\n    c, r = b.last_col, b.last_row\n    if c is not None and r is not None and r >= 1 and g[r - 1][c] == 2:\n        s += 1.0\n    mine_c3 = sum(1 for k in range(6) if g[k][3] == 1)\n    if mine_c3 == 0:\n        s += 0.5\n    return s\n\ndef fires(b):\n    s = pts(b)\n    v = 0.5 + (s - 3.5) / 8.0\n    return max(0.0, min(1.0, v))\n\ndef level(b):\n    return max(0, min(9, int(round(pts(b) * 1.5)) + 2))\n",
+ "synthesis": [
+  [
+   1,
+   0,
+   5,
+   2,
+   6,
+   1,
+   6,
+   3,
+   6,
+   4
+  ],
+  [
+   4,
+   3,
+   5,
+   3,
+   3,
+   4,
+   4,
+   3,
+   3,
+   0,
+   2,
+   4,
+   4,
+   5,
+   2,
+   5
+  ],
+  [
+   4,
+   5,
+   5,
+   2,
+   2,
+   2,
+   4,
+   4,
+   4,
+   1,
+   0,
+   4,
+   0,
+   5,
+   5,
+   5,
+   0
+  ]
+ ],
+ "confidence": "low",
+ "notes": "4 of 8 score calls used (one wasted). Best p2 additive cue score: dev F1 0.207 (P 0.16, R 0.30), AUROC 0.68, simulation share 0.03. Simpler rules (their (0,3); ply<=16 and they outnumber me in col 3) score F1 0.14-0.19. Minimal pairs show graded, column- and context-dependent shifts of 0.2-0.7 per stone and no discrete trigger. Activation is board-based (move order barely matters) and flips between consecutive plies. Synthesis reached 1.874, below dev max 2.353. Possibly a random control direction.",
+ "dev_calls_used": 4,
+ "submitted": "2026-11-21T14:52:33"
+}

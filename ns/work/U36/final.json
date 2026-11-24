@@ -1,0 +1,39 @@
+{
+ "unit": "U36",
+ "description": "Fires on the empty board, at the very start of the game before any stone is played (about 97% of its firing). Any stone on the board almost always turns it off; the rare exceptions are scattered mid-game positions just above threshold with no shared pattern found.",
+ "effect": "None measurable: forcing it high or zero changes move probabilities by at most 0.02 on the empty board and several mid-game positions.",
+ "program": "def fires(b):\n    return b.ply == 0\n\ndef level(b):\n    return 9 if b.ply == 0 else 0\n",
+ "synthesis": [
+  [],
+  [
+   0,
+   1,
+   3,
+   2,
+   5,
+   0,
+   2,
+   3,
+   3
+  ],
+  [
+   2,
+   0,
+   0,
+   6,
+   6,
+   2,
+   2
+  ],
+  [
+   0,
+   3,
+   3,
+   3,
+   3,
+   5
+  ]
+ ],
+ "confidence": "high",
+ "notes": "Examples bands 5-9 over 4 seeds were almost all the empty board (act 2.322). Score 1 (ply==0): F1 0.986, P 1.00, R 0.972, AUROC 0.986, simulation share 0.01 (unit has almost no causal effect, so little to recover). 3% of firing = noisy mid-game positions (1.9-2.1) with no pattern. No synthesis beat dev max 2.723 (best: empty board 2.322). Could be a positional/start-token feature."
+}

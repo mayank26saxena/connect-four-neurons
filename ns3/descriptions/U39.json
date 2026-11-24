@@ -1,0 +1,42 @@
+{
+ "unit": "U39",
+ "description": "Fires when the opponent's last stone was dropped into column 1 and I have no stone in column 1: strongest (up to ~7) when it is the first stone in column 1 at 4 stones, weaker later in the game. A second column-1 stone fires only early and only if both are theirs; any stone of mine in column 1 suppresses it. Weak near-threshold firing also on 4-stone openings with four different columns and column 1 empty.",
+ "effect": "None measurable: forcing it to max or zero moves column probabilities by at most ~5 points on 5 positions tested.",
+ "program": "def col1_theirs(b):\n    # the stone just played is in column 1 and every stone in column 1 is theirs (none of mine)\n    return b.last_col == 1 and all(b.grid[r][1] != 1 for r in range(b.heights[1]))\n\ndef col1_hit(b):\n    if not col1_theirs(b):\n        return False\n    return b.heights[1] == 1 or (b.heights[1] == 2 and b.ply <= 6)\n\ndef opening4(b):\n    # 4-stone opening, all stones in different columns, column 1 untouched\n    return b.ply == 4 and len(set(b.moves)) == 4 and b.heights[1] == 0\n\ndef fires(b):\n    return col1_hit(b) or opening4(b)\n\ndef level(b):\n    if col1_hit(b):\n        if b.heights[1] == 2:\n            return 6\n        if b.ply <= 4:\n            return 9\n        if b.ply <= 7:\n            return 7\n        return 5\n    if col1_theirs(b) and b.heights[1] == 2:\n        return 3\n    if opening4(b):\n        return 3\n    if b.ply == 4 and b.heights[1] == 0:\n        return 2\n    return 0\n",
+ "synthesis": [
+  [
+   3,
+   5,
+   4,
+   1
+  ],
+  [
+   4,
+   5,
+   3,
+   1
+  ],
+  [
+   3,
+   2,
+   4,
+   1
+  ],
+  [
+   4,
+   2,
+   3,
+   1
+  ],
+  [
+   3,
+   6,
+   4,
+   1
+  ]
+ ],
+ "confidence": "high",
+ "notes": "Layer-0 unit, essentially a 'fresh move into column 1' detector with ply decay. p1 (first col1 stone) F1 0.79; adding ply-4 distinct-column openings F1 0.83; adding early second col1 stone when both theirs F1 0.857 (P .90 R .82, AUROC .91), sim share 0.70. Remaining errors are ply-4 openings hovering around the threshold (1.3-1.75) and late-game second col1 stones whose earlier col1 stone is far back. Minimal pairs: 3,3,3,3,1 3.4 vs +1 -2.0; ...5,5 +0/2/6 ~0.2 vs +1 2.1. Synthesis 3,5,4,1 = 7.565 beats dev max.",
+ "dev_calls_used": 4,
+ "submitted": "2026-11-23T02:29:51"
+}

@@ -1,0 +1,255 @@
+{
+ "question": "Does this describe the opponent threatening to win, or blocking it?",
+ "items": [
+  {
+   "id": "T01",
+   "description": "No clean concept. Fires mostly in the opening (4-14 stones) when stones are piled in columns 2-3 (column 3 at least 2 high, column 2 at least 1), columns 0, 1 and 4 are empty or one high, and the opponent holds row 1-2 cells of columns 2-3. Opponent stones in column 0, at (1,1) or on column 4 switch it off.",
+   "effect": "Small. Forcing it high raises column 3 by about 25-30 points and lowers column 4 by about 10-20 points. Zeroing it where it fires costs column 3 about 3-8 points."
+  },
+  {
+   "id": "T02",
+   "description": "Fires when the opponent has three stones stacked on top of column 6 (the rightmost column) with the cell above empty, i.e. a vertical threat I must block in column 6; strongest right after they played the third stone there. Weakly fires for other must-blocks in column 6 created by their stone just played there (diagonal, horizontal). Same vertical threat in other columns, or a threat into an empty column 6 cell, does not fire.",
+   "effect": "Pushes the move to column 6: forcing it high moves nearly all probability to column 6 (e.g. 0.00 -> 1.00 on positions where the model preferred col 1 or col 3); zeroing it barely changes play (col 6 1.00 -> 0.98), since other units also see the block."
+  },
+  {
+   "id": "T03",
+   "description": "Strongest by far when one side has an open three on the bottom row (three in a row with both end cells empty, so two playable winning cells on row 0); activation is then 10-21. Weaker firing near threshold comes from other immediate threats: any single winning/blocking cell on the bottom row, or an opponent must-block (often a vertical three) in columns 2-3. Most threat positions outside these do not fire; elevated (row 1+) open threes do not.",
+   "effect": "Mostly none measurable (fires in decided positions). When two bottom-row winning moves exist, forcing it high shifts about 0.2 probability toward the left winning cell (e.g. col 5 to col 2)."
+  },
+  {
+   "id": "T04",
+   "description": "Fires mostly in mid/late-game positions where the player to move is winning, strongest when the win runs through column 1: an immediate win in column 1, or my threat cells stacked just above column 1's landing cell. Weaker firing for other decisive wins (immediate win plus a second threat, stacked threats elsewhere). Early-game threats, a single col-1 threat, and mirrored (column 5) patterns do not fire.",
+   "effect": "Pushes the model toward column 1: forcing it high raised column 1 by +0.17 to +0.71 probability on three positions; zeroing it at top activations lowers column 1 by about 0.05-0.11."
+  },
+  {
+   "id": "T05",
+   "description": "Late-endgame detector: fires when columns 0 and 3 are both full, at least three columns are full, and I (the player to move) have no immediate win and appear lost or stuck, typically because a remaining open column (often 1 or 5) has the opponent's threat cell right above my landing cell, or only one move is left. Weak or silent when column 0 or 3 is still open or when I have a winning move.",
+   "effect": "Small. Forcing it high raises column 4 by about 2-24 points and slightly lowers columns 3 and 5; zeroing it in firing positions shifts move probabilities by under 5 points."
+  },
+  {
+   "id": "T06",
+   "description": "Fires when the opponent threatens to win at the landing cell of column 0 (the leftmost column), above all when they just played column 0 to make three of their stones stacked vertically there (act 20-57). A col-0 threat completed along the down-right diagonal, or a row-3+ horizontal, fires moderately. Col-0 threats on low horizontal rows or the up-right diagonal, my own col-0 wins, and threats in other columns give little or nothing.",
+   "effect": "Pushes the model to play column 0 (block). Zeroing it at a vertical col-0 threat drops col 0 from 1.00 to 0.90, and in a mid-band position from 0.90 to 0.59; forcing it to max in a neutral opening raises col 0 by about +0.32."
+  },
+  {
+   "id": "T07",
+   "description": "No clean concept found. Fires mostly in quiet positions (no immediate win or must-block) whose column heights avoid certain values: no column 0-5 with exactly 5 stones, column 6 with 0, 1, 5 or 6 stones, centre column with an even count. Within that, it depends on specific stones (e.g. early game: opponent holding the two bottom centre cells) and is not mirror-symmetric; one stone change often switches it on or off.",
+   "effect": "Small: when forced high it raises column 6 by about 3-20 points, mostly taken from columns 4, 2 or 1; zeroing it on top positions lowers column 6 by 4-14 points."
+  },
+  {
+   "id": "T08",
+   "description": "Fires when the opponent threatens to win in column 1 right above their own stone: strongest (20-47) when they have three stones stacked on top of column 1 with the cell above empty; weaker (1-12) when their last move went into column 1 and the cell directly above it completes a horizontal or diagonal four. Vertical threes in other columns, my own three in column 1, and column-1 threats made by moves elsewhere do not fire.",
+   "effect": "Pushes the move toward column 1 (the block): forcing it high moved column 1 from 0.03 to 1.00 in one position and +0.14 in another; zeroing it changes little when the block is already obvious."
+  },
+  {
+   "id": "T09",
+   "description": "Fires when the opponent owns the column-1 cells at rows 2 and 3 (third and fourth from the bottom) and I have not capped them at row 4. Strongest when they own rows 2-4 with row 5 empty: a vertical three threatening to win atop column 1. The same stack in other columns, a low three (rows 0-2), or stones only at rows 3-5 do not fire.",
+   "effect": "Pushes the model toward playing column 1 (blocking/capping the stack): forcing it high raises column 1 by about 7-21 points; zeroing it changes moves by under 5 points."
+  },
+  {
+   "id": "T10",
+   "description": "No clean concept found. The strongest firing is in the very late endgame, when only one column is still playable or two are playable just after the opponent filled a column; but similar endgames also swing strongly negative. Weaker firing in mid-game and a few early bottom-row setups depends on the exact stones and is not mirror-symmetric.",
+   "effect": "None measurable: forcing it to the dev maximum or to zero moves no column's probability by more than 0.02 (10 positions tested)."
+  },
+  {
+   "id": "T11",
+   "description": "Fires when the stone just played is the first stone in column 5 (second from the right); strongest early in the game (~11 at ply 4), weaker late (~2-5). Weakly also fires for a second column-5 stone on the same player's stone (mainly when the second player moved), and at ply 4 for the first stone in column 0. A column-5 stone on the other colour, or a third stone there, does not fire.",
+   "effect": "Small and position-dependent: zeroing it at a strong firing (3,4,2,5) cuts the model's favoured column 3 from 0.98 to 0.77; elsewhere changes are under 10 points, generally sharpening whatever reply the model already prefers. No fixed column is promoted."
+  },
+  {
+   "id": "T12",
+   "description": "Fires when the opponent has three stones stacked vertically on top of column 4 with the cell above empty (a vertical threat the mover must block in column 4). Activation is huge (25-77) and the stack need not be the last move. The mover's own stack, or a blocked stack, does not fire. About 3/4 of firings are weak (0.7-3) and scattered, e.g. opponent vertical threes in columns 0 or 6; these are not covered.",
+   "effect": "Pushes the move to column 4 (the block): forcing it high sends nearly all probability to column 4 (e.g. 0.27 -> 1.00 after 1,6,3,6,1; 0.50 -> 1.00 after 3,3,2,2). Zeroing it changes nothing in col-4-threat positions (the block stays certain via other paths)."
+  },
+  {
+   "id": "T13",
+   "description": "Weakly tied to my own vertical stack in column 2: fires when I have two or more stones stacked on top of column 2 with room left for a vertical four, and almost always (very strongly) when that stack is three, i.e. an immediate vertical win in column 2. Two-stacks fire only in some contexts. Most firing is not explained: other critical positions, often right after the opponent stacks in columns 5-6, or column 2 full with my stones capped.",
+   "effect": "Raises the probability of playing column 2: forcing it to max moved column 2 from 0.26 to 0.92 (3,3,4,2); zeroing it in firing positions lowers column 2 by 0.02-0.28 (shifted to columns 4/5). No effect when another move is forced."
+  },
+  {
+   "id": "T14",
+   "description": "No clean concept found. Weak tendency: fires more often when the centre column has my stones in its bottom two cells with an opponent stone directly above (col 3 built me-me-them, height 3 or more), the edge columns are empty and the opponent just played in the centre. Most firing positions do not match this, and the mirror image of a strongly firing position does not fire.",
+   "effect": "Small: forcing the unit high sharpens the model's already-preferred move by about 5-10 points (e.g. col 3 0.69->0.76); zeroing it at top examples changes move probabilities by under 5 points."
+  },
+  {
+   "id": "T15",
+   "description": "Fires on bottom-row horizontal threats centred on column 4: strongest when the empty bottom cell of column 4 completes four for either side; also when the opponent has a bottom-row winning cell in columns 2-6, or a stone at the bottom of column 4 would make an open three. Vertical and higher-row threats do not count. Weak firing just above threshold (often late games, column 4 low) is diffuse and not captured.",
+   "effect": "Pushes the move toward column 4: forcing it high raised column 4 by +0.46 and +0.96 probability on two positions; zeroing it while it fires changes nothing measurable (the model already blocks/plays column 4)."
+  },
+  {
+   "id": "T16",
+   "description": "Fires when the opponent threatens to win immediately in column 5 (the playable cell on top of column 5 completes their four), most strongly when their last move stacked a vertical three in column 5. Threat cells low in column 5 (rows 0-2, e.g. bottom-row horizontal threes) and the same threat in other columns give little or no activation; my own immediate win elsewhere suppresses it. Weak firing (0.7-4) is diffuse and partly unexplained.",
+   "effect": "When strongly active it pushes the model to play column 5 (block): forcing max moved col 5 from 0.11 to 1.00 in 4,2,4,1 and from 0.01 to 0.76 in a late-game position; zeroing it barely changes forced blocks (redundant)."
+  },
+  {
+   "id": "T17",
+   "description": "Weak, mixed unit. Its clearest trigger: the opponent has three stones in a four-cell window on the bottom row and I must block the empty bottom cell, which is not the centre column. I have no win of my own. Most other firing is in late-game boards with few open columns, and I found no board rule for it. Centre-column must-blocks and opponent double threats drive it strongly negative.",
+   "effect": "Lowers the centre column (3) by about 4-11 points and moves that mass to other columns (seen in 4 positions). No effect when the move is already forced."
+  },
+  {
+   "id": "T18",
+   "description": "Strongest in quiet early openings (about 5-11 stones) where I, the player to move, still have every stone (or all but one) on the bottom row, and the bottom row looks like .OX.XO.: opponent on columns 1 and 5, me on columns 2 and 4, centre column empty, often with opponent stones capping mine on row 1. Near-threshold firing in mid/late games is diffuse and not described. Never fires when I have an immediate win.",
+   "effect": "Raises column 1 (by about 0.1-0.25 probability) and a little column 5, at the expense of column 2 (and column 4); little effect in forced positions."
+  },
+  {
+   "id": "T19",
+   "description": "Fires when the opponent threatens an immediate win in column 2 that I must block: strongest (activation 20-45) when they have three stacked vertically in column 2 with the cell above empty; moderate (2-15) when the playable threat cell is exactly row 3 of column 2 (third cell from the bottom) via a diagonal or row. Threats in other columns, unplayable column-2 threats, and positions with several must-blocks do not fire. Many weak near-threshold firings have no clear pattern.",
+   "effect": "Pushes the move to column 2: forcing it high raises column 2 to 0.84-1.00 probability in tactical positions (+0.16 in a quiet one), taking mass from the model's other choices; zeroing it changes nothing measurable (redundant)."
+  },
+  {
+   "id": "T20",
+   "description": "Fires when I (the player to move) have a winning cell in column 0: strongest for an immediate win there or stacked column-0 win cells, also when the column-0 win cell is one above the landing cell on my favourable row parity; weaker for any double threat (two immediate wins). Mirror-image column-6 wins do not fire. A diffuse weak band (forced positions, my stones near empty left columns) is not captured.",
+   "effect": "Raises the probability of playing column 0: zeroing it at high activation cuts column 0 by 0.15-0.42 (e.g. 0.76->0.38, 0.56->0.14), shifting mass to other winning columns; forcing it high adds about +0.2 to column 0."
+  },
+  {
+   "id": "T21",
+   "description": "Fires when column 0 is the urgent move, above all when the opponent has three of their stones stacked on top of column 0 with the cell above empty (a vertical must-block in column 0); strongest right after they play the third stone. Weaker firing: a non-vertical must-block or my own immediate win in column 0 at row 2-3. Vertical threes in other columns, my own column-0 three, and low horizontal threats to column 0 do not fire it.",
+   "effect": "Pushes the model's move toward column 0: forced high it raised col 0 from 0.12 to 0.93 and from 0.01 to 0.45 in non-forcing positions (taken mostly from the favoured centre move); zeroing cuts col 0 by about 0.05-0.11. When the block is already certain it changes nothing."
+  },
+  {
+   "id": "T22",
+   "description": "Fires when the opponent has three stones stacked on top of column 5 (second from the right) with the cell above empty, a vertical threat I must block; strongest (25-47) right after they play the third stone, still clear a move later, weak if the three is mine. Weaker near-threshold firing (2-6) when the opponent's last stone just created a four-threat, mostly in columns 1-2. Vertical threes in columns 0,3,4,6 and horizontal threats do not fire it.",
+   "effect": "Pushes the move toward column 5 (the block): e.g. column 5 rises from 0.55 to 0.94 when forced high; on quiet positions it shifts about 20-35 points from the center column to columns 5 and 2. No effect when the block is already certain."
+  },
+  {
+   "id": "T23",
+   "description": "Fires most strongly when the player to move has three of their own stones in a row horizontally in columns 3-5 (any row above the bottom) and the cell in column 6 at the end of that row is empty, so column 6 holds their threat, and the opponent has no threat right under it. Weaker firing on many other threat patterns, including positions where the opponent has two immediate wins. The opponent's own three does not trigger it.",
+   "effect": "Raises the probability of playing column 6: forcing it to max added +0.18 to +0.83 to column 6 on three positions; zeroing it in a top example cut column 6 (the winning move) from 0.51 to 0.28."
+  },
+  {
+   "id": "T24",
+   "description": "Fires right after the opponent drops a stone into column 4 (one right of centre) that lands on the bottom row, i.e. column 4 was empty. It also fires, more weakly, when the opponent's stone lands on row 1 of column 4 on top of their own earlier stone, once the game has at least about 8 stones. Stones on top of my stone in column 4, or higher in the column, do not fire.",
+   "effect": "Small: when strongly active it shifts the model toward column 3 (about +4 to +9 points vs. turning it off) and slightly away from stacking on column 4."
+  },
+  {
+   "id": "T25",
+   "description": "Fires mainly in the first ~20 plies when the opponent has just dropped a stone low in column 1 (less often column 0, or column 2 as its first stone), provided I (side to move) have no stone in column 1 and few in column 4; my centre stones (col 4, also 3/5) and stacked column-1 stones suppress it. It almost never fires at ply 20-29; a separate, unexplained late-game (ply 30+) firing is not covered.",
+   "effect": "None measurable: forcing it to max or zero changed move probabilities by at most 0.01 on 4 positions."
+  },
+  {
+   "id": "T26",
+   "description": "Fires when the opponent has three stones stacked on top of column 0 (leftmost) with the cell above empty: a vertical must-block in column 0. Strongest right after the third stone is played, and when the three sits on my stones. My own vertical three in column 0 fires weakly. Vertical threes in other columns and horizontal or diagonal threats at column 0 do not. About two thirds of firing is a weak, diffuse tail with no clear pattern.",
+   "effect": "Supports blocking in column 0: zeroing it on a firing board dropped P(col 0) from 1.00 to 0.59 (mass moved to col 3); usually the block is already certain so steering changes little. Forcing it high on non-firing boards has only small diffuse effects."
+  },
+  {
+   "id": "T27",
+   "description": "Weak, mixed unit; no clean rule found. Two loose patterns: (1) openings (ply<=9) where the opponent holds the bottom centre (0,3), I hold (0,1) and (0,2) is empty, with no opponent stone at (0,4); (2) middle games where the opponent owns (4,2) and has 2+ stones, none of mine, on the up-right diagonal (2,0)-(3,1)-(4,2)-(5,3). Many exceptions: single distant stones often switch it off.",
+   "effect": "Small: when forced high it shifts at most about 0.05-0.13 of probability, mostly toward column 4; zeroing it changes the move distribution by under 0.05."
+  },
+  {
+   "id": "T28",
+   "description": "Fires when the opponent has three of their stones stacked vertically at the top of a column with the cell above still empty (a vertical must-block). Column 5 is by far the strongest (huge activation, especially right after the third stone lands); columns 1 and 6 fire moderately, 0/2/4 only sometimes, column 3 almost never. Horizontal or diagonal threats rarely fire it; my own three does not; having my own immediate win weakens it.",
+   "effect": "Pushes the model to play column 5: forcing it to max sends column 5 to ~100% even when the correct block or best move is elsewhere; turning it off on a column-5 vertical block lowers column 5 by up to ~20 points."
+  },
+  {
+   "id": "T29",
+   "description": "Fires when I must block an opponent's immediate win in column 1 (second from left). Strongest when they have three stacked vertically in column 1 with the cell above empty; moderate for a horizontal or diagonal threat at column 1's landing cell in rows 2-4. Does not fire for a bottom-row threat there, vertical threes in other columns, when I have an immediate win, or when facing a double threat.",
+   "effect": "Pushes the model toward playing column 1: forcing it to max raises column 1 by about 45-60 points of probability in positions that would otherwise play elsewhere; zeroing it changes nothing when the block is already chosen (redundant with other circuitry)."
+  },
+  {
+   "id": "T30",
+   "description": "Fires when the opponent threatens to win next move on top of column 6 (the rightmost column), most often because they just stacked three in column 6, but also horizontal/diagonal threats there; strongest with a single such threat. Does not fire for a threat in an empty column 6 (bottom row) or for my own threes. Weaker firing for an opponent vertical three just made in column 0, and occasionally near threshold for blocks in other columns.",
+   "effect": "Pushes the move to column 6: forcing it high moves col 6 from ~0% to 88-97% in quiet positions; it does not override a genuine must-block elsewhere; zeroing it barely changes the (already certain) col-6 block."
+  },
+  {
+   "id": "T31",
+   "description": "Weak, mixed layer-0 unit. Fires most strongly right after the opponent drops a stone in column 2 early in the game (ply 4-8), with the centre column still empty and none of my stones in column 2. A second, weaker branch: the opponent just stacked column 6 high (row 4+) while columns 1-2 are not full. Many other firings (last move in columns 0/1/3/4, mid-game) follow no clear board pattern.",
+   "effect": "None measurable: forcing it to max or zero changes move probabilities by at most about 0.04 (usually 0.00-0.02)."
+  },
+  {
+   "id": "T32",
+   "description": "Fires in sharp tactical positions where the game hinges on one column, mostly column 4 (sometimes 2): my only winning move, the only must-block, or the only move that does not lose is in column 4/2. Typical boards have column 3 tall or full and column 4 holding 1-2 stones. Mirror-image positions (column 2 vs 4 swapped) mostly do not fire. Only covers about half of firing; the rest is unexplained.",
+   "effect": "Weak. Forcing it high on non-firing positions lowers column 3 by about 12-20 points (moved to columns 2/4/1); turning it off at firing positions changes moves by under 3 points."
+  },
+  {
+   "id": "T33",
+   "description": "Fires when the opponent has three stones stacked on top of column 0 (leftmost) with the cell above empty, i.e. a vertical must-block in column 0; this gives very strong activation. Weaker firing when exactly two of their stones sit on rows 2-3 of column 0 (column height 4). Same patterns in other columns, horizontal/diagonal threats into column 0, my own stack, or a full column do not fire it.",
+   "effect": "When forced high it raises the move in column 0 (blocking the vertical threat), e.g. column 0 from 0.07 to 0.34 in a two-stack position; zeroing it in a dev must-block position lowers column 0 from 1.00 to 0.71. Often redundant: when the block is already certain, steering changes nothing."
+  },
+  {
+   "id": "T34",
+   "description": "No single clean concept; a diffuse board readout. It fires mostly in two situations. (1) Early game (ply 4-9): column 0 holds 3 or more stones, and/or I own bottom cells in columns 1-3 while the opponent's newest stone sits on (0,2) or (0,4). My stones on the right bottom (cols 5-6) suppress it. (2) Late game: the opponent's last stone filled column 4 (row 5) or opened an empty column 4.",
+   "effect": "None measurable: forcing it to its max or to zero changes move probabilities by at most 0.01 on the 3 positions tested."
+  },
+  {
+   "id": "T35",
+   "description": "Fires when column 1's landing cell (bottom, second or top row) would complete a horizontal or diagonal four, mainly for the opponent (a must-block), e.g. O on 2,3,4 of the bottom row with column 1 empty (activation 20-35); also for my own win there. Weaker (2-12): any must-block early in the game (about 10 stones or fewer), fading as the board fills. Vertical column-1 threats and threats in the three middle rows of column 1 do not count.",
+   "effect": "Pushes the model to play column 1: forcing it high in quiet positions moves about +0.9 probability to column 1, mostly taken from column 3. Turning it off in a forced column-1 block changes nothing, so other paths also carry the block."
+  },
+  {
+   "id": "T36",
+   "description": "No clean concept; a weak, left-right asymmetric mixture. Fires most often when I must block the opponent in column 1 (strongest when they just dropped a stone at the bottom of column 1 under their own row/diagonal threat at (1,1)), when they have three stacked in column 6, or early when my bottom stone in column 2 is capped by theirs with column 3 empty. Mirror-image patterns do not fire.",
+   "effect": "None measurable: forcing it high or off changes move probabilities by under 0.05 in most positions (occasionally 0.1-0.16 swaps between two candidate columns, no consistent direction)."
+  },
+  {
+   "id": "T37",
+   "description": "Fires in crowded late-middlegame boards (several columns full) where the left edge column 0 is still open: most strongly when column 0 has exactly one empty cell left, also when column 0 is empty or nearly empty while 3+ other columns are full. Never fires once column 0 is full, or when an immediate win or must-block exists. Many such boards still do not fire; the rule is partial.",
+   "effect": "Small: forcing it high raises the probability of column 0 by about 2-8 points; zeroing it lowers column 0 by about 7-11 points (mass moves to other legal columns)."
+  },
+  {
+   "id": "T38",
+   "description": "Fires when the opponent threatens to win in column 0, the leftmost column: above all when they have three stones stacked vertically at the top of column 0 with the cell above empty (activation 10-40, nearly always fires). It fires weakly when column 0's landing cell is my only must-block for a horizontal or diagonal four. It does not fire on my own vertical three, a blocked three, two stacked stones, or vertical threes in other columns (mostly).",
+   "effect": "Pushes the model's move toward column 0 (the block): forcing it high on a quiet opening moves about +0.85 probability to column 0; zeroing it on a column-0 vertical threat moves about 0.20 from column 0 to column 3. On positions already decided it changes nothing."
+  },
+  {
+   "id": "T39",
+   "description": "No clean concept found. It fires mid to late game for one side to move, loosely when the centre column alternates me/them, my stones sit centrally on the second row, and column 5 is low with a threat directly above its landing cell; filling that cell turns it off. Hand-built threat-above-landing positions do not fire.",
+   "effect": "None measurable: forcing it to max or zero changes move probabilities by at most about 0.04 (slightly lowers the centre column)."
+  },
+  {
+   "id": "T40",
+   "description": "No clean concept found. The unit fires somewhat more often in open positions (no full column, two or more empty columns, centre column not tall), but the firing depends nonlinearly on exact stone placement; single-stone changes swing it across the threshold, and no threat, height, centre-control or last-move pattern explains it.",
+   "effect": "None measurable: forcing it to max or zero changes move probabilities by at most about 0.04 (once 0.11 on column 3)."
+  },
+  {
+   "id": "T41",
+   "description": "Fires mostly in middlegame positions (about 12-26 stones) where column 1 holds exactly one stone while column 0 is started and the center columns 2-3 are built up (7+ stones together). Any second stone in column 1 shuts it off. This is necessary-ish but far from sufficient: most such boards do not fire, and late-game boards give weak near-threshold activation. No single clean pattern was found.",
+   "effect": "Small: when strongly active it lowers the probability of playing column 1 by about 4-8 points when column 1 is a live candidate; otherwise no measurable change."
+  },
+  {
+   "id": "T42",
+   "description": "No clean rule; a diffuse, left-right asymmetric mix. Tends to fire in early-to-middle games (about 8-16 stones) when the opponent's stones sit on the bottom row, in the centre column (rows 2-3) or on the edges, not in columns 2 and 4 above the bottom row. A full centre column and late games suppress it. Particular stacks matter strongly but only in context.",
+   "effect": "None measurable: forcing it off or to max changes move probabilities by at most about 0.05."
+  },
+  {
+   "id": "T43",
+   "description": "Fires when the opponent's last stone was dropped into column 1 and I have no stone in column 1: strongest (up to ~7) when it is the first stone in column 1 at 4 stones, weaker later in the game. A second column-1 stone fires only early and only if both are theirs; any stone of mine in column 1 suppresses it. Weak near-threshold firing also on 4-stone openings with four different columns and column 1 empty.",
+   "effect": "None measurable: forcing it to max or zero moves column probabilities by at most ~5 points on 5 positions tested."
+  },
+  {
+   "id": "T44",
+   "description": "Fires when column 2 (third from left) has three same-colour stones stacked on top with the cell above empty, i.e. a vertical four-threat in column 2; very strong (20-85) when the three is the opponent's (a must-block), moderate (5-10) when it is mine. Same pattern in other columns does not fire (cols 0/1 only weakly). Also fires weakly when the opponent just played column 2 and its landing cell is a must-block in another direction.",
+   "effect": "Pushes the move to column 2: forcing it high sends column 2 to ~100% probability even where the model preferred column 3; zeroing it where it naturally fires changes nothing (the block is already certain)."
+  },
+  {
+   "id": "T45",
+   "description": "No clean concept. Clearest case: early in the game (about 4-5 stones) when the opponent has just dropped a stone into an empty column 4 (bottom row), which fires almost always unless column 4, 5 or 1 already holds stones. Otherwise it fires sporadically, mostly right after the opponent stacks in column 5 (rows 3-4) or at ply 5, with no consistent board pattern; activation generally fades as the board fills.",
+   "effect": "None measurable: forcing it to max or zero changes every column's probability by at most 0.02 on 7 positions."
+  },
+  {
+   "id": "T46",
+   "description": "No clean board pattern found. U49 tends to fire on sparse, early positions (about 4-14 stones, no column taller than 4, no full column), more often when column 1 is still empty, but whether it fires depends on the exact placement of individual stones and on the opponent's last move in ways that do not reduce to a simple rule. Full or nearly full boards almost never fire.",
+   "effect": "None measurable: forcing the unit to its maximum or to zero changes move probabilities by at most 0.01 on three positions tested."
+  },
+  {
+   "id": "T47",
+   "description": "No clean concept found. Weak, diffuse tendency: fires more in early, sparse positions where the center column is built up (my stone in its third cell, row 2), column 4 (right of center) is empty, and the opponent has stones low on the left while I do not. Many firing positions lack this pattern (even an empty center), so treat it as a loose lean, not a rule.",
+   "effect": "None measurable: forcing it to max or zero changes move probabilities by at most about 0.06, mostly 0.00 (9 positions)."
+  },
+  {
+   "id": "T48",
+   "description": "Fires when column 3 (the centre) holds an immediate four-completion, above all when the opponent has three stacked in column 3 with the cell above empty (strongest early in the game, at the bottom). Horizontal or diagonal win/block cells in column 3, my own immediate wins early on, and opponent vertical threes in columns 1 or 6 give weaker firing. Must-blocks in other columns mostly do not fire; crowded late boards damp it.",
+   "effect": "Pushes the model to play column 3: forcing it to max sends column 3 to ~100% (e.g. 0.18->1.00, 0.41->1.00); zeroing it at a col-3 vertical block drops column 3 from 1.00 to 0.67."
+  },
+  {
+   "id": "T49",
+   "description": "Fires when the opponent has three of their stones stacked on top of column 1 (second column from the left) with the cell above empty, i.e. a vertical must-block in column 1; this gives very strong activation (20-70) regardless of other stones. A raised opponent vertical three in column 5 fires weakly. Vertical threes in other columns, and column-1 threats along rows or diagonals, do not fire. Many weak near-threshold firings have no clear pattern.",
+   "effect": "Strongly active it puts nearly all move probability on column 1 (e.g. 0.01 -> 1.00 from a neutral position); ablating it on real column-1 threats changes nothing because the block is still chosen."
+  },
+  {
+   "id": "T50",
+   "description": "Fires right after the opponent drops a stone into column 0 (the far-left edge) when column 0 is now tall: 4+ stones (3 only very early). Stronger the taller column 0 and the earlier in the game (peaks around ply 16-20, fades after ~ply 25-35). Weakened when I (the side to move) own more of column 0 than the opponent, or none of it. Any other last move: no firing.",
+   "effect": "Weak: forcing it high or off changes move probabilities by at most about 5-7 points, with no consistent column."
+  }
+ ]
+}

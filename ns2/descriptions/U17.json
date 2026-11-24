@@ -1,0 +1,65 @@
+{
+ "unit": "U17",
+ "description": "Fires most strongly when column 1 (second from left) is tall and topped by at least two of the side-to-move's stones, with column 0 empty or nearly so; stronger the taller the stack, weaker as stones (especially opponent's) fill columns 0 and 2 and as the game gets longer, boosted when the opponent's last move was in columns 4-6. A weaker early-game route: opponent just stacked on my single column-1 stone. Covers only a minority of firing.",
+ "effect": "None measurable: forcing it to zero or to its max changes no column's probability by more than about 2 points (4 positions tested).",
+ "program": "def top2(b):\n    h = b.heights[1]\n    return h >= 2 and b.grid[h - 1][1] == 1 and b.grid[h - 2][1] == 1\n\ndef route_a(b):\n    return b.heights[0] <= 1 and b.heights[1] >= 3 and top2(b) and (b.ply <= 18 or b.heights[1] >= 5)\n\ndef route_b(b):\n    h = b.heights[1]\n    return b.last_col == 1 and h >= 2 and b.grid[h - 2][1] == 1 and b.ply <= 10 and b.heights[0] <= 1\n\ndef fires(b):\n    return route_a(b) or route_b(b)\n\ndef level(b):\n    if route_a(b):\n        v = 4 + b.heights[1] - 3 - 2 * b.heights[0]\n        if b.last_col in (4, 5, 6):\n            v += 2\n        return max(1, min(9, v))\n    if route_b(b):\n        return 3\n    if top2(b) and b.heights[1] >= 3:\n        return 1\n    return 0\n",
+ "synthesis": [
+  [
+   1,
+   1,
+   1,
+   1,
+   4,
+   1,
+   6,
+   1,
+   5
+  ],
+  [
+   1,
+   1,
+   1,
+   1,
+   6,
+   1,
+   4,
+   1,
+   5
+  ],
+  [
+   1,
+   1,
+   4,
+   1,
+   6,
+   1,
+   5
+  ],
+  [
+   1,
+   1,
+   1,
+   1,
+   4,
+   1,
+   6,
+   1,
+   6
+  ],
+  [
+   1,
+   1,
+   1,
+   1,
+   5,
+   1,
+   4,
+   1,
+   5
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer 1. Best dev F1 0.236 (P 0.31, R 0.19, AUROC 0.59), sim share 0.05 (p5). The column-1 stack with column 0 empty is a real driver in minimal pairs: flipping ownership kills it, the mirrored column 5 does not work, column 0 stones hurt, and the activation reaches 4.16 in synthesis. But act tests show strong context dependence (ply, other columns, last move column multiplies it), and most firing positions (bands 5-7) follow no rule I found. Tried: top-mine only (F1 0.08), neighbour exposure (0.12), col0-empty stack (0.17), with opponent-col-2 filter (0.18, P 0.48), loosened (0.19). Looks like a mixture or distributed direction.",
+ "dev_calls_used": 7,
+ "submitted": "2026-11-21T18:10:44"
+}

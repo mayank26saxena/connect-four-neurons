@@ -1,0 +1,8 @@
+all 90 (primary): real 0.776 (n=60) random 0.738 (n=30) | explained 0.906 unexplained 0.711 random 0.738
+excl 5 short judges: real 0.787 (n=56) random 0.734 (n=29) | explained 0.924 unexplained 0.718 random 0.734
+U48 unexplained 0.74
+U56 unexplained 0.58
+U70 explained 0.58
+U74 random 0.84
+U77 unexplained 0.58
+flag-excluded: r_a diff 0.11 r_b 0.639 vs 0.43 r_c gap 0.121 r_d 0.142 r_f 0.368 strata of flagged ['random', 'unexplained', 'unexplained', 'unexplained']

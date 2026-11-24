@@ -1,0 +1,71 @@
+U50 dev call 6/8 (4s)
+  detection: F1 0.259 (precision 0.234, recall 0.291), AUROC 0.631; unit fires on 3.0% of scored positions, program on 3.7%
+  simulation: recovers 0.8% of the zero-ablation damage; a perfect 10-level reader recovers 28.2%; share of ceiling 0.03
+
+--- FALSE POSITIVES (program says fires, unit does not): 1705 positions; examples ---
+[pos 44290] pole act 0.883, program 1.00, moves 5,4,3,1,4,5,2,1,2,2,1,5,4,4,1,3,3,2,1,1,3,3,3,2,2,0,0,4,0,0,4,0,0,5,5
+OXOOO..
+XOXXXO.
+XOXOXX.
+OOXOOX.
+OXOXOX.
+XXOOXO.
+0123456   X = me (to move), O = them
+[pos 1745] pole act 0.237, program 1.00, moves 3,0,4,2,6,5,4,4,3,5,5,2
+.......
+.......
+.......
+....OX.
+..OXXO.
+O.OXXOX
+0123456   X = me (to move), O = them
+[pos 53154] pole act -0.275, program 1.00, moves 1,0,5,0,3,4,4,4,4,5,3,5,3,3,6,1,5,0,0,4,5,3,1,1,3,6,2,2,2,2,2,4,2,0,6,5
+..XXOO.
+O.XOOX.
+XOOOXX.
+OXXXOOX
+OOOXXOO
+OXXXOXX
+0123456   X = me (to move), O = them
+[pos 53140] pole act 0.168, program 1.00, moves 1,0,5,0,3,4,4,4,4,5,3,5,3,3,6,1,5,0,0,4,5,3
+.......
+...OOX.
+X..OXX.
+O..XOO.
+OO.XXO.
+OX.XOXX
+0123456   X = me (to move), O = them
+
+--- MISSES (unit fires, program does not): 1271 positions; examples ---
+[pos 3927] pole act 17.654, program 0.00, moves 3,3,1,4,1,0,3,3,4,5,3,3,5,1,5,5,4,1,4,4,0,0,6,0,1,1,0,0,4,5
+OO.OX..
+XX.XOO.
+OO.OXO.
+OO.XXX.
+XX.OXX.
+OX.XOOX
+0123456   X = me (to move), O = them
+[pos 19966] pole act 6.607, program 0.00, moves 1,4,4,3,5,4,3,4,5,4,4,1,3,5,5,3,3,1,6,6,1,3,1,1,0,6,0,5,5,6,6,6,2,2,2,2,0
+.X.XOOX
+.O.OXXO
+.OXXXOX
+OXOOXXX
+OXXOOOX
+OOOXXOO
+0123456   X = me (to move), O = them
+[pos 19733] pole act 2.777, program 0.00, moves 0,2,5,3,0,1,4,3,0,0,3,4,2,3,5,1,3,1,1,2,2,1,2,3,5,5,4,5,5,1,6
+.X.X.O.
+.XOO.X.
+XOOX.X.
+OXXOOO.
+OXOXXO.
+OXXXOOO
+0123456   X = me (to move), O = them
+[pos 66813] pole act 1.740, program 0.00, moves 4,6,4,4,2,3,3,3,2,2,3,3,4,3,2,2,4,0,2,6,4,6,6,6,1,1,1,1,6,1,1,0
+.XXOX.X
+.OOOX.O
+.OXXX.X
+.XOOO.O
+OOXXX.O
+OXXOX.O
+0123456   X = me (to move), O = them

@@ -1,0 +1,56 @@
+{
+ "unit": "U38",
+ "description": "Strongest by far when one side has an open three on the bottom row (three in a row with both end cells empty, so two playable winning cells on row 0); activation is then 10-21. Weaker firing near threshold comes from other immediate threats: any single winning/blocking cell on the bottom row, or an opponent must-block (often a vertical three) in columns 2-3. Most threat positions outside these do not fire; elevated (row 1+) open threes do not.",
+ "effect": "Mostly none measurable (fires in decided positions). When two bottom-row winning moves exist, forcing it high shifts about 0.2 probability toward the left winning cell (e.g. col 5 to col 2).",
+ "program": "def row0(wins):\n    return len([w for w in wins if w[0] == 0])\n\ndef bottom(b):\n    m = row0(b.my_playable_wins)\n    t = row0(b.their_playable_wins)\n    if m >= 2 or t >= 2:\n        return 2\n    if m + t >= 1:\n        return 1\n    return 0\n\ndef mid_block(b):\n    return any(r > 0 and 2 <= c <= 3 for (r, c) in b.their_playable_wins)\n\ndef fires(b):\n    return bottom(b) > 0 or mid_block(b)\n\ndef level(b):\n    k = bottom(b)\n    if k == 2:\n        return 9\n    if k == 1:\n        return 5\n    if mid_block(b):\n        return 3\n    if len(b.my_playable_wins) + len(b.their_playable_wins) > 0:\n        return 1\n    return 0\n",
+ "synthesis": [
+  [
+   4,
+   4,
+   5,
+   4,
+   3,
+   0
+  ],
+  [
+   4,
+   0,
+   4,
+   4,
+   5,
+   0,
+   3,
+   0
+  ],
+  [
+   4,
+   0,
+   4,
+   0,
+   5,
+   4,
+   3,
+   0
+  ],
+  [
+   4,
+   4,
+   5,
+   4,
+   3,
+   3
+  ],
+  [
+   4,
+   4,
+   5,
+   4,
+   3,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "7 score calls. Bottom-row open three alone: precision ~.5 but recall .09. Any threat: recall .77 precision .13. Best p6 (bottom-row playable win cell either side, or must-block above row 0 in cols 2-3): F1 0.365, P .28, R .53, AUROC .74, simulation share 0.15. Minimal pairs: bottom-row double threat is robust (15-21); near-threshold behaviour depends on unrelated stones and is left/right asymmetric, looks like a mixture. Synthesis 4,4,5,4,3,0 = 21.72 beats dev max.",
+ "dev_calls_used": 7,
+ "submitted": "2026-11-23T02:35:48"
+}

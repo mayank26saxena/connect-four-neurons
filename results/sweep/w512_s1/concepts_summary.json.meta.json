@@ -1,0 +1,182 @@
+{
+ "output": "results/sweep/w512_s1/concepts_summary.json",
+ "created_utc": "2026-11-19T05:53:38+00:00",
+ "command": "scripts/05_concepts.py",
+ "source_sha256": "f1c2c9bdcd1534c0a1f8c9de8b419730b11f2ae973119c0b04fc0095f1c15781",
+ "config": {
+  "seed": 20261118,
+  "teacher": {
+   "depth": 10,
+   "play_temp": 2.0,
+   "max_random_plies": 6
+  },
+  "data": {
+   "out_dir": "data",
+   "splits": {
+    "train": [
+     400000,
+     0
+    ],
+    "val": [
+     5000,
+     10000000
+    ],
+    "analysis": [
+     10000,
+     20000000
+    ]
+   }
+  },
+  "model": {
+   "n_layer": 6,
+   "d_model": 256,
+   "n_head": 8,
+   "d_ff": 512,
+   "vocab": 8,
+   "ctx": 43
+  },
+  "train": {
+   "target_temp": 1.0,
+   "batch_games": 512,
+   "steps": 8000,
+   "lr": 0.001,
+   "min_lr": 5e-05,
+   "warmup": 300,
+   "weight_decay": 0.1,
+   "grad_clip": 1.0,
+   "eval_every": 250,
+   "ckpt_steps": [
+    0,
+    1000,
+    4000,
+    8000
+   ],
+   "out_dir": "checkpoints/sweep/w512_s1",
+   "seed": 1
+  },
+  "analysis": {
+   "checkpoint": "checkpoints/sweep/w512_s1/step_008000.pt",
+   "n_games": 5000,
+   "fire_pct": 97,
+   "bands": [
+    [
+     25,
+     75
+    ],
+    [
+     10,
+     90
+    ],
+    [
+     5,
+     95
+    ],
+    [
+     3,
+     97
+    ],
+    [
+     1,
+     99
+    ],
+    [
+     0.5,
+     99.5
+    ]
+   ],
+   "topk": [
+    8,
+    16,
+    32,
+    64,
+    128,
+    256
+   ],
+   "play_opponents": [
+    [
+     "random",
+     0
+    ],
+    [
+     "teacher",
+     4
+    ],
+    [
+     "teacher",
+     10
+    ]
+   ],
+   "rotation_seed": 1
+  },
+  "modes": {
+   "n_per_layer": 40,
+   "featured_per_layer": 5,
+   "max_firings": 2000,
+   "min_firings": 50,
+   "top_components": 200,
+   "knn": 15,
+   "resolution": 1.0,
+   "min_cluster_frac": 0.02,
+   "merge_corr": 0.8
+  },
+  "action": {
+   "min_f1": 0.5,
+   "max_poles": 60,
+   "max_positions": 3000,
+   "n_random": 10,
+   "clamp_pct": 99.5,
+   "clamp_scale": 1.0
+  },
+  "dynamics": {
+   "n_games": 2000,
+   "tracked_concepts": [
+    "block_now_any",
+    "win_now_any",
+    "block_now_c3",
+    "win_now_c3",
+    "poison_c3",
+    "opp_threats_ge1",
+    "cell_r0c3_mine",
+    "cell_r2c3_theirs",
+    "full_c3"
+   ]
+  },
+  "web": {
+   "min_f1": 0.5
+  },
+  "group": {
+   "concepts": [
+    "block_now",
+    "win_now"
+   ],
+   "ks": [
+    1,
+    2,
+    5,
+    10,
+    20,
+    50,
+    100,
+    200
+   ],
+   "n_random": 3,
+   "max_positions": 2000,
+   "clamp_pct": 99.5
+  },
+  "results_dir": "results/sweep/w512_s1"
+ },
+ "environment": {
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "cc": [
+   "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+  ],
+  "numpy": "2.3.4",
+  "torch": "2.9.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA RTX A4500",
+  "git_commit": ""
+ },
+ "output_sha256": "df9b5dbfda9f0848f4d2290c4b725918d528aafa3edc42f39861121fad948658"
+}

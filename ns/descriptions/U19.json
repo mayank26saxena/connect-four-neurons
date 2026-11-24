@@ -1,0 +1,69 @@
+{
+ "unit": "U19",
+ "description": "Fires mostly in the opening, on a fixed bottom-centre-right pattern: my stones at (0,4) and/or (0,5) hemmed in by opponent stones, especially an opponent stone directly on top of my column-5 bottom stone, and opponent stones at (0,2)/(0,3)/(1,2)/(1,3) to the left of my (0,4). My own stones at (0,6), (0,1) or in rows 1-2 of columns 2-5 suppress it. Not translation- or mirror-invariant. Weaker late-game firing is diffuse and not captured.",
+ "effect": "Small and context-dependent: at its strongest positions it moves about 0.1-0.17 probability from column 3 toward columns 1-2; it does about nothing elsewhere.",
+ "program": "WO = {(0, 2): 1.0, (0, 3): 1.5, (1, 2): 1.0, (1, 3): 1.0, (1, 5): 2.0}\nWX = {(0, 4): 1.0, (0, 5): 1.5}\nPX = [(0, 1), (0, 6), (1, 2), (1, 3), (1, 4), (1, 5), (2, 2), (2, 3), (2, 4), (2, 5)]\n\ndef tscore(b):\n    g = b.grid\n    s = 0.0\n    for (r, c), w in WO.items():\n        if g[r][c] == 2:\n            s += w\n    for (r, c), w in WX.items():\n        if g[r][c] == 1:\n            s += w\n    for (r, c) in PX:\n        if g[r][c] == 1:\n            s -= 1.0\n    return s\n\ndef fires(b):\n    return tscore(b) >= 3.5\n\ndef level(b):\n    s = tscore(b)\n    if s < 2.5:\n        return 0\n    return max(0, min(9, int(round(2 * (s - 2.5)))))\n",
+ "synthesis": [
+  [
+   2,
+   4,
+   3,
+   5,
+   3,
+   0,
+   5,
+   0,
+   2
+  ],
+  [
+   3,
+   5,
+   5,
+   4,
+   3,
+   0,
+   2,
+   0,
+   2
+  ],
+  [
+   2,
+   4,
+   3,
+   5,
+   3,
+   6,
+   5,
+   0,
+   2,
+   0,
+   0
+  ],
+  [
+   2,
+   4,
+   3,
+   5,
+   3,
+   0,
+   5,
+   6,
+   2
+  ],
+  [
+   2,
+   4,
+   3,
+   5,
+   3,
+   6,
+   5,
+   0,
+   2
+  ]
+ ],
+ "confidence": "low",
+ "notes": "The strong early-game template is solid under minimal pairs (O on (1,5) over my (0,5); O at (0,2),(0,3),(1,3) next to my (0,4); my nearby stones suppress it; tied to absolute cells). Best dev F1 0.259 (P 0.19, R 0.40, AUROC 0.67), simulation share 0.16. Most misses are weak (around 1.0-1.4) late-game firing with no single clear trigger; this looks like a mixture or a distributed feature. Calls 1-2 were one program run twice by mistake.",
+ "dev_calls_used": 8,
+ "submitted": "2026-11-21T16:33:33"
+}

@@ -1,0 +1,56 @@
+{
+ "unit": "U24",
+ "description": "Fires when column 4 holds a short stack (2-4 stones) containing opponent stones, ideally two or three of theirs, and the opponent played into column 4 within their last two moves. Empty columns 3 and 5 help; stones there, a tall or full column 4, later game, or several moves since the last column-4 move switch it off. Also briefly off right after an opponent stone lands on row 3+ of column 4 or on top of my stone.",
+ "effect": "Very small: when active it slightly lowers column 3 (forcing it off raises column 3 by about 3-6 points and lowers columns 4/1 by 2-6 points).",
+ "program": "HS = [0.0, 0.0, 0.75, 1.2, 1.0, -0.5, -2.0]\n\ndef nth(b, c):\n    return sum(1 for r in range(6) if b.grid[r][c] == 2)\n\ndef since4(b):\n    m = b.moves\n    k = 0\n    i = len(m) - 1\n    while i >= 0:\n        if m[i] == 4:\n            return k\n        k += 1\n        i -= 2\n    return 99\n\ndef score(b):\n    h = b.heights[4]\n    n = nth(b, 4)\n    s = HS[h] + 0.8 * min(n, 3)\n    s -= 0.6 * min(6, max(0, since4(b) - 1))\n    s -= 0.3 * (b.heights[3] + b.heights[5])\n    s -= 0.05 * max(0, b.ply - 8)\n    if b.last_col == 4:\n        r = b.last_row\n        if r >= 3 or (r >= 2 and any(b.grid[k][4] == 1 for k in range(r))):\n            s -= 2.0\n    return s\n\ndef fires(b):\n    return score(b) >= 1.3\n\ndef level(b):\n    return max(0, min(9, int(round(score(b) * 3))))\n",
+ "synthesis": [
+  [
+   1,
+   4,
+   1,
+   4,
+   1,
+   4
+  ],
+  [
+   1,
+   4,
+   6,
+   4,
+   4,
+   4,
+   6,
+   6
+  ],
+  [
+   1,
+   4,
+   1,
+   4,
+   1,
+   4,
+   4,
+   1
+  ],
+  [
+   1,
+   4,
+   1,
+   4,
+   1,
+   4,
+   6,
+   6
+  ],
+  [
+   6,
+   4,
+   6,
+   4,
+   6,
+   4
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Layer-1 unit, strongly move-order dependent (same board, different order: 0.83 vs 1.70). Scores: col4 count+col5 empty F1 0.30; +recency/ply 0.39; token-recency score 0.18; additive opp-count 0.38; height-based additive 0.385/0.425 (thr 0.9/1.3); +tall-column penalty and steeper recency decay 0.545 (best, AUROC 0.76, sim share 0.48); +col3/5 recent-move penalty 0.533. Unmodelled: games starting with 4 read lower; single O at (0,4) at very low ply sometimes fires."
+}

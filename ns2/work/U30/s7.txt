@@ -1,0 +1,71 @@
+U30 dev call 7/8 (5s)
+  detection: F1 0.371 (precision 0.274, recall 0.574), AUROC 0.764; unit fires on 3.0% of scored positions, program on 6.2%
+  simulation: recovers 18.5% of the zero-ablation damage; a perfect 10-level reader recovers 74.1%; share of ceiling 0.25
+
+--- FALSE POSITIVES (program says fires, unit does not): 2722 positions; examples ---
+[pos 29763] pole act -1.828, program 1.00, moves 6,4,1,3,5,3,6,4,3,5,4,5,4,3,5,3,4,4,3,6
+...XO..
+...OX..
+...OXX.
+...XXOO
+...OOOX
+.X.OOXX
+0123456   X = me (to move), O = them
+[pos 34122] pole act 1.884, program 1.00, moves 4,3,4,3,4,4,1,5,1,1,4,5,3,5,5,5,0,2,1,1,3,3,3,4,1,0,5,6,6
+.O.OXO.
+.X.XOX.
+.O.OXO.
+.X.OOX.
+XO.XOXO
+OOXXOXX
+0123456   X = me (to move), O = them
+[pos 35601] pole act 1.976, program 1.00, moves 1,2,2,1,2,6,6,5,6,2,2,3,4,4,5,2,6,6,6,5,4,4,1,1,5,4,1,5,5,4,1,0,0,0
+.XO.OXX
+.XX.OOO
+.OO.OXX
+OXX.XOX
+XOX.OXX
+OXOOXOO
+0123456   X = me (to move), O = them
+[pos 22296] pole act 1.144, program 1.00, moves 0,0,4,6,4,3,5,4,5,3,3,4,6,3,3,3,6,4,4,6,0,6,2,2,2,2,0,6,0
+...XO.X
+O..OX.X
+O.XXX.X
+O.OOX.O
+X.XXOOO
+O.OXOOX
+0123456   X = me (to move), O = them
+
+--- MISSES (unit fires, program does not): 763 positions; examples ---
+[pos 24406] pole act 2.987, program 0.00, moves 2,0,4,3,2,3,2,2,4,3,3,4,0,3,2,3,5,5,1,5,4,5,5,1,1,0,4,5,4,0
+...OXO.
+..XOXX.
+O.OXXO.
+OXXOOO.
+XOXOXO.
+OXXOXX.
+0123456   X = me (to move), O = them
+[pos 12535] pole act 3.077, program 0.00, moves 4,4,6,2,4,3,2,2,1,1,4,2,4,4,6,5,1,1,2,1,2,0,1,0,0,5,6,6,5,6,6,5,5,5,3
+.OO.XXO
+.XO.OOX
+.XX.OXX
+OOX.OOO
+XXOOXXO
+XOXXOXO
+0123456   X = me (to move), O = them
+[pos 29504] pole act 3.052, program 0.00, moves 5,2,2,5,2,4,6,2,4,5,5,4,2,1,3,5,4,6,1,3,3,3,1,6,3,6,6,4,2,4,1,1,3,6,5
+..OOXOX
+.XOOXXO
+.OXXOOX
+.OOOXXX
+.OOXOXX
+.XXOXOO
+0123456   X = me (to move), O = them
+[pos 67361] pole act 3.236, program 0.00, moves 1,3,3,6,0,3,0,4,5,5,0,0,1,1,3,0,4,3,3,4,4,5,5,4,1,4
+...XO..
+O..OO..
+OX.XXX.
+XO.OOO.
+XX.XXO.
+XX.OOXO
+0123456   X = me (to move), O = them

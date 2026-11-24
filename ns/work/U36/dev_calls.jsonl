@@ -1,0 +1,1 @@
+{"call": 1, "time": "2026-11-21T14:14:07", "f1": 0.9859502095144195, "precision": 1.0, "recall": 0.9722897423432183, "auroc": 0.9861448711716091, "sim_recovery": 0.013261786279089138, "ceiling_recovery": 0.9352916044318992, "sim_share_of_ceiling": 0.01417930644971887, "program": "def fires(b):\n    return b.ply == 0\n\ndef level(b):\n    return 9 if b.ply == 0 else 0\n"}

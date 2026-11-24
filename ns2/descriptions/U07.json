@@ -1,0 +1,67 @@
+{
+ "unit": "U07",
+ "description": "Fires most strongly (all top activations) when the opponent has three stones stacked vertically on top of the center column (column 3) with the cell above empty, i.e. a must-block in column 3, especially right after they made it, and I have no immediate win. This covers under a fifth of firing; weaker firing is spread over early-game positions (often opponent stones on the left, mine on the right) with no simple rule. Same pattern in other columns barely fires.",
+ "effect": "Weak. In forced-block positions none (model already plays column 3). In uncertain positions, forcing it high lowers column 3 by about 3-6 points; zeroing it changes almost nothing.",
+ "program": "def vert3(b, c):\n    h = b.heights[c]\n    if h < 3 or h >= 6:\n        return False\n    return all(b.grid[h - 1 - k][c] == 2 for k in range(3))\n\ndef fires(b):\n    if b.my_playable_wins:\n        return False\n    return vert3(b, 3)\n\ndef level(b):\n    if b.my_playable_wins:\n        return 0\n    if vert3(b, 3):\n        return 9 if b.last_col == 3 else 6\n    if any(c == 3 for (r, c) in b.their_playable_wins):\n        return 5\n    return 0\n",
+ "synthesis": [
+  [
+   3,
+   2,
+   1,
+   3,
+   3,
+   2,
+   3,
+   5,
+   3
+  ],
+  [
+   3,
+   2,
+   6,
+   3,
+   3,
+   2,
+   3,
+   5,
+   3
+  ],
+  [
+   3,
+   2,
+   1,
+   3,
+   3,
+   4,
+   3,
+   5,
+   3
+  ],
+  [
+   3,
+   2,
+   6,
+   3,
+   3,
+   1,
+   3,
+   5,
+   3
+  ],
+  [
+   3,
+   4,
+   1,
+   3,
+   3,
+   2,
+   3,
+   5,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Best dev F1 0.285 (precision 0.78, recall 0.18), sim share 0.01. Vertical col-3 three is clean (minimal pairs: col 3 only, suppressed by my immediate win, drops after a block). The other ~80% of firing is early-game and diffuse, with a left/right asymmetry; side-count, double-threat and col-3 horizontal must-block rules all scored lower. May be a mixture or a near-random direction aligned with a salient center-column threat.",
+ "dev_calls_used": 6,
+ "submitted": "2026-11-21T18:00:43"
+}

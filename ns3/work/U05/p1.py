@@ -1,0 +1,29 @@
+def _line_win(b, r, c, who):
+    # True if placing at (r,c) completes four for `who` along a non-vertical line
+    for dr, dc in ((0, 1), (1, 1), (1, -1)):
+        n = 1
+        for s in (1, -1):
+            rr, cc = r + s * dr, c + s * dc
+            while 0 <= rr < 6 and 0 <= cc < 7 and b.grid[rr][cc] == who:
+                n += 1
+                rr += s * dr
+                cc += s * dc
+        if n >= 4:
+            return True
+    return False
+
+
+def _col1_block(b):
+    return any(c == 1 and _line_win(b, r, c, 2) for (r, c) in b.their_playable_wins)
+
+
+def fires(b):
+    return _col1_block(b)
+
+
+def level(b):
+    if _col1_block(b):
+        return 9 if len(b.their_playable_wins) == 1 else 4
+    if any(c in (0, 2) for (r, c) in b.their_playable_wins):
+        return 2
+    return 0

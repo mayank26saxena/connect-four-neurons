@@ -1,0 +1,57 @@
+{
+ "unit": "U12",
+ "description": "No clean concept found. Weakly: fires when the opponent holds cells (2,4)/(3,3)/(2,5) and I hold the bottom of column 2, and almost never when I hold (3,3) or (2,4) or the opponent holds (0,2) or (3,4). Strongest case: opponent stones at (0,4),(1,4),(1,5) over my (0,5) with my stones at (0,2),(0,3). In 3-stone openings it fires when the opponent has the corner (0,0) uncovered. Shifted or mirrored shapes do not fire.",
+ "effect": "Mostly none measurable (<0.05 probability). In its strongest position (4,2,4,5,5,3,6) it suppresses column 3 by about 35 points in favour of columns 0-1.",
+ "program": "def s(b):\n    g = b.grid\n    if g[3][3] == 1 or g[2][4] == 1 or g[0][2] == 2 or g[3][4] == 2:\n        return 0\n    v = 0\n    if g[0][2] == 1:\n        v += 2\n    for (r, c) in [(2, 4), (3, 3), (2, 5), (3, 2)]:\n        if g[r][c] == 2:\n            v += 1\n    if g[3][4] == 1:\n        v += 1\n    if g[0][0] == 2 and g[0][1] != 1:\n        v += 1\n    return v\n\ndef fires(b):\n    return s(b) >= 3\n\ndef level(b):\n    return min(9, 2 * s(b))\n",
+ "synthesis": [
+  [
+   4,
+   5,
+   5,
+   3,
+   4,
+   2,
+   6
+  ],
+  [
+   4,
+   5,
+   5,
+   3,
+   4,
+   2,
+   6,
+   1,
+   0
+  ],
+  [
+   4,
+   2,
+   4,
+   5,
+   5,
+   3,
+   6
+  ],
+  [
+   4,
+   5,
+   5,
+   2,
+   4,
+   3,
+   6
+  ],
+  [
+   6,
+   5,
+   5,
+   6,
+   4,
+   2,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Hypotheses: empty-well column (F1 0.045, rejected); cell template (0.149); veto-cell template (best F1 0.169, AUROC 0.68, sim share 0.03). Activation is highly position-specific, not translation or mirror invariant, and cell effects flip sign with context (O vs X at (2,4)). Fires at all plies. Likely a mixture or a random direction. Synthesis reached 10.54 vs dev max 11.47."
+}

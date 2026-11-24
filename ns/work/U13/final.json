@@ -1,0 +1,70 @@
+{
+ "unit": "U13",
+ "description": "Fires strongly when the opponent has three stones stacked vertically at the top of column 0 (leftmost) with the cell above empty: a vertical must-block in column 0. Weaker if I also have an immediate win; my own vertical three in column 0 fires weakly. Horizontal or diagonal threats at column 0, and vertical threes in other columns, do not fire. Many weak near-threshold firings have no clear pattern.",
+ "effect": "Zero-ablation has no measurable effect (the block in column 0 is still chosen). Forcing it to max sometimes pushes the move to column 0 (+82 points in one position) and takes probability off the centre, but in other positions nothing changes.",
+ "program": "def col0_three(b, who):\n    h = b.heights[0]\n    if h < 3 or h > 5:\n        return False\n    return all(b.grid[h - 1 - k][0] == who for k in range(3))\n\ndef fires(b):\n    return col0_three(b, 2) or col0_three(b, 1)\n\ndef level(b):\n    if col0_three(b, 2):\n        return 6 if b.my_playable_wins else 9\n    if col0_three(b, 1):\n        return 1\n    return 0\n",
+ "synthesis": [
+  [
+   0,
+   5,
+   0,
+   0,
+   6,
+   0,
+   6,
+   5,
+   5,
+   0
+  ],
+  [
+   0,
+   5,
+   0,
+   0,
+   6,
+   0,
+   6,
+   5,
+   5,
+   6,
+   5,
+   0
+  ],
+  [
+   0,
+   5,
+   0,
+   5,
+   6,
+   0,
+   6,
+   0,
+   5,
+   0
+  ],
+  [
+   0,
+   5,
+   0,
+   0,
+   6,
+   0,
+   6,
+   0
+  ],
+  [
+   0,
+   5,
+   0,
+   0,
+   6,
+   6,
+   6,
+   0,
+   5,
+   0
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "v1 their col-0 vertical three: F1 0.442 (P 0.99, R 0.285). v2 their top-two stacked: F1 0.214, rejected. v3 adds my own col-0 three plus level grading: F1 0.452 (P 0.975, R 0.294), sim share 0.84. Precision is near perfect, but recall is capped by many weak near-threshold firings (0.56-2) that I could not explain (spread over ply and last column). Minimal pairs: column 0 only (cols 2 and 6 do not fire), vertical only, last move need not be column 0. Best synthesis 30.9 vs dev max 33.2."
+}

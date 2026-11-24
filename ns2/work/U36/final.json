@@ -1,0 +1,63 @@
+{
+ "unit": "U36",
+ "description": "Fires mainly in early-to-middle game positions where column 4 (right of center) holds exactly one stone, so the next stone there lands on row 1, especially when the opponent has stones beside it on the bottom row (cols 2/3/5) and columns 0 and 6 are empty. A second case is the opponent having three stacked in column 4. My own stone beside or on top of the col-4 stone switches it off. Most positions matching this still do not fire.",
+ "effect": "Small: forcing it to zero changes move probabilities by under 0.1; in two strong positions zeroing raised column 2 by about 6-8 points. Otherwise none measurable.",
+ "program": "def score4(b):\n    h = b.heights\n    g = b.grid\n    if h[4] == 1:\n        s = 3\n        if g[0][4] == 1:\n            s += 1\n        if g[0][3] == 2:\n            s += 1\n        if g[0][5] == 2:\n            s += 1\n        if h[3] % 2 == 0:\n            s += 1\n        if h[5] % 2 == 0:\n            s += 1\n        if g[0][4] == 1 and (g[0][3] == 1 or g[0][5] == 1):\n            s -= 2\n        if b.ply > 24:\n            s -= 2\n        return max(0, min(s, 9))\n    if h[4] == 3 and g[0][4] == 2 and g[1][4] == 2 and g[2][4] == 2:\n        return 7\n    if h[4] == 3 and g[2][4] == 2:\n        return 3\n    if h[4] == 2:\n        return 1\n    return 0\n\ndef fires(b):\n    return score4(b) >= 5\n\ndef level(b):\n    return score4(b)\n",
+ "synthesis": [
+  [
+   3,
+   3,
+   5,
+   4,
+   5,
+   0,
+   2
+  ],
+  [
+   3,
+   3,
+   5,
+   4,
+   2,
+   0,
+   5
+  ],
+  [
+   3,
+   3,
+   2,
+   4,
+   5,
+   0,
+   5
+  ],
+  [
+   3,
+   0,
+   5,
+   4,
+   5,
+   1,
+   2
+  ],
+  [
+   2,
+   3,
+   6,
+   5,
+   3,
+   2,
+   3,
+   3,
+   2,
+   3,
+   6,
+   6,
+   4,
+   5,
+   5
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Col4-height-1 alone: F1 0.19, AUROC 0.73. Neighbour/ply/edge refinements never pushed precision above ~0.14; best F1 0.212 (sim share 0.12). Minimal pairs show strong but irregular dependence on single distant stones (e.g. opponent stone in col 1 or col 6 kills it), not a clean tactical concept; it is likely a diffuse or mixed direction. Rejected: last move stacking on own stone; pure heights profile; mirror symmetry."
+}

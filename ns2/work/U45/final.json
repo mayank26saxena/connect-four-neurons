@@ -1,0 +1,74 @@
+{
+ "unit": "U45",
+ "description": "Weak, noisy layer-0 feature over which columns each side has played in: fires when a large share of my (side-to-move) stones are in column 4 AND a large share of the opponent's stones are in column 1 (either alone does not fire). Opponent stones in column 5 (and 6), and my stones in columns 1/5/6, suppress it. Slightly favoured when I am the first player and the last move was in column 1, 2 or 4; tactics do not matter.",
+ "effect": "None measurable: steering to max, zero, or 10x max changes no move probability by even 0.01.",
+ "program": "def _counts(b):\n    mine = [0] * 7\n    theirs = [0] * 7\n    for r in range(6):\n        for c in range(7):\n            if b.grid[r][c] == 1:\n                mine[c] += 1\n            elif b.grid[r][c] == 2:\n                theirs[c] += 1\n    return mine, theirs\n\ndef _score(b):\n    if b.last_col is None:\n        return -9.0\n    mine, theirs = _counts(b)\n    nm = max(1, sum(mine))\n    nt = max(1, sum(theirs))\n    m = [x / nm for x in mine]\n    t = [x / nt for x in theirs]\n    core = 3.0 * min(m[4], t[1]) + 0.7 * m[4]\n    pen = 1.5 * t[5] + 0.7 * t[6] + 0.5 * (m[1] + m[5] + m[6]) + 0.5 * t[4]\n    lw = {0: -0.2, 1: 0.1, 2: 0.1, 3: 0.0, 4: 0.1, 5: 0.05, 6: -0.2}\n    par = 0.1 if b.me_first else 0.0\n    return core - pen + lw[b.last_col] + par\n\ndef fires(b):\n    return _score(b) > 0.55\n\ndef level(b):\n    s = _score(b)\n    return max(0, min(9, int(round((s + 0.2) * 7))))\n",
+ "synthesis": [
+  [
+   4,
+   1,
+   4,
+   1,
+   4,
+   1,
+   2,
+   3,
+   0,
+   4
+  ],
+  [
+   4,
+   1,
+   4,
+   1,
+   4,
+   1,
+   2,
+   3,
+   2,
+   4
+  ],
+  [
+   4,
+   1,
+   4,
+   1,
+   4,
+   1,
+   2,
+   3,
+   0,
+   3,
+   2,
+   4
+  ],
+  [
+   4,
+   1,
+   4,
+   1,
+   4,
+   1,
+   2,
+   3,
+   0,
+   0,
+   2,
+   4
+  ],
+  [
+   4,
+   1,
+   4,
+   1,
+   4,
+   1,
+   0,
+   3,
+   2,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Tiny activations (dev max 0.004, threshold 0.001). The minimal pairs agree on the rule (my col-4 share combined with their col-1 share; their col 5 negative), but the best program gets only F1 0.351 (P 0.26, R 0.53, AUROC 0.74). p1 (parity + last col) F1 0.18; linear shares 0.31; min-share conjunction 0.32; counts 0.24. Simulation was nan (no ablation damage). Synthesis reaches the dev max but does not beat it. May be a random direction."
+}

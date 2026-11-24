@@ -1,0 +1,59 @@
+{
+ "unit": "U38",
+ "description": "Fires in the opening (roughly ply <= 12) when I (the player to move) own the bottom-right corner (row 0, col 6) with no opponent stone stacked above it, and the opponent has stones on the bottom two rows in columns 0, 1, 3, 4 or 5. Stronger with more such opponent stones and fewer moves played; opponent stones in column 2 and my own stones in columns 4-5 weaken it. Without my corner stone it essentially never fires.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by at most 0.01 on 4 positions.",
+ "program": "W_OPP = [0.4, 0.25, -0.25, 0.45, 0.6, 0.55]\n\ndef score(b):\n    g = b.grid\n    if g[0][6] != 1:\n        return -1.0\n    s = 0.0\n    for r in range(1, 6):\n        if g[r][6] == 2:\n            s -= 1.2\n        elif g[r][6] == 1:\n            s += 0.2\n    for c in range(6):\n        for r in (0, 1):\n            if g[r][c] == 2:\n                s += W_OPP[c] * (1.0 if r == 0 else 0.6)\n            elif g[r][c] == 1 and c in (4, 5):\n                s -= 0.4 if r == 0 else 0.25\n    s -= 0.07 * max(0, b.ply - 5)\n    return s\n\ndef fires(b):\n    return b.ply <= 12 and score(b) > 0.62\n\ndef level(b):\n    s = score(b)\n    if s <= 0:\n        return 0\n    return max(1, min(9, int(s * 6)))\n",
+ "synthesis": [
+  [
+   1,
+   6,
+   4,
+   2,
+   5,
+   6,
+   4
+  ],
+  [
+   1,
+   6,
+   4,
+   2,
+   3,
+   6,
+   5,
+   6,
+   4
+  ],
+  [
+   1,
+   6,
+   4,
+   2,
+   3,
+   6,
+   5,
+   2,
+   4
+  ],
+  [
+   1,
+   6,
+   4,
+   2,
+   3,
+   6,
+   5
+  ],
+  [
+   4,
+   6,
+   3,
+   2,
+   5,
+   6,
+   4
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Layer 0 board-position feature. p1 (corner mine & ply<=9) F1 .571; hand-weighted p3 .607; final p7 (corner gate, col-6 opponent penalty, per-column opponent weights rows 0-1, ply decay, ply<=12) F1 .679, P .73 R .64, AUROC .815, sim share .32. Minimal pairs agree on the corner gate, col-6 opponent kill, col-2 penalty. Rare late-game firings (ply 20+) unexplained. Steering effect nil. Weights are hand-set from act probes, not fit."
+}

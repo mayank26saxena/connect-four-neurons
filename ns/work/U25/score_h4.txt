@@ -1,0 +1,71 @@
+U25 dev call 3/8 (4s)
+  detection: F1 0.420 (precision 0.515, recall 0.355), AUROC 0.673; unit fires on 2.8% of positions, program on 2.0%
+  simulation: recovers 14.4% of the zero-ablation damage; a perfect 10-level reader recovers 88.8%; share of ceiling 0.16
+
+--- FALSE POSITIVES (program says fires, unit does not): 650 positions; examples ---
+[pos 21719] pole act -1.354, program 1.00, moves 2,3,5,3,3,2,3,0,0,3,5,5,6,1,0,5,4,6,2,5,5,2,0,0,4,4,4,4,4,3
+...OXX.
+O..OOO.
+X.OXXO.
+X.XXOO.
+X.OOXXO
+OOXOXXX
+0123456   X = me (to move), O = them
+[pos 56725] pole act 1.330, program 1.00, moves 1,2,5,0,0,4,2,1,2,0,4,2,5,1,4,4,5,6,3,5,5,4,1
+.......
+....XO.
+.OX.XX.
+XXO.OO.
+OXO.OO.
+XOXOXOX
+0123456   X = me (to move), O = them
+[pos 7188] pole act -1.624, program 1.00, moves 4,3,3,6,1,1,1,4,1,4,4,3,1,1,3,2,0,3,2,4,0
+.X.....
+.O.XX..
+.O.OO..
+.O.XX..
+OXOOX..
+OOXXO.X
+0123456   X = me (to move), O = them
+[pos 18490] pole act 2.644, program 1.00, moves 1,3,6,2,1,5,4,4,3,4,4,3,3,1,1,1,3,3,1,6,4,6,4,6,6,6,0,0,0,0
+.X.OX.O
+.O.XX.X
+OX.XX.O
+XO.OO.O
+OX.XO.O
+XXOOXOX
+0123456   X = me (to move), O = them
+
+--- MISSES (unit fires, program does not): 1250 positions; examples ---
+[pos 21262] pole act 7.805, program 0.00, moves 5,2,1,5,1,1,0,2,2,2,4,3,3,1,5,2,4,1,1,4,0,0,0,2,5,6,5,5,4,0,0,4,6,4,6,6
+XXO.OO.
+OOO.OX.
+XOO.XXO
+OOX.OXX
+XXOXXOX
+XXOOXXO
+0123456   X = me (to move), O = them
+[pos 6104] pole act 6.367, program 0.00, moves 6,3,2,6,3,6,2,6,6,3,6,2,2,3,2,3,3,0,2,0,0,5,0,5,5,5,0,0
+O.XX..X
+X.XO..X
+X.XO.OO
+X.OO.XO
+O.XX.OO
+O.XO.OX
+0123456   X = me (to move), O = them
+[pos 54292] pole act 6.918, program 0.00, moves 0,6,6,5,0,2,3,3,3,3,5,0,0,2,3,2,2,2,0,5,1,0,5,3,6,6,2,5,5,4,4,4,6,6,1,1,1,1,1,4
+OXXO.XO
+XOOX.OX
+XXXOOXO
+OOOXOOX
+XXOOXXX
+XXOXOOO
+0123456   X = me (to move), O = them
+[pos 40043] pole act 8.829, program 0.00, moves 6,5,0,5,2,2,2,0,3,1,5,3,1,5,6,5,5,0,0,2,2,0,1,2,0,6,6,1,6,1,6,1
+XOO..XX
+OOX..OX
+XOO..OX
+OXX..XO
+OXOO.OX
+XOXX.OX
+0123456   X = me (to move), O = them

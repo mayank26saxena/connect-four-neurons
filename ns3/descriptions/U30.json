@@ -1,0 +1,70 @@
+{
+ "unit": "U30",
+ "description": "No clean rule; a diffuse, left-right asymmetric mix. Tends to fire in early-to-middle games (about 8-16 stones) when the opponent's stones sit on the bottom row, in the centre column (rows 2-3) or on the edges, not in columns 2 and 4 above the bottom row. A full centre column and late games suppress it. Particular stacks matter strongly but only in context.",
+ "effect": "None measurable: forcing it off or to max changes move probabilities by at most about 0.05.",
+ "program": "GOOD_THEM = [(1, 3), (0, 6), (0, 1), (2, 1), (2, 5)]\nBAD_THEM = [(1, 2), (2, 2), (1, 4), (2, 4), (1, 5)]\nGOOD_ME = [(1, 1), (1, 5)]\nBAD_ME = [(0, 2), (0, 1)]\n\ndef score(b):\n    g = b.grid\n    s = 0\n    s += sum(1 for (r, c) in GOOD_THEM if g[r][c] == 2)\n    s -= sum(1 for (r, c) in BAD_THEM if g[r][c] == 2)\n    s += sum(1 for (r, c) in GOOD_ME if g[r][c] == 1)\n    s -= sum(1 for (r, c) in BAD_ME if g[r][c] == 1)\n    if b.heights[3] == 6:\n        s -= 1\n    if b.ply > 24:\n        s -= 1\n    return s\n\ndef fires(b):\n    return score(b) >= 3\n\ndef level(b):\n    return max(0, min(9, 2 * score(b) + 2))\n",
+ "synthesis": [
+  [
+   5,
+   0,
+   5,
+   3,
+   4,
+   5,
+   3,
+   6,
+   2,
+   0
+  ],
+  [
+   5,
+   0,
+   5,
+   3,
+   3,
+   5,
+   3,
+   6,
+   1,
+   0
+  ],
+  [
+   5,
+   0,
+   5,
+   3,
+   6,
+   5,
+   3,
+   6,
+   2,
+   0
+  ],
+  [
+   5,
+   0,
+   5,
+   3,
+   3,
+   5,
+   6,
+   6,
+   2,
+   0
+  ],
+  [
+   1,
+   3,
+   0,
+   3,
+   4,
+   0,
+   1,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Scored 4 hypotheses: ply+no O in cols 2/4 (F1 0.096, AUROC 0.60), opponent vertical three (0.072), connectivity combo (0.074), cell-cue score (0.115, AUROC 0.57, sim share 0.04, submitted). Minimal pairs show strong context dependence and left-right asymmetry (mirror of a 2.12 position gives -0.03). Firing alternates with side to move within a game. Steer shows no effect. Probably a random or mixed direction. Synthesis 2.187 beats dev max 2.123.",
+ "dev_calls_used": 4,
+ "submitted": "2026-11-23T02:15:09"
+}

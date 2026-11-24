@@ -1,0 +1,54 @@
+{
+ "unit": "U63",
+ "description": "No clean concept found. It fires mostly in the opening (about 4-12 stones), more often when I am the first player. It is somewhat stronger when the opponent has a stone directly on my bottom-left corner stone (cells (0,0)/(1,0)) or my stones sit in the bottom-left, and weaker when the opponent holds the bottom-right corner. Later in the game, firing is scattered and jumps from move to move without a clear board pattern.",
+ "effect": "None measurable: forcing it high or to zero changes move probabilities by 5 points or less (usually under 1) on 5 positions.",
+ "program": "def s(b):\n    # crude left/right score seen in a 4-stone sweep, plus early-game and parity\n    v = 0.0\n    if b.grid[1][0] == 2: v += 2\n    if b.grid[0][0] == 1: v += 1\n    if b.grid[0][1] == 1: v += 0.5\n    if b.grid[0][6] == 2: v -= 1.5\n    if b.grid[0][2] == 2: v -= 0.7\n    if b.last_col in (3, 4, 5): v += 0.7\n    if b.me_first: v += 0.5\n    v -= 0.25 * max(0, b.ply - 6)\n    return v\n\ndef fires(b):\n    return s(b) >= 1.5\n\ndef level(b):\n    return max(0, min(9, int(round(2 * s(b)))))\n",
+ "synthesis": [
+  [
+   0,
+   0,
+   1,
+   0,
+   5,
+   5
+  ],
+  [
+   0,
+   4,
+   1,
+   0,
+   5,
+   5
+  ],
+  [
+   2,
+   4,
+   2,
+   5,
+   3,
+   2
+  ],
+  [
+   1,
+   4,
+   0,
+   0,
+   5,
+   5
+  ],
+  [
+   0,
+   3,
+   1,
+   4,
+   1,
+   5,
+   4,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Swept all 2401 four-move openings with act: per-cell effects are small and mixed (theirs (1,0) +0.6, theirs (0,6) -0.45). The strong mirror asymmetry (left fires, mirror does not) holds in openings but not later. Dev F1: ply/parity 0.147, corner stack 0.124, weighted cell score 0.172 (best), sim share about 0. Looks distributed, possibly a random direction. Synthesis reached 2.085 vs dev max 2.096.",
+ "dev_calls_used": 3,
+ "submitted": "2026-11-21T19:32:29"
+}

@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+build/
+data/
+checkpoints/
+runs/
+notes/
+.DS_Store
+*.egg-info/
+.pytest_cache/
+results/*ck_smoke*
+runs_gen.log
+results/atlas/

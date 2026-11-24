@@ -1,0 +1,52 @@
+{
+ "unit": "U18",
+ "description": "No clean concept found. Strongest firing is a left-centre opening shape: my two stones stacked in column 2 (bottom two cells) with the cell above empty, their stones beside them at the bottom of columns 3 and 4, and column 4 at most one stone high. An opponent stone placed directly on top of my column-2 stack switches it off. Firing positions mostly have column 4 nearly empty, but that alone does not predict firing.",
+ "effect": "Small: when strongly active it raises column 2 and lowers column 3 by about 7-10 points; forcing it high elsewhere lowers column 3 by about 5 points.",
+ "program": "def fires(b):\n    return b.heights[4] <= 1 and b.grid[1][2] == 1 and b.heights[2] == 2\n\ndef level(b):\n    return 7 if fires(b) else 0\n",
+ "synthesis": [
+  [
+   6,
+   5,
+   4,
+   2,
+   3,
+   2,
+   3,
+   1,
+   1
+  ],
+  [
+   6,
+   5,
+   4,
+   2,
+   3,
+   2,
+   3
+  ],
+  [
+   6,
+   5,
+   3,
+   2,
+   4,
+   2,
+   3
+  ],
+  [
+   6,
+   5,
+   4,
+   2,
+   3,
+   2,
+   3,
+   1,
+   0
+  ]
+ ],
+ "confidence": "low",
+ "notes": "7 score calls; all rules AUROC 0.51-0.58. Best F1 0.130 (p1: column 4 height<=1, my stone at (1,2), column 2 height 2; P .17 R .10). Tried: column-4-low with my column-3 stones (0.106), open horizontal windows (0.046), column 3 minus column 4 height gap (0.084, recall .46), my (r,2)-(r,3) pair next to empty (r,4) (0.089), combined template (0.104). Minimal pairs show very nonadditive, position-specific responses (mirror images do not fire; single-stone edits swing it 0 to 7). Likely a mixture or random direction.",
+ "dev_calls_used": 7,
+ "submitted": "2026-11-21T18:17:38"
+}

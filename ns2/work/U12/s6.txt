@@ -1,0 +1,71 @@
+U12 dev call 6/8 (4s)
+  detection: F1 0.671 (precision 0.580, recall 0.795), AUROC 0.889; unit fires on 2.8% of scored positions, program on 3.9%
+  simulation: recovers 46.6% of the zero-ablation damage; a perfect 10-level reader recovers 28.4%; share of ceiling 1.64
+
+--- FALSE POSITIVES (program says fires, unit does not): 984 positions; examples ---
+[pos 46422] pole act 0.801, program 1.00, moves 6,6,1,4,1,2,4,3,5,1,2,3,3,3,1,3,6,0,3,0,6,6,1,1,0,0,0,6,0,4
+XO.X..O
+XX.O..O
+OX.O..X
+XO.XO.X
+OXXOX.O
+OXOOOXX
+0123456   X = me (to move), O = them
+[pos 2196] pole act 2.769, program 1.00, moves 1,2,3,1,0,2,3,3,2,2,1,4,4,3,4,4,1,3,3,1,6,6,0,0,4,5,4,5,2
+...OO..
+.XOXO..
+.OXXX..
+XOOXO..
+OXXOOXX
+OOXOXXO
+0123456   X = me (to move), O = them
+[pos 55287] pole act -0.125, program 1.00, moves 4,1,5,3,3,1,4,3,5,0,2,2,2,3,3,0,0,5,1,1,2,4,4,2,5,3,2,5,6,6,6,6,5,0,4,4,0,6,6,0,1
+X.OXXOO
+OOXOOXX
+XXOXOOX
+OOOXXXO
+XXXOOOX
+XXOXOOO
+0123456   X = me (to move), O = them
+[pos 54893] pole act 3.438, program 1.00, moves 2,0,5,4,0,3,4,4,5,2,5,5,4,5,2,3,4,2,3,5,0,3,3,3,0,0,0,4,1,1
+X..OOO.
+O..XXO.
+X.OOXO.
+X.XXOX.
+XOOOXX.
+OXXOOX.
+0123456   X = me (to move), O = them
+
+--- MISSES (unit fires, program does not): 350 positions; examples ---
+[pos 4776] pole act 8.136, program 0.00, moves 4,1,1,4,0,4,1,1,3,4,4,5,5,0,5,5,1,1,4,5,5,3,2,2,3,3,3
+.X..OO.
+.O.OOX.
+.X.XXX.
+.O.OXO.
+XOXXXO.
+OXOOOX.
+0123456   X = me (to move), O = them
+[pos 19894] pole act 7.224, program 0.00, moves 1,4,1,5,3,4,0,2,1,1,2,0,2,2,2,5,4,4,4,5,5,2,1,4,1,6,6,6,6,5,0,0
+.XO.O..
+.XX.XO.
+OOO.OXX
+XXX.XOO
+OXX.OOX
+XXOXOOO
+0123456   X = me (to move), O = them
+[pos 19334] pole act 5.055, program 0.00, moves 2,1,4,5,2,2,1,5,4,5,5,4,4,5,2,1,6,5,4,2,2,4,1,1,1,0,6,6,0,0,6,0,0,0,6,6,3
+XOO.XXX
+OXX.OXO
+XOO.OOO
+XXX.XXX
+OOO.OXO
+XXOOOXO
+0123456   X = me (to move), O = them
+[pos 66278] pole act 14.869, program 0.00, moves 6,6,2,0,5,4,5,0,5,5,2,4,2,2,4,1,3,2,4,0,0,6
+.......
+..O....
+X.O.XO.
+O.X.XXO
+O.X.OXO
+OOXXOXX
+0123456   X = me (to move), O = them

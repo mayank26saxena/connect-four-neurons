@@ -1,0 +1,80 @@
+{
+ "unit": "U23",
+ "description": "Strongest (top 0.1%) when either player has three in a row on the bottom row with both end cells empty, especially columns 3-5 or 1-3 (an unstoppable double threat); a stone on an outer end kills it. Otherwise it fires weakly and diffusely: more often when the side to move is lost (every move lets the opponent win), but most firing positions show no clear tactical feature, and the response is left-right asymmetric.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by at most about 0.03-0.06 (e.g. shifts a few points between columns 2 and 3 in one position); in lost positions nothing changes.",
+ "program": "def wins_at(g, r, c, p):\n    for dr, dc in ((0, 1), (1, 0), (1, 1), (1, -1)):\n        n = 1\n        for s in (1, -1):\n            rr = r + s * dr\n            cc = c + s * dc\n            while 0 <= rr < 6 and 0 <= cc < 7 and g[rr][cc] == p:\n                n += 1\n                rr += s * dr\n                cc += s * dc\n        if n >= 4:\n            return True\n    return False\n\ndef losing_moves(b):\n    # count my legal moves after which the opponent can win immediately\n    g = [list(row) for row in b.grid]\n    h = list(b.heights)\n    lose = 0\n    for m in b.legal:\n        r = h[m]\n        if wins_at(g, r, m, 1):\n            return -1\n        g[r][m] = 1\n        h[m] += 1\n        bad = False\n        for c in range(7):\n            if h[c] < 6 and wins_at(g, h[c], c, 2):\n                bad = True\n                break\n        g[r][m] = 0\n        h[m] -= 1\n        if bad:\n            lose += 1\n    return lose\n\ndef row0_open_three(b):\n    g = b.grid[0]\n    for s in range(1, 4):\n        p = g[s]\n        if p != 0 and g[s + 1] == p and g[s + 2] == p and g[s - 1] == 0 and g[s + 3] == 0:\n            return True\n    return False\n\ndef fires(b):\n    if not b.legal:\n        return False\n    if row0_open_three(b):\n        return True\n    if len(b.my_playable_wins) >= 2:\n        return True\n    return losing_moves(b) == len(b.legal)\n\ndef level(b):\n    if not b.legal:\n        return 0\n    if row0_open_three(b):\n        return 9\n    if len(b.my_playable_wins) >= 2:\n        return 7\n    l = losing_moves(b)\n    if l == len(b.legal):\n        return 7\n    if l < 0:\n        return 2\n    return min(4, l)\n",
+ "synthesis": [
+  [
+   2,
+   6,
+   1,
+   6,
+   5,
+   1,
+   3,
+   3,
+   3,
+   6,
+   6,
+   5,
+   2,
+   6,
+   2
+  ],
+  [
+   2,
+   6,
+   1,
+   6,
+   5,
+   1,
+   3,
+   3,
+   3,
+   6,
+   6,
+   5,
+   2,
+   1,
+   2
+  ],
+  [
+   2,
+   6,
+   1,
+   6,
+   5,
+   1,
+   3,
+   3,
+   3,
+   6,
+   6,
+   5,
+   2
+  ],
+  [
+   2,
+   6,
+   1,
+   6,
+   5,
+   1,
+   3,
+   3,
+   3,
+   6,
+   6
+  ],
+  [
+   0,
+   4,
+   4,
+   5,
+   4,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Hypotheses: any immediate win/must-block (F1 0.10); row-0 open three or endgame with >=5 full columns (0.15); mover lost within 2 plies (0.22, P 0.27); final = lost-in-2 OR row-0 open three OR my double immediate win (F1 0.224, P 0.25, R 0.21, AUROC 0.59, sim share 0.01). One score call was wasted on an accidental rerun. Minimal pairs confirm the row-0 open-three mode (blocking an end drops it from ~2.9 to about -1); 2-4 open three is weaker (1.2). Most firing is unexplained and mirror-asymmetric; it may be a mixture or a random direction. Synthesis max 5.96 (non-terminal), below dev max 6.66."
+}

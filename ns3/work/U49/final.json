@@ -1,0 +1,46 @@
+{
+ "unit": "U49",
+ "description": "No clean board pattern found. U49 tends to fire on sparse, early positions (about 4-14 stones, no column taller than 4, no full column), more often when column 1 is still empty, but whether it fires depends on the exact placement of individual stones and on the opponent's last move in ways that do not reduce to a simple rule. Full or nearly full boards almost never fire.",
+ "effect": "None measurable: forcing the unit to its maximum or to zero changes move probabilities by at most 0.01 on three positions tested.",
+ "program": "def fires(b):\n    return b.heights[1] == 0 and max(b.heights) <= 4 and b.ply <= 14\n\ndef level(b):\n    if max(b.heights) >= 6:\n        return 0\n    s = 7 - max(0, b.ply - 4) // 3 - max(0, max(b.heights) - 3) * 2\n    if b.heights[1] == 0:\n        s += 2\n    return max(0, min(9, s))\n",
+ "synthesis": [
+  [
+   5,
+   0,
+   5,
+   5,
+   3,
+   3
+  ],
+  [
+   5,
+   4,
+   5,
+   5,
+   3,
+   3
+  ],
+  [
+   5,
+   1,
+   5,
+   5,
+   3,
+   3
+  ],
+  [
+   3,
+   6,
+   3,
+   1,
+   2,
+   3,
+   2,
+   5,
+   4,
+   1
+  ]
+ ],
+ "confidence": "low",
+ "notes": "5 score calls. Sparse-board rule (max height<=4, ply<=16): F1 0.103, AUROC 0.662, sim share 0.02. Adding col-1-empty: F1 0.121 (best), AUROC 0.597. Last-row/no-threat, O-capping and ply-only variants were no better. Minimal pairs show swings >1.5 from moving one stone, inconsistent in direction across bases; deep-well and full-column hypotheses rejected. Likely a distributed/mixture direction. Synthesis reached 2.004 (dev max 1.895) via hill-climb: my stacked col-5 pair and col-3 stone each capped by O."
+}

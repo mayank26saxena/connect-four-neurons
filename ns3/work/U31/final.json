@@ -1,0 +1,54 @@
+{
+ "unit": "U31",
+ "description": "Weak, mixed unit. Its clearest trigger: the opponent has three stones in a four-cell window on the bottom row and I must block the empty bottom cell, which is not the centre column. I have no win of my own. Most other firing is in late-game boards with few open columns, and I found no board rule for it. Centre-column must-blocks and opponent double threats drive it strongly negative.",
+ "effect": "Lowers the centre column (3) by about 4-11 points and moves that mass to other columns (seen in 4 positions). No effect when the move is already forced.",
+ "program": "def bottom_block(b):\n    # exactly one must-block, on the bottom row, not in the centre column, and no win of my own\n    if b.my_playable_wins:\n        return False\n    w = list(b.their_playable_wins)\n    if len(w) != 1:\n        return False\n    r, c = w[0]\n    return r == 0 and c != 3\n\ndef fires(b):\n    return bottom_block(b)\n\ndef level(b):\n    if b.my_playable_wins or len(b.their_playable_wins) >= 2:\n        return 0\n    if bottom_block(b):\n        return 9\n    if b.their_playable_wins:\n        return 2\n    n = 0\n    for c in b.legal:\n        r = b.landing(c)\n        if (r + 1, c) in b.their_wins and (r + 1, c) not in b.my_wins:\n            n += 1\n    if n >= 2:\n        return 7\n    if n == 1:\n        return 5\n    return 0\n",
+ "synthesis": [
+  [
+   4,
+   3,
+   6,
+   2,
+   3,
+   1
+  ],
+  [
+   4,
+   3,
+   6,
+   1,
+   3,
+   2
+  ],
+  [
+   3,
+   4,
+   0,
+   3,
+   3,
+   3,
+   1
+  ],
+  [
+   6,
+   2,
+   6,
+   3,
+   4,
+   6,
+   3,
+   1
+  ],
+  [
+   3,
+   4,
+   1,
+   3,
+   3,
+   3,
+   0
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Best dev F1 0.132 (P 0.26, R 0.09, AUROC 0.54); simulation share 0.22 with graded level (poisoned columns). Rejected: any must-block / threat above landing (F1 0.08), centre-full/anti-centre proxies (0.07-0.10). Activation depends on move order (3,4,2,5=0.0 vs 3,5,2,4=1.4 for the same board), and one-stone changes flip row-0 must-blocks from +5.5 to -3.8. Bulk of firing (0.8-1.7, late game) unexplained. Likely a mixture or near-random direction. Synthesis max 6.36 < dev max 10.02."
+}

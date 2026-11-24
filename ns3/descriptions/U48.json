@@ -1,0 +1,58 @@
+{
+ "unit": "U48",
+ "description": "No single clean concept; a diffuse board readout. It fires mostly in two situations. (1) Early game (ply 4-9): column 0 holds 3 or more stones, and/or I own bottom cells in columns 1-3 while the opponent's newest stone sits on (0,2) or (0,4). My stones on the right bottom (cols 5-6) suppress it. (2) Late game: the opponent's last stone filled column 4 (row 5) or opened an empty column 4.",
+ "effect": "None measurable: forcing it to its max or to zero changes move probabilities by at most 0.01 on the 3 positions tested.",
+ "program": "MINE0 = [0.0, 0.55, 0.35, 0.5, 0.3, 0.0, -0.4]\nTHEIRS0 = [0.15, -0.2, 0.2, -0.2, 0.3, -0.35, -0.1]\n\ndef early(b):\n    s = -0.6\n    for c in range(7):\n        v = b.grid[0][c]\n        if v == 1:\n            s += MINE0[c]\n        elif v == 2:\n            s += THEIRS0[c]\n    if b.last_row == 0 and b.last_col in (2, 4):\n        s += 0.15\n    if b.heights[0] >= 2:\n        s += 0.3 * (b.heights[0] - 1)\n    return s\n\ndef act(b):\n    c = b.last_col\n    r = b.last_row\n    if b.ply <= 9:\n        return early(b)\n    if c == 4 and r == 5:\n        return 0.7\n    if c == 4 and r == 0 and b.ply >= 28:\n        return 0.7\n    return 0.0\n\ndef fires(b):\n    return act(b) >= 0.57\n\ndef level(b):\n    return max(0, min(9, int(act(b) * 7)))\n",
+ "synthesis": [
+  [
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   3,
+   2
+  ],
+  [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   3,
+   2
+  ],
+  [
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   3,
+   2
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   1,
+   2
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   2
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer 1. The activation depends on the board, not the move order (same board in a different order gives +-0.02), plus the cell of the last move. Last-cell rules: F1 0.26-0.28. Additive bottom-row weights applied everywhere: F1 0.08. Best (p5): early additive bottom-row weights + col-0 height, late last move (4,5)/(4,0): F1 0.317, P 0.29, R 0.35, AUROC 0.66, sim share 0.03. Widening the ply windows lowered F1 to 0.29. Many misses are late positions where the last stone lands in the top row of other columns. It may be a random direction or a mixture.",
+ "dev_calls_used": 6,
+ "submitted": "2026-11-23T03:00:44"
+}

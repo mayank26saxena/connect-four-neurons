@@ -1,0 +1,63 @@
+{
+ "unit": "U08",
+ "description": "Fires on bottom-row horizontal threats centred on column 4: strongest when the empty bottom cell of column 4 completes four for either side; also when the opponent has a bottom-row winning cell in columns 2-6, or a stone at the bottom of column 4 would make an open three. Vertical and higher-row threats do not count. Weak firing just above threshold (often late games, column 4 low) is diffuse and not captured.",
+ "effect": "Pushes the move toward column 4: forcing it high raised column 4 by +0.46 and +0.96 probability on two positions; zeroing it while it fires changes nothing measurable (the model already blocks/plays column 4).",
+ "program": "def run(row, c, p):\n    # length of the horizontal run of player p through bottom cell c if p stood there\n    n = 1\n    k = c - 1\n    while k >= 0 and row[k] == p:\n        n += 1\n        k -= 1\n    k = c + 1\n    while k < 7 and row[k] == p:\n        n += 1\n        k += 1\n    return n\n\ndef win_cells(row, p):\n    return [c for c in range(7) if row[c] == 0 and run(row, c, p) >= 4]\n\ndef bottom_wins(b):\n    row = list(b.grid[0])\n    return [c for p in (1, 2) for c in win_cells(row, p)]\n\ndef open_three_at_4(b):\n    # a stone at (0,4) would give one side two bottom-row winning cells\n    row = list(b.grid[0])\n    if row[4] != 0:\n        return False\n    for p in (1, 2):\n        r2 = row[:]\n        r2[4] = p\n        if len(win_cells(r2, p)) >= 2:\n            return True\n    return False\n\ndef fires(b):\n    return any(c >= 2 for c in bottom_wins(b)) or open_three_at_4(b)\n\ndef level(b):\n    w = [c for c in bottom_wins(b) if c >= 2]\n    if 4 in w:\n        return 9\n    if w:\n        return 8\n    if open_three_at_4(b):\n        return 7\n    if b.heights[4] == 6:\n        return 0\n    return 1\n",
+ "synthesis": [
+  [
+   3,
+   3,
+   6,
+   6,
+   2,
+   0,
+   0,
+   1,
+   5
+  ],
+  [
+   3,
+   3,
+   6,
+   6,
+   2,
+   0,
+   0,
+   0,
+   5
+  ],
+  [
+   3,
+   3,
+   6,
+   6,
+   2,
+   1,
+   5
+  ],
+  [
+   3,
+   3,
+   2,
+   1,
+   6,
+   6,
+   5
+  ],
+  [
+   3,
+   3,
+   6,
+   6,
+   2,
+   1,
+   1,
+   1,
+   5
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Best dev F1 0.391 (P 0.69, R 0.27), AUROC 0.63; simulation share of ceiling -0.46. The top of the distribution is clean (band 9 = nearly all must-block at (0,4)), confirmed by minimal pairs; placing a stone at (0,4) removes it. But ~2/3 of firing sits just above the 1.39 threshold with no clean rule (tried low-row playable threats: F1 0.25; asymmetric own-win rule: 0.38). My own bottom wins away from col 4 usually do not fire; some open-three cases (e.g. 3,3,2,3,6) do not fire. Synthesis 3,3,6,6,2,0,0,1,5 reaches 60.0, beating dev max 56.9.",
+ "dev_calls_used": 7,
+ "submitted": "2026-11-23T01:09:33"
+}

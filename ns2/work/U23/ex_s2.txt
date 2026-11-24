@@ -1,0 +1,382 @@
+U23: layer 5, pole -; fires when pole activation > 19.437 (dev firing rate 3.0%); dev max 43.545
+(only positions with at least 4 stones on the board count; earlier positions are never scored)
+
+=== band 0: pole-activation percentile 0-50 (-38.514 to 0.050) ===
+
+[pos 50944] pole act -0.387   moves: 5,1,2,1,1,2,4,3,4,4,2,2,4,5,2,3,6,3,3  last move col 3  my immediate wins []  must-block []
+.......
+..O....
+..XOO..
+.OOXX..
+.XXXOX.
+.XOXOOO
+0123456   X = me (to move), O = them
+
+[pos 143145] pole act -0.099   moves: 4,1,3,5,0,3,3,3,5,0,5,1,4  last move col 4  my immediate wins []  must-block []
+.......
+.......
+...X...
+...O.O.
+XX.XOO.
+OX.OOX.
+0123456   X = me (to move), O = them
+
+[pos 18745] pole act -0.221   moves: 2,3,3,3,0,4,3,4,4,4,2,0,6,3,3,2,1,2,5,5,5,5  last move col 5  my immediate wins []  must-block []
+...X...
+...O...
+..OXOO.
+..OOXX.
+O.XXOO.
+XXXOOXX
+0123456   X = me (to move), O = them
+
+[pos 44784] pole act -0.131   moves: 4,1,3,5,6,4,4,2,4,3,4,4,5,1,2,1,1,2,3,3,0,3,2,3,5,1,1  last move col 1  my immediate wins []  must-block []
+.O.XX..
+.X.XO..
+.OOXO..
+.XXOOO.
+.XOXXO.
+OXXOOXO
+0123456   X = me (to move), O = them
+
+=== band 1: pole-activation percentile 50-80 (0.050 to 0.997) ===
+
+[pos 58499] pole act 0.362   moves: 0,3,5,3,0,6,5,5,0,0,3,6,2,5,3,6  last move col 6  my immediate wins []  must-block [(3, 6)]
+.......
+.......
+O..X.O.
+X..X.OO
+X..O.XO
+X.XO.XO
+0123456   X = me (to move), O = them
+
+[pos 15846] pole act 0.364   moves: 2,0,5,1,3,4,3,3,2,1,1  last move col 1  my immediate wins []  must-block []
+.......
+.......
+.......
+.O.X...
+.XOO...
+XXOOXO.
+0123456   X = me (to move), O = them
+
+[pos 140541] pole act 0.468   moves: 6,1,3,1,3,3,6,5,3,1,1,5,5,6,4,5  last move col 5  my immediate wins []  must-block []
+.......
+.......
+.X.X.O.
+.O.O.XO
+.O.X.OX
+.O.XXOX
+0123456   X = me (to move), O = them
+
+[pos 104037] pole act 0.138   moves: 3,2,0,4,3,6,4,4,4,2,2,2,6,4,6,6,2,4,2,3,3,3,6,3,6,0  last move col 0  my immediate wins []  must-block []
+..XOO.X
+..XOO.X
+..OXX.O
+..XOO.X
+O.OXX.X
+X.OXO.O
+0123456   X = me (to move), O = them
+
+=== band 2: pole-activation percentile 80-90 (0.997 to 11.026) ===
+
+[pos 95773] pole act 1.765   moves: 0,0,2,2,2,3,3,5,2,6,4,0,5,0,0,6,0,1,5,5,6,3,2,2,3,1,1,1,3,1,6,3,5,1,6,4  last move col 4  my immediate wins [(2, 4), (5, 6)]  must-block []
+XOOO...
+XOXX.XX
+OOXX.OX
+OXXO.XX
+OOOXOXO
+XOXOXOO
+0123456   X = me (to move), O = them
+
+[pos 46683] pole act 9.430   moves: 2,5,6,0,5,5,5,2,6,0,4,4,4,1,1,6,0,6,3,3,1,2,2,1,6,1,5,0,0,5,4  last move col 4  my immediate wins []  must-block []
+.....X.
+OX...OO
+XXO.OOX
+OOX.OXX
+XOXXXOO
+XXOOOXO
+0123456   X = me (to move), O = them
+
+[pos 9134] pole act 1.269   moves: 6,3,1,0,3,6,1,5,1,1,0,5,3,0,2,2,1,3,3,0,0,5,5,3  last move col 3  my immediate wins []  must-block []
+...O...
+XX.X...
+OO.O.X.
+OX.X.O.
+XXOX.OO
+OXXO.OX
+0123456   X = me (to move), O = them
+
+[pos 150851] pole act 1.152   moves: 0,0,4,6,0,4,2,3,6,3,3,2,0,0  last move col 0  my immediate wins []  must-block []
+.......
+O......
+X......
+X..X...
+O.OOO.X
+X.XOX.O
+0123456   X = me (to move), O = them
+
+=== band 3: pole-activation percentile 90-95 (11.026 to 16.269) ===
+
+[pos 95521] pole act 14.080   moves: 6,0,5,5,2,5,5,4,0,6,4,6,4,6,6,4,3,3,3,5,6,4,5,4,1,1,0,0,0,0  last move col 0  my immediate wins []  must-block []
+O...OXX
+X...OOX
+O...OXO
+X..XXOO
+XO.OXOO
+OXXXOXX
+0123456   X = me (to move), O = them
+
+[pos 129274] pole act 15.712   moves: 2,3,6,6,5,6,3,3,2,3,0,3,3,2,6,4,2,4,4,4,4,0,0,2,4,2,1,5,5,5,0,5,5  last move col 5  my immediate wins []  must-block []
+..XOOO.
+..XXOX.
+O.OXXXO
+O.XXOOX
+X.OOXXX
+OOOXXOO
+0123456   X = me (to move), O = them
+
+[pos 24295] pole act 12.056   moves: 4,0,5,2,2,2,3,6,3,2,4,5,4,4,5,5,5,2,2,3,3,0,5,6,3,4,3,4,1,1,6,6,0,6,6  last move col 6  my immediate wins []  must-block []
+..OOXOO
+..XOXOX
+..XOXXX
+O.XXOOO
+XXOOOXX
+XOXOOOX
+0123456   X = me (to move), O = them
+
+[pos 42605] pole act 14.917   moves: 5,1,5,3,5,5,2,3,3,3,2,5,2,2,3,3,1,1,1,5,2,2,6,6,1,4,6,1,6,6,0,0,6,0  last move col 0  my immediate wins []  must-block []
+.OOO.OX
+.XXX.OO
+.XOO.OX
+OOXX.XX
+OXXO.XO
+XOXOOXX
+0123456   X = me (to move), O = them
+
+=== band 4: pole-activation percentile 95-97 (16.269 to 19.437) ===
+
+[pos 162407] pole act 19.324   moves: 2,3,3,2,2,4,3,5,6,3,5,5,5,6,3,2,2,6,6,5,3,0,5,6,4,4,4,6,1,2,4,4,1,0,1,0  last move col 0  my immediate wins [(3, 1)]  must-block [(3, 0)]
+..OXOXO
+..XXXOO
+..OOXXX
+OXXXOOO
+OXOXXXO
+OXXOOOX
+0123456   X = me (to move), O = them
+
+[pos 74802] pole act 19.047   moves: 5,2,0,0,4,1,1,0,2,4,2,0,0,1,2,2,1,6,1,5,4,0,6,5,2,5,5,4,5,4,6,6,3,3,1  last move col 1  my immediate wins []  must-block []
+XOO..O.
+OOX.XO.
+XOO.XXX
+XXO.OXO
+XOOXXXO
+OXXOOOX
+0123456   X = me (to move), O = them
+
+[pos 38186] pole act 19.124   moves: 4,2,3,3,4,3,6,5,4,4,3,5,2,5,5,3,6,2,6,6,5,3,5,0,6,2,6,4,0,1,0,0,0,4  last move col 4  my immediate wins []  must-block []
+...OOXX
+X..OOXX
+O.OXOXO
+X.OOXOX
+X.XOXOX
+OOOXXOX
+0123456   X = me (to move), O = them
+
+[pos 109934] pole act 16.664   moves: 1,5,6,3,4,3,5,1,0,1,1,0,0,5,5,4,4,4,6,5,3,3,4,1,3,3,0,0,1,4,5  last move col 5  my immediate wins []  must-block []
+.O.XXO.
+XX.OOX.
+OO.XXO.
+OX.OOX.
+XX.XXOO
+OO.XOXO
+0123456   X = me (to move), O = them
+
+=== band 5: pole-activation percentile 97-98 (19.437 to 21.560) ===
+
+[pos 67790] pole act 19.792 FIRES  moves: 5,3,2,5,3,3,5,6,5,3,5,5,3,6,4,6,6,6,0,0,6,3  last move col 3  my immediate wins []  must-block []
+...O.OX
+...X.XO
+...O.XX
+...O.XO
+O..X.OO
+X.XOXXO
+0123456   X = me (to move), O = them
+
+[pos 70374] pole act 20.751 FIRES  moves: 6,3,4,5,4,5,4,4,6,1,5,6,5,2,0,1,0,0,5,5,0,4,6,6,0,1,1,1,0,4,1,6,2,2,2  last move col 2  my immediate wins []  must-block []
+OO..XXX
+OX..XOX
+OOO.XOO
+XXX.OOX
+OXO.OXO
+OXXXOXO
+0123456   X = me (to move), O = them
+
+[pos 7951] pole act 20.293 FIRES  moves: 3,1,1,2,6,3,2,1,2,5,2,2,0,0,0,6,5,5,5,4,4,5,4,6,0,0,3,3,4,4,3,6,6,4,6,3,5  last move col 5  my immediate wins []  must-block []
+...XXOO
+X.XOXXO
+O.OXOOX
+OXOOOXX
+XOOXOOX
+OXXOXXO
+0123456   X = me (to move), O = them
+
+[pos 118286] pole act 20.268 FIRES  moves: 3,3,1,2,1,0,3,5,1,1,2,2,4,2,3,2,2,5,4,5,5,0,3,3,0,0,0,6,0,5,5  last move col 5  my immediate wins []  must-block []
+O.OX.O.
+O.XO.X.
+XXXO.O.
+OOXO.X.
+XOOXOX.
+XOXOOXX
+0123456   X = me (to move), O = them
+
+=== band 6: pole-activation percentile 98-99 (21.560 to 24.592) ===
+
+[pos 103970] pole act 22.469 FIRES  moves: 6,6,0,2,4,3,3,3,3,5,5,2,2,2,4,4,4,5,6,4,6,5,1,1,6,6,5,2,4,0,2,0,1,1,1,5,1,0,0,0  last move col 0  my immediate wins []  must-block []
+OXX.XOO
+XXO.OXX
+OOOXXOX
+OXXOOOX
+OOOXXXO
+XXOOXOX
+0123456   X = me (to move), O = them
+
+[pos 92920] pole act 23.547 FIRES  moves: 4,1,6,1,3,5,3,3,1,1,4,5,6,5,5,4,6,6,4,5,3,4,6,3,3,5,1,1,6,2,4,0,0,2,2,2,2,2,0,0  last move col 0  my immediate wins []  must-block []
+.OOXXOX
+.XXOOOX
+OOOXXXO
+XXXOOOX
+XOOXXOX
+OOOXXOX
+0123456   X = me (to move), O = them
+
+[pos 124415] pole act 23.577 FIRES  moves: 0,0,3,4,6,6,5,3,2,1,3,2,1,2,5,2,2,3,3,5,5,3,5,5,2,6,6,4,4,0,0,0,6,6,0,1,1,1,1  last move col 1  my immediate wins []  must-block []
+OOOX.XX
+XXOO.OO
+OOXX.OO
+XXXOOXX
+XOXXXOX
+OXOOXOO
+0123456   X = me (to move), O = them
+
+[pos 154786] pole act 23.291 FIRES  moves: 2,4,2,1,5,1,2,2,4,1,1,1,4,5,0,5,5,4,1,5,4,5,0,4,3,3,0,0,2,2,6,6,0  last move col 0  my immediate wins []  must-block []
+.OX.XX.
+OXO.OX.
+XOX.XO.
+OXO.OX.
+OXOXOXX
+OXOOXOO
+0123456   X = me (to move), O = them
+
+=== band 7: pole-activation percentile 99-99.5 (24.592 to 27.048) ===
+
+[pos 60088] pole act 25.771 FIRES  moves: 6,2,5,5,3,4,4,5,5,2,0,2,2,4,5,4,4,2,6,2,6,6,6,6,5,4,1,0,1,0,0,1,1,1,1,0,0  last move col 0  my immediate wins []  must-block []
+OOX.XOX
+XXX.OOO
+OOO.XOX
+XXX.XXO
+XOX.OXO
+OOXOXOO
+0123456   X = me (to move), O = them
+
+[pos 159244] pole act 25.394 FIRES  moves: 0,2,1,1,5,2,1,0,1,2,2,2,1,1,2,6,6,5,5,4,6,6,5,4,5,5,6,6,4,4,0,4,0,4  last move col 4  my immediate wins []  must-block []
+.OX.OOO
+.XO.OXX
+XXX.OXO
+XXO.XXX
+OOO.OOX
+XXO.OXO
+0123456   X = me (to move), O = them
+
+[pos 42123] pole act 25.166 FIRES  moves: 4,3,2,1,3,4,4,2,3,2,3,3,0,4,5,5,3,0,5,5,5,0,2,0,0,5,0,2,2,4,4,1,1,6  last move col 6  my immediate wins []  must-block []
+X.XXXO.
+X.OOOX.
+O.XXOO.
+OXOXXX.
+OOOXOO.
+XOXOXXO
+0123456   X = me (to move), O = them
+
+[pos 156024] pole act 26.704 FIRES  moves: 1,4,5,1,4,1,5,5,0,1,1,2,2,5,2,4,2,2,0,6,5,0,4,1,5,4,4,6,6,2,6,6,0,0  last move col 0  my immediate wins []  must-block []
+.OO.XX.
+OXO.OXO
+XOX.XOX
+OOX.OOX
+XOX.XXO
+XXO.OXO
+0123456   X = me (to move), O = them
+
+=== band 8: pole-activation percentile 99.5-99.9 (27.048 to 31.382) ===
+
+[pos 16791] pole act 28.546 FIRES  moves: 4,3,6,5,3,3,4,4,6,5,5,3,4,3,3,4,4,6,6,5,6,5,5,6,2,2,2,0,0,2,2,2,0,0,0,0  last move col 0  my immediate wins []  must-block []
+O.OXXXO
+X.XOOOX
+O.OOXOX
+X.XOOXO
+X.OXXOX
+O.XOXOX
+0123456   X = me (to move), O = them
+
+[pos 85717] pole act 30.183 FIRES  moves: 1,4,5,1,5,5,3,3,5,1,1,0,0,2,3,3,4,3,3,4,4,2,2,2,2,0,2,6,5,6,6,4,4,5,0,6,0,0,1,1  last move col 1  my immediate wins []  must-block []
+OOXXXO.
+XXXOOX.
+XXOOXXO
+OOXXOOX
+XOOOXXO
+OXOXOXO
+0123456   X = me (to move), O = them
+
+[pos 121986] pole act 27.520 FIRES  moves: 0,2,6,5,0,5,0,0,2,2,1,4,3,5,5,1,4,4,4,2,2,4,6,6,4,1,1,6,1,0,2,0,5,6,6,5,1  last move col 1  my immediate wins []  must-block []
+XOO.OXO
+XOO.XOX
+XOX.OOX
+OXX.XXX
+OXO.OXO
+OOXOXXO
+0123456   X = me (to move), O = them
+
+[pos 16673] pole act 27.126 FIRES  moves: 0,4,0,4,1,3,5,3,4,3,3,5,4,3,0,0,3,1,0,0,4,4,5,1,1,5,5,1,1,6,6,5  last move col 5  my immediate wins []  must-block []
+OX.XOO.
+XO.OXX.
+OX.XXO.
+XO.OXX.
+XO.OOOX
+XX.OOXO
+0123456   X = me (to move), O = them
+
+=== band 9: pole-activation percentile 99.9-100 (31.382 to 43.545) ===
+
+[pos 152798] pole act 31.505 FIRES  moves: 0,2,3,2,2,2,0,3,2,5,0,0,6,5,2,3,3,0,0,6,6,6,6,6,1,1,3,3,5,5,4,5,4,5  last move col 5  my immediate wins []  must-block [(2, 4)]
+X.XO.OO
+O.XX.OX
+O.OX.OO
+X.XO.XX
+XOOOXOO
+XXOXXOX
+0123456   X = me (to move), O = them
+
+[pos 114009] pole act 31.663 FIRES  moves: 2,1,1,6,2,1,2,2,6,5,3,3,6,6,0,4,4,0,2,1,5,1,1,5,5,4,5,4,2,6,4,5,4,0,0,6,0,0  last move col 0  my immediate wins []  must-block [(2, 3)]
+OXX.XOO
+XOX.XXO
+XOO.OXO
+OOX.OOX
+OXXOXXX
+XOXXOOO
+0123456   X = me (to move), O = them
+
+[pos 87464] pole act 31.478 FIRES  moves: 2,1,0,2,0,6,1,2,2,4,5,1,1,3,1,4,5,4,4,5,5,1,2,4,2,3,3,3,6,0,0,5,5,3,3,4,0,0  last move col 0  my immediate wins []  must-block []
+OOXXOX.
+XXXOOO.
+XXXOXX.
+OOOXOO.
+XXOOOXX
+XOXOOXO
+0123456   X = me (to move), O = them
+
+[pos 80487] pole act 32.197 FIRES  moves: 4,0,1,4,3,2,1,3,3,4,1,1,2,4,4,2,2,4,0,2,2,1,1,5,5,6,6,5,5,6,5,5,6  last move col 6  my immediate wins []  must-block []
+.OO.XX.
+.XX.OO.
+.XO.XOO
+.OXOXXX
+OOOXXOO
+XOXOOXX
+0123456   X = me (to move), O = them

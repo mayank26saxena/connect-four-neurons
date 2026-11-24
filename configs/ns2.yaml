@@ -1,0 +1,143 @@
+# All hyperparameters for the main run. Every script reads this file; nothing is set on the command line.
+seed: 20261118
+
+teacher:
+  depth: 10            # negamax plies; deterministic (exact-depth transposition table)
+  play_temp: 2.0       # softmax temperature used to sample the teacher's moves when generating games
+  max_random_plies: 6  # each game opens with k ~ U{0..6} uniform random plies (k drawn from the game seed)
+
+data:
+  out_dir: data
+  splits:              # name: [number of games, seed offset]; offsets keep the splits disjoint
+    train: [400000, 0]
+    val: [5000, 10000000]
+    analysis: [10000, 20000000]
+
+model:
+  n_layer: 6
+  d_model: 256
+  n_head: 8
+  d_ff: 1024           # SwiGLU neurons per layer
+  vocab: 8             # 7 columns + BOS (id 7)
+  ctx: 43
+
+train:
+  target_temp: 1.0     # soft targets = softmax(teacher scores / target_temp)
+  batch_games: 512
+  steps: 8000
+  lr: 1.0e-3
+  min_lr: 5.0e-5
+  warmup: 300
+  weight_decay: 0.1
+  grad_clip: 1.0
+  eval_every: 250
+  ckpt_steps: [0, 25, 50, 100, 150, 200, 300, 400, 600, 800, 1000, 1500, 2000, 3000, 4000, 6000, 8000]
+  out_dir: checkpoints/main
+
+analysis:
+  checkpoint: checkpoints/main/step_008000.pt
+  n_games: 5000            # first 5,000 games of the analysis split (~170k positions) for all neuron statistics
+  fire_pct: 97             # pole fires beyond p97 (positive) / p3 (negative), as in Tigges et al.
+  bands: [[25, 75], [10, 90], [5, 95], [3, 97], [1, 99], [0.5, 99.5]]
+  topk: [8, 16, 32, 64, 128, 256]
+  play_opponents: [["random", 0], ["teacher", 4], ["teacher", 10]]
+  rotation_seed: 1
+
+modes:
+  n_per_layer: 40          # random poles per layer (20 neurons x both poles); summary statistics use only these
+  featured_per_layer: 5    # best concept-matched poles per layer, analysed and reported separately
+  max_firings: 2000
+  min_firings: 50          # poles with fewer firings on the analysis set are recorded as skipped
+  top_components: 200      # upstream components kept per pole (largest mean |contribution|)
+  knn: 15
+  resolution: 1.0
+  min_cluster_frac: 0.02
+  merge_corr: 0.8          # subcircuits with concept-rate profiles correlated above this form one mode
+
+action:
+  min_f1: 0.5
+  max_poles: 60
+  max_positions: 3000
+  n_random: 10
+  clamp_pct: 99.5
+  clamp_scale: 1.0
+
+dynamics:
+  n_games: 2000            # analysis games used per checkpoint
+  tracked_concepts: [block_now_any, win_now_any, block_now_c3, win_now_c3, poison_c3, opp_threats_ge1, cell_r0c3_mine, cell_r2c3_theirs, full_c3]
+
+web:
+  min_f1: 0.5              # poles exported with a concept label for the demo
+  group_size: 50           # neurons per concept the demo can switch off together (top-ranked by F1, from 07b)
+
+group:
+  concepts: [block_now, win_now]
+  ks: [1, 2, 5, 10, 20, 50, 100, 200]
+  n_random: 3
+  max_positions: 2000
+  clamp_pct: 99.5
+
+sae:
+  n_train_games: 20000     # training-split games whose activations train the SAEs (~690k positions)
+  latents: 4096            # per layer (4x the neurons)
+  k: 32
+  steps: 6000
+  batch: 4096
+  lr: 4.0e-4
+  min_rate: 0.005          # latents firing on fewer positions than this are counted as dead/rare and not scored
+
+basis:
+  rotation_seeds: 3        # random orthogonal bases per layer for the controls
+  topk_frac: 0.0625        # keep this fraction of units per position and layer (64 of 1,024)
+  bands: [[25, 75], [10, 90], [5, 95]]
+  kurt_subsample: 2000000  # entries sampled per layer for the top-5% energy share
+  batch: 256
+
+crossfit:
+  pcts: [90, 95, 97, 98, 99, 99.5]
+  n_boot: 500
+  min_concept_count: 50
+  col_chunk: 512
+
+tactics:
+  max_positions: 3000      # positions per tactic set, sampled from the analysis split
+  topk: [10, 50, 200]
+  n_random: 3
+  probe_steps: 300
+  probe_train_frac: 0.7    # games used to fit probes; the rest are held out
+  emergence_ckpts: [0, 100, 200, 400, 600, 800, 1000, 1500, 2000, 3000, 4000, 6000, 8000]
+
+worldmodel:                # PLAN.md addendum (h)
+  n_games: 4000            # analysis-split games used for probes (positions ~120k)
+  train_frac: 0.7          # probes are fitted on these games, scored on the rest
+  probe_steps: 500
+  probe_lr: 0.01
+  mlp_hidden: 512
+  mlp_steps: 800
+  edit_positions: 1500     # held-out positions whose single-cell edits are scored by the teacher
+  teacher_depth: 10
+  min_ply: 4
+  head_games: 1000         # held-out games for head ablation and attention shares
+  emergence_games: 2000
+  n_perm: 10000
+  n_puzzles: 12            # edits exported to the demo
+
+neuron_scientist:          # PLAN.md addendum (r): follow-up to (q)
+  seed: 20261122
+  n_games: 5000            # dev = analysis split, test = val split (first n_games of each)
+  n_explained: 20          # poles with in-sample dictionary F1 >= explained_f1
+  n_unexplained: 40        # poles with in-sample dictionary F1 < unexplained_f1
+  n_random: 30             # blinded random directions in a layer's neuron space (5 per layer)
+  explained_f1: 0.6
+  unexplained_f1: 0.3
+  fire_pct: 97             # fires beyond the unit's own dev p97 (positive pole) / p3 (negative pole)
+  max_dev_calls: 8         # dev-metric calls per unit
+  dev_score_games: 2000    # dev games scored by each feedback-loop call (verification uses all n_games)
+  dev_sim_games: 1000      # of those, games used for the simulation score (level map fitted on the rest)
+  test_sim_games: 1000     # test games used for the held-out simulation score
+  fit_games: 1500          # dev games used to fit the level -> activation map in verification
+  judge_pairs: 20
+  min_ply: 4               # (r) positions with fewer than 4 stones are never scored (opening artefact in (q))
+  exclude_key: ns/private/key.json   # (r) neurons described in (q) are not sampled again
+  random_seed_mult: 1000   # (r) random directions differ from (q)
+  study: r

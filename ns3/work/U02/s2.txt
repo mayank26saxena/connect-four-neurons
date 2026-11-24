@@ -1,0 +1,71 @@
+U02 dev call 2/8 (4s)
+  detection: F1 0.115 (precision 0.062, recall 0.791), AUROC 0.715; unit fires on 2.9% of scored positions, program on 37.3%
+  simulation: recovers 9.4% of the zero-ablation damage; a perfect 10-level reader recovers 87.6%; share of ceiling 0.11
+
+--- FALSE POSITIVES (program says fires, unit does not): 21209 positions; examples ---
+[pos 51589] pole act -0.491, program 1.00, moves 6,4,5,5,3,6,1,5,5,4,3,4,4,3,6,3,1,2,4,1,6,6,4,5,0,0
+....X..
+....XOO
+...OXXX
+.O.OOOX
+OX.XOOO
+XXOXOXX
+0123456   X = me (to move), O = them
+[pos 35002] pole act 0.252, program 1.00, moves 5,3,2,2,5,3,2,3,3,0,2,2,6,5,4,5,2,0,5,3,3,5,6,1,1,1
+..XX.O.
+..OO.X.
+..XX.O.
+.OXO.O.
+OXOO.XX
+OOXOXXX
+0123456   X = me (to move), O = them
+[pos 65181] pole act -0.536, program 1.00, moves 0,1,1,1,1,3,4,3,4,4,3,3,3,6,1,6,0,1,4,6,6,0
+.O.....
+.X.X...
+.X.OX.X
+OO.XO.O
+XX.OX.O
+XO.OX.O
+0123456   X = me (to move), O = them
+[pos 32411] pole act 0.853, program 1.00, moves 2,2,3,4,3,2,2,3,1,0,3,3,5,3,4,4,4,2
+...O...
+..OO...
+..XXX..
+..OOO..
+..OXX..
+OXXXOX.
+0123456   X = me (to move), O = them
+
+--- MISSES (unit fires, program does not): 370 positions; examples ---
+[pos 23367] pole act 4.116, program 0.00, moves 5,6,1,0,6,2,0,6,6,2,2,2,0,3,3,3,5,0,5,5,3,2,6,3,3,2,5,5,0,0,6,1,1,1,1,1,4,4,4
+XXXO.XO
+OOXX.OO
+XXXO.XO
+OOOXOOX
+OXXOXOO
+XOXXOOX
+0123456   X = me (to move), O = them
+[pos 59309] pole act 5.305, program 0.00, moves 0,2,5,2,2,4,4,2,0,3,1,4,2,3,3,0,3,1,3,3,2,0,1,0,0,4,4,6,4,6,6,6,6,6
+X.XOX.O
+O.XXX.X
+O.OXO.O
+OXXXO.X
+XOOOX.O
+XXOOOXO
+0123456   X = me (to move), O = them
+[pos 65642] pole act 4.696, program 0.00, moves 2,3,6,4,0,3,3,3,4,5,4,4,0,3,4,3,6,1,4,0,2,2,6,6,2,2,2,6,5,5,5,1,5,6,0,0,0
+O.OXO.X
+X.XXOOX
+O.OXXOX
+X.XOOXO
+OXOXOOO
+OXOXXXO
+0123456   X = me (to move), O = them
+[pos 19374] pole act 7.669, program 0.00, moves 0,5,2,4,5,5,3,1,5,3,1,0,6,6,3,3,1,0,0,2,3,2,1,1,2,5,3,2,1,0,6,6,5,6,4,2,0
+OOXO.O.
+XXXO.XX
+OOOX.OX
+XOXO.XO
+XOXXOOX
+OXOOXXO
+0123456   X = me (to move), O = them

@@ -1,0 +1,40 @@
+def col1_level(b):
+    L = b.landing(1)
+    if L is None:
+        return 0
+    w = b.my_wins
+    t = [d for d in range(3) if (L + d, 1) in w]
+    if not t:
+        return 0
+    if 0 in t:
+        return 8
+    if 1 in t and 2 in t:
+        return 8
+    if len(w) >= 2:
+        return 6
+    return 0
+
+def stacked(b):
+    w = b.my_wins
+    return any((r + 1, c) in w and (r, c) not in b.their_wins for (r, c) in w)
+
+def fires(b):
+    if col1_level(b):
+        return True
+    if b.ply < 12:
+        return False
+    if b.my_playable_wins and len(b.my_wins) >= 2:
+        return True
+    return stacked(b)
+
+def level(b):
+    L = b.landing(1)
+    t = [] if L is None else [d for d in range(3) if (L + d, 1) in b.my_wins]
+    if t:
+        lv = 3 + 2 * len(t) + (1 if 0 in t else 0)
+        if col1_level(b):
+            lv += 1
+        return min(9, lv)
+    if fires(b):
+        return 3
+    return 0

@@ -1,0 +1,42 @@
+{
+ "unit": "U50",
+ "description": "No clean concept found. The strongest tendency: it fires when the opponent's last stone went into column 4 while column 5 is still empty, most strongly in the opening (e.g. 3,1,6,4). Much of its firing near threshold happens in mid and late games with no shared board pattern I could find, so this rule catches only about a fifth of firing.",
+ "effect": "None measurable: forcing it to zero or to its maximum moves no column's probability by more than 0.01 (tested on 4 positions).",
+ "program": "def fires(b):\n    return b.last_col == 4 and b.heights[5] == 0\n\ndef level(b):\n    if fires(b):\n        return 9 if b.ply <= 10 else 6\n    if b.last_col == 4:\n        return 2\n    if b.heights[5] == 0:\n        return 1\n    return 0\n",
+ "synthesis": [
+  [
+   6,
+   6,
+   2,
+   4
+  ],
+  [
+   6,
+   1,
+   3,
+   4
+  ],
+  [
+   3,
+   1,
+   6,
+   4
+  ],
+  [
+   6,
+   6,
+   6,
+   4
+  ],
+  [
+   3,
+   1,
+   3,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer 1, pole -. Tried: last col 4 landing on floor/own stone (F1 0.14), last4&col5 empty or last5&col4 empty (0.14), weighted score with early ply (0.13), col5 gap between filled cols 4 and 6 (0.13), last col 4 & col 5 empty (0.17, best; AUROC 0.58; sim share -0.03). Top band is dominated by last move col 4 and col 5 empty in openings, but bands 5-6 are mostly neither. Activation flips on and off from move to move in mid-game. Not mirror-symmetric. No steering effect. Synthesis best 1.359 < dev max 1.618. Likely a mixture or random direction.",
+ "dev_calls_used": 5,
+ "submitted": "2026-11-21T19:02:55"
+}

@@ -1,0 +1,57 @@
+{
+ "unit": "U17",
+ "description": "Strongest in quiet early openings (about 5-11 stones) where I, the player to move, still have every stone (or all but one) on the bottom row, and the bottom row looks like .OX.XO.: opponent on columns 1 and 5, me on columns 2 and 4, centre column empty, often with opponent stones capping mine on row 1. Near-threshold firing in mid/late games is diffuse and not described. Never fires when I have an immediate win.",
+ "effect": "Raises column 1 (by about 0.1-0.25 probability) and a little column 5, at the expense of column 2 (and column 4); little effect in forced positions.",
+ "program": "def motif(b):\n    g = b.grid\n    return (int(g[0][1] == 2) + int(g[0][2] == 1) + int(g[0][4] == 1)\n            + int(g[0][5] == 2) + int(g[0][3] == 0))\n\ndef xhigh(b):\n    return sum(1 for r in range(1, 6) for c in range(7) if b.grid[r][c] == 1)\n\ndef fires(b):\n    if b.ply < 5 or b.ply > 11 or b.my_playable_wins:\n        return False\n    x = xhigh(b)\n    m = motif(b)\n    return (x == 0 and m >= 2) or (x == 1 and m >= 4)\n\ndef level(b):\n    if b.ply < 5 or b.ply > 11 or b.my_playable_wins:\n        return 0\n    x = xhigh(b)\n    m = motif(b)\n    v = 2 * m - 3 * x\n    return max(0, min(9, v))\n",
+ "synthesis": [
+  [
+   1,
+   2,
+   5,
+   4,
+   4,
+   6,
+   2
+  ],
+  [
+   5,
+   4,
+   1,
+   2,
+   4,
+   6,
+   2
+  ],
+  [
+   1,
+   2,
+   5,
+   4,
+   2,
+   6,
+   4
+  ],
+  [
+   5,
+   4,
+   1,
+   2,
+   2,
+   6,
+   4
+  ],
+  [
+   1,
+   2,
+   5,
+   4,
+   2,
+   0,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Best dev F1 0.181 (P 0.257, R 0.139, AUROC 0.563), simulation share -0.28 (negative for every program tried). Six score calls: row-1 opponent stones (0.145), weighted cell sum (0.165), bottom-row motifs alone (0.08-0.10, precision about 0.5 but recall 0.05), early plus motif (0.181). Minimal pairs: my stacked stones kill firing; O on (0,1) vs (0,0) swings activation from 11 to -0.5; not mirror-symmetric. About 2/3 of firing is mid/late-game near threshold with no bottom-row or column signal I could find. Could be a random direction. Synthesis positions reach 14.9-16.8 (dev max 11.46).",
+ "dev_calls_used": 6,
+ "submitted": "2026-11-23T01:40:01"
+}

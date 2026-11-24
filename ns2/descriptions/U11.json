@@ -1,0 +1,56 @@
+{
+ "unit": "U11",
+ "description": "Early-to-middle positions with a low, centre-left cluster: my stones on the bottom of columns 3-4 and at row 2 of column 3, the opponent's stones directly on top at row 1 of columns 3/4 and flanking on the bottom row at columns 2 and 5, with cell (2,4) still empty. Any stone at (2,4), my stones on row 1 right of centre, or tall outer columns switch it off. Graded, additive; no single cell is sufficient.",
+ "effect": "None measurable: zeroing it on 4 firing positions or forcing it to max on 3 others moves move probabilities by at most ~8 points, with no consistent column.",
+ "program": "def score_of(b):\n    g = b.grid\n    s = 0.0\n    if g[1][3] == 2:\n        s += 3\n    elif g[1][3] == 1:\n        s -= 1\n    if g[2][3] == 1:\n        s += 2.5\n    elif g[2][3] == 2:\n        s -= 2\n    if g[0][3] == 1:\n        s += 0.5\n    if g[0][2] == 2:\n        s += 1.5\n    elif g[0][2] == 0:\n        s -= 2\n    if g[0][5] == 2:\n        s += 1\n    elif g[0][5] == 0:\n        s -= 0.5\n    if g[0][4] == 1:\n        s += 1\n    if g[1][5] == 2:\n        s += 1\n    elif g[1][5] == 1:\n        s -= 1.5\n    if g[1][2] == 2:\n        s += 0.5\n    if g[3][2] == 2:\n        s += 1\n    if g[3][3] == 2:\n        s += 0.5\n    if g[2][2] == 1:\n        s += 1\n    elif g[2][2] == 2:\n        s -= 1\n    if g[1][4] == 2:\n        s += 1.5\n    elif g[1][4] == 1:\n        s -= 1.5\n    if g[1][6] == 1:\n        s -= 1\n    if g[2][4] == 2:\n        s -= 5\n    elif g[2][4] == 1:\n        s -= 2.5\n    for r in range(3, 6):\n        if g[r][4] != 0:\n            s -= 1\n    for c in (0, 6):\n        for r in range(1, 6):\n            if g[r][c] != 0:\n                s -= 0.5\n    if b.ply > 14:\n        s -= 0.15 * (b.ply - 14)\n    return s\n\ndef fires(b):\n    # graded: 0.5 at score 7, saturating at 0 and 1\n    return max(0.0, min(1.0, 0.5 + (score_of(b) - 7) / 8))\n\ndef level(b):\n    s = score_of(b)\n    if s < 3:\n        return 0\n    return max(0, min(9, int(s - 3)))\n",
+ "synthesis": [
+  [
+   3,
+   3,
+   3,
+   5,
+   4,
+   2
+  ],
+  [
+   3,
+   3,
+   4,
+   5,
+   3,
+   2
+  ],
+  [
+   4,
+   5,
+   3,
+   3,
+   3,
+   2
+  ],
+  [
+   3,
+   3,
+   3,
+   5,
+   4,
+   2,
+   3,
+   5
+  ],
+  [
+   3,
+   3,
+   3,
+   5,
+   4,
+   2,
+   0,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Best dev F1 0.322 (P 0.34, R 0.30, AUROC 0.785), simulation share 0.10, from a hand-weighted cell score. Hard rule on their (1,3)+my (2,3)+empty (2,4) gave F1 0.20; alternating-stripe idea 0.28. Board-based (move order irrelevant), mover-frame, not translation invariant; misses include colour-swapped centre cells (e.g. 2,5,4,3,3,5 fires 1.4). Looks like a distributed/mixture direction; possibly a random direction. Synthesis max 5.05 < dev max 5.43.",
+ "dev_calls_used": 5,
+ "submitted": "2026-11-21T18:01:49"
+}

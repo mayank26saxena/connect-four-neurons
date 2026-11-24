@@ -1,0 +1,73 @@
+{
+ "unit": "U27",
+ "description": "Weakly tied to my own vertical stack in column 2: fires when I have two or more stones stacked on top of column 2 with room left for a vertical four, and almost always (very strongly) when that stack is three, i.e. an immediate vertical win in column 2. Two-stacks fire only in some contexts. Most firing is not explained: other critical positions, often right after the opponent stacks in columns 5-6, or column 2 full with my stones capped.",
+ "effect": "Raises the probability of playing column 2: forcing it to max moved column 2 from 0.26 to 0.92 (3,3,4,2); zeroing it in firing positions lowers column 2 by 0.02-0.28 (shifted to columns 4/5). No effect when another move is forced.",
+ "program": "def col2(b):\n    # (run, height): my unbroken run on top of column 2 and the column height\n    h = b.heights[2]\n    k = 0\n    r = h - 1\n    while r >= 0 and b.grid[r][2] == 1:\n        k += 1\n        r -= 1\n    return k, h\n\ndef fires(b):\n    k, h = col2(b)\n    # at least two of mine on top, column not full, and a vertical four still fits\n    return k >= 2 and h < 6 and h - k + 4 <= 6\n\ndef level(b):\n    k, h = col2(b)\n    if h >= 6:\n        return 1\n    if h - k + 4 > 6:\n        return 0\n    if k >= 3:\n        return 9\n    if k == 2:\n        return 6 if h >= 3 else 4\n    return 0\n",
+ "synthesis": [
+  [
+   4,
+   4,
+   6,
+   5,
+   2,
+   2,
+   4,
+   2,
+   5,
+   4,
+   5,
+   2,
+   6
+  ],
+  [
+   4,
+   5,
+   6,
+   4,
+   2,
+   2,
+   4,
+   2,
+   5,
+   4,
+   5,
+   2,
+   6
+  ],
+  [
+   2,
+   5,
+   2,
+   6,
+   2,
+   4,
+   4,
+   6
+  ],
+  [
+   2,
+   5,
+   2,
+   6,
+   2,
+   4
+  ],
+  [
+   4,
+   5,
+   6,
+   4,
+   2,
+   2,
+   4,
+   2,
+   5,
+   6,
+   5,
+   2,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Best dev F1 0.227 (P 0.21, R 0.25), AUROC 0.61, sim share 0.31 (p2). Col-2 own-stack histogram rises sharply with band and is col-2 specific; open three in col 2 fires robustly (8-26) in minimal pairs, but two-stacks flip on/off with single unrelated stones (e.g. 2,4,2,4,5,1 = 6.0 vs 2,4,2,4,6,0 = 0.0). Tried: capped full col 2 (F1 0.20), last move in cols 4-6 gate (0.19), any my threat in col 2 (0.14), strict rows-3/4 pair (P 0.36 R 0.11, F1 0.17), opponent right-side stack (0.18). ~75% of firing unexplained; possibly a mixed/random direction."
+}

@@ -1,0 +1,29 @@
+# Circuit discovery task spec (PLAN.md addendum (s)). One file per task; a new task (win, fork, another model) copies this.
+task: block                # must-block: no immediate win, exactly one legal column lands on an opponent winning cell
+results_dir: results
+seed: 20261122
+n_games: 5000              # per split: discovery = analysis, confirmation = val
+max_pairs: 4000            # minimal pairs per split
+min_stones: 4
+bs: 1000
+n_exact: 300               # neurons (by attribution patching) that get exact single-neuron noising
+circuit_share: 0.8         # circuit = shortest prefix of the exact-effect order removing >= 80% of the gap (discovery)
+circuit_cap: 200
+n_random_sets: 200         # layer-matched random sets for (s-2)
+n_random_acc: 50           # layer-matched random sets for the accuracy test (s-4)
+control_n: 3000
+n_boot: 1000
+probe_games: 2000          # board probes for receptive fields (S4), fitted on the first 70% of these analysis games
+probe_train_frac: 0.7
+probe_steps: 500
+probe_lr: 0.01
+smoke:                     # SMOKE=1: wiring check only, numbers meaningless
+  n_games: 300
+  max_pairs: 300
+  n_exact: 20
+  circuit_cap: 15
+  n_random_sets: 5
+  n_random_acc: 3
+  control_n: 300
+  n_boot: 50
+  probe_games: 200

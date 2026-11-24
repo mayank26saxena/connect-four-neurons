@@ -1,0 +1,59 @@
+{
+ "unit": "U36",
+ "description": "Fires when the opponent has three stones stacked vertically on top of column 4 with the cell above empty (a vertical threat the mover must block in column 4). Activation is huge (25-77) and the stack need not be the last move. The mover's own stack, or a blocked stack, does not fire. About 3/4 of firings are weak (0.7-3) and scattered, e.g. opponent vertical threes in columns 0 or 6; these are not covered.",
+ "effect": "Pushes the move to column 4 (the block): forcing it high sends nearly all probability to column 4 (e.g. 0.27 -> 1.00 after 1,6,3,6,1; 0.50 -> 1.00 after 3,3,2,2). Zeroing it changes nothing in col-4-threat positions (the block stays certain via other paths).",
+ "program": "def their_vstack(b, c):\n    h = b.heights[c]\n    if h < 3 or h >= 6:\n        return False\n    return all(b.grid[h - 1 - k][c] == 2 for k in range(3))\n\ndef fires(b):\n    return their_vstack(b, 4)\n\ndef level(b):\n    return 9 if fires(b) else 0\n",
+ "synthesis": [
+  [
+   4,
+   2,
+   2,
+   4,
+   3,
+   4,
+   1,
+   4
+  ],
+  [
+   4,
+   3,
+   2,
+   4,
+   1,
+   4,
+   1,
+   4
+  ],
+  [
+   4,
+   2,
+   1,
+   4,
+   2,
+   4,
+   1,
+   4
+  ],
+  [
+   4,
+   2,
+   2,
+   4,
+   1,
+   4,
+   1,
+   4
+  ],
+  [
+   4,
+   6,
+   3,
+   2,
+   4,
+   5,
+   4
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "p1 (col-4 vertical three of opponent, room above): dev F1 0.417, precision 0.994, recall 0.264, AUROC 0.632; sim recovers 40.2% of zero-ablation damage (ceiling share reported nan). Adding cols 0/6 threes: F1 0.408 (precision 0.43). Minimal pairs: 4,6,4,5,4 = 63; same after two quiet moves = 27.6; stone on top = -0.35; mover's own stack = 0.46; other columns 0-2.7. Strong part is clean; the near-threshold firing (most of the 3% rate) looks heterogeneous (must-blocks, early openings) and was not captured. Synthesis peaks ~71 < dev max 77."
+}

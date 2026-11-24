@@ -1,0 +1,264 @@
+{
+ "output": "results/ladder/L1d64_s3/board_causal.json",
+ "created_utc": "2026-11-21T10:30:15+00:00",
+ "command": "scripts/22_board_causal.py",
+ "source_sha256": "e5645fb3e7faf8448dd2459b3f2bfece428485d44711fe13b692d4bef68086fe",
+ "config": {
+  "seed": 20261118,
+  "teacher": {
+   "depth": 10,
+   "play_temp": 2.0,
+   "max_random_plies": 6
+  },
+  "data": {
+   "out_dir": "data",
+   "splits": {
+    "train": [
+     400000,
+     0
+    ],
+    "val": [
+     5000,
+     10000000
+    ],
+    "analysis": [
+     10000,
+     20000000
+    ]
+   }
+  },
+  "model": {
+   "n_layer": 1,
+   "d_model": 64,
+   "n_head": 4,
+   "d_ff": 256,
+   "vocab": 8,
+   "ctx": 43
+  },
+  "train": {
+   "target_temp": 1.0,
+   "batch_games": 512,
+   "steps": 6000,
+   "lr": 0.001,
+   "min_lr": 5e-05,
+   "warmup": 300,
+   "weight_decay": 0.1,
+   "grad_clip": 1.0,
+   "eval_every": 250,
+   "ckpt_steps": [
+    0,
+    6000
+   ],
+   "out_dir": "checkpoints/ladder/L1d64_s3",
+   "seed": 3
+  },
+  "analysis": {
+   "checkpoint": "checkpoints/ladder/L1d64_s3/step_006000.pt",
+   "n_games": 5000,
+   "fire_pct": 97,
+   "bands": [
+    [
+     25,
+     75
+    ],
+    [
+     10,
+     90
+    ],
+    [
+     5,
+     95
+    ],
+    [
+     3,
+     97
+    ],
+    [
+     1,
+     99
+    ],
+    [
+     0.5,
+     99.5
+    ]
+   ],
+   "topk": [
+    8,
+    16,
+    32,
+    64,
+    128,
+    256
+   ],
+   "play_opponents": [
+    [
+     "random",
+     0
+    ],
+    [
+     "teacher",
+     4
+    ],
+    [
+     "teacher",
+     10
+    ]
+   ],
+   "rotation_seed": 1
+  },
+  "modes": {
+   "n_per_layer": 40,
+   "featured_per_layer": 5,
+   "max_firings": 2000,
+   "min_firings": 50,
+   "top_components": 200,
+   "knn": 15,
+   "resolution": 1.0,
+   "min_cluster_frac": 0.02,
+   "merge_corr": 0.8
+  },
+  "action": {
+   "min_f1": 0.5,
+   "max_poles": 60,
+   "max_positions": 3000,
+   "n_random": 10,
+   "clamp_pct": 99.5,
+   "clamp_scale": 1.0
+  },
+  "dynamics": {
+   "n_games": 2000,
+   "tracked_concepts": [
+    "block_now_any",
+    "win_now_any",
+    "block_now_c3",
+    "win_now_c3",
+    "poison_c3",
+    "opp_threats_ge1",
+    "cell_r0c3_mine",
+    "cell_r2c3_theirs",
+    "full_c3"
+   ]
+  },
+  "web": {
+   "min_f1": 0.5,
+   "group_size": 50
+  },
+  "group": {
+   "concepts": [
+    "block_now",
+    "win_now"
+   ],
+   "ks": [
+    1,
+    2,
+    5,
+    10,
+    20,
+    50,
+    100,
+    200
+   ],
+   "n_random": 3,
+   "max_positions": 2000,
+   "clamp_pct": 99.5
+  },
+  "sae": {
+   "n_train_games": 20000,
+   "latents": 4096,
+   "k": 32,
+   "steps": 6000,
+   "batch": 4096,
+   "lr": 0.0004,
+   "min_rate": 0.005
+  },
+  "basis": {
+   "rotation_seeds": 3,
+   "topk_frac": 0.0625,
+   "bands": [
+    [
+     25,
+     75
+    ],
+    [
+     10,
+     90
+    ],
+    [
+     5,
+     95
+    ]
+   ],
+   "kurt_subsample": 2000000,
+   "batch": 256
+  },
+  "crossfit": {
+   "pcts": [
+    90,
+    95,
+    97,
+    98,
+    99,
+    99.5
+   ],
+   "n_boot": 500,
+   "min_concept_count": 50,
+   "col_chunk": 512
+  },
+  "tactics": {
+   "max_positions": 3000,
+   "topk": [
+    10,
+    50,
+    200
+   ],
+   "n_random": 3,
+   "probe_steps": 300,
+   "probe_train_frac": 0.7,
+   "emergence_ckpts": [
+    0,
+    100,
+    200,
+    400,
+    600,
+    800,
+    1000,
+    1500,
+    2000,
+    3000,
+    4000,
+    6000,
+    8000
+   ]
+  },
+  "worldmodel": {
+   "n_games": 4000,
+   "train_frac": 0.7,
+   "probe_steps": 500,
+   "probe_lr": 0.01,
+   "mlp_hidden": 512,
+   "mlp_steps": 800,
+   "edit_positions": 1500,
+   "teacher_depth": 10,
+   "min_ply": 4,
+   "head_games": 1000,
+   "emergence_games": 2000,
+   "n_perm": 10000,
+   "n_puzzles": 12
+  },
+  "results_dir": "results/ladder/L1d64_s3"
+ },
+ "environment": {
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "cc": [
+   "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+  ],
+  "numpy": "2.3.4",
+  "torch": "2.9.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "git_commit": ""
+ },
+ "output_sha256": "91c717dac0f237a35243ad9208930ed97fdb362869830b233e06869c819dd989"
+}

@@ -1,0 +1,80 @@
+{
+ "unit": "U10",
+ "description": "Fires in sharp tactical positions where the game hinges on one column, mostly column 4 (sometimes 2): my only winning move, the only must-block, or the only move that does not lose is in column 4/2. Typical boards have column 3 tall or full and column 4 holding 1-2 stones. Mirror-image positions (column 2 vs 4 swapped) mostly do not fire. Only covers about half of firing; the rest is unexplained.",
+ "effect": "Weak. Forcing it high on non-firing positions lowers column 3 by about 12-20 points (moved to columns 2/4/1); turning it off at firing positions changes moves by under 3 points.",
+ "program": "DIRS = ((0, 1), (1, 0), (1, 1), (1, -1))\n\ndef wins_at(g, p, r, c):\n    # would p placing at (r, c) complete four?\n    for dr, dc in DIRS:\n        n = 1\n        for s in (1, -1):\n            rr, cc = r + s * dr, c + s * dc\n            while 0 <= rr < 6 and 0 <= cc < 7 and g[rr][cc] == p:\n                n += 1\n                rr += s * dr\n                cc += s * dc\n        if n >= 4:\n            return True\n    return False\n\ndef land(h, c):\n    return h[c] if h[c] < 6 else None\n\ndef win_moves(g, h, p):\n    out = []\n    for c in range(7):\n        r = land(h, c)\n        if r is not None and wins_at(g, p, r, c):\n            out.append(c)\n    return out\n\ndef loses_after(g, h, m):\n    # I (1) play m; can the opponent (2) then win at once or set up an unstoppable threat?\n    r = h[m]\n    g[r][m] = 1\n    h[m] += 1\n    bad = False\n    if win_moves(g, h, 2):\n        bad = True\n    else:\n        for c in range(7):\n            rr = land(h, c)\n            if rr is None:\n                continue\n            g[rr][c] = 2\n            h[c] += 1\n            mine = win_moves(g, h, 1)\n            if not mine:\n                w = win_moves(g, h, 2)\n                if len(w) >= 2:\n                    bad = True\n                elif len(w) == 1:\n                    c2 = w[0]\n                    r2 = h[c2]\n                    if r2 + 1 < 6 and wins_at(g, 2, r2 + 1, c2):\n                        bad = True\n            g[rr][c] = 0\n            h[c] -= 1\n            if bad:\n                break\n    g[r][m] = 0\n    h[m] -= 1\n    return bad\n\ndef safe_list(b):\n    g = [row[:] for row in b.grid]\n    h = list(b.heights)\n    return [m for m in b.legal if not loses_after(g, h, m)]\n\ndef critical_col(b):\n    # the single column the position hinges on: my immediate win, a must-block, or the only move that does not lose\n    if b.my_playable_wins:\n        cols = sorted(set(c for r, c in b.my_playable_wins))\n        return cols[0] if len(cols) == 1 else None\n    if b.their_playable_wins:\n        cols = sorted(set(c for r, c in b.their_playable_wins))\n        return cols[0] if len(cols) == 1 else None\n    s = safe_list(b)\n    return s[0] if len(s) == 1 else None\n\ndef fires(b):\n    return critical_col(b) in (2, 4)\n\ndef level(b):\n    c = critical_col(b)\n    if c == 4:\n        return 9\n    if c == 2:\n        return 6\n    if c is not None:\n        return 1\n    return 0\n",
+ "synthesis": [
+  [
+   0,
+   1,
+   3,
+   5,
+   5,
+   3,
+   3,
+   4,
+   3,
+   4,
+   1
+  ],
+  [
+   0,
+   0,
+   3,
+   5,
+   5,
+   3,
+   3,
+   4,
+   3,
+   4,
+   1
+  ],
+  [
+   0,
+   1,
+   3,
+   5,
+   5,
+   3,
+   3,
+   4,
+   3,
+   4,
+   1,
+   2,
+   6
+  ],
+  [
+   0,
+   1,
+   3,
+   5,
+   5,
+   3,
+   3,
+   4,
+   3,
+   4,
+   0
+  ],
+  [
+   3,
+   2,
+   1,
+   3,
+   6,
+   3,
+   2,
+   2,
+   4,
+   3,
+   3,
+   2
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Tried: shape (h4 1-2, h3 tall) F1 0.11; opponent gain at col-4 landing 0.18; any unique non-losing move 0.14; col-4 critical 0.25; line potential at (2,4) 0.13; best = unique critical column in {4,2} F1 0.30 (P 0.23 R 0.45, AUROC 0.70), sim share 0.13. Minimal pairs: strongly col-4 specific (mirrors fail), board- not move-order-based, depends on my stacked col-4 stones in one top example. Description captures a correlate; unit may be a mixture or random direction.",
+ "dev_calls_used": 7,
+ "submitted": "2026-11-23T01:21:49"
+}

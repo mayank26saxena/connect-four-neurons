@@ -1,0 +1,62 @@
+{
+ "unit": "U46",
+ "description": "Fires when column 2 is stacked tall (about 4-6 stones, either colour) while the rest of the board is still sparse: early-to-middle game boards where many moves went into column 2. Opponent stones in columns 0, 1 and 3 suppress it most; more stones anywhere dilute it. A lone first move in column 2 also fires. A tall column 2 late in a crowded game usually does not fire.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by at most 0.02.",
+ "program": "# column-2 stones (either colour) push it up; opponent stones elsewhere (esp. cols 0, 1, 3) push it down;\n# my stones elsewhere are nearly neutral (my col-4 stones help, my col-5 stones hurt); mild dilution with ply.\nKT = [0.6, 0.4, 0.0, 0.6, 0.25, 0.2, 0.15]\nKM = [0.1, 0.0, 0.0, 0.05, -0.3, 0.3, 0.0]\n\ndef score(b):\n    s = float(b.heights[2])\n    for c in range(7):\n        if c == 2:\n            continue\n        for r in range(6):\n            v = b.grid[r][c]\n            if v == 2:\n                s -= KT[c]\n            elif v == 1:\n                s -= KM[c]\n    if b.last_col == 5:\n        s += 0.7\n    return s - 0.04 * b.ply\n\ndef fires(b):\n    if b.ply == 1:\n        return b.heights[2] == 1\n    return score(b) >= 2.6\n\ndef level(b):\n    if b.ply == 1:\n        return 3 if b.heights[2] == 1 else 0\n    return max(0, min(9, int((score(b) - 2.0) * 2)))\n",
+ "synthesis": [
+  [
+   4,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   5
+  ],
+  [
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   4,
+   5
+  ],
+  [
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   5
+  ],
+  [
+   4,
+   4,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   6,
+   5
+  ],
+  [
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   4
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Layer 0. With the last move fixed, move order does not matter (bag of stones). A col-2 stone adds about 0.5 whatever its colour. Opponent stones elsewhere subtract, mostly in cols 0 and 3; my stones are near neutral; a last move in col 5 boosts. Dev F1 0.597 (P .56 R .64, AUROC .81), sim share 0.25. The share-of-ply version got 0.54 and the 'opponent stones in col 2' version 0.14. Response is graded; many misses sit just above threshold. Hand-set weights from minimal pairs. Two synthesis positions beat the dev max (2.63, 2.64).",
+ "dev_calls_used": 8,
+ "submitted": "2026-11-21T14:30:04"
+}

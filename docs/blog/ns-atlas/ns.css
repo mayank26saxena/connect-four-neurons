@@ -1,0 +1,45 @@
+/* Neuron Scientist atlas; builds on ../assets/tokens.css. Board colours: player to move = data blue, opponent = ochre. */
+:root { --me: #2563b0; --op: #d09017; --ok: #2f6b57; --warn: #8a5f0c; --bad: #9b3a27; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 14px; margin: 6px 0 12px; font: 500 12.5px var(--sans); color: var(--ink-2); }
+.controls label { display: flex; flex-direction: column; gap: 4px; }
+.controls .grow { flex: 1 1 180px; }
+.controls input, .controls select { font: 400 13.5px var(--sans); padding: 7px 9px; border: 1px solid var(--rule); border-radius: 3px; background: var(--card); color: var(--ink); }
+.count { font: 500 12.5px var(--sans); color: var(--muted); margin: 0 0 10px; }
+.hnote { font: 13px/1.55 var(--sans); color: var(--muted); margin: 6px 0 18px; }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 4px 0 8px; vertical-align: -1px; }
+.sw.me { background: var(--me); } .sw.op { background: var(--op); }
+table.key td:first-child { white-space: nowrap; vertical-align: top; }
+.tscroll { overflow-x: auto; }
+ul.limits { padding-left: 18px; } ul.limits li { margin: 0 0 8px; }
+
+.card { position: relative; background: var(--card); border: 1px solid var(--rule); border-radius: 4px; padding: 16px 16px 12px; margin: 0 0 14px; }
+.card::before { content: ""; position: absolute; left: -1px; right: -1px; top: -1px; height: 3px; background: var(--split); border-radius: 4px 4px 0 0; }
+.card header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; margin: 0 0 8px; }
+.card .uid { font: 600 15px var(--display); letter-spacing: -.01em; }
+.card .src { font: 500 11.5px var(--mono); color: var(--muted); }
+.badge { font: 600 10.5px/1 var(--sans); letter-spacing: .05em; text-transform: uppercase; padding: 4px 6px; border-radius: 3px; border: 1px solid currentColor; }
+.badge.verified { color: var(--ok); } .badge.below { color: var(--muted); } .badge.control { color: var(--bad); }
+.badge.open { color: var(--warn); } .badge.conf { color: var(--ink-2); border-color: var(--rule); }
+.card .desc { font: 15.5px/1.55 var(--serif); margin: 0 0 12px; }
+.metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 0 0 12px; }
+.metric { border-top: 1px solid var(--rule); padding-top: 6px; }
+.metric b { display: block; font: 600 17px/1.2 var(--mono); }
+.metric span { display: block; font: 11.5px/1.35 var(--sans); color: var(--muted); }
+.metric .bar { height: 4px; background: #e6e9e8; border-radius: 2px; margin: 4px 0 3px; position: relative; }
+.metric .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 2px; background: var(--ink); }
+.metric .bar em { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--axis); }
+.boards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0 0 8px; }
+.boards figure { margin: 0; font: 11px/1.3 var(--sans); color: var(--muted); text-align: center; }
+.boards svg { width: 100%; height: auto; display: block; }
+.boards .lbl { grid-column: 1 / -1; font: 600 11px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); text-align: left; }
+.card .effect { font: 13px/1.5 var(--sans); color: var(--ink-2); margin: 4px 0 6px; }
+.card details { font: 13px/1.5 var(--sans); }
+.card details summary { cursor: pointer; color: var(--brand); font-weight: 500; }
+.card pre { font: 12px/1.45 var(--mono); background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 8px 10px; overflow-x: auto; white-space: pre; }
+.card .notes { color: var(--ink-2); }
+.more { display: block; margin: 8px auto 30px; font: 500 13px var(--sans); padding: 8px 14px; border: 1px solid var(--rule); background: var(--card); border-radius: 3px; cursor: pointer; }
+.held { color: var(--ok); font-weight: 600; } .failed { color: var(--bad); font-weight: 600; }
+@media (max-width: 640px) {
+  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .boards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

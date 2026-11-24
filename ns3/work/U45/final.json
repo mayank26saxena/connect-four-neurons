@@ -1,0 +1,42 @@
+{
+ "unit": "U45",
+ "description": "No clean concept. Clearest case: early in the game (about 4-5 stones) when the opponent has just dropped a stone into an empty column 4 (bottom row), which fires almost always unless column 4, 5 or 1 already holds stones. Otherwise it fires sporadically, mostly right after the opponent stacks in column 5 (rows 3-4) or at ply 5, with no consistent board pattern; activation generally fades as the board fills.",
+ "effect": "None measurable: forcing it to max or zero changes every column's probability by at most 0.02 on 7 positions.",
+ "program": "def fires(b):\n    if b.last_col is None:\n        return False\n    c, r = b.last_col, b.last_row\n    if c == 4 and r == 0 and b.ply <= 5:\n        return True\n    if c == 5 and r in (2, 3):\n        return True\n    return False\n\ndef level(b):\n    if b.last_col is None:\n        return 0\n    c, r = b.last_col, b.last_row\n    if c == 4 and r == 0:\n        return 9 if b.ply <= 5 else 4\n    if c == 5 and r == 2:\n        return 6\n    if c == 5 and r == 3:\n        return 5\n    if (c, r) in ((0, 3), (1, 3), (3, 4), (2, 1)):\n        return 3\n    return 0\n",
+ "synthesis": [
+  [
+   0,
+   2,
+   0,
+   4
+  ],
+  [
+   0,
+   3,
+   1,
+   4
+  ],
+  [
+   0,
+   6,
+   0,
+   4
+  ],
+  [
+   3,
+   5,
+   5,
+   5,
+   5
+  ],
+  [
+   3,
+   5,
+   5,
+   0,
+   5
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer 1 unit. Act sweeps: ply-4 openings ending with an opponent stone at (0,4) fire in 173/216 cases; col-4 already occupied kills it; ply-4 with any other last column never fired. Mid-game firing is diffuse across last-move cells (enriched at (2,5),(3,5),(0,3),(1,3),(3,4),(2,1)) and depends on context with no motif. Dev: p1 F1 0.231 (P 0.18, R 0.33), AUROC 0.64, sim share 0.07; a weighted variant did not improve (F1 0.223). Possibly a random direction. Synthesis only ties the dev max (0,2,0,4 = 1.287). Process note: once, I saved about 2,800 dev example lines to make a last-cell histogram by band, then deleted the file."
+}

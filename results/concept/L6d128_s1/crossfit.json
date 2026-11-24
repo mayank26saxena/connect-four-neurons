@@ -1,0 +1,48 @@
+{
+ "n_games": 5000,
+ "n_boot": 500,
+ "folds": 2,
+ "neuron": {
+  "n_poles": 12288,
+  "share_insample": 0.060546875,
+  "share_heldout": 0.059651692708333336,
+  "families_heldout": {
+   "block_now": 5,
+   "cell": 10,
+   "full": 73,
+   "land": 31,
+   "last_col": 113,
+   "line": 82,
+   "opp_threat_r": 22,
+   "ply": 29
+  },
+  "share_heldout_ci95": [
+   0.0585123673081398,
+   0.060302734375
+  ]
+ },
+ "rotation": {
+  "n_poles": 12288,
+  "share_insample": 0.07275390625,
+  "share_heldout": 0.07234700520833333,
+  "families_heldout": {
+   "block_now": 1,
+   "cell": 2,
+   "full": 307,
+   "line": 32,
+   "ply": 101
+  },
+  "share_heldout_ci95": [
+   0.0711262971162796,
+   0.073974609375
+  ]
+ },
+ "diff_heldout": {
+  "mean": -0.012695312499999993,
+  "ci95": [
+   -0.01469116099178791,
+   -0.011350501328706741
+  ]
+ },
+ "diff_insample": -0.01220703125
+}

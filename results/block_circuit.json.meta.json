@@ -1,0 +1,51 @@
+{
+ "output": "results/block_circuit.json",
+ "created_utc": "2026-11-23T05:02:50+00:00",
+ "command": "scripts/35_block_circuit.py",
+ "source_sha256": "76c8c2e231ddc1de90871f7f3731b50a32af63fad6ae5561265894eb72b792e7",
+ "config": {
+  "task": "block",
+  "results_dir": "results",
+  "seed": 20261122,
+  "n_games": 5000,
+  "max_pairs": 4000,
+  "min_stones": 4,
+  "bs": 1000,
+  "n_exact": 300,
+  "circuit_share": 0.8,
+  "circuit_cap": 200,
+  "n_random_sets": 200,
+  "n_random_acc": 50,
+  "control_n": 3000,
+  "n_boot": 1000,
+  "probe_games": 2000,
+  "probe_train_frac": 0.7,
+  "probe_steps": 500,
+  "probe_lr": 0.01,
+  "smoke": {
+   "n_games": 300,
+   "max_pairs": 300,
+   "n_exact": 20,
+   "circuit_cap": 15,
+   "n_random_sets": 5,
+   "n_random_acc": 3,
+   "control_n": 300,
+   "n_boot": 50,
+   "probe_games": 200
+  }
+ },
+ "environment": {
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "cc": [
+   "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+  ],
+  "numpy": "2.3.4",
+  "torch": "2.9.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "git_commit": ""
+ },
+ "output_sha256": "ab817a02aad0538108870c35c6717f1859c4310fd83beca7f75e2122230272a2"
+}

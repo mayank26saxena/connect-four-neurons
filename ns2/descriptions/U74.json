@@ -1,0 +1,63 @@
+{
+ "unit": "U74",
+ "description": "Fires when the opponent threatens to win next move: strongest when they have two or more immediate winning cells (typically an open three on the bottom row), and also when they have three stacked in column 2, 3 or 4 with the cell above empty and I have no win of my own. Single horizontal or diagonal threats, and vertical threats in columns 0, 1, 5, 6, mostly do not fire.",
+ "effect": "At firing positions forcing it off changes nothing (the block/forced move is still played). Forced high in quiet openings it takes roughly 20-30 points from column 3 and a little from the edges/column 5, moving it to columns 1-2 (or the preferred off-center move).",
+ "program": "def vert_threat(b, who, c):\n    h = b.heights[c]\n    if h < 3 or h >= 6:\n        return False\n    return all(b.grid[h - 1 - k][c] == who for k in range(3))\n\ndef fires(b):\n    if len(b.legal) < 2:\n        return False\n    if len(b.their_playable_wins) >= 2:\n        return True\n    if len(b.my_playable_wins) > 0:\n        return False\n    return any(vert_threat(b, 2, c) for c in (2, 3, 4))\n\ndef level(b):\n    tw = b.their_playable_wins\n    if len(b.legal) >= 2 and len(tw) >= 2:\n        return 9\n    if fires(b):\n        if vert_threat(b, 2, 3):\n            return 7 if b.heights[3] >= 4 else 6\n        return 8\n    if len(b.my_playable_wins) > 0:\n        return 3\n    if len(tw) == 1:\n        c = list(tw)[0][1]\n        if c in (5, 6):\n            return 0\n        if c in (0, 1):\n            return 2\n        return 4\n    return 1\n",
+ "synthesis": [
+  [
+   2,
+   2,
+   3,
+   6,
+   1,
+   5,
+   1,
+   6,
+   1
+  ],
+  [
+   2,
+   2,
+   3,
+   5,
+   1,
+   6,
+   1,
+   6,
+   1
+  ],
+  [
+   2,
+   2,
+   3,
+   5,
+   1,
+   6,
+   1
+  ],
+  [
+   2,
+   2,
+   3,
+   6,
+   1,
+   5,
+   1
+  ],
+  [
+   2,
+   2,
+   3,
+   5,
+   1,
+   6,
+   1,
+   5,
+   1
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "p1 any must-block F1 0.32; p2/p5 double threat or opp vertical three in cols 2-4 F1 0.733 (P 0.76 R 0.71, AUROC 0.85); adding my double wins (0.70) or diagonal threats in cols 2-4 (0.60) hurt. Col-3 vertical threats at row 3 are borderline (2.5-5). Some misses are diagonal threats and late positions with an empty column; single-legal-move positions are mixed. Simulation share stays ~0.02 for any level tried; most negative values are opponent must-blocks in column 5. Synthesis reaches 17.96 vs dev max 17.49.",
+ "dev_calls_used": 5,
+ "submitted": "2026-11-21T19:39:50"
+}

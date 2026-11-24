@@ -1,0 +1,47 @@
+{
+ "unit": "U25",
+ "description": "Diffuse, weakly interpretable. Fires mostly in two situations: early openings (4-7 stones) where no stone is in the centre columns 3-4 and stones are spread over the flanks (especially column 1, also 5, 6, 0); or mid-games (about 17+ stones) where column 3 is completely full, mostly with opponent stones, and column 5 is not near full. Almost never fires at 8-16 stones or when the last move was in column 4.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by at most 0.01.",
+ "program": "def _early(b):\n    if b.ply > 7 or b.last_col == 4:\n        return False\n    if b.heights[3] + b.heights[4] > 0:\n        return False\n    return sum(1 for c in range(7) if b.heights[c] > 0) >= 3\n\ndef _late(b):\n    if b.ply < 17 or b.last_col == 4:\n        return False\n    if b.heights[3] != 6 or b.heights[5] >= 5:\n        return False\n    theirs3 = sum(1 for r in range(6) if b.grid[r][3] == 2)\n    return theirs3 >= 4 or b.last_col == 3\n\ndef fires(b):\n    return _early(b) or _late(b)\n\ndef level(b):\n    if fires(b):\n        return 8\n    h = b.heights\n    s = 0\n    if h[3] == 6 or (h[3] == 0 and h[4] == 0):\n        s += 3\n    if b.last_col != 4:\n        s += 1\n    if not (8 <= b.ply <= 16):\n        s += 2\n    return s\n",
+ "synthesis": [
+  [
+   5,
+   6,
+   1,
+   1,
+   0
+  ],
+  [
+   1,
+   6,
+   5,
+   1,
+   1,
+   6,
+   0
+  ],
+  [
+   1,
+   6,
+   5,
+   1,
+   1
+  ],
+  [
+   5,
+   6,
+   1,
+   1,
+   1
+  ],
+  [
+   1,
+   6,
+   5,
+   1,
+   0
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer 0. Five dev-metric calls; best F1 0.233 (P 0.17, R 0.37, AUROC 0.66), sim share 0.67. Activation depends on the whole board (order-invariant except the last move) in a diffuse, non-monotone way: centre stones lower it in openings, but a full column 3 raises it later; strong ply effect (8-16 suppressed). Each earlier stone shifts it 0.1-0.6. No steering effect. Looks like a mixture or random direction; rule is a rough approximation."
+}

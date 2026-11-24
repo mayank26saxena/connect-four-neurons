@@ -1,0 +1,81 @@
+{
+ "unit": "U88",
+ "description": "No clean concept found. The unit fires mostly on early, open boards (about ply 4-14, no column full, no threat cells of my own), slightly more often when the centre column holds my stone with theirs on top. But most such positions do not fire, and minimal pairs show it depends on many stones at once and on move order, not on any single pattern.",
+ "effect": "None measurable: forcing it to max or to zero changes move probabilities by at most 0.03 on 6 positions.",
+ "program": "def fires(b):\n    if b.ply > 14:\n        return False\n    if any(h == 6 for h in b.heights):\n        return False\n    return len(b.my_wins) == 0\n\ndef level(b):\n    if not fires(b):\n        return 0\n    return max(1, 9 - b.ply // 2)\n",
+ "synthesis": [
+  [
+   5,
+   5,
+   2,
+   2,
+   3,
+   4,
+   2,
+   3,
+   4,
+   4,
+   1,
+   0
+  ],
+  [
+   5,
+   0,
+   2,
+   2,
+   3,
+   4,
+   2,
+   3,
+   4,
+   4,
+   1,
+   0
+  ],
+  [
+   5,
+   0,
+   2,
+   2,
+   3,
+   4,
+   2,
+   3,
+   4,
+   4,
+   1,
+   1
+  ],
+  [
+   5,
+   5,
+   2,
+   2,
+   3,
+   4,
+   6,
+   3,
+   4,
+   4,
+   1,
+   0
+  ],
+  [
+   4,
+   3,
+   5,
+   0,
+   3,
+   4,
+   3,
+   4,
+   3,
+   3,
+   1
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Hypotheses: (1) early open board (dev F1 0.107, AUROC 0.65, sim 0.03); (2) col-3 me-under-them stacking (F1 0.102); (3) both together (F1 0.095). Minimal pairs: 7x7 grids of 4-ply openings are non-additive, transpositions of the same board differ (2.17 vs 2.56), swapping stacking order in col 3 raises or lowers the unit unpredictably. Possibly a random direction. Best synth 3.197 < dev max 3.30.",
+ "dev_calls_used": 3,
+ "submitted": "2026-11-21T20:01:05"
+}

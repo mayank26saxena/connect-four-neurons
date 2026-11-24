@@ -1,0 +1,51 @@
+{
+ "unit": "U34",
+ "description": "Fires when the opponent has three of their stones stacked vertically at the top of a column with the cell above still empty (a vertical must-block). Column 5 is by far the strongest (huge activation, especially right after the third stone lands); columns 1 and 6 fire moderately, 0/2/4 only sometimes, column 3 almost never. Horizontal or diagonal threats rarely fire it; my own three does not; having my own immediate win weakens it.",
+ "effect": "Pushes the model to play column 5: forcing it to max sends column 5 to ~100% even when the correct block or best move is elsewhere; turning it off on a column-5 vertical block lowers column 5 by up to ~20 points.",
+ "program": "def vthree(b, c):\n    # opponent has three stacked on top of column c with the cell above empty\n    h = b.heights[c]\n    if h < 3 or h > 5:\n        return False\n    return all(b.grid[h - 1 - k][c] == 2 for k in range(3))\n\ndef fires(b):\n    if vthree(b, 5):\n        return True\n    if b.my_playable_wins:\n        return False\n    return any(vthree(b, c) for c in (0, 1, 2, 4, 6))\n\ndef level(b):\n    if vthree(b, 5):\n        if b.my_playable_wins:\n            return 7\n        return 9 if b.last_col == 5 else 8\n    if any(vthree(b, c) for c in (0, 1, 2, 4, 6)):\n        return 2 if b.my_playable_wins else 5\n    if b.their_playable_wins:\n        return 2\n    return 0\n",
+ "synthesis": [
+  [
+   5,
+   4,
+   5,
+   0,
+   3,
+   1,
+   5
+  ],
+  [
+   5,
+   4,
+   5,
+   0,
+   5
+  ],
+  [
+   5,
+   4,
+   5,
+   1,
+   3,
+   0,
+   5
+  ],
+  [
+   5,
+   0,
+   5,
+   4,
+   5
+  ],
+  [
+   5,
+   4,
+   3,
+   0,
+   5,
+   1,
+   5
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Core (opponent vertical open three in col 5) has precision ~0.99 but covers only 27% of firing. Adding other columns' vertical threes gives F1 0.55-0.56 (best p6: F1 0.557, P 0.445, R 0.744, AUROC 0.858, sim 72.8%). Any must-block gives recall 0.90 but precision 0.18. Weak firings outside column 5 are context-dependent and not cleanly explained; column weighting was found by act tests."
+}

@@ -1,0 +1,53 @@
+/* "The board in its head" widget; builds on assets/tokens.css. Relative colours: blue = player to move, ochre = opponent. */
+.mindseye { --me-m: #2563b0; --me-t: #d09017; --me-bad: #c9503a; font: 14px/1.5 var(--sans); color: var(--ink); }
+.mindseye button, .mindseye select { font: 500 12.5px var(--sans); border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 3px; padding: 6px 10px; cursor: pointer; }
+.mindseye button:hover { border-color: var(--brand); color: var(--brand); }
+.me-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: center; margin: 0 0 12px; }
+.me-btns { display: flex; flex-wrap: wrap; gap: 6px; }
+.me-status { font: 600 13px var(--sans); color: var(--ink-2); }
+.me-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 640px) { .me-grid { grid-template-columns: 1fr; } }
+.me-panel { margin: 0; }
+.me-panel figcaption { font: 600 13px var(--sans); margin: 0 0 6px; }
+.me-panel figcaption small { display: block; font-weight: 400; color: var(--muted); }
+.me-fine { font: 12px/1.45 var(--sans); color: var(--muted); margin: 6px 0 0; }
+.me-panel svg { width: 100%; height: auto; display: block; }
+.me-frame { fill: #e4e8e7; }
+.me-hole { fill: var(--card); }
+.me-mine { fill: var(--me-m); }
+.me-theirs { fill: var(--me-t); }
+.me-wrong { fill: none; stroke: var(--me-bad); stroke-width: 3; stroke-dasharray: 4 3; }
+.me-editring { fill: none; stroke: var(--ink); stroke-width: 3; }
+.me-thr-m { fill: #fff; stroke: var(--me-m); stroke-width: 3; }
+.me-thr-t { fill: #fff; stroke: var(--me-t); stroke-width: 3; }
+.me-winmark { fill: #fff; }
+.me-hit { fill: transparent; cursor: pointer; }
+.me-hit:hover { fill: rgba(47, 107, 87, .08); }
+.me-slider { display: flex; align-items: center; gap: 10px; font: 12.5px var(--sans); color: var(--ink-2); margin: 10px 0 4px; }
+.me-slider input { flex: 1; accent-color: var(--brand); }
+.me-slider b { font-weight: 600; min-width: 11em; }
+.me-chk { font: 12.5px var(--sans); color: var(--ink-2); display: flex; gap: 6px; align-items: center; }
+.me-strip { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin: 16px 0 6px; }
+.me-mini { padding: 4px !important; display: flex; flex-direction: column; align-items: stretch; gap: 2px; background: transparent !important; }
+.me-mini.on { border-color: var(--ink) !important; }
+.me-mini svg { width: 100%; height: auto; display: block; }
+.me-mini span { display: flex; justify-content: space-between; font: 500 10.5px var(--mono); color: var(--muted); }
+.me-mini b { color: var(--ink); font-weight: 600; }
+.me-edit { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.me-h { font: 600 13px var(--sans); margin: 0 0 8px; }
+.me-h small { display: block; font: 400 12px/1.45 var(--sans); color: var(--muted); }
+.me-row { display: grid; grid-template-columns: 44px 1fr 86px auto; gap: 8px; align-items: center; font: 12px var(--sans); margin: 3px 0; }
+.me-row.illegal { opacity: .35; }
+.me-tr { position: relative; height: 14px; background: #e6e9e8; border-radius: 2px; }
+.me-tr i { position: absolute; left: 0; border-radius: 2px; }
+.me-tr i.c { top: 0; bottom: 0; background: #b8c0bd; }
+.me-tr i.e { top: 4px; bottom: 4px; background: var(--ink); }
+.me-pv { font: 500 11.5px var(--mono); color: var(--ink-2); text-align: right; }
+.me-best { font: normal 600 10.5px var(--sans); letter-spacing: .03em; text-transform: uppercase; color: var(--muted); }
+.me-best.e { color: var(--brand); }
+.me-verdict { font: 13px/1.5 var(--sans); color: var(--ink-2); margin: 8px 0; min-height: 3em; }
+.me-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font: 12px var(--sans); color: var(--ink-2); margin: 8px 0 0; }
+.me-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+.me-k-m { background: var(--me-m); } .me-k-t { background: var(--me-t); }
+.me-k-w { border: 2px dashed var(--me-bad); width: 8px !important; height: 8px !important; }
+.me-k-e { border: 2px solid var(--ink); width: 8px !important; height: 8px !important; }

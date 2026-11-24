@@ -1,0 +1,11 @@
+{
+ "unit": "U41",
+ "description": "Fires only on the empty starting board (no stones yet, first player to move). Every other position stays below threshold. The activation is huge on the empty board and drops sharply after the first stone: about 0.8-1.2 after most single opening moves (a center-column opening sits exactly at threshold; a column-2 opening gives about 0), then decays toward 0 by the 5th or 6th stone.",
+ "effect": "None measurable: zeroing it on the empty board or forcing it to max elsewhere changes move probabilities by at most about 0.02.",
+ "program": "def fires(b):\n    # only the empty starting board\n    return b.ply == 0\n\ndef level(b):\n    if b.ply == 0:\n        return 9\n    if b.ply == 1:\n        return 0 if b.moves[0] == 2 else 2\n    if b.ply == 2:\n        return 1\n    if b.ply <= 4:\n        return 1\n    return 0\n",
+ "synthesis": [
+  []
+ ],
+ "confidence": "high",
+ "notes": "Every firing dev example (bands 5-9) is the empty board at 4.664 = dev max; dev firing rate 2.9% is about one position per game. fires = ply==0 scored F1 1.000 (P 1, R 1, AUROC 1) on all 3 scored programs. Graded level by ply improved simulation share from 0.11 (binary) to 0.22. The [4] opening ties the threshold at 1.224: act labels it firing, examples does not. Steering effects are negligible. Probably a layer-0 start-of-sequence feature."
+}

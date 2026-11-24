@@ -1,0 +1,69 @@
+{
+ "unit": "U67",
+ "description": "Fires mostly when column 1 (second from left) is completely empty, the bottom of column 2 is empty or mine (not the opponent's), and the opponent has stones stacked in the centre (column 3/4), often with a second empty column further right. An opponent stone at the bottom of column 1 or 2 switches it off. Weaker firing in the threshold band is mixed (late-game deep empty wells) and not captured well.",
+ "effect": "None measurable: forcing it high or to zero changes move probabilities by at most about 0.1 (slight shifts between columns 2, 3 and 4, no consistent direction).",
+ "program": "def fires(b):\n    g = b.grid\n    return b.ply >= 5 and g[0][1] == 0 and g[0][2] != 2 and b.heights[3] >= 2\n\ndef level(b):\n    g = b.grid\n    if g[0][1] != 0 or g[0][2] == 2:\n        return 0\n    s = 2 + sum(1 for r in range(6) if g[r][3] == 2) + (1 if g[0][2] == 1 else 0)\n    return min(9, s)\n",
+ "synthesis": [
+  [
+   6,
+   4,
+   5,
+   3,
+   3,
+   4,
+   4,
+   2,
+   5,
+   5,
+   4
+  ],
+  [
+   6,
+   4,
+   5,
+   3,
+   3,
+   4,
+   4,
+   2,
+   5
+  ],
+  [
+   6,
+   4,
+   5,
+   3,
+   3,
+   4,
+   4,
+   2,
+   5,
+   6,
+   4
+  ],
+  [
+   6,
+   4,
+   5,
+   3,
+   3,
+   4,
+   4,
+   2,
+   4
+  ],
+  [
+   6,
+   4,
+   5,
+   3,
+   3,
+   4,
+   4
+  ]
+ ],
+ "confidence": "low",
+ "notes": "7 dev calls. Best F1 0.194 (P 0.14, R 0.31, AUROC 0.63) for col1-empty & (0,2) not theirs & col3 height>=2; plain col1-empty had AUROC 0.68 but F1 0.165. Wells, parity-by-phase, right-side-hole variants all scored lower. Minimal pairs are consistent for the top regime (O at bottom of col 1/2 kills; color swap and mirror kill), but activation also depends on who moved first and on move order, so the unit looks like a mixture. Simulation share ~0. Synthesis reaches 16.6 vs dev max 13.7.",
+ "dev_calls_used": 7,
+ "submitted": "2026-11-21T15:06:50"
+}

@@ -1,0 +1,59 @@
+{
+ "posthoc": true,
+ "attention_vertical_pairs": {
+  "bos": 0.06738497316837311,
+  "self": 0.14789414405822754,
+  "last_mover_any": 0.6550524234771729,
+  "last_mover_same_col": 0.22973592579364777,
+  "other_player_any": 0.1296684741973877,
+  "last_mover_prev1": 0.14074347913265228,
+  "last_mover_prev2": 0.11840642988681793
+ },
+ "attention_all_positions": {
+  "bos": 0.06359710544347763,
+  "self": 0.1442345529794693,
+  "last_mover_any": 0.6392113566398621,
+  "last_mover_same_col": 0.08684100210666656,
+  "other_player_any": 0.152957022190094,
+  "last_mover_prev1": 0.13901863992214203,
+  "last_mover_prev2": 0.10904494138946756
+ },
+ "direction_auroc": {
+  "0": {
+   "vertical threat on the last-move column (run 3, cell above empty)": 0.5316517004304608,
+   "opponent run >= 2 on the last-move column": 0.5309067181626566,
+   "any must-block": 0.5556595228195984,
+   "must-block in the last-move column": 0.551984558364861
+  },
+  "1": {
+   "vertical threat on the last-move column (run 3, cell above empty)": 0.7618715166256578,
+   "opponent run >= 2 on the last-move column": 0.6730945230125747,
+   "any must-block": 0.5900199821990298,
+   "must-block in the last-move column": 0.6337647746875792
+  },
+  "2": {
+   "vertical threat on the last-move column (run 3, cell above empty)": 0.768491844228673,
+   "opponent run >= 2 on the last-move column": 0.5716334881348856,
+   "any must-block": 0.6072935745360698,
+   "must-block in the last-move column": 0.630128951576413
+  },
+  "3": {
+   "vertical threat on the last-move column (run 3, cell above empty)": 0.5269392416840257,
+   "opponent run >= 2 on the last-move column": 0.5357706099249979,
+   "any must-block": 0.5270184395966877,
+   "must-block in the last-move column": 0.5336493660062211
+  },
+  "4": {
+   "vertical threat on the last-move column (run 3, cell above empty)": 0.782848614955455,
+   "opponent run >= 2 on the last-move column": 0.5562973477279258,
+   "any must-block": 0.5996868365736332,
+   "must-block in the last-move column": 0.644599536056968
+  }
+ },
+ "fact_base_rates": {
+  "vertical threat on the last-move column (run 3, cell above empty)": 0.05898286273007148,
+  "opponent run >= 2 on the last-move column": 0.2618817964404159,
+  "any must-block": 0.14977603953331659,
+  "must-block in the last-move column": 0.11329492752665724
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "unit": "U70",
+ "description": "Fires when the center column (column 3) holds exactly three stones and the top one (row 3 from the bottom) is the opponent's, strongest right after the opponent has just played it there, especially early in the game. It fades within a few plies if other moves follow, and is off when column 3 has 2 or 4+ stones or the top center stone is mine. Other columns do nothing.",
+ "effect": "Small and inconsistent: forcing it high lowers the model's favorite move by up to about 0.25 (often column 2) and nudges column 3/4 up slightly; zeroing it changes probabilities by under 0.1.",
+ "program": "def setup(b):\n    return b.heights[3] == 3 and b.grid[2][3] == 2\n\ndef since(b):\n    # plies since the opponent's top stone in column 3 was played (1 = just played)\n    m = b.moves\n    for k in range(1, len(m) + 1):\n        if m[-k] == 3:\n            return k\n    return 99\n\ndef fires(b):\n    return setup(b) and since(b) <= 3\n\ndef level(b):\n    if not setup(b):\n        return 0\n    s = since(b)\n    if s == 1:\n        return 9 if b.ply <= 8 else 7\n    if s == 3:\n        return 5\n    return 2\n",
+ "synthesis": [
+  [
+   3,
+   4,
+   6,
+   6,
+   3,
+   3
+  ],
+  [
+   3,
+   1,
+   6,
+   6,
+   3,
+   3
+  ],
+  [
+   3,
+   6,
+   6,
+   3,
+   3
+  ],
+  [
+   3,
+   1,
+   3,
+   3
+  ],
+  [
+   3,
+   6,
+   6,
+   6,
+   1,
+   3,
+   3
+  ]
+ ],
+ "confidence": "high",
+ "notes": "H1 (col 3 height 3, top theirs) F1 0.80, recall 0.99; adding recency (col-3 stone within last 3 plies) F1 0.886 (P 0.84, R 0.94), sim share 1.07. Window of 5 plies F1 0.86. Minimal pairs agree (top mine / height 2 or 4 kills it). Residual misses: weak firing (~2) when a 4th stone of mine just capped a col-3 stack whose row 2 is theirs. Synthesis peaks 9.87, below dev max 10.2."
+}

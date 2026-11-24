@@ -1,0 +1,40 @@
+{
+ "unit": "U33",
+ "description": "Fires when the stone just played is the first stone in column 5 (second from the right); strongest early in the game (~11 at ply 4), weaker late (~2-5). Weakly also fires for a second column-5 stone on the same player's stone (mainly when the second player moved), and at ply 4 for the first stone in column 0. A column-5 stone on the other colour, or a third stone there, does not fire.",
+ "effect": "Small and position-dependent: zeroing it at a strong firing (3,4,2,5) cuts the model's favoured column 3 from 0.98 to 0.77; elsewhere changes are under 10 points, generally sharpening whatever reply the model already prefers. No fixed column is promoted.",
+ "program": "def fires(b):\n    if b.last_col == 0:\n        return b.ply == 4 and b.heights[0] == 1\n    if b.last_col != 5:\n        return False\n    h = b.heights[5]\n    return h == 1 or (h == 2 and b.grid[0][5] == 2 and b.me_first)\n\ndef level(b):\n    if b.last_col == 0:\n        return 2 if (b.ply == 4 and b.heights[0] == 1) else 0\n    if b.last_col != 5:\n        return 0\n    h = b.heights[5]\n    if h == 1:\n        if b.ply <= 6:\n            return 9\n        return 7 if b.ply <= 14 else 5\n    if all(b.grid[r][5] == 2 for r in range(h)):\n        return 3 if (h == 2 and b.me_first) else 1\n    return 0\n",
+ "synthesis": [
+  [
+   6,
+   4,
+   3,
+   5
+  ],
+  [
+   3,
+   4,
+   2,
+   5
+  ],
+  [
+   2,
+   4,
+   3,
+   5
+  ],
+  [
+   6,
+   4,
+   2,
+   5
+  ],
+  [
+   6,
+   4,
+   1,
+   5
+  ]
+ ],
+ "confidence": "high",
+ "notes": "Layer-0 unit, essentially a 'last token = column 5 into an empty column' detector. Scores: p1 0.823, p2 (first stone in col 5 only) 0.834 precision 1.0, p3 +same-colour 2-stack for second player 0.888, p4 +ply-4 first stone in col 0 0.896 (P 0.90 R 0.89, AUROC 0.944, sim share 0.80). Residual errors are late-game col-5 moves hovering at the 2.1 threshold. Synth 6,4,3,5 = 11.56 beats dev max."
+}

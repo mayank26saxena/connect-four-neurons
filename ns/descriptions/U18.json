@@ -1,0 +1,57 @@
+{
+ "unit": "U18",
+ "description": "No clean concept found. It fires mostly in the early middlegame (about 4-14 stones), and more often when the opponent's last stone went into column 2 above the bottom row. It is a graded sum over many stones: my stones low in column 3 and at the bottom of column 5 raise it, the opponent's stone at the bottom of column 3 strongly lowers it. Most early positions do not fire.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by at most 0.03.",
+ "program": "def fires(b):\n    return b.ply <= 14 and b.last_col == 2 and b.last_row is not None and b.last_row >= 1\n\ndef level(b):\n    if b.last_col is None:\n        return 0\n    s = 0\n    if b.ply <= 14:\n        s += 3\n    if b.last_col == 2:\n        s += 3\n    if b.last_row is not None and b.last_row >= 1:\n        s += 2\n    return min(9, s)\n",
+ "synthesis": [
+  [
+   3,
+   4,
+   3,
+   3,
+   5,
+   1
+  ],
+  [
+   1,
+   4,
+   1,
+   1,
+   6,
+   2,
+   2
+  ],
+  [
+   3,
+   1,
+   3,
+   3,
+   5,
+   4
+  ],
+  [
+   2,
+   3,
+   3,
+   2,
+   2,
+   3,
+   3,
+   6,
+   0,
+   4
+  ],
+  [
+   3,
+   4,
+   5,
+   1,
+   3,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "4 dev calls. Best F1 0.152 (AUROC 0.57, sim share 0.07) from ply<=14 + last move col 2 row>=1. Additive cell scores (F1 0.09-0.15, AUROC <=0.60) and a 'their last stone capped mine in cols 2-4' rule (F1 0.10) did no better. Activation depends on the board, not much on move order, and is additive with mixed-sign stone contributions. Every aggregate feature just tracks ply. Looks like a diffuse mixture or a random direction. Steer effect ~0. Synthesis reached 2.153, below the dev max of 2.216.",
+ "dev_calls_used": 4,
+ "submitted": "2026-11-21T13:58:36"
+}

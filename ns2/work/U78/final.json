@@ -1,0 +1,55 @@
+{
+ "unit": "U78",
+ "description": "No clean concept. Strongest in early games (about 5-9 stones) right after the opponent plays into column 3 (or 0/2), when the opponent's stones sit low in columns 2-3 (and 0), none of theirs in column 1, and mine are on the right edge (column 6) or column 1 rather than column 0. Every extra stone, especially in columns 4-5, dilutes it; it rarely fires late in the game. Move-order sensitive.",
+ "effect": "None measurable: forcing it to zero or to its maximum shifts move probabilities by at most about 0.04-0.09 (slight tilt from column 1 toward column 4 in one position).",
+ "program": "# cell template: for each cell, how much more often it holds their stone (O) / my stone (X)\n# in the top activation band than in an ordinary band (percent tables, row 5 first)\nO_TOP = [[0,0,0,0,0,0,0],[0,0,0,0,1,0,1],[0,0,1,9,21,1,1],[10,0,2,28,12,2,7],[31,1,29,61,15,8,17],[49,19,79,53,13,35,41]]\nO_MID = [[2,2,8,17,9,4,4],[7,8,14,20,12,11,9],[12,14,20,23,16,17,15],[16,20,26,29,22,25,18],[27,27,29,39,34,24,25],[36,41,36,42,39,41,38]]\nX_TOP = [[0,0,0,0,0,0,0],[0,0,0,0,3,0,1],[1,0,1,5,9,1,7],[1,0,7,9,28,5,15],[2,9,11,28,28,11,45],[5,53,17,46,44,19,58]]\nX_MID = [[3,1,7,11,8,5,4],[5,7,14,21,16,9,5],[10,13,18,26,20,15,9],[15,15,23,28,23,17,17],[23,25,33,31,24,37,24],[38,35,39,44,36,38,36]]\n\ndef lg(x):\n    # natural log via series-free approximation using repeated halving\n    n = 0.0\n    while x > 2.0:\n        x = x / 2.0\n        n += 0.6931\n    while x < 1.0:\n        x = x * 2.0\n        n -= 0.6931\n    y = (x - 1.0) / (x + 1.0)\n    return n + 2.0 * (y + y * y * y / 3.0 + y ** 5 / 5.0)\n\ndef score(b):\n    s = 0.0\n    for r in range(6):\n        for c in range(7):\n            v = b.grid[r][c]\n            if v == 0:\n                continue\n            if v == 2:\n                t, m = O_TOP[5 - r][c], O_MID[5 - r][c]\n            else:\n                t, m = X_TOP[5 - r][c], X_MID[5 - r][c]\n            s += lg((t + 2.0) / (m + 2.0))\n    return s\n\nWL = [1.0, -2.0, 0.5, 1.5, -0.5, -1.0, -1.0]\nWP = [-0.5, 0.3, 0.2, 0.0, -0.3, -0.3, 0.5]\nWQ = [0.0, -0.6, 1.0, 0.5, -0.4, -0.3, 0.0]\n\ndef total(b):\n    if b.last_col is None or len(b.moves) < 3:\n        return -20.0\n    return score(b) + WL[b.last_col] + WP[b.moves[-2]] + WQ[b.moves[-3]]\n\ndef fires(b):\n    t = total(b)\n    # smooth and monotone in t; 0.5 at t = 1.5\n    return 1.0 / (1.0 + 2.718 ** (-(t - 1.5)))\n\ndef level(b):\n    return max(0, min(9, int(total(b))))\n",
+ "synthesis": [
+  [
+   6,
+   1,
+   2,
+   6,
+   3,
+   6,
+   3
+  ],
+  [
+   6,
+   1,
+   3,
+   6,
+   2,
+   6,
+   3
+  ],
+  [
+   6,
+   6,
+   2,
+   1,
+   3,
+   6,
+   3
+  ],
+  [
+   0,
+   6,
+   3,
+   6,
+   2,
+   6,
+   3
+  ],
+  [
+   6,
+   6,
+   2,
+   6,
+   3,
+   1,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer 1. Tried: last-move cell lookup (F1 0.10), column-count templates (0.16, 0.15), cell enrichment template (0.15), plus last-move/my-last/their-previous move columns (0.18, 0.21; AUROC 0.69, sim share 0.09). Minimal pairs show an additive, stone-count-diluted vote over move tokens in short games, but context interactions in longer games (last-move effect changes with board) are not captured. Not mirror symmetric; same board via different move order gives different values. Synthesis reaches the dev max (2.132) but does not exceed it. Possibly a random direction or mixture."
+}

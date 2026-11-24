@@ -1,0 +1,76 @@
+{
+ "unit": "U39",
+ "description": "Weak, graded unit; no clean concept. Fires mostly in the early middlegame (about 8-15 stones) when the stones sit in a tall centre-left block: column 3 at height 4-5 (or empty) with column 2 built up to 3+, while columns 1, 4, 5, 6 stay nearly empty. Column 3 at height 1-3 or full, or stones piling up on the right, switch it off.",
+ "effect": "None measurable: forcing it to max or zero changes every move probability by at most 0.03.",
+ "program": "def score(b):\n    h = b.heights\n    g = b.grid\n    s = 0\n    if 4 <= h[3] <= 5:\n        s += 2\n    elif h[3] in (1, 2, 3):\n        s -= 2\n    elif h[3] == 6:\n        s -= 3\n    if h[2] >= 3:\n        s += 1\n    if h[2] == 6:\n        s -= 2\n    s -= max(0, h[4] - 1)\n    s -= max(0, h[5] - 2)\n    s -= max(0, h[6] - 2)\n    s -= max(0, h[1] - 2)\n    if g[0][5] == 1:\n        s += 1\n    if g[0][5] == 2:\n        s -= 1\n    if g[0][1] == 2:\n        s -= 1\n    return s\n\ndef fires(b):\n    return score(b) >= 2\n\ndef level(b):\n    return max(0, min(9, 2 * score(b) + 3))\n",
+ "synthesis": [
+  [
+   0,
+   6,
+   3,
+   3,
+   2,
+   3,
+   3,
+   5,
+   3,
+   2,
+   0
+  ],
+  [
+   0,
+   6,
+   3,
+   2,
+   2,
+   3,
+   3,
+   5,
+   3,
+   2,
+   0
+  ],
+  [
+   2,
+   0,
+   6,
+   1,
+   5,
+   2,
+   2,
+   4,
+   1,
+   2,
+   1,
+   1,
+   1,
+   0
+  ],
+  [
+   3,
+   3,
+   3,
+   3,
+   2,
+   2,
+   2,
+   3,
+   2,
+   0
+  ],
+  [
+   2,
+   2,
+   2,
+   2,
+   6,
+   3,
+   3,
+   3,
+   3,
+   0
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer 1 unit that behaves like a sum of many small column-height and cell terms (a mixture). Best dev F1 0.390 (P 0.41, R 0.37, AUROC 0.68, sim share 0.15) from a hand-weighted height score; simpler rules (F1 0.21) and other variants (0.29-0.39) did no better. Exceptions it misses: late-game boards with a deep empty well between full columns, and boards with column 3 empty and columns 0-2 tall. Side to move and colours matter somewhat (column 2 reading O,X,O,X from the bottom beats X,O,X,O). Score call 2 was wasted by accidentally re-running call 1. Two synthesis positions beat the dev max (2.95, 2.68 vs 2.42)."
+}

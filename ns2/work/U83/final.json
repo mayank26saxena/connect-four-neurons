@@ -1,0 +1,59 @@
+{
+ "unit": "U83",
+ "description": "Fires mostly when the centre column is low (1-2 stones), especially with the opponent's stone at its bottom and my stone on top of it, and the opponent's last move was not in the centre. Their stones at (1,5), (0,0), (2,2), (2,4), (3,5) add to it. It is more common in the opening (ply 4-7). It is silent once the centre has 3+ stones. Weak, scattered pattern.",
+ "effect": "none measurable: forcing it to max or to zero changes every column's probability by at most 0.02 on 6 positions",
+ "program": "def points(b):\n    g = b.grid\n    if b.heights[3] > 2:\n        return -1\n    s = 0\n    if g[0][3] == 2:\n        s += 2\n    if g[1][3] == 1:\n        s += 2\n    for (r, c) in [(1, 5), (0, 0), (2, 2), (2, 4), (3, 5), (2, 1)]:\n        if g[r][c] == 2:\n            s += 1\n    if b.last_col == 3:\n        s -= 2\n    return s\n\ndef fires(b):\n    return points(b) >= 5\n\ndef level(b):\n    p = points(b)\n    if p < 3:\n        return 0\n    return min(9, (p - 2) * 2)\n",
+ "synthesis": [
+  [
+   4,
+   0,
+   3,
+   0,
+   5,
+   3,
+   5,
+   4,
+   4,
+   5,
+   5
+  ],
+  [
+   6,
+   3,
+   3,
+   0,
+   5,
+   5,
+   5,
+   5
+  ],
+  [
+   5,
+   5,
+   5,
+   3,
+   3,
+   0
+  ],
+  [
+   5,
+   5,
+   5,
+   5,
+   6,
+   3,
+   3,
+   0
+  ],
+  [
+   5,
+   5,
+   5,
+   3,
+   3,
+   5
+  ]
+ ],
+ "confidence": "low",
+ "notes": "6 score calls. Best dev F1 0.272 (p5, cell points + ply) and 0.271 (submitted p4, simpler); sim share 0.08 (best 0.09). Single rules: low centre + last not centre F1 0.19 (AUROC 0.76); centre exactly theirs-then-mine F1 0.23. Minimal pairs confirm the centre (their,mine) core (2,3,3,y fires for every y != 3; any opponent reply in col 3 kills it), but the other cell effects interact and are not additive. Top dev band is dominated by the opening x,3,3,0. Looks like a mixture or dense feature. Synthesis best 3.40, below the dev max of 3.53."
+}

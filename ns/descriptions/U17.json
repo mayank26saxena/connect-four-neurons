@@ -1,0 +1,59 @@
+{
+ "unit": "U17",
+ "description": "Mostly an opening detector. It fires most strongly at ply 3 (second player to move) when the opponent's two stones are in the centre (cols 3-5, including col 4) and my stone is in col 4 or the opponent holds col 4 too, and less often at ply 5. A stone of mine in col 1 switches it off. About 70% of firing is scattered, near-threshold mid/late-game positions with no pattern I could find.",
+ "effect": "None measurable: forcing it to max or zero changed move probabilities by at most 0.03 on 4 positions.",
+ "program": "def cnt(b, who, cols):\n    return sum(1 for r in range(6) for c in cols if b.grid[r][c] == who)\n\ndef early(b):\n    if b.ply == 2:\n        return 4 if (b.moves[0] == 4 and b.moves[1] in (3, 4, 5) and b.grid[0][4] == 2 and b.last_col == 4) or b.moves == [4, 3] else 0\n    if b.ply not in (3, 5):\n        return 0\n    if cnt(b, 1, [1]) > 0:\n        return 0\n    o4 = cnt(b, 2, [4])\n    oc = cnt(b, 2, [3, 4, 5])\n    m4 = cnt(b, 1, [4])\n    s = 0\n    if m4 > 0 and oc >= 2:\n        s = 9\n    elif o4 >= 1 and cnt(b, 2, [3, 4, 5, 6]) >= 2:\n        s = 7\n    elif m4 > 0 and cnt(b, 2, [2, 3, 5, 6]) >= 1:\n        s = 4\n    if b.ply == 5:\n        s -= 2\n        if b.last_col not in (3, 4, 5):\n            s -= 3\n    return max(s, 0)\n\ndef fires(b):\n    return early(b) >= 4\n\ndef level(b):\n    return early(b)\n",
+ "synthesis": [
+  [
+   5,
+   6,
+   4,
+   6,
+   4,
+   6,
+   6
+  ],
+  [
+   4,
+   6,
+   4,
+   6,
+   5,
+   6,
+   6
+  ],
+  [
+   4,
+   6,
+   5,
+   6,
+   4,
+   6,
+   6
+  ],
+  [
+   4,
+   6,
+   4,
+   6,
+   5,
+   6,
+   6,
+   0,
+   0
+  ],
+  [
+   4,
+   6,
+   4,
+   6,
+   3,
+   6,
+   6
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Ply-3 enumeration (343 openings) showed the pattern: strong when col 4 is involved and the opponent has 2 centre stones (5,4,3 = 1.94). ply==3 alone gave F1 0.21; table-based rule F1 0.346; restricting ply 5 to last move in cols 3-5 gave F1 0.363 (P 0.58, R 0.26), sim share 0.07. Late-game firing: last-move col, capping, column-top owner, heights, per-column colour counts all only weakly different; activations swing with small colour changes. Synthesis: opponent centre stones plus my 3-stack in col 6 capped by the opponent reach 2.50 (dev max 2.21). The extremes being in the opening plus no steering effect suggest this may be a random direction.",
+ "dev_calls_used": 6,
+ "submitted": "2026-11-21T14:02:16"
+}

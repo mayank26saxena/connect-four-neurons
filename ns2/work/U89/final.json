@@ -1,0 +1,75 @@
+{
+ "unit": "U89",
+ "description": "Early-game pattern on the lower left-centre: fires when the opponent holds the bottom cell of column 4 and column 1 is still empty (or has one stone), boosted by opponent stones at (1,3), (2,2) (sitting on my stone at (1,2)) and the bottom of column 0, plus my stone at the bottom of column 5. Opponent stone at (2,4), my stone at (1,3), stones in column 1, a must-block, or a crowded late-game board suppress it.",
+ "effect": "Weak: forcing it high or off moves the policy by only a few points (up to ~5-7), shuffling probability between the top two candidate columns; no consistent column preference.",
+ "program": "def score(b):\n    g = b.grid\n    if b.ply > 18 or g[0][4] != 2 or b.heights[1] > 1:\n        return 0\n    s = 1\n    if g[0][5] == 1: s += 1\n    if g[1][3] == 2: s += 1\n    if g[2][2] == 2: s += 2\n    if g[1][2] == 1: s += 1\n    if g[0][0] == 2: s += 1\n    if g[1][3] == 1: s -= 1\n    if g[2][4] == 2: s -= 2\n    if b.heights[1] == 1: s -= 1\n    if b.their_playable_wins: s -= 2\n    return s\n\ndef fires(b):\n    return score(b) >= 2\n\ndef level(b):\n    return max(0, min(9, 2 * score(b) - 2))\n",
+ "synthesis": [
+  [
+   0,
+   2,
+   0,
+   2,
+   4,
+   5,
+   4,
+   0,
+   3,
+   5,
+   0,
+   6,
+   2
+  ],
+  [
+   0,
+   2,
+   0,
+   2,
+   4,
+   5,
+   4,
+   0,
+   3,
+   5,
+   0,
+   0,
+   2
+  ],
+  [
+   4,
+   2,
+   4,
+   2,
+   0,
+   5,
+   3,
+   5,
+   2
+  ],
+  [
+   0,
+   2,
+   0,
+   2,
+   4,
+   5,
+   4,
+   0,
+   3,
+   5,
+   2
+  ],
+  [
+   3,
+   5,
+   4,
+   2,
+   0,
+   2,
+   4,
+   5,
+   2
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Tried: anti-diagonal (0,4)-(1,3)-(2,2) toward (3,1) (F1 0.17-0.24); row-0 opponent pair at cols 3-4 capped by my stone at col 5 (strongest in a 210-position row-0 sweep, but F1 0.11 in general); hand-weighted cells (0.26); gated point rule (best 0.29, sim share 0.09). Minimal pairs show a conjunctive many-stone pattern: removing any one of several supporting stones cuts activation 3-4x. Two synthesis positions beat the dev max (9.97, 9.92). Possibly a distributed/random direction."
+}

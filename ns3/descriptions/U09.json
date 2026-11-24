@@ -1,0 +1,53 @@
+{
+ "unit": "U09",
+ "description": "Fires when column 2 (third from left) has three same-colour stones stacked on top with the cell above empty, i.e. a vertical four-threat in column 2; very strong (20-85) when the three is the opponent's (a must-block), moderate (5-10) when it is mine. Same pattern in other columns does not fire (cols 0/1 only weakly). Also fires weakly when the opponent just played column 2 and its landing cell is a must-block in another direction.",
+ "effect": "Pushes the move to column 2: forcing it high sends column 2 to ~100% probability even where the model preferred column 3; zeroing it where it naturally fires changes nothing (the block is already certain).",
+ "program": "def col2_three(b):\n    h = b.heights[2]\n    if h < 3 or h > 5:\n        return 0\n    t = b.grid[h - 1][2]\n    if b.grid[h - 2][2] == t and b.grid[h - 3][2] == t:\n        return t\n    return 0\n\ndef col2_block(b):\n    r = b.landing(2)\n    if r is None:\n        return False\n    return (r, 2) in b.their_wins and b.last_col == 2\n\ndef fires(b):\n    return col2_three(b) != 0 or col2_block(b)\n\ndef level(b):\n    t = col2_three(b)\n    if t == 2:\n        return 9\n    if t == 1:\n        return 6\n    if col2_block(b):\n        return 3\n    return 0\n",
+ "synthesis": [
+  [
+   2,
+   6,
+   2,
+   0,
+   2
+  ],
+  [
+   2,
+   0,
+   2,
+   6,
+   2
+  ],
+  [
+   2,
+   3,
+   3,
+   6,
+   4,
+   4,
+   2,
+   4,
+   2
+  ],
+  [
+   6,
+   2,
+   0,
+   2,
+   6,
+   2
+  ],
+  [
+   6,
+   2,
+   6,
+   2,
+   0,
+   2
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "p1 (vertical three on top of col 2, either side): F1 0.433 P 0.96 R 0.28. +any col-2 landing threat: 0.484. +vertical threes cols 0/1: 0.461. p4 (+opp must-block at col-2 landing when last move col 2): F1 0.536 P 0.73 R 0.43 (best). +fresh opp threes cols 0/1: 0.499. Minimal pairs: same opening three in cols 0,1,3,4,5,6 gives 2.0,0.3,0,0.3,0,0; blocking the three or a full column kills it; horizontal row-0 threat at col 2 does nothing. About half of firing is weak (0.87-3) and diffuse, not captured. Simulation share reported nan (perfect-reader ceiling negative). Synthesis max 66 < dev max 84.",
+ "dev_calls_used": 5,
+ "submitted": "2026-11-23T01:06:41"
+}

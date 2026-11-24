@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "{REPO}/scripts/31_ns_tool.py", line 287, in <module>
+    main()
+  File "{REPO}/scripts/31_ns_tool.py", line 282, in main
+    {"units": cmd_units, "examples": cmd_examples, "act": cmd_act, "facts": cmd_facts, "steer": cmd_steer, "score": cmd_score,
+  File "{REPO}/scripts/31_ns_tool.py", line 178, in cmd_score
+    fires_fn, level_fn = ns.load_program(code)
+                         ^^^^^^^^^^^^^^^^^^^^^
+  File "{REPO}/c4n/ns.py", line 150, in load_program
+    raise ValueError("programs may not import, open files, exec or use dunder names")
+ValueError: programs may not import, open files, exec or use dunder names

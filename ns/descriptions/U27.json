@@ -1,0 +1,67 @@
+{
+ "unit": "U27",
+ "description": "Fires when the leftmost column (column 0) is full or nearly full (4-6 stones, strongest at 6), especially when most of those stones belong to the player to move, the last move was into column 0, column 1 is short, and the game is still fairly short (under ~26 stones). Long games, opponent-dominated column 0, or many stones in column 1 suppress it. Other columns being tall does not trigger it.",
+ "effect": "None measurable: forcing it high or off changes move probabilities by at most ~2 points (slightly lowers column 0 when column 0 still has room).",
+ "program": "def s(b):\n    h0 = b.heights[0]\n    if h0 < 4:\n        return -9.0\n    mine = sum(1 for r in range(h0) if b.grid[r][0] == 1)\n    v = (h0 - 4) + 0.7 * (mine - h0 / 2.0)\n    if b.last_col == 0:\n        v = v + 0.6\n    v = v - 0.25 * b.heights[1] - 0.03 * b.ply - 0.12 * max(0, b.ply - 26)\n    return v\n\ndef fires(b):\n    return s(b) >= 0.45\n\ndef level(b):\n    v = s(b)\n    if v <= 0:\n        return 0\n    return max(1, min(9, int(round(v * 3))))\n",
+ "synthesis": [
+  [
+   5,
+   0,
+   4,
+   0,
+   0,
+   0,
+   4,
+   0,
+   0
+  ],
+  [
+   4,
+   0,
+   4,
+   0,
+   0,
+   0,
+   5,
+   0,
+   0
+  ],
+  [
+   4,
+   0,
+   4,
+   0,
+   0,
+   0,
+   4,
+   0,
+   0
+  ],
+  [
+   2,
+   0,
+   4,
+   0,
+   0,
+   0,
+   4,
+   0,
+   0
+  ],
+  [
+   3,
+   0,
+   4,
+   0,
+   0,
+   0,
+   4,
+   0,
+   0
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Layer-0 unit. Core driver is stones in column 0 (columns 1-6 stacked give ~0). Modulated by ownership of col-0 stones (+), last move in col 0 (+), column-1 stones (-), and game length (-, strong past ply 26); some move-order/recency dependence in long games that a board program cannot capture. Dev F1 went 0.32 -> 0.37 -> 0.41 -> 0.46 -> 0.54 -> 0.63 (final, P 0.70 R 0.57, AUROC 0.78); simulation share 0.15. Two of eight score calls were accidental duplicates. Weights were hand-set from act probes, not fitted.",
+ "dev_calls_used": 8,
+ "submitted": "2026-11-21T14:07:44"
+}

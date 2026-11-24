@@ -1,0 +1,68 @@
+{
+ "unit": "U35",
+ "description": "Weak, mixed layer-0 unit keyed to move order rather than tactics. It fires (1) when the opponent's last move was in the centre column 3 at ply 4 or 5, (2) right after an opening move in column 1, and (3) late in the game (ply 20+) when it is the first player's turn and the edge columns 0 and 6 hold many stones (about 9+), unless the last move was in column 0. Odd late plies are strongly negative.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by under 0.01 on all tested positions.",
+ "program": "def edge(b):\n    return b.heights[0] + b.heights[6]\n\ndef fires(b):\n    p = b.ply\n    c = b.last_col\n    if p == 1:\n        return c == 1\n    if p == 4 or p == 5:\n        return c == 3\n    if p >= 20 and p % 2 == 0 and c != 0:\n        return edge(b) >= 9\n    return False\n\ndef level(b):\n    p = b.ply\n    c = b.last_col\n    if p == 4 and c == 3:\n        return 9\n    if p >= 20 and p % 2 == 0:\n        return max(0, min(9, edge(b) - 3))\n    if fires(b):\n        return 5\n    return 0\n",
+ "synthesis": [
+  [
+   0,
+   0,
+   5,
+   3
+  ],
+  [
+   1,
+   0,
+   0,
+   3
+  ],
+  [
+   1,
+   0,
+   3,
+   3
+  ],
+  [
+   6,
+   2,
+   1,
+   1,
+   0,
+   3,
+   3,
+   5,
+   4,
+   3,
+   3,
+   4,
+   1,
+   5,
+   5,
+   1,
+   5,
+   5,
+   3,
+   2,
+   6,
+   6,
+   3,
+   1,
+   0,
+   0,
+   1,
+   0,
+   5,
+   0,
+   0,
+   4
+  ],
+  [
+   3,
+   0,
+   1,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Best dev F1 0.369 (P 0.263, R 0.623, AUROC 0.785), simulation share 0.58. last_col==3 alone F1 0.12. Activation range tiny (dev max 0.006). Depends on ply parity/position, last token and edge-column token counts; additive score had AUROC 0.86 but worse F1. Possibly a random direction; no clean board concept. No synthesis beat the dev max (best 0.005)."
+}

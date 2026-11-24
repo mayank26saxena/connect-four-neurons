@@ -1,0 +1,2215 @@
+{
+ "n_games": 2000,
+ "checkpoints": [
+  {
+   "step": 0,
+   "kl_to_final": 0.8318872451782227,
+   "agree_teacher": 0.32524001598358154,
+   "take_win_rate": 0.5142585551330798,
+   "block_rate": 0.22126507506768398,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "cell": {
+     "best_f1": 0.5784948468208313,
+     "n_ge_0.5": 3
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.40283674001693726,
+     "n_ge_0.5": 0
+    },
+    "land": {
+     "best_f1": 0.23360000550746918,
+     "n_ge_0.5": 0
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8299545645713806,
+     "n_ge_0.5": 858
+    },
+    "last_made_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.31857767701148987,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.260293185710907,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.2018650621175766,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.2319168597459793,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.18341320753097534,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.7169449925422668,
+     "n_ge_0.5": 80
+    },
+    "poison": {
+     "best_f1": 0.3451508581638336,
+     "n_ge_0.5": 0
+    },
+    "teacher_best": {
+     "best_f1": 0.3016100525856018,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.3072463870048523,
+     "n_ge_0.5": 0
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.0,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.0,
+    "win_now_c3": 0.3072463870048523,
+    "poison_c3": 0.3451508581638336,
+    "opp_threats_ge1": 0.2319168597459793,
+    "cell_r0c3_mine": 0.0,
+    "cell_r2c3_theirs": 0.21153774857521057,
+    "full_c3": 0.38108912110328674
+   }
+  },
+  {
+   "step": 25,
+   "kl_to_final": 0.6615028381347656,
+   "agree_teacher": 0.6092012524604797,
+   "take_win_rate": 0.7043726235741445,
+   "block_rate": 0.6645335958651243,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "cell": {
+     "best_f1": 0.6344395875930786,
+     "n_ge_0.5": 7
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.5061888694763184,
+     "n_ge_0.5": 1
+    },
+    "land": {
+     "best_f1": 0.273340106010437,
+     "n_ge_0.5": 0
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8419426679611206,
+     "n_ge_0.5": 790
+    },
+    "last_made_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.30052685737609863,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.26338091492652893,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.22500571608543396,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.24033066630363464,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.7050397992134094,
+     "n_ge_0.5": 175
+    },
+    "poison": {
+     "best_f1": 0.4338642358779907,
+     "n_ge_0.5": 0
+    },
+    "teacher_best": {
+     "best_f1": 0.3226431906223297,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.4579710066318512,
+     "n_ge_0.5": 0
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.0,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.0,
+    "win_now_c3": 0.4579710066318512,
+    "poison_c3": 0.4338642358779907,
+    "opp_threats_ge1": 0.24033066630363464,
+    "cell_r0c3_mine": 0.0,
+    "cell_r2c3_theirs": 0.22581365704536438,
+    "full_c3": 0.4462653696537018
+   }
+  },
+  {
+   "step": 50,
+   "kl_to_final": 0.6193920969963074,
+   "agree_teacher": 0.6317302584648132,
+   "take_win_rate": 0.7172053231939164,
+   "block_rate": 0.5893428501107556,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.2777777910232544,
+     "n_ge_0.5": 0
+    },
+    "cell": {
+     "best_f1": 0.4988023638725281,
+     "n_ge_0.5": 0
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.5667886734008789,
+     "n_ge_0.5": 8
+    },
+    "land": {
+     "best_f1": 0.33537787199020386,
+     "n_ge_0.5": 0
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8446500301361084,
+     "n_ge_0.5": 527
+    },
+    "last_made_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.2846005856990814,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.28216123580932617,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.2735118269920349,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.21469391882419586,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.28147268295288086,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.24058379232883453,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.2338658720254898,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.6865212321281433,
+     "n_ge_0.5": 135
+    },
+    "poison": {
+     "best_f1": 0.47278302907943726,
+     "n_ge_0.5": 0
+    },
+    "teacher_best": {
+     "best_f1": 0.33973872661590576,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.4434782564640045,
+     "n_ge_0.5": 0
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.0,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.0,
+    "win_now_c3": 0.4434782564640045,
+    "poison_c3": 0.47278302907943726,
+    "opp_threats_ge1": 0.24058379232883453,
+    "cell_r0c3_mine": 0.0,
+    "cell_r2c3_theirs": 0.24016687273979187,
+    "full_c3": 0.4314480721950531
+   }
+  },
+  {
+   "step": 100,
+   "kl_to_final": 0.5835996866226196,
+   "agree_teacher": 0.6576151847839355,
+   "take_win_rate": 0.7000950570342205,
+   "block_rate": 0.6395520551316761,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.27703234553337097,
+     "n_ge_0.5": 0
+    },
+    "cell": {
+     "best_f1": 0.5071461200714111,
+     "n_ge_0.5": 2
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.7832546234130859,
+     "n_ge_0.5": 134
+    },
+    "land": {
+     "best_f1": 0.43492281436920166,
+     "n_ge_0.5": 0
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.84322190284729,
+     "n_ge_0.5": 492
+    },
+    "last_made_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.28358352184295654,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.23665595054626465,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.26195675134658813,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.3094654381275177,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.2418029010295868,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.21072615683078766,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.6668081879615784,
+     "n_ge_0.5": 107
+    },
+    "poison": {
+     "best_f1": 0.4332253038883209,
+     "n_ge_0.5": 0
+    },
+    "teacher_best": {
+     "best_f1": 0.2989842891693115,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.5188405513763428,
+     "n_ge_0.5": 1
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.0,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.27703234553337097,
+    "win_now_c3": 0.5188405513763428,
+    "poison_c3": 0.4332253038883209,
+    "opp_threats_ge1": 0.2418029010295868,
+    "cell_r0c3_mine": 0.0,
+    "cell_r2c3_theirs": 0.2126978188753128,
+    "full_c3": 0.4798291027545929
+   }
+  },
+  {
+   "step": 150,
+   "kl_to_final": 0.5663147568702698,
+   "agree_teacher": 0.6719000935554504,
+   "take_win_rate": 0.7034220532319392,
+   "block_rate": 0.6411518582328328,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.3225579857826233,
+     "n_ge_0.5": 0
+    },
+    "cell": {
+     "best_f1": 0.4733865261077881,
+     "n_ge_0.5": 0
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.8708106279373169,
+     "n_ge_0.5": 227
+    },
+    "land": {
+     "best_f1": 0.4134807288646698,
+     "n_ge_0.5": 0
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8416461944580078,
+     "n_ge_0.5": 428
+    },
+    "last_made_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.26237159967422485,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.2305164784193039,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.32081910967826843,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.24654899537563324,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.2922986149787903,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.22278667986392975,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.5932456851005554,
+     "n_ge_0.5": 37
+    },
+    "poison": {
+     "best_f1": 0.5055787563323975,
+     "n_ge_0.5": 1
+    },
+    "teacher_best": {
+     "best_f1": 0.3623996675014496,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.4956521689891815,
+     "n_ge_0.5": 0
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.0,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.28470030426979065,
+    "win_now_c3": 0.4956521689891815,
+    "poison_c3": 0.5055787563323975,
+    "opp_threats_ge1": 0.22278667986392975,
+    "cell_r0c3_mine": 0.0,
+    "cell_r2c3_theirs": 0.212662935256958,
+    "full_c3": 0.47993555665016174
+   }
+  },
+  {
+   "step": 200,
+   "kl_to_final": 0.5391190052032471,
+   "agree_teacher": 0.685674250125885,
+   "take_win_rate": 0.7043726235741445,
+   "block_rate": 0.6697021904996309,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.2936508059501648,
+     "n_ge_0.5": 0
+    },
+    "cell": {
+     "best_f1": 0.44931560754776,
+     "n_ge_0.5": 0
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.8078128695487976,
+     "n_ge_0.5": 277
+    },
+    "land": {
+     "best_f1": 0.48810070753097534,
+     "n_ge_0.5": 0
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8431940078735352,
+     "n_ge_0.5": 399
+    },
+    "last_made_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.2799952030181885,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.3121512830257416,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.2577005922794342,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.20218269526958466,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.2276306301355362,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.25698015093803406,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.5969230532646179,
+     "n_ge_0.5": 16
+    },
+    "poison": {
+     "best_f1": 0.5272572636604309,
+     "n_ge_0.5": 1
+    },
+    "teacher_best": {
+     "best_f1": 0.3305715322494507,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.5101449489593506,
+     "n_ge_0.5": 1
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.0,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.27940016984939575,
+    "win_now_c3": 0.5101449489593506,
+    "poison_c3": 0.5272572636604309,
+    "opp_threats_ge1": 0.2276306301355362,
+    "cell_r0c3_mine": 0.0,
+    "cell_r2c3_theirs": 0.20767225325107574,
+    "full_c3": 0.47993555665016174
+   }
+  },
+  {
+   "step": 300,
+   "kl_to_final": 0.5019896626472473,
+   "agree_teacher": 0.7031984329223633,
+   "take_win_rate": 0.7362167300380228,
+   "block_rate": 0.7265567314792025,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.40299683809280396,
+     "n_ge_0.5": 0
+    },
+    "cell": {
+     "best_f1": 0.47894152998924255,
+     "n_ge_0.5": 0
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.9039879441261292,
+     "n_ge_0.5": 284
+    },
+    "land": {
+     "best_f1": 0.47618338465690613,
+     "n_ge_0.5": 0
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8423454165458679,
+     "n_ge_0.5": 371
+    },
+    "last_made_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.20451843738555908,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.26554080843925476,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.32512009143829346,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.2450157254934311,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.3794901967048645,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.21433520317077637,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.5931349396705627,
+     "n_ge_0.5": 15
+    },
+    "poison": {
+     "best_f1": 0.5432708859443665,
+     "n_ge_0.5": 1
+    },
+    "teacher_best": {
+     "best_f1": 0.3615676462650299,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.49275362491607666,
+     "n_ge_0.5": 0
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.0,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.40299683809280396,
+    "win_now_c3": 0.49275362491607666,
+    "poison_c3": 0.5432708859443665,
+    "opp_threats_ge1": 0.21433520317077637,
+    "cell_r0c3_mine": 0.0,
+    "cell_r2c3_theirs": 0.23186354339122772,
+    "full_c3": 0.47993555665016174
+   }
+  },
+  {
+   "step": 400,
+   "kl_to_final": 0.4413633346557617,
+   "agree_teacher": 0.7335045337677002,
+   "take_win_rate": 0.7533269961977186,
+   "block_rate": 0.7914102879645583,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.4432176649570465,
+     "n_ge_0.5": 0
+    },
+    "cell": {
+     "best_f1": 0.49762651324272156,
+     "n_ge_0.5": 0
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.9501038193702698,
+     "n_ge_0.5": 348
+    },
+    "land": {
+     "best_f1": 0.5315930843353271,
+     "n_ge_0.5": 2
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8433362245559692,
+     "n_ge_0.5": 227
+    },
+    "last_made_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.19795465469360352,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.2629261612892151,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.2273964285850525,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.23653900623321533,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.4842105209827423,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.21549475193023682,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.6256274580955505,
+     "n_ge_0.5": 23
+    },
+    "poison": {
+     "best_f1": 0.5483348965644836,
+     "n_ge_0.5": 2
+    },
+    "teacher_best": {
+     "best_f1": 0.3708012104034424,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.5101449489593506,
+     "n_ge_0.5": 1
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.0,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.4432176649570465,
+    "win_now_c3": 0.5101449489593506,
+    "poison_c3": 0.5483348965644836,
+    "opp_threats_ge1": 0.21549475193023682,
+    "cell_r0c3_mine": 0.2163633108139038,
+    "cell_r2c3_theirs": 0.0,
+    "full_c3": 0.47993555665016174
+   }
+  },
+  {
+   "step": 600,
+   "kl_to_final": 0.390884667634964,
+   "agree_teacher": 0.7592873573303223,
+   "take_win_rate": 0.7694866920152091,
+   "block_rate": 0.8236524735417179,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.5794594883918762,
+     "n_ge_0.5": 3
+    },
+    "cell": {
+     "best_f1": 0.5708369016647339,
+     "n_ge_0.5": 8
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.23247580230236053,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.9755777716636658,
+     "n_ge_0.5": 378
+    },
+    "land": {
+     "best_f1": 0.565658688545227,
+     "n_ge_0.5": 2
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8267045617103577,
+     "n_ge_0.5": 103
+    },
+    "last_made_threat": {
+     "best_f1": 0.21610942482948303,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.20634983479976654,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.3107978105545044,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.24542926251888275,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.32061532139778137,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.25777938961982727,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.5367793440818787,
+     "n_ge_0.5": 3
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.2235872745513916,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.7470852136611938,
+     "n_ge_0.5": 30
+    },
+    "poison": {
+     "best_f1": 0.4766203761100769,
+     "n_ge_0.5": 0
+    },
+    "teacher_best": {
+     "best_f1": 0.37700703740119934,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.530434787273407,
+     "n_ge_0.5": 2
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.22416412830352783,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.5794594883918762,
+    "win_now_c3": 0.530434787273407,
+    "poison_c3": 0.4766203761100769,
+    "opp_threats_ge1": 0.2235872745513916,
+    "cell_r0c3_mine": 0.26270192861557007,
+    "cell_r2c3_theirs": 0.25891992449760437,
+    "full_c3": 0.47993555665016174
+   }
+  },
+  {
+   "step": 800,
+   "kl_to_final": 0.3249955177307129,
+   "agree_teacher": 0.791359007358551,
+   "take_win_rate": 0.7761406844106464,
+   "block_rate": 0.8581097711050948,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.6324324607849121,
+     "n_ge_0.5": 17
+    },
+    "cell": {
+     "best_f1": 0.5883303880691528,
+     "n_ge_0.5": 13
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.2271922528743744,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.9686680436134338,
+     "n_ge_0.5": 249
+    },
+    "land": {
+     "best_f1": 0.5492236018180847,
+     "n_ge_0.5": 3
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.7818406224250793,
+     "n_ge_0.5": 95
+    },
+    "last_made_threat": {
+     "best_f1": 0.19676414132118225,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.18510444462299347,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.3293874263763428,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.253262996673584,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.24058234691619873,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.5606361627578735,
+     "n_ge_0.5": 6
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.22088807821273804,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.7631146311759949,
+     "n_ge_0.5": 22
+    },
+    "poison": {
+     "best_f1": 0.4494706392288208,
+     "n_ge_0.5": 0
+    },
+    "teacher_best": {
+     "best_f1": 0.3675757646560669,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.5101449489593506,
+     "n_ge_0.5": 2
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.33360522985458374,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.6324324607849121,
+    "win_now_c3": 0.5101449489593506,
+    "poison_c3": 0.4494706392288208,
+    "opp_threats_ge1": 0.22088807821273804,
+    "cell_r0c3_mine": 0.24829523265361786,
+    "cell_r2c3_theirs": 0.2721281051635742,
+    "full_c3": 0.47993555665016174
+   }
+  },
+  {
+   "step": 1000,
+   "kl_to_final": 0.27373507618904114,
+   "agree_teacher": 0.8146467208862305,
+   "take_win_rate": 0.7984790874524715,
+   "block_rate": 0.8871523504799409,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.6582969427108765,
+     "n_ge_0.5": 38
+    },
+    "cell": {
+     "best_f1": 0.6352846026420593,
+     "n_ge_0.5": 24
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.9658991694450378,
+     "n_ge_0.5": 225
+    },
+    "land": {
+     "best_f1": 0.5972211360931396,
+     "n_ge_0.5": 6
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.80741286277771,
+     "n_ge_0.5": 93
+    },
+    "last_made_threat": {
+     "best_f1": 0.22290337085723877,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.22545483708381653,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.32959631085395813,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.29571303725242615,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.20946191251277924,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.20070059597492218,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.22781847417354584,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.5884692072868347,
+     "n_ge_0.5": 8
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.22714361548423767,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.7874439358711243,
+     "n_ge_0.5": 30
+    },
+    "poison": {
+     "best_f1": 0.4476466476917267,
+     "n_ge_0.5": 0
+    },
+    "teacher_best": {
+     "best_f1": 0.3610619604587555,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.539130449295044,
+     "n_ge_0.5": 2
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.44128113985061646,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.6410810947418213,
+    "win_now_c3": 0.539130449295044,
+    "poison_c3": 0.4476466476917267,
+    "opp_threats_ge1": 0.22714361548423767,
+    "cell_r0c3_mine": 0.24738828837871552,
+    "cell_r2c3_theirs": 0.33414024114608765,
+    "full_c3": 0.4797058403491974
+   }
+  },
+  {
+   "step": 1500,
+   "kl_to_final": 0.1808108687400818,
+   "agree_teacher": 0.8639653325080872,
+   "take_win_rate": 0.8384030418250951,
+   "block_rate": 0.9389613586020182,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.7063318490982056,
+     "n_ge_0.5": 48
+    },
+    "cell": {
+     "best_f1": 0.6706066727638245,
+     "n_ge_0.5": 45
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.22380924224853516,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.26231691241264343,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.9599883556365967,
+     "n_ge_0.5": 142
+    },
+    "land": {
+     "best_f1": 0.7408787608146667,
+     "n_ge_0.5": 64
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8379310369491577,
+     "n_ge_0.5": 91
+    },
+    "last_made_threat": {
+     "best_f1": 0.2156783938407898,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.31651630997657776,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.21666035056114197,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.4126984179019928,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.21363210678100586,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.22472108900547028,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.19565792381763458,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.6289049386978149,
+     "n_ge_0.5": 17
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.22000554203987122,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.8217008113861084,
+     "n_ge_0.5": 59
+    },
+    "poison": {
+     "best_f1": 0.4989349842071533,
+     "n_ge_0.5": 0
+    },
+    "teacher_best": {
+     "best_f1": 0.3575221300125122,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.5130434632301331,
+     "n_ge_0.5": 1
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.5820668935775757,
+    "win_now_any": 0.0,
+    "block_now_c3": 0.6281080842018127,
+    "win_now_c3": 0.5130434632301331,
+    "poison_c3": 0.4989349842071533,
+    "opp_threats_ge1": 0.22000554203987122,
+    "cell_r0c3_mine": 0.2592993676662445,
+    "cell_r2c3_theirs": 0.3494935929775238,
+    "full_c3": 0.47924911975860596
+   }
+  },
+  {
+   "step": 2000,
+   "kl_to_final": 0.13124951720237732,
+   "agree_teacher": 0.8899086713790894,
+   "take_win_rate": 0.8959125475285171,
+   "block_rate": 0.9602510460251046,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.7248908281326294,
+     "n_ge_0.5": 52
+    },
+    "cell": {
+     "best_f1": 0.6892232894897461,
+     "n_ge_0.5": 59
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.23868264257907867,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.32228246331214905,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.24679099023342133,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.9651501774787903,
+     "n_ge_0.5": 134
+    },
+    "land": {
+     "best_f1": 0.8396478295326233,
+     "n_ge_0.5": 108
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8437384366989136,
+     "n_ge_0.5": 78
+    },
+    "last_made_threat": {
+     "best_f1": 0.23376885056495667,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.20382115244865417,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.32935571670532227,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.21806563436985016,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.22732442617416382,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.42424243688583374,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.24727046489715576,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.24400055408477783,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.23817935585975647,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.22240689396858215,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.7231560945510864,
+     "n_ge_0.5": 24
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.23024339973926544,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.23919320106506348,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.7901972532272339,
+     "n_ge_0.5": 64
+    },
+    "poison": {
+     "best_f1": 0.5314708948135376,
+     "n_ge_0.5": 3
+    },
+    "teacher_best": {
+     "best_f1": 0.3707329332828522,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.4963715672492981,
+     "n_ge_0.5": 0
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.5707953572273254,
+    "win_now_any": 0.20201438665390015,
+    "block_now_c3": 0.5740540623664856,
+    "win_now_c3": 0.4963715672492981,
+    "poison_c3": 0.5314708948135376,
+    "opp_threats_ge1": 0.23024339973926544,
+    "cell_r0c3_mine": 0.3026454448699951,
+    "cell_r2c3_theirs": 0.42113494873046875,
+    "full_c3": 0.4789600968360901
+   }
+  },
+  {
+   "step": 3000,
+   "kl_to_final": 0.07643994688987732,
+   "agree_teacher": 0.9144074320793152,
+   "take_win_rate": 0.9505703422053232,
+   "block_rate": 0.9634506522274182,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.7314410209655762,
+     "n_ge_0.5": 48
+    },
+    "cell": {
+     "best_f1": 0.69178706407547,
+     "n_ge_0.5": 77
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.4800381660461426,
+     "n_ge_0.5": 0
+    },
+    "eval_win": {
+     "best_f1": 0.42796608805656433,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.956572413444519,
+     "n_ge_0.5": 114
+    },
+    "land": {
+     "best_f1": 0.8779186010360718,
+     "n_ge_0.5": 146
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8253401517868042,
+     "n_ge_0.5": 65
+    },
+    "last_made_threat": {
+     "best_f1": 0.21307604014873505,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.32789644598960876,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.24344295263290405,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.2559716999530792,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.4438672363758087,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.22958746552467346,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.3272993266582489,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.23960909247398376,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.2760469913482666,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.7430531978607178,
+     "n_ge_0.5": 34
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.2401847541332245,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.28396281599998474,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.7881596684455872,
+     "n_ge_0.5": 69
+    },
+    "poison": {
+     "best_f1": 0.501234769821167,
+     "n_ge_0.5": 1
+    },
+    "teacher_best": {
+     "best_f1": 0.35377418994903564,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.5101449489593506,
+     "n_ge_0.5": 2
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.5565195083618164,
+    "win_now_any": 0.4276094138622284,
+    "block_now_c3": 0.5783783793449402,
+    "win_now_c3": 0.5101449489593506,
+    "poison_c3": 0.501234769821167,
+    "opp_threats_ge1": 0.2401847541332245,
+    "cell_r0c3_mine": 0.33435752987861633,
+    "cell_r2c3_theirs": 0.4481436014175415,
+    "full_c3": 0.47862347960472107
+   }
+  },
+  {
+   "step": 4000,
+   "kl_to_final": 0.04329633712768555,
+   "agree_teacher": 0.926591157913208,
+   "take_win_rate": 0.9771863117870723,
+   "block_rate": 0.9639428993354664,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.7303493618965149,
+     "n_ge_0.5": 50
+    },
+    "cell": {
+     "best_f1": 0.7038160562515259,
+     "n_ge_0.5": 84
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.22134247422218323,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.5139665007591248,
+     "n_ge_0.5": 1
+    },
+    "eval_win": {
+     "best_f1": 0.3632180988788605,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.9549694061279297,
+     "n_ge_0.5": 112
+    },
+    "land": {
+     "best_f1": 0.9253286123275757,
+     "n_ge_0.5": 155
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8463438749313354,
+     "n_ge_0.5": 67
+    },
+    "last_made_threat": {
+     "best_f1": 0.21866050362586975,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.3243360221385956,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.23106111586093903,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.22635945677757263,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.48201438784599304,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.25473734736442566,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.3562808632850647,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.25044891238212585,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.2902567982673645,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.7526586651802063,
+     "n_ge_0.5": 33
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.2508717179298401,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.25768181681632996,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.8228434920310974,
+     "n_ge_0.5": 67
+    },
+    "poison": {
+     "best_f1": 0.5391367077827454,
+     "n_ge_0.5": 5
+    },
+    "teacher_best": {
+     "best_f1": 0.3417902886867523,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.5956730842590332,
+     "n_ge_0.5": 3
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.5577507615089417,
+    "win_now_any": 0.5956730842590332,
+    "block_now_c3": 0.5762162208557129,
+    "win_now_c3": 0.5043478012084961,
+    "poison_c3": 0.5391367077827454,
+    "opp_threats_ge1": 0.2508717179298401,
+    "cell_r0c3_mine": 0.34645208716392517,
+    "cell_r2c3_theirs": 0.4573216140270233,
+    "full_c3": 0.4790133833885193
+   }
+  },
+  {
+   "step": 6000,
+   "kl_to_final": 0.011526200920343399,
+   "agree_teacher": 0.9384976625442505,
+   "take_win_rate": 0.9838403041825095,
+   "block_rate": 0.9625892197883338,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.7401746511459351,
+     "n_ge_0.5": 57
+    },
+    "cell": {
+     "best_f1": 0.8218618035316467,
+     "n_ge_0.5": 87
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.5335604548454285,
+     "n_ge_0.5": 1
+    },
+    "eval_win": {
+     "best_f1": 0.4543583393096924,
+     "n_ge_0.5": 0
+    },
+    "full": {
+     "best_f1": 0.9603614211082458,
+     "n_ge_0.5": 92
+    },
+    "land": {
+     "best_f1": 0.946916401386261,
+     "n_ge_0.5": 151
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8464673757553101,
+     "n_ge_0.5": 50
+    },
+    "last_made_threat": {
+     "best_f1": 0.20759646594524384,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.298162043094635,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.22072087228298187,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.24644030630588531,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.5344036817550659,
+     "n_ge_0.5": 1
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.23318082094192505,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.32737210392951965,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.22114931046962738,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.30357950925827026,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.7636363506317139,
+     "n_ge_0.5": 37
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.2516222894191742,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.2716811001300812,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.8457860350608826,
+     "n_ge_0.5": 84
+    },
+    "poison": {
+     "best_f1": 0.5576136708259583,
+     "n_ge_0.5": 4
+    },
+    "teacher_best": {
+     "best_f1": 0.3487568497657776,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.6716346144676208,
+     "n_ge_0.5": 5
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.5888164043426514,
+    "win_now_any": 0.6716346144676208,
+    "block_now_c3": 0.5783783793449402,
+    "win_now_c3": 0.4898550808429718,
+    "poison_c3": 0.5576136708259583,
+    "opp_threats_ge1": 0.2516222894191742,
+    "cell_r0c3_mine": 0.30829113721847534,
+    "cell_r2c3_theirs": 0.4979518949985504,
+    "full_c3": 0.4791761636734009
+   }
+  },
+  {
+   "step": 8000,
+   "kl_to_final": 0.0,
+   "agree_teacher": 0.9407155513763428,
+   "take_win_rate": 0.9838403041825095,
+   "block_rate": 0.960989416687177,
+   "n_win_positions": 2104,
+   "n_block_positions": 8126,
+   "families": {
+    "block_now": {
+     "best_f1": 0.7390829920768738,
+     "n_ge_0.5": 57
+    },
+    "cell": {
+     "best_f1": 0.7676796317100525,
+     "n_ge_0.5": 79
+    },
+    "eval_ahead": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_behind": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "eval_loss": {
+     "best_f1": 0.5518838763237,
+     "n_ge_0.5": 1
+    },
+    "eval_win": {
+     "best_f1": 0.5025734305381775,
+     "n_ge_0.5": 1
+    },
+    "full": {
+     "best_f1": 0.9604313969612122,
+     "n_ge_0.5": 85
+    },
+    "land": {
+     "best_f1": 0.9278666973114014,
+     "n_ge_0.5": 133
+    },
+    "last_blocked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "last_col": {
+     "best_f1": 0.8464673757553101,
+     "n_ge_0.5": 51
+    },
+    "last_made_threat": {
+     "best_f1": 0.19465380907058716,
+     "n_ge_0.5": 0
+    },
+    "last_stacked": {
+     "best_f1": 0.0,
+     "n_ge_0.5": 0
+    },
+    "me_first_player": {
+     "best_f1": 0.28382408618927,
+     "n_ge_0.5": 0
+    },
+    "my_even_threat": {
+     "best_f1": 0.24368488788604736,
+     "n_ge_0.5": 0
+    },
+    "my_odd_threat": {
+     "best_f1": 0.25542309880256653,
+     "n_ge_0.5": 0
+    },
+    "my_threat_r": {
+     "best_f1": 0.5525180101394653,
+     "n_ge_0.5": 2
+    },
+    "my_threats_ge1": {
+     "best_f1": 0.24746555089950562,
+     "n_ge_0.5": 0
+    },
+    "my_threats_ge2": {
+     "best_f1": 0.32124602794647217,
+     "n_ge_0.5": 0
+    },
+    "opp_even_threat": {
+     "best_f1": 0.22073715925216675,
+     "n_ge_0.5": 0
+    },
+    "opp_odd_threat": {
+     "best_f1": 0.31450578570365906,
+     "n_ge_0.5": 0
+    },
+    "opp_threat_r": {
+     "best_f1": 0.7567753195762634,
+     "n_ge_0.5": 35
+    },
+    "opp_threats_ge1": {
+     "best_f1": 0.24967093765735626,
+     "n_ge_0.5": 0
+    },
+    "opp_threats_ge2": {
+     "best_f1": 0.27277758717536926,
+     "n_ge_0.5": 0
+    },
+    "ply": {
+     "best_f1": 0.8469357490539551,
+     "n_ge_0.5": 98
+    },
+    "poison": {
+     "best_f1": 0.5607791543006897,
+     "n_ge_0.5": 4
+    },
+    "teacher_best": {
+     "best_f1": 0.36930596828460693,
+     "n_ge_0.5": 0
+    },
+    "win_now": {
+     "best_f1": 0.6857417821884155,
+     "n_ge_0.5": 7
+    }
+   },
+   "tracked": {
+    "block_now_any": 0.5849797129631042,
+    "win_now_any": 0.6857417821884155,
+    "block_now_c3": 0.5751351118087769,
+    "win_now_c3": 0.48115941882133484,
+    "poison_c3": 0.5607791543006897,
+    "opp_threats_ge1": 0.24967093765735626,
+    "cell_r0c3_mine": 0.29360803961753845,
+    "cell_r2c3_theirs": 0.49919939041137695,
+    "full_c3": 0.4791732430458069
+   }
+  }
+ ]
+}

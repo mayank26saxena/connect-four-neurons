@@ -1,0 +1,57 @@
+{
+ "output": "results/vertical_map.json",
+ "created_utc": "2026-11-23T06:11:22+00:00",
+ "command": "scripts/40_vertical_map.py",
+ "source_sha256": "c34b108e32171faab82d0aefb92806205f5557982030dfdd36910ee585b060c6",
+ "config": {
+  "task": "block",
+  "results_dir": "results",
+  "seed": 20261122,
+  "n_games": 5000,
+  "max_pairs": 4000,
+  "min_stones": 4,
+  "bs": 1000,
+  "n_exact": 300,
+  "circuit_share": 0.8,
+  "circuit_cap": 200,
+  "n_random_sets": 200,
+  "n_random_acc": 50,
+  "control_n": 3000,
+  "n_boot": 1000,
+  "probe_games": 2000,
+  "probe_train_frac": 0.7,
+  "probe_steps": 500,
+  "probe_lr": 0.01,
+  "smoke": {
+   "n_games": 300,
+   "max_pairs": 300,
+   "n_exact": 20,
+   "circuit_cap": 15,
+   "n_random_sets": 5,
+   "n_random_acc": 3,
+   "control_n": 300,
+   "n_boot": 50,
+   "probe_games": 200
+  },
+  "head": [
+   0,
+   2
+  ],
+  "k_dir": 3,
+  "n_random": 20
+ },
+ "environment": {
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "cc": [
+   "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+  ],
+  "numpy": "2.3.4",
+  "torch": "2.9.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "git_commit": ""
+ },
+ "output_sha256": "fa018dd8225eb07fd848dbb8b3666a7823deb2340b668747ee21fbb512b88235"
+}

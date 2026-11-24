@@ -1,0 +1,270 @@
+{
+ "rule": "share of predicted-firing positions with fewer than 4 stones >= 0.5 (first 1,000 validation games)",
+ "units": {
+  "q-U01": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1349
+  },
+  "q-U02": {
+   "early_share": 1.0,
+   "opening": true,
+   "n_pred": 444
+  },
+  "q-U04": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1522
+  },
+  "q-U05": {
+   "early_share": 1.0,
+   "opening": true,
+   "n_pred": 843
+  },
+  "q-U16": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 972
+  },
+  "q-U24": {
+   "early_share": 0.064,
+   "opening": false,
+   "n_pred": 1087
+  },
+  "q-U25": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1709
+  },
+  "q-U27": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 711
+  },
+  "q-U29": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1202
+  },
+  "q-U30": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1471
+  },
+  "q-U32": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 984
+  },
+  "q-U34": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 667
+  },
+  "q-U36": {
+   "early_share": 1.0,
+   "opening": true,
+   "n_pred": 1000
+  },
+  "q-U37": {
+   "early_share": 0.031,
+   "opening": false,
+   "n_pred": 1884
+  },
+  "q-U38": {
+   "early_share": 0.063,
+   "opening": false,
+   "n_pred": 948
+  },
+  "q-U41": {
+   "early_share": 1.0,
+   "opening": true,
+   "n_pred": 1000
+  },
+  "q-U42": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1566
+  },
+  "q-U43": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1821
+  },
+  "q-U46": {
+   "early_share": 0.126,
+   "opening": false,
+   "n_pred": 1028
+  },
+  "q-U47": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1854
+  },
+  "q-U48": {
+   "early_share": 0.621,
+   "opening": true,
+   "n_pred": 848
+  },
+  "q-U50": {
+   "early_share": 0.524,
+   "opening": true,
+   "n_pred": 1061
+  },
+  "q-U51": {
+   "early_share": 1.0,
+   "opening": true,
+   "n_pred": 580
+  },
+  "q-U53": {
+   "early_share": 0.044,
+   "opening": false,
+   "n_pred": 1760
+  },
+  "q-U56": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1556
+  },
+  "q-U59": {
+   "early_share": 1.0,
+   "opening": true,
+   "n_pred": 709
+  },
+  "q-U60": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1606
+  },
+  "q-U62": {
+   "early_share": 0.487,
+   "opening": false,
+   "n_pred": 980
+  },
+  "q-U63": {
+   "early_share": 1.0,
+   "opening": true,
+   "n_pred": 424
+  },
+  "q-U64": {
+   "early_share": 1.0,
+   "opening": true,
+   "n_pred": 1000
+  },
+  "q-U70": {
+   "early_share": 0.003,
+   "opening": false,
+   "n_pred": 1145
+  },
+  "r-U05": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1547
+  },
+  "r-U08": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 910
+  },
+  "r-U12": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1267
+  },
+  "r-U13": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 903
+  },
+  "r-U15": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1413
+  },
+  "r-U16": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1226
+  },
+  "r-U20": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1291
+  },
+  "r-U23": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1756
+  },
+  "r-U31": {
+   "early_share": 0.312,
+   "opening": false,
+   "n_pred": 2039
+  },
+  "r-U37": {
+   "early_share": 0.439,
+   "opening": false,
+   "n_pred": 1793
+  },
+  "r-U38": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 488
+  },
+  "r-U41": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1463
+  },
+  "r-U46": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 836
+  },
+  "r-U48": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 770
+  },
+  "r-U55": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1082
+  },
+  "r-U62": {
+   "early_share": 0.002,
+   "opening": false,
+   "n_pred": 1307
+  },
+  "r-U67": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1463
+  },
+  "r-U70": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 689
+  },
+  "r-U72": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 1520
+  },
+  "r-U73": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 836
+  },
+  "r-U74": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 878
+  },
+  "r-U90": {
+   "early_share": 0.0,
+   "opening": false,
+   "n_pred": 588
+  }
+ }
+}

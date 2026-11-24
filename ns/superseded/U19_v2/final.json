@@ -1,0 +1,65 @@
+{
+ "unit": "U19",
+ "description": "Fires mainly in openings where the opponent has a stone at row 1 of column 5 sitting on mine, with (2,5), (1,4) and (0,6) still empty; opponent stones at (0,2),(0,3),(1,2),(1,3) and mine at (0,4) push it higher (peak when the opponent threatens to win at (1,4)). Any stone at (1,4), (2,5) or (0,6), or mine at (0,3), shuts it off. Many weaker late-game firings fit no clear rule.",
+ "effect": "Small: when strongly active it lowers the model's probability of column 3 by about 8-17 points and raises columns 1-2 by about 5; no measurable effect in late or forced positions.",
+ "program": "# weights: (cell): (weight if theirs, weight if mine); applies only while (1,4) is empty\nW = {\n    (1, 5): (3.0, -1.5),\n    (1, 3): (1.5, -1.0),\n    (0, 3): (1.0, -2.5),\n    (1, 2): (1.0, 0.0),\n    (0, 2): (0.7, 0.0),\n    (0, 5): (0.0, 1.0),\n    (0, 4): (0.0, 1.5),\n    (2, 5): (-2.0, -2.0),\n    (0, 6): (-2.0, -1.5),\n    (1, 6): (-1.0, 0.0),\n}\n\ndef score(b):\n    if b.grid[1][4] != 0:\n        return 0.0\n    s = 0.0\n    for (r, c), (wo, wx) in W.items():\n        v = b.grid[r][c]\n        if v == 2:\n            s += wo\n        elif v == 1:\n            s += wx\n    return s\n\ndef fires(b):\n    return score(b) >= 4.0\n\ndef level(b):\n    s = score(b)\n    if s < 3.0:\n        return 0\n    return max(1, min(9, int(round((s - 3.0) * 2))))\n",
+ "synthesis": [
+  [
+   3,
+   4,
+   2,
+   5,
+   5,
+   0,
+   3,
+   0,
+   2
+  ],
+  [
+   2,
+   5,
+   3,
+   4,
+   5,
+   0,
+   3,
+   0,
+   2
+  ],
+  [
+   2,
+   5,
+   3,
+   4,
+   5,
+   0,
+   2,
+   0,
+   3
+  ],
+  [
+   2,
+   5,
+   3,
+   4,
+   5,
+   0,
+   3,
+   6,
+   2
+  ],
+  [
+   2,
+   5,
+   3,
+   4,
+   5,
+   0,
+   0,
+   0,
+   3
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Best dev F1 0.225 (P 0.30, R 0.18, AUROC 0.58), sim share 0.01 (best sim 0.07 for a simpler rule). Tried: O(1,5) rule (F1 0.155), weighted cells (0.159), opponent line potential through (1,4) (0.118), late-game row-1 rule (0.150). Minimal pairs are clean for the opening pattern, but late-game firing is diffuse and move-specific; likely a mixture or a non-basis direction. Synthesis reaches 16.7 vs dev max 13.95."
+}

@@ -1,0 +1,48 @@
+{
+ "unit": "U60",
+ "description": "Fires mainly when the opponent's last stone went into column 5 (second from the right) at row 1, directly on top of my stone, early in the game (strongest at ply 4-6, fading by ply ~10). A secondary trigger is the last stone filling the top cell of column 2. Other firing is scattered over various last-move cells and is not captured; a stone at (1,5) on the opponent's own stone does not fire.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by at most 0.01 on any column.",
+ "program": "def fires(b):\n    return level(b) >= 5\n\ndef level(b):\n    c = b.last_col\n    r = b.last_row\n    if c is None:\n        return 0\n    below_mine = r > 0 and b.grid[r - 1][c] == 1\n    if c == 5 and r == 1 and below_mine:\n        if b.ply <= 6:\n            return 9\n        if b.ply <= 12:\n            return 7\n        return 3\n    if c == 5 and r == 1:\n        return 2\n    if c == 2 and r == 5:\n        return 5\n    return 0\n",
+ "synthesis": [
+  [
+   0,
+   6,
+   4,
+   4,
+   5,
+   5
+  ],
+  [
+   4,
+   6,
+   0,
+   4,
+   5,
+   5
+  ],
+  [
+   4,
+   4,
+   0,
+   6,
+   5,
+   5
+  ],
+  [
+   0,
+   6,
+   5,
+   5
+  ],
+  [
+   0,
+   6,
+   6,
+   4,
+   5,
+   5
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer-1 unit. Best dev F1 0.414 (P 0.43, R 0.40), AUROC 0.69, sim share 0.12 (p3). Adding top-of-col-5 or early row-1/2 landings in cols 2-4 cut precision (F1 0.30, 0.27). (5,1) decays clearly with ply in minimal pairs; requires my stone underneath (0,5,6,5 -> 0.04). About 60% of firing is diffuse over other last-move cells; possibly a mixture or unstructured direction. Steering has no effect."
+}

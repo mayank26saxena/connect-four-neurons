@@ -1,0 +1,70 @@
+{
+ "unit": "U24",
+ "description": "No clean concept found. Weak tendency: fires more often when the centre column has my stones in its bottom two cells with an opponent stone directly above (col 3 built me-me-them, height 3 or more), the edge columns are empty and the opponent just played in the centre. Most firing positions do not match this, and the mirror image of a strongly firing position does not fire.",
+ "effect": "Small: forcing the unit high sharpens the model's already-preferred move by about 5-10 points (e.g. col 3 0.69->0.76); zeroing it at top examples changes move probabilities by under 5 points.",
+ "program": "def fires(b):\n    g = b.grid\n    return g[0][3] == 1 and g[1][3] == 1 and g[2][3] == 2\n\ndef level(b):\n    g = b.grid\n    s = (g[0][3] == 1) + (g[1][3] == 1) + (g[2][3] == 2)\n    return [0, 1, 3, 7][s]\n",
+ "synthesis": [
+  [
+   5,
+   4,
+   3,
+   1,
+   2,
+   4,
+   3,
+   3,
+   4,
+   3,
+   4,
+   4
+  ],
+  [
+   5,
+   4,
+   3,
+   1,
+   5,
+   4,
+   3,
+   3,
+   4,
+   3,
+   4,
+   4
+  ],
+  [
+   2,
+   4,
+   3,
+   1,
+   5,
+   4,
+   3,
+   3,
+   4,
+   3,
+   4,
+   4
+  ],
+  [
+   5,
+   4,
+   3,
+   1,
+   5,
+   4,
+   3,
+   3,
+   4,
+   3,
+   4,
+   4,
+   2,
+   2
+  ]
+ ],
+ "confidence": "low",
+ "notes": "5 dev scores, all AUROC 0.53-0.56: centre stack (F1 0.098, sim share 0.35, submitted), last move centre + empty edges (0.085), opponent vertical pair (0.074), weighted centre cues (0.108), crossed 2x2 in cols 3-4 (0.075). Teacher-score/forced-move, threat-cell and pit hypotheses showed no separation. Single-stone edits swing activation by +-10 and the mirror of a 12.8 position gives -0.2: probably a random or highly polysemantic direction. Synthesis reaches 12.76 vs dev max 11.38.",
+ "dev_calls_used": 5,
+ "submitted": "2026-11-23T02:14:43"
+}

@@ -1,0 +1,20 @@
+{
+ "unit": "U64",
+ "description": "Fires on the empty board, the very first position of the game before any stone has been played, where it is at its maximum. Once any stone is on the board it drops to about -0.2 to 2.4 and almost never crosses threshold; the rare mid-game firings, such as some lost positions where the opponent has an open bottom-row three, are not explained.",
+ "effect": "None measurable: forcing it high or to zero changes move probabilities by at most about 2 points, including on the empty board.",
+ "program": "def fires(b):\n    return b.ply == 0\n\ndef level(b):\n    return 9 if b.ply == 0 else 0\n",
+ "synthesis": [
+  [],
+  [
+   4,
+   0,
+   2,
+   2,
+   3
+  ]
+ ],
+ "confidence": "high",
+ "notes": "H1 ply==0: dev F1 0.985 (P 1.00, R 0.97), AUROC 0.986, simulation share 0.01. The 59 misses are mid-game positions just above threshold with no clear common feature. A level that grades opponent double/single threats did not improve simulation (0.01). act: any first stone drops activation from 3.42 to about -0.2. The empty board ties the dev max but does not beat it.",
+ "dev_calls_used": 2,
+ "submitted": "2026-11-21T14:46:17"
+}

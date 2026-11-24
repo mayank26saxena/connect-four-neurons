@@ -1,0 +1,82 @@
+{
+ "unit": "U65",
+ "description": "No clean concept found. Fires mostly on sparse, early-to-middle boards where columns 0-1 on the left are still empty (especially column 1), the opponent has low stones in the centre or right (bottom of column 3, columns 5-6, sometimes stacked), and my own stones are not in the low centre. It is strongly left/right asymmetric (mirrored positions do not fire), and it is low when stones sit in column 1 or when I stack on the centre.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by at most about 0.09 (zeroing it in one position moved about 8 points from column 0 to column 3).",
+ "program": "def fires(b):\n    # sparse, undeveloped left side, opponent stone(s) low in the centre-right\n    if b.ply < 2 or b.ply > 14:\n        return False\n    if b.heights[1] != 0 or b.heights[0] > 2:\n        return False\n    opp = 0\n    for c in range(2, 7):\n        for r in range(2):\n            if b.grid[r][c] == 2:\n                opp += 1\n    mine = 0\n    for c in range(2, 7):\n        for r in range(2):\n            if b.grid[r][c] == 1:\n                mine += 1\n    return opp >= mine\n\ndef level(b):\n    if not fires(b):\n        return 0\n    return max(1, 9 - b.ply // 2)\n",
+ "synthesis": [
+  [
+   3,
+   0,
+   4,
+   2,
+   6,
+   5,
+   4,
+   4,
+   3,
+   5,
+   0,
+   2,
+   3,
+   3
+  ],
+  [
+   3,
+   0,
+   4,
+   2,
+   6,
+   5,
+   4,
+   4,
+   3,
+   5,
+   6,
+   2,
+   3,
+   3,
+   0,
+   6
+  ],
+  [
+   3,
+   0,
+   4,
+   2,
+   6,
+   5,
+   4,
+   4,
+   3,
+   5,
+   3,
+   3,
+   0,
+   2,
+   6,
+   6
+  ],
+  [
+   3,
+   0,
+   4,
+   2,
+   6,
+   5,
+   4,
+   4,
+   3,
+   5
+  ],
+  [
+   0,
+   3,
+   0,
+   5
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Tried: col-1-empty + opponent bottom-centre stones (F1 0.18), sparse-board/undeveloped-left rule (F1 0.205, best), first-player+col1 empty (0.19), opponent vertical runs on top of columns (0.15), hand-weighted cell score (0.18; AUROC <=0.70). Simulation share 0.08 for all. Minimal pairs give inconsistent results that depend on context (e.g. 1743 game 8.2, mirrored 0.07; adding any stone pair usually lowers it). Probably a mixture or a random direction. Synthesis 8.944 beats dev max 8.687. Call 2 was an accidental duplicate of call 1.",
+ "dev_calls_used": 6,
+ "submitted": "2026-11-21T15:10:01"
+}

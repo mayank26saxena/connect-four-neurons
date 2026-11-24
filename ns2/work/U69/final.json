@@ -1,0 +1,44 @@
+{
+ "unit": "U69",
+ "description": "Fires mostly in the opening (about 4-10 stones) right after the opponent plays on the right edge (column 6), or less often column 3/5, especially when the opponent has stones in columns 3 and 6 and I have none in columns 4-5. My stones in column 4 (and 5) suppress it, as does an opponent stone stacked on an existing stone in column 4 or 5; it fades as the game gets longer. Many firings fit no clean rule.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by less than 0.01 on 5 tested positions.",
+ "program": "WME = [-0.2, 0.0, -0.05, -0.12, -0.55, -0.3, -0.1]\nWTH = [-0.15, -0.25, -0.12, -0.05, -0.05, -0.1, 0.1]\nLAST = [-0.47, -0.72, -1.1, -0.37, -0.3, -0.37, 0.0]\n\ndef score_(b):\n    s = 0.0\n    for r in range(6):\n        for c in range(7):\n            v = b.grid[r][c]\n            if v == 1:\n                s += WME[c]\n            elif v == 2:\n                s += WTH[c]\n    a = 1.3 + 8.0 * s / max(b.ply, 1)\n    lc = b.last_col\n    if lc is not None:\n        a += LAST[lc]\n        if lc in (4, 5) and b.last_row is not None and b.last_row >= 1:\n            a -= 0.6\n    if b.ply > 8:\n        a -= 0.08 * (b.ply - 8)\n    return a\n\ndef fires(b):\n    return score_(b) > 0.3\n\ndef level(b):\n    a = score_(b)\n    if a <= 0.0:\n        return 0\n    return max(0, min(9, int(a / 0.14)))\n",
+ "synthesis": [
+  [
+   2,
+   3,
+   6,
+   1,
+   6
+  ],
+  [
+   2,
+   1,
+   6,
+   3,
+   6
+  ],
+  [
+   3,
+   1,
+   6,
+   3,
+   6
+  ],
+  [
+   1,
+   3,
+   2,
+   6
+  ],
+  [
+   6,
+   3,
+   6,
+   1,
+   6
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer-0 unit. Minimal pairs show an order-dependent additive mix of (player, column) tokens: last move col 6 best, my col-4 stones about -0.5 at ply 8, stacking on col 4/5 kills it, decays with ply. Weights are not stable across plies. Best dev F1 0.367 (P .36, R .37, AUROC .675), simulation share 0.08. A simple rule (ply<=10, last col 6, no my col-4 stone) got F1 0.29. Possibly a random direction."
+}

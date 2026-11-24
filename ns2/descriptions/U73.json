@@ -1,0 +1,42 @@
+{
+ "unit": "U73",
+ "description": "Fires in the opening (mostly 4-6 stones, strongest at exactly 4) right after the opponent drops a stone in column 1 or 0 (weaker for column 5 or 3; rarely for 2, 4, 6). It is stronger when my own stones sit in columns 3 and 5 and weaker when they sit in columns 0 or 4. It fades quickly as the board fills and is near zero after about 8 stones.",
+ "effect": "None measurable: forcing it to max or zero changes no move probability by even 0.01 (activation range is tiny, ~0.007).",
+ "program": "W = {0: 3.5, 1: 4.0, 2: 0.9, 3: 1.7, 4: 0.3, 5: 2.3, 6: 0.3}\nM = {0: -1.3, 1: 0.0, 2: 0.0, 3: 1.0, 4: -0.9, 5: 1.0, 6: 0.0}\nD = {4: 0.0, 5: 2.0, 6: 3.5, 7: 5.5, 8: 4.5, 9: 6.5, 10: 5.5}\n\ndef _score(b):\n    if b.last_col is None or b.ply < 4:\n        return -9\n    p = b.ply\n    s = W[b.last_col]\n    m = 0.0\n    for r in range(6):\n        for c in range(7):\n            if b.grid[r][c] == 1:\n                m += M[c]\n            elif b.grid[r][c] == 2 and c == 0 and not (c == b.last_col and r == b.last_row):\n                s += 0.5\n    s += min(m, 2.0)\n    if p in D:\n        s -= D[p]\n    else:\n        s -= (p - 4.5) if p % 2 == 0 else (p - 2.5)\n    return s\n\ndef fires(b):\n    return _score(b) >= 1.5\n\ndef level(b):\n    s = _score(b)\n    return max(0, min(9, int(round(s * 1.3 + 1))))\n",
+ "synthesis": [
+  [
+   3,
+   0,
+   5,
+   1
+  ],
+  [
+   5,
+   0,
+   3,
+   1
+  ],
+  [
+   3,
+   4,
+   5,
+   1
+  ],
+  [
+   3,
+   1,
+   5,
+   0
+  ],
+  [
+   5,
+   4,
+   3,
+   1
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Layer 0; act shows bag-of-tokens behaviour (order of earlier moves irrelevant). Dev F1: p1 (last col + ply) 0.624; p2 (+my-stone weights, even ply) 0.763; p3 recalibrated 0.784; p4 (my-stone weights at all plies, capped) 0.780, submitted p4. Simulation share nan (ceiling negative). No steer effect; tiny magnitude suggests this may be a random/weak direction, and the rule is closer to a token-weighting than a tactical concept.",
+ "dev_calls_used": 4,
+ "submitted": "2026-11-21T19:38:38"
+}

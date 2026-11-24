@@ -1,0 +1,41 @@
+{
+ "unit": "U34",
+ "description": "No clean concept found. The unit fires on about 3% of positions, somewhat more often in the opening (roughly the first 8-12 stones), but which positions fire depends on the exact stone layout in a way that follows no recognizable Connect Four pattern (threats, center control, last move, edges). Its best simple proxy, 'early game', is weak (F1 0.10).",
+ "effect": "None measurable: forcing it to its max or to zero changes move probabilities by at most 0.02 on 6 positions.",
+ "program": "def fires(b):\n    return b.ply <= 8\n\ndef level(b):\n    if b.ply <= 6:\n        return 6\n    if b.ply <= 10:\n        return 3\n    return 0\n",
+ "synthesis": [
+  [
+   1,
+   1,
+   2,
+   3,
+   1,
+   3,
+   2,
+   2,
+   3
+  ],
+  [
+   0,
+   3,
+   3,
+   3,
+   5,
+   0,
+   6,
+   2
+  ],
+  [
+   0,
+   3,
+   3,
+   3,
+   5,
+   0
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Tried: early game (F1 0.104, AUROC 0.59), their last stone beside my previous stone (F1 0.044, chance), early + my bottom corner (F1 0.076). Single-feature histograms showed no signal. Activation is board-determined but minimal-pair column effects flip sign between bases. Likely a random direction or a highly distributed feature. Synthesis best 2.79 < dev max 3.08.",
+ "dev_calls_used": 3,
+ "submitted": "2026-11-21T18:35:19"
+}

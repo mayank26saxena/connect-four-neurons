@@ -1,0 +1,54 @@
+/* Demo widget styles; builds on assets/tokens.css. Player colours: first player = data blue, second = ochre. */
+.c4demo { --p1: #2563b0; --p2: #d09017; font: 14px/1.5 var(--sans); color: var(--ink); }
+.c4demo button { font: 500 12.5px var(--sans); border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 3px;
+  padding: 6px 10px; cursor: pointer; }
+.c4demo button:hover { border-color: var(--brand); color: var(--brand); }
+.c4-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; align-items: center; margin: 0 0 12px; }
+.c4-btns { display: flex; flex-wrap: wrap; gap: 6px; }
+.c4-status { font: 600 13px var(--sans); color: var(--ink-2); }
+.c4-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+@media (max-width: 720px) { .c4-grid { grid-template-columns: 1fr; } }
+.c4-board { width: 100%; height: auto; display: block; }
+.c4-frame { fill: #e4e8e7; stroke: var(--rule); }
+.c4-cell { fill: var(--card); stroke: #c9cfcd; stroke-width: 1; }
+.c4-cell.p1 { fill: var(--p1); stroke: none; }
+.c4-cell.p2 { fill: var(--p2); stroke: none; }
+.c4-cell.hl { stroke: var(--ink); stroke-width: 3; }
+.c4-cell.wn { stroke: var(--ink); stroke-width: 3; stroke-dasharray: 3 2; }
+.c4-hit { fill: transparent; cursor: pointer; }
+.c4-hit:hover { fill: rgba(47, 107, 87, .06); }
+.c4-pI { fill: #c3c9c7; }
+.c4-pA { fill: var(--ink); }
+.c4-pn { font: 10px var(--mono); fill: var(--muted); }
+.c4-mini-wrap { margin-top: 12px; display: grid; grid-template-columns: 120px 1fr; gap: 4px 12px; align-items: start; }
+.c4-mini-title { grid-column: 1 / -1; font: 600 12px var(--sans); color: var(--ink-2); }
+.c4-mini { width: 120px; height: auto; }
+.c4-mini-note { font: 12px/1.45 var(--sans); color: var(--muted); }
+.c4-h { font: 600 13px var(--sans); margin: 0 0 6px; }
+.c4-h small { display: block; font: 400 11.5px var(--sans); color: var(--muted); }
+.c4-list { list-style: none; padding: 0; margin: 0 0 12px; }
+.c4-list li { display: grid; grid-template-columns: 74px 1fr 46px auto; gap: 8px; align-items: center; padding: 6px 0; border-top: 1px solid var(--rule); margin: 0; }
+.c4-list li.is-off { opacity: .45; }
+.c4-list li.c4-empty { display: block; color: var(--muted); font-size: 13px; }
+.c4-id { font: 500 11px var(--mono); color: var(--muted); }
+.c4-txt { font: 13px/1.35 var(--sans); }
+.c4-txt small { display: block; font: 11px var(--sans); color: var(--muted); }
+.c4-str { height: 6px; background: #e4e8e7; border-radius: 3px; overflow: hidden; }
+.c4-str i { display: block; height: 100%; background: var(--brand); }
+.c4-tog { padding: 3px 7px !important; font-size: 11.5px !important; }
+.c4-chip { display: inline-flex; align-items: center; gap: 4px; font: 500 11.5px var(--mono); background: var(--tint); padding: 2px 4px 2px 8px; border-radius: 3px; margin: 0 4px 4px 0; }
+.c4-chip button { padding: 0 5px !important; border: 0 !important; background: transparent !important; }
+.c4-note { font: 12px/1.45 var(--sans); color: var(--muted); margin: 6px 0 0; }
+.c4-list li { grid-template-columns: 70px 1fr 40px auto; }
+.c4-list li.is-off { opacity: .45; }
+.c4-list li.is-on { background: var(--tint); }
+.c4-acts { display: inline-flex; gap: 4px; }
+.c4-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font: 11.5px var(--sans); color: var(--muted); margin: 4px 0 0 18px; }
+.c4-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.c4-legend i { display: inline-block; width: 12px; height: 10px; }
+.c4-legend i.c4-pI { background: #c3c9c7; } .c4-legend i.c4-pA { background: var(--ink); width: 5px; }
+.c4-group { display: flex; gap: 6px; margin: 0 0 12px; }
+.c4-sel { flex: 1; min-width: 0; font: 12.5px var(--sans); padding: 5px; border: 1px solid var(--rule); border-radius: 3px; background: var(--card); color: var(--ink); }
+.c4-list li { grid-template-columns: 64px 1fr 40px; row-gap: 4px; }
+.c4-acts { grid-column: 2 / -1; }
+@media (max-width: 900px) and (min-width: 721px) { .c4-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); } }

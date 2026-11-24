@@ -1,0 +1,80 @@
+{
+ "unit": "U39",
+ "description": "Mid-game (about moves 8-16) where play is concentrated in columns 2-3 (opponent stacked in column 3, often also column 0) while columns 4-6 and column 1 are nearly empty, especially of opponent stones; strongest when the opponent's last move went to an edge column (0 or 6). A last move into column 1 or 2, early or late game, or stones on the right side switch it off. Diffuse; no single tactical concept.",
+ "effect": "None measurable: forcing it to max or zero changes move probabilities by at most 0.02 on 4 positions.",
+ "program": "def _s(b):\n    n = len(b.moves)\n    o = [0] * 7\n    x = [0] * 7\n    for i, c in enumerate(b.moves):\n        if i % 2 == n % 2:\n            x[c] += 1\n        else:\n            o[c] += 1\n    h = b.heights\n    g = b.grid\n    s = 2 * o[3] + h[2] - 2 * (o[1] + o[4] + o[5] + o[6]) - (x[4] + x[6] + x[0])\n    if b.last_col is not None:\n        s += {0: 2, 1: -3, 2: -3, 3: 0, 4: 0, 5: 0, 6: 2}[b.last_col]\n    s += 2 * (g[0][3] == 2) + 2 * (g[0][5] == 1) - 2 * (h[4] >= 2) - (h[5] >= 2) - (h[6] >= 2)\n    if b.ply < 8:\n        s -= 2 * (8 - b.ply)\n    if b.ply > 16:\n        s -= (b.ply - 16)\n    return s\n\ndef fires(b):\n    # graded: 0.5 at s = 4\n    return max(0.0, min(1.0, (_s(b) - 0) / 8.0))\n\ndef level(b):\n    return max(0, min(9, (_s(b) + 12) // 2))\n",
+ "synthesis": [
+  [
+   2,
+   3,
+   2,
+   3,
+   3,
+   2,
+   6,
+   3,
+   5,
+   0,
+   0,
+   0
+  ],
+  [
+   2,
+   3,
+   2,
+   3,
+   3,
+   2,
+   6,
+   3,
+   5,
+   0,
+   1,
+   0
+  ],
+  [
+   2,
+   3,
+   2,
+   3,
+   3,
+   2,
+   2,
+   3,
+   5,
+   0,
+   1,
+   0
+  ],
+  [
+   2,
+   2,
+   2,
+   3,
+   2,
+   3,
+   3,
+   3,
+   5,
+   0,
+   1,
+   0
+  ],
+  [
+   5,
+   3,
+   3,
+   1,
+   2,
+   0,
+   3,
+   3,
+   2,
+   2,
+   1,
+   6
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer-1 unit behaves like a diffuse sum over (player, column) move counts plus the last move. Shape-only rules F1 0.26; hand-weighted move-count score with last-move and ply terms F1 0.33 (P0.32 R0.35), graded version AUROC 0.72; simple rule (ply 8-16, right side <=3 stones, cols 2+3 >=5, last move not col 1/2) F1 0.33. FPs look like hits. Simulation share ~0.04. Steering: no effect. Synth 2.71 beats dev max 2.42. Score call 1 was an accidental duplicate."
+}

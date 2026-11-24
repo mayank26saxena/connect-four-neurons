@@ -1,0 +1,61 @@
+{
+ "unit": "U33",
+ "description": "Early-to-mid game (ply up to ~14) right-side pattern: column 5 is empty, column 6 holds only opponent stones (strongest when they have stacked three there, a vertical must-block at (3,6)), and I hold the bottom of the centre column (3), often also (0,2)/(1,3), with an opponent stone at (1,2). My stones in column 6, opponent stones in column 5 or on (0,0),(0,1),(0,4) suppress it. Much weaker firing elsewhere is diffuse.",
+ "effect": "Weak: forcing it off or to max moves single columns by at most about 0.1 probability (e.g. col 1 +0.08 / col 4 -0.08; col 3 -0.10 / col 5 +0.06); often no measurable change.",
+ "program": "def score(b):\n    g = b.grid\n    s = 0.0\n    if b.heights[5] == 0:\n        s += 1.0\n    if b.heights[1] == 0:\n        s += 0.5\n    n6 = 0\n    mine6 = False\n    for r in range(b.heights[6]):\n        if g[r][6] == 2:\n            n6 += 1\n        else:\n            mine6 = True\n    if mine6:\n        s -= 1.0\n    else:\n        s += 0.8 * n6\n    if g[0][3] == 1:\n        s += 1.0\n    if g[1][3] == 1:\n        s += 0.7\n    if g[1][2] == 2:\n        s += 0.5\n    if g[1][4] == 1:\n        s += 0.4\n    if g[0][3] == 2:\n        s -= 0.5\n    if b.ply > 14:\n        s -= 1.0\n    return s\n\ndef fires(b):\n    return score(b) >= 3.0\n\ndef level(b):\n    s = score(b)\n    if s < 2.5:\n        return 0\n    return max(0, min(9, int(round((s - 2.5) * 2.5))))\n",
+ "synthesis": [
+  [
+   2,
+   2,
+   3,
+   6,
+   3,
+   2,
+   0,
+   6,
+   4,
+   6
+  ],
+  [
+   2,
+   2,
+   3,
+   6,
+   3,
+   6,
+   0,
+   6
+  ],
+  [
+   3,
+   2,
+   3,
+   6,
+   2,
+   6,
+   0,
+   6
+  ],
+  [
+   2,
+   2,
+   3,
+   6,
+   3,
+   6,
+   4,
+   6
+  ],
+  [
+   6,
+   3,
+   2,
+   3,
+   6,
+   2,
+   6
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Top band dominated by opponent stack in col 6 with col 5 empty and my stones at (0,3)/(0,2); vertical threes in other columns fire only in some contexts (cols 0-3, not 4-5). Rules p1-p4 (col-6 / vertical threat / col5-empty) gave F1 0.16-0.19. Hand additive score of board cues from per-band cell histograms, threshold 3.0: F1 0.344 (P 0.36, R 0.33), AUROC 0.65, simulation share 0.14. Bulk of firing looks distributed; may be a mixture or random direction. Synthesis reaches 10.0 vs dev max 8.04."
+}

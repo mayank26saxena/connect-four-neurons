@@ -1,0 +1,52 @@
+{
+ "n_games": 5000,
+ "n_boot": 500,
+ "folds": 2,
+ "neuron": {
+  "n_poles": 98304,
+  "share_insample": 0.0264892578125,
+  "share_heldout": 0.026407877604166668,
+  "families_heldout": {
+   "block_now": 37,
+   "cell": 96,
+   "eval_loss": 17,
+   "full": 195,
+   "land": 279,
+   "last_col": 133,
+   "line": 319,
+   "opp_threat_r": 17,
+   "ply": 185,
+   "poison": 1,
+   "win_now": 15
+  },
+  "share_heldout_ci95": [
+   0.02618408203125,
+   0.026779429987072945
+  ]
+ },
+ "rotation": {
+  "n_poles": 98304,
+  "share_insample": 0.0657958984375,
+  "share_heldout": 0.06532796223958333,
+  "families_heldout": {
+   "block_now": 9,
+   "cell": 34,
+   "eval_loss": 35,
+   "full": 2634,
+   "line": 194,
+   "ply": 304
+  },
+  "share_heldout_ci95": [
+   0.06453400105237961,
+   0.06643727421760559
+  ]
+ },
+ "diff_heldout": {
+  "mean": -0.03892008463541666,
+  "ci95": [
+   -0.0398763045668602,
+   -0.037978872656822205
+  ]
+ },
+ "diff_insample": -0.039306640625
+}

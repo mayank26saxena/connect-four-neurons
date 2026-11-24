@@ -1,0 +1,110 @@
+# All hyperparameters for the main run. Every script reads this file; nothing is set on the command line.
+seed: 20261118
+
+teacher:
+  depth: 4            # negamax plies; deterministic (exact-depth transposition table)
+  play_temp: 2.0       # softmax temperature used to sample the teacher's moves when generating games
+  max_random_plies: 6  # each game opens with k ~ U{0..6} uniform random plies (k drawn from the game seed)
+
+data:
+  out_dir: build/data_smoke
+  splits:              # name: [number of games, seed offset]; offsets keep the splits disjoint
+    train: [3000, 0]
+    val: [1000, 10000000]
+    analysis: [1000, 20000000]
+
+model:
+  n_layer: 6
+  d_model: 256
+  n_head: 8
+  d_ff: 1024           # SwiGLU neurons per layer
+  vocab: 8             # 7 columns + BOS (id 7)
+  ctx: 43
+
+train:
+  target_temp: 1.0     # soft targets = softmax(teacher scores / target_temp)
+  batch_games: 512
+  steps: 60
+  lr: 1.0e-3
+  min_lr: 5.0e-5
+  warmup: 10
+  weight_decay: 0.1
+  grad_clip: 1.0
+  eval_every: 30
+  ckpt_steps: [0, 60]
+  out_dir: build/ck_smoke
+
+analysis:
+  checkpoint: build/ck_smoke/step_000060.pt
+  n_games: 1000            # first 5,000 games of the analysis split (~170k positions) for all neuron statistics
+  fire_pct: 97             # pole fires beyond p97 (positive) / p3 (negative), as in Tigges et al.
+  bands: [[5, 95]]
+  topk: [32]
+  play_opponents: [["random", 0], ["teacher", 4], ["teacher", 10]]
+  rotation_seed: 1
+
+modes:
+  n_per_layer: 4
+  featured_per_layer: 1
+  max_firings: 300
+  min_firings: 20
+  top_components: 200
+  knn: 15
+  resolution: 1.0
+  min_cluster_frac: 0.02
+  merge_corr: 0.8
+
+action:
+  min_f1: 0.0
+  max_poles: 3
+  max_positions: 300
+  n_random: 2
+  clamp_pct: 99.5
+  clamp_scale: 1.0
+
+dynamics:
+  n_games: 200
+  tracked_concepts: [block_now_any, win_now_any]
+
+web:
+  min_f1: 0.0
+  group_size: 5
+
+group:
+  concepts: [block_now]
+  ks: [1, 5]
+  n_random: 1
+  max_positions: 200
+  clamp_pct: 99.5
+
+results_dir: build/results_smoke   # keep smoke outputs away from real results
+
+sae:
+  n_train_games: 300
+  latents: 256
+  k: 8
+  steps: 50
+  batch: 512
+  lr: 4.0e-4
+  min_rate: 0.005
+
+basis:
+  rotation_seeds: 2
+  topk_frac: 0.0625
+  bands: [[25, 75], [5, 95]]
+  kurt_subsample: 100000
+  batch: 128
+
+crossfit:
+  pcts: [90, 97, 99]
+  n_boot: 50
+  min_concept_count: 20
+  col_chunk: 256
+
+tactics:
+  max_positions: 100
+  topk: [5, 20]
+  n_random: 1
+  probe_steps: 30
+  probe_train_frac: 0.7
+  emergence_ckpts: [0, 60]

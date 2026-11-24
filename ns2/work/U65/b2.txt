@@ -1,0 +1,544 @@
+U65: layer 5, pole +; fires when pole activation > 0.512 (dev firing rate 3.0%); dev max 7.681
+(only positions with at least 4 stones on the board count; earlier positions are never scored)
+
+=== band 2: pole-activation percentile 80-90 (0.171 to 0.295) ===
+
+[pos 126181] pole act 0.283   moves: 6,4,3,2,5,4,3,4,4,3,3,0,6,6,4,3,0,2,2  last move col 2  my immediate wins []  must-block []
+.......
+...XO..
+...OO..
+..OXX.X
+O.XOX.O
+X.XOXOO
+0123456   X = me (to move), O = them
+
+[pos 81447] pole act 0.289   moves: 4,1,2,4,3,5,4,2,3,3,4,3,4,4,3,2,2  last move col 2  my immediate wins []  must-block []
+....X..
+...OO..
+..OXO..
+..XXO..
+..XOX..
+.XOOOX.
+0123456   X = me (to move), O = them
+
+[pos 100366] pole act 0.228   moves: 2,1,5,6,3,4,4  last move col 4  my immediate wins []  must-block []
+.......
+.......
+.......
+.......
+....O..
+.XOOXOX
+0123456   X = me (to move), O = them
+
+[pos 111832] pole act 0.204   moves: 4,2,6,4,4,3,2,2,0,4,6,2,5,6,5,1,5,5,4,3,1,2,2,1,5,6,6,6,5,4,0,0  last move col 0  my immediate wins []  must-block [(2, 3)]
+..X.OXO
+..O.XXX
+..O.OOO
+OOO.XXO
+XXXOOXX
+XOOOXXX
+0123456   X = me (to move), O = them
+
+[pos 67219] pole act 0.230   moves: 0,3,3,3,5,5,1,5,1,3,5,3,3,1,2,2,2,1,1,5,2,6,5,6,4,1,0,2,2,6,6,0,0  last move col 0  my immediate wins []  must-block []
+.XOO.O.
+.OXX.X.
+OXOX.OO
+XXOX.XX
+OOXO.XX
+OOOXOOX
+0123456   X = me (to move), O = them
+
+[pos 77478] pole act 0.192   moves: 5,5,0,2,6,3,3,1,4,1,3,3,5,6,3,3,6,6,6,1  last move col 1  my immediate wins []  must-block [(3, 1)]
+...O...
+...X..X
+...O..O
+.O.X.XX
+.O.X.OO
+XOOOXXX
+0123456   X = me (to move), O = them
+
+[pos 166662] pole act 0.236   moves: 2,0,3,6,3,1,3,3,4,5,2,0  last move col 0  my immediate wins []  must-block []
+.......
+.......
+...O...
+...X...
+O.XX...
+OOXXXOO
+0123456   X = me (to move), O = them
+
+[pos 31105] pole act 0.191   moves: 3,5,6,0,6,5,1,3  last move col 3  my immediate wins []  must-block []
+.......
+.......
+.......
+.......
+...O.OX
+OX.X.OX
+0123456   X = me (to move), O = them
+
+[pos 119150] pole act 0.282   moves: 3,0,6,2,0,6,3,4,0,2,0  last move col 0  my immediate wins []  must-block [(4, 0)]
+.......
+.......
+O......
+O......
+O.XO..X
+X.XOX.O
+0123456   X = me (to move), O = them
+
+[pos 15198] pole act 0.194   moves: 6,4,3,4,3  last move col 3  my immediate wins []  must-block []
+.......
+.......
+.......
+.......
+...OX..
+...OX.O
+0123456   X = me (to move), O = them
+
+[pos 13750] pole act 0.270   moves: 0,5,2,1,1,5,5,2,1,4,1,1,4,4,4,3,6,2,6,2  last move col 2  my immediate wins []  must-block [(4, 2)]
+.......
+.O.....
+.XO.X..
+.XO.OX.
+.XO.XOX
+XOXOOOX
+0123456   X = me (to move), O = them
+
+[pos 161729] pole act 0.249   moves: 2,5,5,2,2,1,1  last move col 1  my immediate wins []  must-block []
+.......
+.......
+.......
+..O....
+.OX..O.
+.XO..X.
+0123456   X = me (to move), O = them
+
+[pos 50201] pole act 0.248   moves: 6,6,6,5,4,3,5,3,5,5,3,2,1,1  last move col 1  my immediate wins []  must-block []
+.......
+.......
+.....O.
+...X.XX
+.O.O.XO
+.XOOXOX
+0123456   X = me (to move), O = them
+
+[pos 54460] pole act 0.275   moves: 1,2,1,0,4,6,2,1,4,5,6,0,5,0,0,5,1,1,5,6,2,2,0,5,3  last move col 3  my immediate wins []  must-block [(1, 3)]
+.......
+OX...X.
+OOX..O.
+XXO..XX
+XOO.OOO
+XOXOOXX
+0123456   X = me (to move), O = them
+
+[pos 114584] pole act 0.191   moves: 3,4,3,0,3,3,2,2,2,2,5,0,3,0,0,3,6,2  last move col 2  my immediate wins []  must-block []
+...O...
+..OX...
+X.OO...
+O.XX...
+O.OX...
+O.XXOXX
+0123456   X = me (to move), O = them
+
+[pos 40522] pole act 0.196   moves: 2,6,5,3,5,5,3,2,6,6,6,5,3,3,5,3,0,2  last move col 2  my immediate wins []  must-block []
+.......
+...O.X.
+...O.OX
+..OX.OO
+..OX.XX
+X.XO.XO
+0123456   X = me (to move), O = them
+
+[pos 32843] pole act 0.180   moves: 0,0,3,2,4,2,5  last move col 5  my immediate wins []  must-block [(0, 6)]
+.......
+.......
+.......
+.......
+X.X....
+O.XOOO.
+0123456   X = me (to move), O = them
+
+[pos 148227] pole act 0.183   moves: 5,4,4,0,4,4,3,5,2,5,5,3,4,3,2,2,5,6,6,1,1,2,4,6,5,6,2,6,0,0,2,0,0  last move col 0  my immediate wins [(2, 1), (5, 6)]  must-block []
+..O.OO.
+O.O.OOX
+X.X.XOX
+X.XXOXX
+OOOXOXO
+XXOOXOX
+0123456   X = me (to move), O = them
+
+[pos 73659] pole act 0.190   moves: 0,4,6,2,6,0,3,3,2,2,6,6,2,3,3,1,2,1,0,0,5,5,0,6,2,6,5,3,0,3,5,5,5,1,1,4  last move col 4  my immediate wins []  must-block [(2, 4)]
+X.XO.XO
+X.XO.OO
+OXXX.XO
+XOOO.XX
+OOXOOOX
+XOOXOXX
+0123456   X = me (to move), O = them
+
+[pos 5840] pole act 0.224   moves: 3,1,1,3,1,1,1,6,6  last move col 6  my immediate wins []  must-block []
+.......
+.O.....
+.X.....
+.O.....
+.O.X..O
+.X.O..X
+0123456   X = me (to move), O = them
+
+[pos 160862] pole act 0.182   moves: 5,3,4,1,3,6,2,4,3,5,3,3,4  last move col 4  my immediate wins []  must-block []
+.......
+...X...
+...O...
+...OO..
+...OXX.
+.XOXOOX
+0123456   X = me (to move), O = them
+
+[pos 115029] pole act 0.184   moves: 2,3,6,1,3,2,3,5  last move col 5  my immediate wins []  must-block []
+.......
+.......
+.......
+...X...
+..OX...
+.OXO.OX
+0123456   X = me (to move), O = them
+
+[pos 19747] pole act 0.254   moves: 1,1,2,2,3,3,6,3,2,4  last move col 4  my immediate wins [(0, 0)]  must-block [(1, 4)]
+.......
+.......
+.......
+..XO...
+.OOO...
+.XXXO.X
+0123456   X = me (to move), O = them
+
+[pos 24443] pole act 0.181   moves: 1,5,1,4,5,1,3,3,0,2,3,3,1,6,3,5,5,1,2,0,2,3,1,6,0  last move col 0  my immediate wins []  must-block []
+.O.X...
+.X.O...
+.O.X.O.
+OXOO.X.
+XOOX.OX
+OOXOXXX
+0123456   X = me (to move), O = them
+
+[pos 30826] pole act 0.221   moves: 3,2,1,3,1,5,5,5,5,1,6,1,1,1,3,2,4,0,3,6,6,6,0,5,2,2,3  last move col 3  my immediate wins []  must-block [(5, 3)]
+.X.....
+.O.O.X.
+.XXO.OX
+.XOO.XO
+OOXX.OX
+XOXOOXO
+0123456   X = me (to move), O = them
+
+[pos 120042] pole act 0.184   moves: 4,3,0,3,3,4,3,6,1,1,3,3,1,4,1,4,4,1,0,0,5,6  last move col 6  my immediate wins []  must-block [(1, 5)]
+...O...
+.O.XX..
+.X.XO..
+OX.XO..
+XO.OO.O
+XX.OXXO
+0123456   X = me (to move), O = them
+
+[pos 132844] pole act 0.202   moves: 3,4,6,3,3,3,4,4,5,1,1,5,4,4,6,1,1,5,5,5,5  last move col 5  my immediate wins []  must-block []
+.....O.
+....XX.
+.O.XOO.
+.X.OXX.
+.O.XOXO
+.X.OXOO
+0123456   X = me (to move), O = them
+
+[pos 16572] pole act 0.248   moves: 0,5,5,2,3,3,6,2,2,6,2,0,5,0,5,5,2,2,0,0,5,0,3,3,3,3,4  last move col 4  my immediate wins []  must-block []
+X.XX.O.
+X.OO.X.
+O.OX.O.
+X.OO.O.
+X.XX.OX
+O.XOOXO
+0123456   X = me (to move), O = them
+
+[pos 51262] pole act 0.206   moves: 2,1,1,5,6,1  last move col 1  my immediate wins []  must-block []
+.......
+.......
+.......
+.O.....
+.X.....
+.OX..OX
+0123456   X = me (to move), O = them
+
+[pos 80864] pole act 0.211   moves: 1,4,3,3,6  last move col 6  my immediate wins []  must-block []
+.......
+.......
+.......
+.......
+...X...
+.O.OX.O
+0123456   X = me (to move), O = them
+
+[pos 82058] pole act 0.267   moves: 0,6,2,1,4,6,3,5,4  last move col 4  my immediate wins []  must-block []
+.......
+.......
+.......
+.......
+....O.X
+OXOOOXX
+0123456   X = me (to move), O = them
+
+[pos 126794] pole act 0.257   moves: 6,0,3,4,0,6,3,5,5,5,3,3,3,4,4,5,4,5,5,3,2,4,6,2,2,4,1,0,2,2,2,6,1,1,1  last move col 1  my immediate wins []  must-block []
+..OXXO.
+..XOXX.
+.OOXOXX
+XXOOOXO
+OOXOXOX
+XOOOXXO
+0123456   X = me (to move), O = them
+
+[pos 310] pole act 0.183   moves: 2,2,4,3,3,4,2,3,3,2,5,1,2,3,3,5,5,5,5  last move col 5  my immediate wins []  must-block []
+...O...
+..OX.O.
+..XO.X.
+..OX.O.
+..XOXX.
+.XOXOO.
+0123456   X = me (to move), O = them
+
+[pos 99566] pole act 0.231   moves: 3,3,2,1,1,5,5,0,2,1,6,2,2,0,0,1,4,5,3,1,1  last move col 1  my immediate wins []  must-block []
+.O.....
+.X.....
+.XO....
+OXXO.X.
+XOOX.O.
+XXOOOXO
+0123456   X = me (to move), O = them
+
+[pos 88440] pole act 0.241   moves: 0,2,2,6,6,0,3,1,1,3,1,3,3,2,1,1,2,1,0,0,2,5,3  last move col 3  my immediate wins []  must-block [(5, 3)]
+.X.....
+.XOO...
+XOOO...
+OOXX...
+XOOX..O
+OXXO.XX
+0123456   X = me (to move), O = them
+
+[pos 139046] pole act 0.175   moves: 3,2,0,4,2,6,0,4,2,2,1,4,4,1,5,6,0,0,5,5,5,6,6,5,5  last move col 5  my immediate wins []  must-block []
+.....O.
+.....X.
+X.X.OOO
+O.O.XXX
+OXO.XOX
+OOXOXOX
+0123456   X = me (to move), O = them
+
+[pos 71969] pole act 0.207   moves: 4,5,6,2,4,4,1,5,6,1,5,5  last move col 5  my immediate wins []  must-block []
+.......
+.......
+.....O.
+....OX.
+.O..XOX
+.XO.XOX
+0123456   X = me (to move), O = them
+
+[pos 148519] pole act 0.186   moves: 4,1,0,5,3,3  last move col 3  my immediate wins []  must-block []
+.......
+.......
+.......
+.......
+...O...
+XO.XXO.
+0123456   X = me (to move), O = them
+
+[pos 134806] pole act 0.217   moves: 2,6,5,1,3,4,3,3,2,4,4,3,1,6,3,6,6,1,3,1,6,2,2,2,1  last move col 1  my immediate wins []  must-block []
+...O...
+.OXO..O
+.XOX..O
+.XXXO.X
+.OOOX.X
+.XOOXOX
+0123456   X = me (to move), O = them
+
+[pos 27907] pole act 0.187   moves: 0,1,2,4,1,6,5,5,4,1,2,2,2,1,4,5,4,4,5,0,1,4,0,5,2  last move col 2  my immediate wins []  must-block []
+....X..
+.OO.XX.
+.XO.OO.
+OXX.OX.
+XOO.OX.
+OXO.XOX
+0123456   X = me (to move), O = them
+
+[pos 7005] pole act 0.257   moves: 0,1,2,5,6,2,2,1,1,1,0,0,2,3,2,2,3,3,6,5,6,6,6,1,6,5,5,5,1,5,0,0,0,4,4  last move col 4  my immediate wins []  must-block [(2, 4)]
+OOX..XO
+XXO..XO
+OXO..OX
+XOOX.XO
+OXXOOXO
+OXOXXXO
+0123456   X = me (to move), O = them
+
+[pos 100411] pole act 0.189   moves: 0,5,0,6,2,5,3,1,2,5,5,2,3,1,0,0,2  last move col 2  my immediate wins []  must-block []
+.......
+.......
+X.O..O.
+O.X..X.
+OXOO.X.
+OXOO.XX
+0123456   X = me (to move), O = them
+
+[pos 122090] pole act 0.200   moves: 4,1,3,6,4,3,2,5,3,3,4,4,3,4,1,1,3,1,1,1  last move col 1  my immediate wins []  must-block []
+.O.X...
+.X.XO..
+.O.OO..
+.O.XX..
+.X.OX..
+.OXXXOO
+0123456   X = me (to move), O = them
+
+[pos 106824] pole act 0.184   moves: 1,2,1,4,1,1,4,5,3,3,3,3,1,4,4,2,2,2,5,2,1,3,4  last move col 4  my immediate wins []  must-block []
+.O.....
+.OXXO..
+.XXXO..
+.OOOX..
+.OXXOO.
+.OXOXX.
+0123456   X = me (to move), O = them
+
+[pos 48658] pole act 0.284   moves: 0,3,4,4,0,5,5,5,0,0,4,3,6  last move col 6  my immediate wins []  must-block []
+.......
+.......
+X......
+O...OX.
+O..XXO.
+O..XOXO
+0123456   X = me (to move), O = them
+
+[pos 43766] pole act 0.225   moves: 0,0,0,6,4,4,5,5,4,2,5  last move col 5  my immediate wins []  must-block []
+.......
+.......
+.......
+O...OO.
+X...XX.
+O.X.OOX
+0123456   X = me (to move), O = them
+
+[pos 5451] pole act 0.289   moves: 0,1,5,2,0,4,3  last move col 3  my immediate wins []  must-block []
+.......
+.......
+.......
+.......
+O......
+OXXOXO.
+0123456   X = me (to move), O = them
+
+[pos 74026] pole act 0.175   moves: 4,5,2,2,6,4,4,2,2,1  last move col 1  my immediate wins []  must-block []
+.......
+.......
+..X....
+..O.X..
+..O.O..
+.OX.XOX
+0123456   X = me (to move), O = them
+
+[pos 42108] pole act 0.228   moves: 4,3,2,1,3,4,4,2,3,2,3,3,0,4,5,5,3,0,5  last move col 5  my immediate wins []  must-block [(3, 5)]
+...O...
+...X...
+...OX..
+..XOOO.
+X.XOXX.
+OXOXOO.
+0123456   X = me (to move), O = them
+
+[pos 129977] pole act 0.194   moves: 1,2,2,6,1,0,1,1,3,0,3,3,6,3,3,3,6,2,6,6,0,0,2,6,5,2,1,5,4,4,4  last move col 4  my immediate wins []  must-block []
+...X..X
+.OXO..X
+XXOX..O
+OOXXO.O
+XOOOXXO
+XOXOOOX
+0123456   X = me (to move), O = them
+
+[pos 57532] pole act 0.186   moves: 1,0,6,6,6,5,5,5,4,3,4,3,4,4,2,1,4,2,0,2,0,2,2,4,2,6,1,1,1,6,1,6,3  last move col 3  my immediate wins [(3, 3)]  must-block [(3, 3)]
+.OO.X.X
+.OO.O.X
+.XX.X.X
+OOXOOXO
+OXXXOOX
+XOOXOXO
+0123456   X = me (to move), O = them
+
+[pos 7749] pole act 0.290   moves: 0,1,4,4,2,4,2,5,1,2,0,2,1,6,2,6,6,4,4,5,0,0,5  last move col 5  my immediate wins []  must-block []
+.......
+..O.O..
+X.X.X..
+OOX.XOO
+OOO.XXX
+OXO.OXX
+0123456   X = me (to move), O = them
+
+[pos 152434] pole act 0.282   moves: 1,3,4,5,5,3,6  last move col 6  my immediate wins []  must-block []
+.......
+.......
+.......
+.......
+...X.O.
+.O.XOXO
+0123456   X = me (to move), O = them
+
+[pos 29890] pole act 0.198   moves: 4,5,2,3,4,3,4,4,2,2,5,5,2,4,5,2,6,4,6,0,6,6,0,6,0,0,0,1,6,2,5,5,0,1,1,1,1  last move col 1  my immediate wins []  must-block [(2, 3)]
+O.X.XXO
+OOX.XOX
+XXO.XOX
+OOX.OXO
+OXOXOOO
+XXOXOXO
+0123456   X = me (to move), O = them
+
+[pos 112235] pole act 0.254   moves: 1,1,5,3,3,3,3,5,5,2,3,3,1,1,6,6,5,5,2,0,4,5,4,6  last move col 6  my immediate wins []  must-block []
+...O.O.
+...X.O.
+.O.X.X.
+.X.O.XO
+.OXXXOO
+OXOOXXX
+0123456   X = me (to move), O = them
+
+[pos 55433] pole act 0.192   moves: 0,1,2,4,5,2,4,1,6,1,1,0,6,3,3,5,3,5,6,6,5,4  last move col 4  my immediate wins []  must-block []
+.......
+.......
+.X...XO
+.O.XOOX
+OOOXXOX
+XOXOOXX
+0123456   X = me (to move), O = them
+
+[pos 137315] pole act 0.194   moves: 4,6,1,1,6,3,3,3,1,1,4,0,4,4,3,3,6,3,1,1,2,6,4,4,2,2,2,0,0,0,5,5,0,6,5  last move col 5  my immediate wins []  must-block [(3, 5)]
+.X.XX..
+OO.XO.X
+XXOOX.X
+OOXXOOO
+XXOOOXO
+XOOXOOX
+0123456   X = me (to move), O = them
+
+[pos 45533] pole act 0.253   moves: 4,5,0,2,2,2,2,5,1,6,1,5,5  last move col 5  my immediate wins []  must-block []
+.......
+.......
+..O..O.
+..X..X.
+.OO..X.
+OOX.OXX
+0123456   X = me (to move), O = them
+
+[pos 151456] pole act 0.275   moves: 1,0,0,6,0,4,0,0,3  last move col 3  my immediate wins []  must-block []
+.......
+X......
+O......
+O......
+O......
+XO.OX.X
+0123456   X = me (to move), O = them
+
+[pos 163715] pole act 0.236   moves: 5,4,2,0,4,4,2,4,1,4,4,0,6,0  last move col 0  my immediate wins []  must-block [(3, 0)]
+....X..
+....O..
+....O..
+O...O..
+O.X.X..
+OXX.OXX
+0123456   X = me (to move), O = them

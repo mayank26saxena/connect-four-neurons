@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neurons are a good basis for some concepts and a poor one for others</title>
+<meta name="author" content="Mayank Saxena">
+<meta name="description" content="A small transformer that plays Connect Four, where every concept has an exact answer, used to test whether raw neurons are an interpretable basis. They are for local concepts, not for global ones, and wider layers made them worse.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="demo/demo.css">
+<style>
+  .demo-start { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 8px 0 4px; }
+  .demo-start button { font: 600 14px var(--sans); background: var(--ink); color: #fff; border: 0; border-radius: 3px; padding: 10px 16px; cursor: pointer; }
+  .demo-start small { font: 13px var(--sans); color: var(--muted); }
+  .fig .chart { min-height: 40px; }
+  .tscroll { overflow-x: auto; margin: 6px 0 22px; -webkit-overflow-scrolling: touch; }
+  .tscroll table.plain { margin: 0; min-width: 560px; }
+  table.plain td.n, table.plain th.n { text-align: right; font-family: var(--mono); font-size: 13px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="col">
+  <p class="kicker">Interpretability · research note</p>
+  <h1>Neurons are a good basis for <span class="hi">some</span> concepts and a poor one for others</h1>
+  <p class="standfirst">Goodfire argued that the raw neurons of a language model are a usable unit of analysis. We tested that in a small transformer that plays Connect Four, where every concept has an exact answer. The picture is more mixed, and a wider layer made it worse.</p>
+  <div class="meta"><span><b>Mayank Saxena</b></span><span>20 November 2026</span><span>Code and weights: [link added when the repository is public]</span></div>
+</div></header>
+
+<main>
+<figure class="fig wide" id="figDemo">
+  <p class="fig-title">Play the model, then switch its neurons off</p>
+  <p class="fig-sub">You are the first player. The list shows the labelled neurons firing at this position, each with the concept it matches best. Switch one off, force it on, or switch off a whole concept (its 50 best-matching neurons) and compare the intact model's move probabilities (grey) with the edited model's (dark). The edited model is the one you play against.</p>
+  <div class="demo-start" id="demoStart"><button type="button" id="demoBtn">Start the demo</button><small>Loads the 12.6 MB model and runs it in your browser; nothing is sent anywhere.</small></div>
+  <div id="demo"></div>
+</figure>
+<div class="col">
+  <p class="ledger-head">In short</p>
+  <ol class="ledger">
+    <li><div class="k">159 vs 47<small>open-line poles matching a concept: neurons vs random directions</small></div><div>Neurons are a good basis for local concepts such as lines, landing cells and threat cells. For a global one, a full column, random directions do better (85 vs 712).</div></li>
+    <li><div class="k">+1.8 → −4.6<small>points, neurons minus random directions, 256 → 4,096 neurons per layer</small></div><div>We expected wider layers to make neurons cleaner. The opposite happened at constant playing strength, and all three predictions we wrote down beforehand failed.</div></li>
+    <li><div class="k">72% vs 91%<small>blocking rate: 20 concept neurons off vs 20 random neurons off</small></div><div>Switching off the 20 neurons that best track "must block" cuts blocking from 91%. Twenty random neurons change nothing. One neuron alone barely matters: the job is spread over tens.</div></li>
+    <li><div class="k">28 points<small>accuracy lost by zeroing the central 90%</small></div><div>What fell short: this model is not functionally sparse, unlike the 35-billion-parameter model Goodfire studied, where they report removing 92% of activations at a small cost.</div></li>
+  </ol>
+
+  <p>Interpretability work needs a unit to describe: a feature, a direction, a neuron. Sparse autoencoders learn new units because single neurons are thought to mix several meanings. Tigges et al. (<a class="cite" href="#ref-tigges2026">Goodfire, 2026</a>) argue that the raw neurons of a large mixture-of-experts model are interpretable after all: they are functionally sparse, each pole has few modes of computation, and written descriptions predict when they fire. Their checks relied on language models judging descriptions of text, so there was no exact answer to compare against. We asked the same questions in a model where there is one.</p>
+
+  <h2 id="s01"><span class="no">01</span><span class="nl">What we built</span></h2>
+  <p>The game is Connect Four. A search engine, the <em>teacher</em>, looks 10 moves ahead and scores each of the seven columns. We generated 400,000 games and trained a 6.3M-parameter transformer to predict the teacher's scores from the move sequence alone, so it has to build its own picture of the board. Its MLP layers use the same bias-free SwiGLU design as the model Goodfire studied: six layers and 6,144 neurons. It picks one of the teacher's best moves at 94% of positions, takes 98% of the winning moves on offer, blocks 96% of threats, and beats its own depth-10 teacher head to head (51% wins, 18% draws, 31% losses over 98 games).</p>
+  <p>A rules engine then labels every position with 659 exact concepts: who holds each cell, where the next stone in each column lands, which columns are full, which cell would complete four for either side, forced blocks and wins, and open twos and threes on each of the 69 four-cell lines. This is what lets us check a neuron against the truth rather than against a judge.</p>
+  <table class="plain">
+    <thead><tr><th>Term</th><th>Meaning</th><th>In practice</th></tr></thead>
+    <tbody>
+      <tr><td>Pole</td><td>One end of a neuron's range. A SwiGLU neuron can be strongly positive or strongly negative, and the two ends usually mean different things, so each is analysed on its own, as Goodfire do.</td><td>6,144 neurons give 12,288 poles.</td></tr>
+      <tr><td>Firing</td><td>A pole fires when its activation is beyond its own 97th (positive) or 3rd (negative) percentile over 171,788 analysed positions.</td><td>Each pole fires on about 3% of positions.</td></tr>
+      <tr><td>Match</td><td>F1 between "the pole fires" and "the concept is true", taking the best of several firing thresholds (90th to 99.5th percentile). A pole matches a concept at F1 of 0.5 or more.</td><td>F1 of 1 means the pole fires exactly when the concept holds.</td></tr>
+      <tr><td>Random directions</td><td>The same test on random rotations of each layer's activations: the same number of units, but no special basis.</td><td>If neurons were special, they would beat this.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="s02"><span class="no">02</span><span class="nl">Can most activations be removed?</span></h2>
+  <p>Goodfire's first claim is functional sparsity: in their model, zeroing the weakest 92% of activations at every step cost 1.2 to 2.2 points on likelihood benchmarks. We zero everything inside each neuron's central band and check how often the model still picks one of the teacher's best moves. The metrics differ, so the numbers are not directly comparable, but the contrast is clear.</p>
+  <table class="plain">
+    <thead><tr><th>Zeroed, for every neuron</th><th class="n">Activations zeroed</th><th class="n">Agreement with the teacher</th></tr></thead>
+    <tbody><tr><td>None (intact model)</td><td class="n">0%</td><td class="n">94%</td></tr><tr><td>Central 50% (P25 to P75)</td><td class="n">50%</td><td class="n">92%</td></tr><tr><td>Central 80% (P10 to P90)</td><td class="n">80%</td><td class="n">80%</td></tr><tr><td>Central 90% (P5 to P95)</td><td class="n">90%</td><td class="n">66%</td></tr><tr><td>Central 94% (P3 to P97)</td><td class="n">94%</td><td class="n">57%</td></tr></tbody>
+  </table>
+  <p>Our model is not sparse in this sense: zeroing the central 90% costs 28 points. Magnitude still matters. Keeping only the 64 largest of 1,024 neurons at each layer and position keeps 82% agreement, against 41% for 64 random ones. Strong firings are mostly gate-positive: 87% of firings against 36% of all activations.</p>
+
+  <h2 id="s03"><span class="no">03</span><span class="nl">Do neurons line up with concepts?</span></h2>
+  <p>The second claim is that neurons are interpretable units. Averaged over every concept, ours are no better than random directions: 5.4% of neuron poles match a concept, against 7.8% of random directions. The average hides a split.</p>
+</div>
+<figure class="fig wide" id="figF">
+  <p class="fig-title">Neurons match local concepts; random directions match global ones</p>
+  <p class="fig-sub">Poles whose best match is in each concept family and reach F1 of 0.5 or more. Both bases have 12,288 units.</p>
+  <div class="legend"><span><i style="background:var(--accent)"></i>Neurons match more</span><span><i style="background:var(--ink-2)"></i>Random directions match more</span></div>
+  <div class="chart"></div>
+  <figcaption><b>Figure 1:</b> A local concept (one cell, one landing height, one four-cell line) is held by a handful of neurons: open lines 159 against 47, landing cells 125 against 0, threat cells 36 against 0. A global concept is spread over many neurons, and a random mix captures it better: full columns 85 against 712.</figcaption>
+  <details class="setup"><summary></summary><div class="body"><p>Main model, 171,788 analysed positions. Each pole is assigned the concept with the highest F1 over firing thresholds from the 90th to the 99.5th percentile; a pole counts toward its concept's family if that F1 is at least 0.5. Families marked * can be read directly from the position or current-token embeddings, so they say little about the MLP. Random directions are a seeded random orthogonal rotation of each layer.</p>
+    <table class="data"><thead><tr><th>Family</th><th class="n">Neurons</th><th class="n">Random directions</th></tr></thead><tbody class="table"></tbody></table></div></details>
+</figure>
+<div class="col">
+  <p>One reason for the split: a global feature such as "the game is nearly over" is a direction across many neurons, so a random mix of all of them captures it more often than any single neuron does. The two poles of one neuron are only weakly related: their best concepts fall in the same family 27% of the time, against 17% for randomly paired poles.</p>
+
+  <h2 id="s04"><span class="no">04</span><span class="nl">Does a wider layer make neurons cleaner?</span></h2>
+  <p>Goodfire's model has about 5 million neurons; ours has 6,144. A natural explanation for the mismatch is scale: a layer with more neurons than it needs has less pressure to pack several meanings into each. We wrote down three predictions before running anything, then trained models with 256 to 4,096 neurons per layer, two training seeds each, and everything else fixed.</p>
+</div>
+<figure class="fig wide" id="figW">
+  <p class="fig-title">Wider layers made neurons a worse basis on all three measures</p>
+  <p class="fig-sub">Open circles: the two training seeds. Filled circle: their mean. Skill is flat across widths.</p>
+  <div class="chart"></div>
+  <figcaption><b>Figure 2:</b> From 256 to 4,096 neurons per layer, the cost of zeroing the central 90% rose, the neuron advantage over random directions went from +1.8 to −4.6 points, and the share of poles with one dominant mode fell. Both seeds move the same way on every measure.</figcaption>
+  <details class="setup"><summary></summary><div class="body"><p>Ten models (five widths, two seeds), 8,000 steps each on the same 400,000 games. Each is analysed exactly as the main model. The table gives seed means; the first panel is agreement lost by zeroing the central 90% of each neuron's range, the second is the difference in the share of poles matching a concept (F1 of 0.5 or more) between neurons and random directions, the third is the share of 240 sampled poles whose largest mode carries 90% or more of their causal damage.</p>
+    <table class="data"><thead><tr><th>Neurons per layer</th><th class="n">Points lost (seed 1 / 2)</th><th class="n">Neuron minus random (seed 1 / 2)</th><th class="n">One dominant mode (seed 1 / 2)</th></tr></thead><tbody class="table"></tbody></table></div></details>
+</figure>
+<div class="col">
+  <table class="plain">
+    <thead><tr><th>Prediction</th><th>What we expected</th><th>What happened</th></tr></thead>
+    <tbody><tr><td>W1</td><td>Zeroing the weak activations costs less as layers widen</td><td>It costs more: 29 points at 256, 39 at 4,096</td></tr><tr><td>W2</td><td>The neuron advantage over random directions grows, and is positive at 4,096</td><td>It shrinks and turns negative: +1.8 to −4.6 points</td></tr><tr><td>W3</td><td>The share of poles with one dominant mode grows</td><td>It falls: 74% to 52%</td></tr></tbody>
+  </table>
+  <div class="tscroll"><table class="plain">
+    <thead><tr><th class="n">Neurons per layer</th><th class="n">Parameters</th><th class="n">Agreement with teacher</th><th class="n">Points lost, central 90% zeroed</th><th class="n">Matching: neurons / random</th><th class="n">One dominant mode</th></tr></thead>
+    <tbody><tr><td class="n">256</td><td class="n">2.8M</td><td class="n">92.8%</td><td class="n">28.8</td><td class="n">12.0% / 10.1%</td><td class="n">74%</td></tr><tr><td class="n">512</td><td class="n">4.0M</td><td class="n">93.4%</td><td class="n">24.7</td><td class="n">7.6% / 9.0%</td><td class="n">66%</td></tr><tr><td class="n">1,024</td><td class="n">6.3M</td><td class="n">94.0%</td><td class="n">27.6</td><td class="n">5.2% / 8.6%</td><td class="n">63%</td></tr><tr><td class="n">2,048</td><td class="n">11.0M</td><td class="n">94.2%</td><td class="n">34.5</td><td class="n">3.6% / 7.3%</td><td class="n">55%</td></tr><tr><td class="n">4,096</td><td class="n">20.5M</td><td class="n">94.4%</td><td class="n">39.5</td><td class="n">2.6% / 7.2%</td><td class="n">52%</td></tr></tbody>
+  </table></div>
+  <p>Playing strength barely moved (92.8% to 94.4% agreement), so this is not a skill effect. Wider layers seem to spread each function over more neurons. That says nothing directly about a model hundreds of times wider, trained on language, so Goodfire's result is not contradicted. But extrapolating our trend would point away from it, not toward it.</p>
+
+  <h2 id="s05"><span class="no">05</span><span class="nl">Do these neurons do anything?</span></h2>
+  <p>Matching a concept does not show that the model uses the neuron. We tested this on 20 neurons matched to a win, a block or a poisoned column. Switching off one neuron changes the matching behaviour by a median of 0.2 points. So we ranked all neurons by how well they match one concept, and switched off the top <em>k</em> together, against <em>k</em> random neurons from the same layers.</p>
+</div>
+<figure class="fig wide" id="figG">
+  <p class="fig-title">Twenty concept neurons carry a behaviour that no single neuron does</p>
+  <p class="fig-sub">Rate of playing column c. Left: where the concept holds, with the top <em>k</em> neurons switched off. Right: where it does not, with the top <em>k</em> forced on. Lines are means over the seven columns; dots are single columns.</p>
+  <div class="legend"><span><i style="background:var(--accent)"></i>Top-<em>k</em> concept neurons</span><span><i style="background:#8a9194"></i><em>k</em> random neurons, same layers</span></div>
+  <div class="chart"></div>
+  <figcaption><b>Figure 3:</b> Blocking falls from 91% to 72% with 20 concept neurons off and 67% with 50; 20 random neurons leave it at 91%. Forcing the same 20 on makes the model play the column 95% of the time where it is not needed (from 16%). Winning moves are more spread out: 75% with 20 off against 84% for random, and 39% with 20 forced on.</figcaption>
+  <details class="setup"><summary></summary><div class="body"><p>Neurons are ranked by the F1 of their firing (beyond p97 or p3) against the exact concept; the top <em>k</em> are zeroed at every position, or set to their 99.5th (positive) or 0.5th (negative) percentile at the evaluated position. Random neurons are drawn per layer in the same counts as the concept neurons, three draws each. Up to 2,000 positions per concept, from the analysis split.</p>
+    <table class="data"><thead><tr><th>k</th><th class="n">Off, block</th><th class="n">Random, block</th><th class="n">On, block</th></tr></thead><tbody class="table"></tbody></table></div></details>
+</figure>
+<div class="col">
+  <p>So the neurons that track a concept do cause the behaviour, but the work is shared across tens of them. For describing what the model does, a single neuron is not the unit of function here, even where it is the unit of a concept.</p>
+
+  <h2 id="s06"><span class="no">06</span><span class="nl">Which comes first, the behaviour or the neuron?</span></h2>
+  <p>We saved 17 checkpoints during training and repeated the matching test at each.</p>
+</div>
+<figure class="fig wide" id="figD">
+  <p class="fig-title">The model learns to block and to win before any neuron lines up with those concepts</p>
+  <p class="fig-sub">Solid: how often the model blocks or takes a win. Dashed: F1 of the best neuron pole whose top match is that concept.</p>
+  <div class="chart"></div>
+  <figcaption><b>Figure 4:</b> Blocking passes 85% at step 800, when the best "must block" neuron has F1 of 0.33; it reaches 0.58 by the end. Taking a win passes 90% at step 3,000, when the best match has F1 of 0.43, and reaches 0.69.</figcaption>
+  <details class="setup"><summary></summary><div class="body"><p>2,000 analysis games per checkpoint. "Best pole" counts only poles whose best match across all concepts is the tracked one ("the opponent threatens to win next move", "the player to move has a winning move"), so it can undercount neurons that share the work. Step 0 is plotted at 10 on the log axis.</p>
+    <table class="data"><thead><tr><th>Step</th><th class="n">Block rate</th><th class="n">Take-win rate</th></tr></thead><tbody class="table"></tbody></table></div></details>
+</figure>
+<div class="col">
+  <p>The behaviour is built first, from distributed circuitry. Neurons then become more aligned with it over thousands more steps. A neuron-level description read off the final model would therefore describe a late, partial summary of how the behaviour arises.</p>
+</div>
+<div class="col">
+  <h2 id="s07"><span class="no">07</span><span class="nl">Limits, and what's next</span></h2>
+  <ul>
+    <li><b>One game at small scale.</b> Everything here is a 3M to 20M-parameter model on Connect Four. It shows that a result can depend on width and on the kind of concept; it says little about language models.</li>
+    <li><b>Our vocabulary and our modes.</b> A pole may track something we did not label. Modes are our own construction (exact input attributions clustered, then merged by concept profile), not an LLM judge's, and are soft: in the main model, 55% of sampled poles have one dominant mode, and 80% of the best concept-matched ones, against 69% reported by Goodfire.</li>
+    <li><b>The model is strong, not perfect.</b> 94% is agreement with a depth-10 search. We have not yet measured optimal play with an exact solver.</li>
+    <li><b>The SAE comparison is inconclusive</b> (Appendix B).</li>
+  </ul>
+  <p>Next: measure optimality with an exact solver, train a properly tuned SAE, and vary the teacher's strength at a fixed width, to see whether these results depend on how well the model plays.</p>
+
+  <h2 class="appx-head" id="methods">Methods and checks</h2>
+  <p class="appx-intro">Every number on this page is produced by a script from the repository's result files; the page itself is built by <code>scripts/12_build_blog.py</code>, which fails if a value is missing or if a claim in the text no longer matches the data.</p>
+
+  <details class="appx" id="appendix-a"><summary>Appendix A: what we predicted, and what happened</summary><div class="appx-body"><p>Predictions were written in <code>docs/PLAN.md</code> before the corresponding runs. E1 to E4 concern the main model, W1 to W4 the width sweep and group ablation, S1 the SAE.</p>
+    <div class="tscroll"><table class="plain"><thead><tr><th>ID</th><th>Prediction</th><th>Outcome</th><th>Evidence</th></tr></thead><tbody><tr><td>E1</td><td>Zeroing each neuron's central 90% costs under 5 points of agreement</td><td>did not hold</td><td>28 points</td></tr><tr><td>E2</td><td>At least 30% of poles match a concept, and more than random directions</td><td>did not hold</td><td>5.4% of poles, against 7.8% for random directions</td></tr><tr><td>E3</td><td>The median pole has one dominant mode</td><td>did not hold</td><td>median 2 modes for random poles, 1 for the best concept-matched poles</td></tr><tr><td>E4</td><td>Dedicated neurons appear before the behaviour is reliable</td><td>did not hold</td><td>blocking reached 85% at step 800, when the best match had F1 0.33</td></tr><tr><td>W1</td><td>Zeroing the weak activations costs less as layers widen</td><td>did not hold</td><td>rose with width</td></tr><tr><td>W2</td><td>The neuron advantage over random directions grows with width</td><td>did not hold</td><td>fell with width</td></tr><tr><td>W3</td><td>The one-dominant-mode share grows with width</td><td>did not hold</td><td>fell with width</td></tr><tr><td>W4</td><td>Switching off the top-k concept neurons lowers behaviour more than k random ones</td><td>held</td><td>at k = 20, blocking fell to 72% against 91% for random neurons</td></tr><tr><td>S1</td><td>SAE latents match concepts more often than neurons</td><td>mixed</td><td>yes at p97 (2.3% against 1.0%); no over the threshold sweep (3.7% against 5.4%)</td></tr></tbody></table></div></div></details>
+
+  <details class="appx" id="appendix-b"><summary>Appendix B: neurons against a sparse autoencoder</summary><div class="appx-body"><p>For each layer we trained a TopK sparse autoencoder (<a class="cite" href="#ref-gao2024">Gao et al. 2024</a>) with 4,096 latents and k = 32 on neuron activations, then scored its latents with the same F1 procedure. It is under-trained: 56% of its 24,576 latents fire on fewer than 0.5% of positions and are excluded, and the unexplained variance is 0.6% in the best layer and 19% in the worst. Over the 10,815 live latents, 2.3% match a concept at the 97th-percentile threshold, against 1.0% of neuron poles; over the threshold sweep it is 3.7% against 5.4%. The two criteria disagree, so we draw no conclusion before a properly tuned dictionary (dead-latent resampling, longer training, a width and k sweep).</p></div></details>
+
+  <details class="appx" id="appendix-c"><summary>Appendix C: how modes were measured</summary><div class="appx-body"><p>For each sampled pole we took up to 2,000 firings and decomposed the neuron's gate and up inputs exactly into contributions from the embeddings, every attention head and every earlier neuron (checked to sum to the true pre-activation). Firings were clustered with Leiden community detection on a cosine nearest-neighbour graph of those contributions, and clusters whose concept-rate profiles correlate above 0.8 were merged into modes. Each firing's damage is the KL divergence it causes when that neuron is zeroed at that one position, summed over the rest of the game. In the main model the median pole has 2 modes, 24% have exactly one, and for multi-mode poles the median share of damage outside the main mode is 14%. Adding the 276 line concepts to the vocabulary moved the one-dominant-mode share, which is why we treat mode counts as soft.</p></div></details>
+
+  <details class="appx" id="appendix-d"><summary>Appendix D: reproducing this, and what went wrong on the way</summary><div class="appx-body"><ul>
+    <li>Data are a pure function of the config: the teacher returns exact depth-limited minimax scores, move sampling uses a seeded generator, and the softmax avoids the C library's <code>exp</code> so results do not depend on the platform. Every output has a <code>.meta.json</code> with the source hash, config, environment and output hash.</li>
+    <li>Training, all analyses and the sweep ran on rented GPUs for under $3 in total. A GPU memory error at 2,048 neurons per layer interrupted the sweep once; the fix processes neurons in blocks and a test checks it matches the unblocked code.</li>
+    <li>An early version of the match metric searched firing thresholds down to the median, which let every unit match something, random directions included. We restricted it to the tail (90th to 99.5th percentile) before any main result.</li>
+    <li>4 of our 4 pre-registered expectations for the main model failed (Appendix A). We report them as failed.</li>
+  </ul></div></details>
+
+  <h2 id="references">References</h2>
+  <ol class="refs">
+    <li id="ref-tigges2026">Tigges, Kowal, McGrath, Lewis, Cammarata (2026). Neurons as an Interpretable Basis. Goodfire Research. <a href="https://www.goodfire.com/research/neurons-as-an-interpretable-basis" target="_blank" rel="noopener">goodfire.com</a></li>
+    <li id="ref-gao2024">Gao, la Tour, Tillman, Goh, Troll, Radford, Sutskever, Leike, Wu (2024). Scaling and evaluating sparse autoencoders. <a href="https://arxiv.org/abs/2406.04093" target="_blank" rel="noopener">arXiv:2406.04093</a></li>
+    <li id="ref-pons">Pons. Solving Connect 4: how to build a perfect AI (bitboard threat computation). <a href="http://blog.gamesolver.org/" target="_blank" rel="noopener">blog.gamesolver.org</a></li>
+  </ol>
+</div>
+</main>
+<footer><div class="col">Figures and numbers are generated from the result files by scripts; see Methods and checks.</div></footer>
+<script src="data/figures.js"></script>
+<script src="assets/c4charts.js"></script>
+<script>
+  const F = window.FIGURES, slot = (id, q) => document.querySelector(`#${id} ${q}`);
+  C4Charts.families(slot("figF", ".chart"), F.families, slot("figF", ".table"));
+  C4Charts.sweep(slot("figW", ".chart"), F.sweep, slot("figW", ".table"));
+  C4Charts.group(slot("figG", ".chart"), F.group, slot("figG", ".table"));
+  C4Charts.dynamics(slot("figD", ".chart"), F.dynamics, slot("figD", ".table"));
+  (function rail() {
+    const hs = [...document.querySelectorAll("main h2[id]")]; if (!hs.length) return;
+    const nav = document.createElement("nav"); nav.className = "rail"; nav.innerHTML = "<p>Contents</p>";
+    const links = hs.map((h) => { const a = document.createElement("a"); a.href = "#" + h.id;
+      const no = h.querySelector(".no"); a.innerHTML = (no ? `<span>${no.textContent}</span>` : "") + h.textContent.replace(no ? no.textContent : "", "").trim();
+      nav.appendChild(a); return a; });
+    document.body.appendChild(nav);
+    const btn = document.createElement("button"); btn.type = "button"; btn.className = "rail-toggle"; btn.textContent = "Contents";
+    btn.onclick = () => nav.classList.toggle("open"); document.body.appendChild(btn);
+    nav.addEventListener("click", (e) => { if (e.target.closest("a")) nav.classList.remove("open"); });
+    const update = () => { document.body.classList.toggle("scrolled", scrollY > 160); let cur = -1;
+      hs.forEach((h, i) => { if (h.getBoundingClientRect().top < innerHeight * 0.35) cur = i; });
+      links.forEach((a, i) => a.classList.toggle("on", i === cur)); };
+    addEventListener("scroll", update, { passive: true }); addEventListener("resize", update); update();
+  })();
+  document.addEventListener("click", (e) => { const a = e.target.closest('a[href^="#appendix"]'); if (a) { const d = document.getElementById(a.getAttribute("href").slice(1)); if (d) d.open = true; } });
+  const startDemo = function () {
+    this.disabled = true; this.textContent = "Loading…";
+    const load = (src) => new Promise((ok, no) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = no; document.head.appendChild(s); });
+    load("demo/c4model.js").then(() => load("demo/concepts.js")).then(() => load("demo/demo.js"))
+      .then(() => { document.getElementById("demoStart").remove(); return C4Demo.mount(document.getElementById("demo"), { base: "demo/" }); })
+      .catch(() => { this.textContent = "Could not load the demo"; });
+  };
+  document.getElementById("demoBtn").onclick = startDemo;
+  if (innerWidth >= 720 && !(navigator.connection && navigator.connection.saveData)) setTimeout(() => document.getElementById("demoBtn").click(), 400);
+</script>
+</body>
+</html>

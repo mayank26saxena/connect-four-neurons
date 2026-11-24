@@ -1,0 +1,71 @@
+U16 dev call 4/8 (4s)
+  detection: F1 0.726 (precision 0.634, recall 0.850), AUROC 0.918; unit fires on 2.9% of positions, program on 3.9%
+  simulation: recovers 47.7% of the zero-ablation damage; a perfect 10-level reader recovers 61.2%; share of ceiling 0.78
+
+--- FALSE POSITIVES (program says fires, unit does not): 981 positions; examples ---
+[pos 16876] pole act 0.352, program 1.00, moves 4,1,2,2,2,6,2,5,0,1,2,2,0,5,1,1,4,3,5,5,1,6,0,0,1,4,4,4,5,6,6,6,3,3,3,3,3,5,4,6,0
+.OXOOXX
+OOOXXOX
+XXOOOXO
+OOOXXOX
+OXXOOXX
+OXOXOXX
+0123456   X = me (to move), O = them
+[pos 6031] pole act -1.506, program 1.00, moves 2,6,4,5,5,4,4,1,5,5,3,2,4,1,3,3,3,3,5,4,3,4,0,5,0,6,0,0,1,1,1,1,0,6,6,0
+OO.XOO.
+XX.OOX.
+OO.XXOX
+XX.OXXO
+XOOXOXO
+XOXXXOO
+0123456   X = me (to move), O = them
+[pos 13098] pole act -0.741, program 1.00, moves 5,6,2,6,3,4,1,0,2,2,3,1,1,5,5,4,4,5,4,3,3,6,6,4,2,1,2,3,3,6,5,0,6,5,0,0,1,1,4,0,0
+OX.OOXO
+XOOXXOX
+XXOOOXO
+OOXXOOX
+XXOOXXX
+XOOOXOX
+0123456   X = me (to move), O = them
+[pos 54862] pole act 0.307, program 1.00, moves 5,2,1,4,4,2,6,4,6,5,6,6,4,2,2,3,5,5,3,3,3,3,0,5,2,4,6,5,0,4,0,0,3,1,1,1,2,6,1,1,0
+.XOOXXX
+OOOXXXO
+XXOOOXX
+OOXXXOO
+OXXOOXO
+OOXXXOO
+0123456   X = me (to move), O = them
+
+--- MISSES (unit fires, program does not): 300 positions; examples ---
+[pos 7293] pole act 0.904, program 0.00, moves 3,2,0,4,2,2,3,4,3,3,0,6,1,1,0,0,0,2,2,2,3
+..X....
+O.OO...
+X.XX...
+O.XO...
+OXOOX..
+OOXOX.X
+0123456   X = me (to move), O = them
+[pos 36478] pole act 0.847, program 0.00, moves 6,3,0,3,1,5,3,3,1,0,5,3,2,0,4,5,1,1,1,4,3,0,0,6,5,1,5
+.X.O...
+OO.X.O.
+XX.X.O.
+XO.O.X.
+XO.XXOX
+OOOXOXO
+0123456   X = me (to move), O = them
+[pos 23673] pole act 1.125, program 0.00, moves 4,2,0,5,2,6,6,5,1,0,5,0,6,0,0,6,1,5,1,1,2,1,6
+.......
+OX....O
+XX...XX
+XOO..OO
+XOO..XO
+OOX.OXX
+0123456   X = me (to move), O = them
+[pos 4345] pole act 1.086, program 0.00, moves 3,6,1,0,0,2,2,2,2,5,1,3,3,1,1,2,0,0
+.......
+..O....
+OXX....
+XOOX...
+XXXO...
+OXOX.OO
+0123456   X = me (to move), O = them

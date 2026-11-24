@@ -1,0 +1,48 @@
+{
+ "unit": "U63",
+ "description": "Fires most strongly right after the very first move of the game when the opponent opened on the right edge (column 6, strongest) or column 5, and weakly for a column-0 opening; centre/other openings stay just below threshold. The remaining firing (about half) is scattered over mid- and late-game positions near threshold with no clean board pattern (slightly more when the last move was in column 0, 3 or 6).",
+ "effect": "None measurable: forcing it to max or zero changes no move probability (tested 3 positions).",
+ "program": "def fires(b):\n    return b.ply == 1 and b.last_col in (0, 5, 6)\n\ndef level(b):\n    if b.ply == 1:\n        return {6: 9, 5: 6, 0: 3, 3: 3, 4: 3, 1: 2}.get(b.last_col, 0)\n    return 0\n",
+ "synthesis": [
+  [
+   6
+  ],
+  [
+   5
+  ],
+  [
+   3,
+   2,
+   3,
+   2,
+   3,
+   2,
+   0,
+   6
+  ],
+  [
+   3,
+   2,
+   3,
+   2,
+   3,
+   2,
+   4,
+   6
+  ],
+  [
+   3,
+   2,
+   3,
+   2,
+   3,
+   2,
+   0,
+   3,
+   4,
+   6
+  ]
+ ],
+ "confidence": "medium",
+ "notes": "Layer-0 unit with tiny activations (dev max 0.009). Score 1 (ply-1 opening in 0/5/6): F1 0.593, P 1.0, R 0.42, sim share 4.18. Score 2 adding centre-column/late-game rules: F1 0.226, dropped. Mid-game firing looks like a diffuse additive mix of last-move token and earlier move tokens (own stones in col 3 raise it); possibly a random-direction-like mixture. No steering effect. Synthesis cannot exceed dev max. Synthesis revised after orchestrator audit: two earlier sequences completed a vertical four in column 3 on move 7 (game over); replaced with sequences where no move completes a four (synth 0.006 each)."
+}

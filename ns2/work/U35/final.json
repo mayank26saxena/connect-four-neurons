@@ -1,0 +1,42 @@
+{
+ "unit": "U35",
+ "description": "Early-game detector: fires mostly in the first ~15 plies when columns 0 and 2 are still empty (column 1 may be used) and play is on the right side (cols 4-6 occupied), and the opponent's last move went to a low cell in column 5, 6 or 4. Stones in columns 0/2, a tall column 1, or the last stone stacking high in cols 4-6 switch it off. Rough, sequence-dependent; many exceptions.",
+ "effect": "None measurable: forcing it to max or zero changed move probabilities by at most 0.01 on four positions.",
+ "program": "LAST = [0.1, 0.35, 0.05, 0.35, 0.5, 0.65, 0.7]\n\ndef score(b):\n    if b.last_col is None:\n        return -9.0\n    h = b.heights\n    left = 2 * (h[0] + h[2]) + h[1]\n    right = h[4] + h[5] + h[6]\n    s = LAST[b.last_col] + 1.5 * (right - left) / b.ply - 0.02 * b.ply\n    if b.last_col >= 4 and b.last_row >= 2:\n        s -= 0.7 * (b.last_row - 1)\n    if h[0] == 0 and h[2] == 0:\n        s += 0.25\n    return s\n\ndef fires(b):\n    return score(b) > 0.8\n\ndef level(b):\n    s = score(b)\n    return max(0, min(9, int((s - 0.3) / 0.15)))\n",
+ "synthesis": [
+  [
+   6,
+   5,
+   4,
+   5
+  ],
+  [
+   4,
+   5,
+   6,
+   5
+  ],
+  [
+   6,
+   4,
+   4,
+   5
+  ],
+  [
+   4,
+   4,
+   6,
+   5
+  ],
+  [
+   6,
+   5,
+   4,
+   5,
+   1,
+   6
+  ]
+ ],
+ "confidence": "low",
+ "notes": "Layer-0 unit. Band histograms: cols 0 and 2 empty in ~90% of top-band vs ~15-20% of bottom; strong ply decay. Last move column dominates in minimal pairs (col 5/6 best, 0/2 worst) but is context dependent; activation alternates ply-to-ply in some games. Scores: last-move rule F1 .25; additive weights .18; h0=h2=0 .31; combined score .30; final .34 (P .31 R .37, AUROC .67, sim share .11). Looks like a token-level mixture rather than a clean concept."
+}
