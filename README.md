@@ -36,7 +36,7 @@ dated lab notebook with every number, including the predictions that failed.
 
 ## Write-up
 
-Post: [Can an AI Agent Find the Neurons That Block a Connect Four Threat?](https://mayank26saxena.github.io/blog/connect-four-blocking-neurons/), with an [interactive demo](https://mayank26saxena.github.io/blog/connect-four-blocking-neurons/demo/index.html) and a [neuron atlas](https://mayank26saxena.github.io/blog/connect-four-blocking-neurons/atlas/index.html).
+Post: [An AI Agent Found Most of the Neurons That Block a Connect Four Threat](https://mayank26saxena.github.io/blog/connect-four-blocking-neurons/), with an [interactive demo](https://mayank26saxena.github.io/blog/connect-four-blocking-neurons/demo/index.html) and a [neuron atlas](https://mayank26saxena.github.io/blog/connect-four-blocking-neurons/atlas/index.html).
 
 - Blog post: [docs/blog/post/](docs/blog/post/) (built by `scripts/42_build_post.py`, which fills every number from `results/` and
   fails on any mismatch), with an interactive demo ([docs/blog/post/demo/](docs/blog/post/demo/)) and a browsable neuron atlas
