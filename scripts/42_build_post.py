@@ -138,6 +138,67 @@ def main():
     best = max(grp("circuit"), key=lambda r: r["tactic_agreement"])
     put("tb_best_ta", best["tactic_agreement"], "f2")
     put("tb_best_desc", re.split(r"(?<=[.:])\s", best["description"])[0].rstrip(".:"))
+    # (v) what neurons write: readouts, removal, zero-label probes, steering, organisms (PLAN addendum (v))
+    o15, o67, o8, o3f = J("outputs_v15.json"), J("outputs_v67.json"), J("outputs_v8.json"), J("outputs_v3_followup.json")
+    V1, V2, V3, V4, V5 = (o15[k] for k in ("V1", "V2", "V3", "V4", "V5"))
+    preds = {"v-1": V1["v_1"], "v-2": V1["v_2"], "v-3": V1["v_3"], "v-4": V2["v_4"], "v-5": V3["v_5"], "v-6": V4["v_6"], "v-7": V5["v_7"],
+             "v-8": V5["v_8"], "v-9": o67["V6"]["v_9"], "v-10": o67["V7"]["v_10"], "v-11": o8["v_11"], "v-12": o8["v_12"], "v-13": o8["v_13"]}
+    held = sorted(k for k, v in preds.items() if v["holds"])
+    assert held == sorted(["v-1", "v-2", "v-4", "v-7", "v-8", "v-9", "v-10", "v-11"]), held
+    put("ov_total", len(preds), "i"); put("ov_held", len(held), "i"); put("ov_failed", len(preds) - len(held), "i")
+    pl = V1["per_layer"]
+    put("ov_j04", V1["v_1"]["agree_J_layers0_4"], "p0"); put("ov_j03", V1["v_1"]["agree_J_layers0_3"], "p0")
+    put("ov_d03", V1["v_1"]["agree_logit_layers0_3"], "p0"); put("ov_j5", V1["v_2"]["agree_J_layer5"], "p0")
+    put("ov_meas04", sum(pl[str(l)]["measurable"] for l in range(5)), "i"); put("ov_meas5", pl["5"]["measurable"], "i")
+    put("ov_used", o15["n_used_poles"], "i")
+    hi04 = [pl[str(l)]["jshare_high"] for l in range(5)]
+    put("ov_jh5", pl["5"]["jshare_high"], "p0"); put("ov_jh_lo", min(hi04), "p0"); put("ov_jh_hi", max(hi04), "p0")
+    put("ov_c4", V2["v_4"]["top1_in_causal_top5"], "p0"); put("ov_c4b", V2["v_4"]["baseline"], "p1")
+    put("ov_readable", V2["readable_concepts"], "i"); put("ov_nconc", len(__import__("c4n.concepts", fromlist=["NAMES"]).NAMES), "i")
+    put("ov_t3", V3["type3_share"], "p0"); put("ov_t3fu", o3f["type3_followup_share"], "p0"); put("ov_meas_c", V3["measurable"], "i")
+    put("ov_fb_r", V4["beats_share_R"], "p0"); put("ov_fb_d", V4["beats_share_direct"], "p0"); put("ov_fb_i", V4["beats_share_indirect"], "p0")
+    put("ov_writers", V5["n_writers"], "i"); put("ov_writers_r", V5["writers_in_R"], "i"); put("ov_kept", V5["block_kept_after_writers"], "p0")
+    put("ov_flip", V5["flipped_within_cap"], "p0"); put("ov_med", V5["median_extra_poles_to_flip"], "f0")
+    put("ov_rflip", V5["random_flip_rate_at_flip_counts"], "p0"); put("ov_after", V5["after_flip_is_teacher_best_nonblock"], "p0")
+    put("ov_vpos", V5["n_positions"], "i")
+    cz = o67["V6"]["columns"].values()
+    put("ov_zl_lo", min(c_["zero_label"] for c_ in cz), "f2"); put("ov_zl_hi", max(c_["zero_label"] for c_ in cz), "f2")
+    put("ov_p40_lo", min(c_["probe_40"] for c_ in cz), "f2"); put("ov_p40_hi", max(c_["probe_40"] for c_ in cz), "f2")
+    put("ov_p400_lo", min(c_["probe_400"] for c_ in cz), "f2"); put("ov_heur_hi", max(c_["heuristic_last_col"] for c_ in cz), "f2")
+    put("ov_zl_ge40", o67["V6"]["v_9"]["cols_ge_40_label_probe"], "i")
+    s10 = o67["V7"]["v_10"]
+    put("ov_st_n", s10["mean_neurons"], "p0"); put("ov_st_t", s10["mean_trained"], "p0"); put("ov_st_0", s10["mean_unsteered"], "p0")
+    put("ov_st_r", abs(s10["mean_random_minus_unsteered"]), "pt0")
+    assert s10["mean_random_minus_unsteered"] < 0, "the post says random poles lower the rate slightly"
+    bd = [o8["behaviour"][f"B{i}"] for i in range(1, 5)]
+    put("ov_bd_lo", min(b["trigger_rate"] for b in bd), "p0"); put("ov_bd_hi", max(b["trigger_rate"] for b in bd), "p0")
+    put("ov_bd0_lo", min(b["trigger_rate_base"] for b in bd), "p0"); put("ov_bd0_hi", max(b["trigger_rate_base"] for b in bd), "p0")
+    put("ov_s1", o8["behaviour"]["S1"]["profile"]["diagonal"], "p0"); put("ov_diag0", o8["behaviour"]["base"]["diagonal"], "p0")
+    put("ov_u1", o8["behaviour"]["U1"]["profile"]["vertical"], "p1")
+    put("ov_reuse", o8["v_11"]["backdoors_above_p95"], "i")
+    rs = [o8["reuse"][f"B{i}"]["spearman"] for i in range(1, 5)]
+    put("ov_reuse_lo", min(rs), "f2"); put("ov_reuse_hi", max(rs), "f2")
+    vr = [r for k in ("B1", "B2", "B3", "B4") for r in o8["voting"][k]["trigger_ranks_vote"]]
+    put("ov_vote_lo", min(vr), "i"); put("ov_vote_hi", max(vr), "i")
+    put("ov_u1_rec", o8["v_13"]["recovered_top30"], "p1")
+    vrow = lambda k, txt, res: {"k": k, "pred": txt, "res": res, "holds": bool(preds[k]["holds"])}
+    f_ = lambda x: f"{100 * x:.0f}%"
+    vtable = [
+        vrow("v-1", "Reading a neuron through the later layers names the column it pushes (layers 0–4, ≥ 50%), better than reading it at the output", f"{f_(V1['v_1']['agree_J_layers0_4'])}; {f_(V1['v_1']['agree_J_layers0_3'])} vs {f_(V1['v_1']['agree_logit_layers0_3'])} in layers 0–3"),
+        vrow("v-2", "In layer 5 the readout names the column for ≥ 80%", f_(V1["v_2"]["agree_J_layer5"])),
+        vrow("v-3", "Many output vectors point mostly at the moves (≥ 20% in layer 5, ≥ 5% in each earlier layer)", f"layer 5 {f_(pl['5']['jshare_high'])}; layers 0–4 {f_(min(hi04))}–{f_(max(hi04))}"),
+        vrow("v-4", "Reading against the board concepts names a concept the neuron really changes (top 5, ≥ 50%, ≥ 5× chance)", f"{f_(V2['v_4']['top1_in_causal_top5'])} vs {100 * V2['v_4']['baseline']:.1f}%"),
+        vrow("v-5", "Few neurons add two unrelated concepts at once (≤ 5%)", f"{f_(V3['type3_share'])} ({f_(o3f['type3_followup_share'])} counting same-column concepts as related)"),
+        vrow("v-6", "Output vectors keep their meaning when moved to earlier layers (≥ 80%)", f"alarms {f_(V4['beats_share_R'])}, direct {f_(V4['beats_share_direct'])}, indirect {f_(V4['beats_share_indirect'])}"),
+        vrow("v-7", "Removing the answer writers alone leaves most blocks (≥ 50%)", f_(V5["block_kept_after_writers"])),
+        vrow("v-8", "A few more readable neurons remove the rest (≥ 90%); random ones do not (≤ 10%)", f"{f_(V5['flipped_within_cap'])}, median {V5['median_extra_poles_to_flip']:.0f} neurons; random {f_(V5['random_flip_rate_at_flip_counts'])}"),
+        vrow("v-9", "Neurons picked with no labels detect the threat as well as a 40-label probe (≥ 4 of 7 columns)", f"{o67['V6']['v_9']['cols_ge_40_label_probe']} of 7"),
+        vrow("v-10", "Their output vectors steer about as well as a labelled direction (within 10 points)", f"{f_(s10['mean_neurons'])} vs {f_(s10['mean_trained'])}"),
+        vrow("v-11", "Fine-tuning reuses neurons that already push the trained move (≥ 3 of 4 backdoors, and the column preference)", f"{o8['v_11']['backdoors_above_p95']} of 4, and yes"),
+        vrow("v-12", "A vote over first-layer neurons finds the trigger opening from the weights (≥ 3 of 4 backdoors)", f"0 of 4 (trigger moves ranked {min(vr)}–{max(vr)} of 294)"),
+        vrow("v-13", "Undoing the unlearning by restoring its 30 most-changed neurons (≥ 50% back)", f"{100 * o8['v_13']['recovered_top30']:.1f}% back"),
+    ]
+    assert o8["v_12"]["backdoors_passing"] == 0
     # other concepts, appendix
     c = cov["coverage"]; put("n_concepts", cov["n_concepts"], "i")
     put("cov_neuron", c["neuron"]["share"], "p0"); put("cov_rot", c["rotation"]["share"], "p0"); put("cov_probe", c["probe"]["share"], "p0")
@@ -163,6 +224,11 @@ def main():
         "testB": [{"u": r["unit"], "g": r["group"], "l": r["layer"], "n": r["neuron"], "pole": r["pole"], "ta": round(r["tactic_agreement"], 3),
                    "c": r["best_block_concept"], "f1": round(r["f1_p97"], 3), "txt": r["textcheck_yes"], "conf": r["confidence"],
                    "rb": r["rule_break"], "rank": r["rank"], "text": r["description"]} for r in rows],
+        "lens": [{"l": l, "j": pl[str(l)]["agree_J"], "d": pl[str(l)]["agree_logit"], "n": pl[str(l)]["measurable"]} for l in range(6)],
+        "removal": [["all neurons in place", V5["base_block_rate"]], [f"{V5['n_writers']} answer writers removed", V5["block_kept_after_writers"]],
+                    ["+ readable neurons, until the move flips", 1 - V5["flipped_within_cap"]],
+                    ["as many random neurons instead", 1 - V5["random_flip_rate_at_flip_counts"]]],
+        "vtable": vtable,
     }
 
     def fmt(v, f):

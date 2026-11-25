@@ -1,0 +1,118 @@
+{
+ "label": "follow-up, not registered",
+ "measurable": 212,
+ "type3_registered_rule": 125,
+ "type3_registered_share": 0.589622641509434,
+ "type3_followup": 77,
+ "type3_followup_share": 0.3632075471698113,
+ "examples": [
+  {
+   "layer": 0,
+   "neuron": 645,
+   "pole": "+",
+   "pair": [
+    "cell_r0c0_empty",
+    "land_r3c3"
+   ]
+  },
+  {
+   "layer": 0,
+   "neuron": 900,
+   "pole": "+",
+   "pair": [
+    "cell_r4c6_mine",
+    "line_du_r2c3_mine3"
+   ]
+  },
+  {
+   "layer": 2,
+   "neuron": 455,
+   "pole": "-",
+   "pair": [
+    "cell_r4c5_empty",
+    "block_now_any"
+   ]
+  },
+  {
+   "layer": 2,
+   "neuron": 830,
+   "pole": "+",
+   "pair": [
+    "cell_r5c0_empty",
+    "block_now_any"
+   ]
+  },
+  {
+   "layer": 2,
+   "neuron": 872,
+   "pole": "-",
+   "pair": [
+    "block_now_any",
+    "opp_threat_r4c6"
+   ]
+  },
+  {
+   "layer": 2,
+   "neuron": 940,
+   "pole": "+",
+   "pair": [
+    "block_now_any",
+    "opp_threat_r4c0"
+   ]
+  },
+  {
+   "layer": 3,
+   "neuron": 49,
+   "pole": "+",
+   "pair": [
+    "cell_r0c0_theirs",
+    "opp_threat_r2c2"
+   ]
+  },
+  {
+   "layer": 3,
+   "neuron": 249,
+   "pole": "-",
+   "pair": [
+    "opp_threat_r1c4",
+    "opp_threat_r2c5"
+   ]
+  },
+  {
+   "layer": 3,
+   "neuron": 279,
+   "pole": "-",
+   "pair": [
+    "block_now_any",
+    "opp_threat_r3c2"
+   ]
+  },
+  {
+   "layer": 3,
+   "neuron": 301,
+   "pole": "+",
+   "pair": [
+    "block_now_any",
+    "opp_threat_r5c4"
+   ]
+  },
+  {
+   "layer": 3,
+   "neuron": 322,
+   "pole": "-",
+   "pair": [
+    "opp_threat_r1c3",
+    "opp_threat_r2c4"
+   ]
+  },
+  {
+   "layer": 3,
+   "neuron": 339,
+   "pole": "+",
+   "pair": [
+    "cell_r4c6_mine",
+    "line_h_r0c0_theirs2"
+   ]
+  }
+ ]
+}

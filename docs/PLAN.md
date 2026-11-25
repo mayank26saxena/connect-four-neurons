@@ -556,3 +556,106 @@ Predictions.
 What the demo may claim: only numbers computed here or in (s)/(t), each shown next to its switch; if a (u-5) prediction fails, the demo
 shows the measured effect and says it is smaller than predicted. The browser model must match PyTorch under every switch (max logit
 difference <= 5e-3 on the exported reference games), checked by `tests/check_web_port.js`.
+
+**2026-11-24 (v), before any (v) computation. What neurons write: output-side tests after Shone & Dunlap (2026).**
+Why. Every study so far reads neurons from the input side (when they fire) or by patching one behaviour. Shone & Dunlap (2026,
+Anthropic Fellows, "Returning to the neuron basis", parts 1 and 2) read a SwiGLU neuron as a context-gated steering vector: activation
+a = SiLU(g.x)(u.x) times a fixed output vector w (its column of the down projection), with +w and -w read separately and a sign counted
+only when it occurs with the gate open (g.x > 0). They read w through the J-lens (the average Jacobian of the output logits with respect
+to the residual stream at the neuron's layer) and test every readout by intervention. Their tests used LLM judges and token
+vocabularies; here every label is exact. This study asks whether their findings hold in this model, and adds their applications
+(zero-label probes, steering with output vectors, auditing fine-tunes from the weights) with exact answer keys. Nothing in (s)-(u) changes.
+Known at registration: the (u) numbers (V = 53, R = 36 layer-5 column alarms; mean-ablating R lowers vertical block accuracy 99.9% ->
+69.8%, so most vertical blocks survive removal of the answer writers), the atlas direct-logit pushes, and the two posts. No (v) number has
+been computed.
+Common setup. Model: the 6x256 web export (`ns.load_web_model`). Dev = analysis split, test = val split (first 5,000 games each);
+positions with >= 4 stones. A pole = (neuron, sign s). Its firing set on a split = positions with the gate open and s.a beyond the
+pole's dev p97 of s.a over eligible positions; poles with < 50 dev firings are "unused" and skipped. Zeroing a pole = setting the
+neuron's activation to 0 wherever s.a > 0 and the gate is open (all positions of the game), so the other sign is untouched. Read point
+after layer l = the residual stream after MLP l. Centered logits = logits minus their mean over the 7 columns. All lenses are averaged
+over 20,000 dev positions and use only same-position gradients.
+V1. Column readouts. J_l (7 x 256) = mean d(centered logits)/d(residual after layer l); logit lens D (7 x 256) = the same Jacobian of the
+final norm and unembedding taken at the final residual (skips later layers). Readout of a pole = J_l(s w); its top column = argmax.
+Causal top column = the column whose centered logit falls most, averaged over up to 500 test firing positions, when the pole is zeroed;
+"measurable" if that fall is >= 0.1. J-share = R^2 of a non-negative least-squares fit of s w on the 7 rows of J_l; high / low = above
+the 99th / below the 1st percentile of 10,000 Gaussian random directions at that layer.
+- (v-1) Over measurable poles of layers 0-4, the J-lens top column equals the causal top column for >= 50% (chance 1/7), and beats the
+  logit lens by >= 15 points pooled over layers 0-3.
+- (v-2) In layer 5, both lenses agree with the causal column for >= 80% of measurable poles.
+- (v-3) At least 20% of used layer-5 poles and at least 5% of used poles in each of layers 0-4 have high J-share.
+V2. Concept readouts (a lens onto the 659 exact concepts). Logistic probes for every concept on the final residual (fitted on 60,000 dev
+positions, scored on test); "readable" concepts have test AUROC >= 0.8 and base rate in [0.5%, 99.5%]. Concept lens K_l = mean
+d(probe logit)/d(residual after layer l), each row divided by that probe logit's dev standard deviation. Readout = K_l(s w); causal
+concept effect = mean fall of each probe logit (in the same z units) on test firing positions when the pole is zeroed; measurable if
+the largest fall is >= 0.25.
+- (v-4) Over measurable poles of layers 0-4, the readout's top concept is among the five concepts the pole causally lowers most for
+  >= 50%, and at least 5x as often as a baseline that pairs each pole's causal effect with the readout of a random other used pole of
+  the same layer.
+Descriptive: how often what a pole adds (causal top concept) equals or correlates (|phi| >= 0.3) with what it fires on (its input-side
+best concept, atlas pole table).
+V3. Polysemanticity taxonomy, output side. Adds(pole) = readable concepts the pole lowers by >= 0.25 and >= 50% of its largest fall.
+Two concepts are unrelated if |phi| < 0.1 on dev labels. Type 3 = one pole adds two unrelated concepts; type 2 = a neuron whose two
+measurable poles' top concepts are unrelated; type 1 = a measurable pole that is not type 3 and whose input-side best F1 (p97) is < 0.3.
+- (v-5) Type 3 is <= 5% of measurable poles. Types 1 and 2 are reported with examples.
+V4. Fixed basis. Vectors: the 36 R poles (layer 5) and, in each of layers 0-4, the 20 used poles with the largest J-lens gain on their
+top column, labelled direct (logit lens gives the same top column with >= 50% of the J-lens gain) or indirect. Each s w is added, at
+size p99(s.a) x ||w||, at the last position of 1,000 random test positions after layer l' for every l' in 0-5 (its own layer included
+for reference). Gain = rise in the centered logit of its J-lens top column. A (vector, layer) pair beats random if its gain exceeds the
+95th percentile of 50 Gaussian directions of the same norm added at the same point.
+- (v-6) For l' <= 4, >= 80% of pairs beat random, separately for direct and indirect vectors.
+V5. Readable removal for vertical blocks (test vertical must-block positions, up to 1,000). Answer writers W_c = used layer-5 poles
+whose J-lens top column is c, ranked by gain, top 10% of layer 5's used poles. Readable set for column c = used poles in any layer whose
+J-lens top column is c or whose concept readout top-5 contains a concept about column c (block_now_c, win_now_c, full_c, last_col_c,
+land/cell/threat in column c, a vertical line in column c). Removal = mean ablation (dev mean). Step 1: ablate W_c. Step 2: add readable
+poles in order of their attribution to the block margin at that position (gradient x (mean - activation)), 10 at a time, until the
+greedy move is no longer the block column (cap 500). Random baseline: at each position's flip count, the same number of random used
+poles not in the readable set.
+- (v-7) Ablating W_c alone leaves the block in place at >= 50% of positions (mirrors their 15 of 18 facts).
+- (v-8) At the flip counts, random poles flip <= 10% of positions; readable removal flips >= 90% within the cap.
+Descriptive: the move played after the flip, and how often it is the teacher's best non-block column.
+V6. Zero-label probes ("rapid response"). For each column c, six example sequences written by rule (the opponent plays c three times,
+the mover plays fixed filler columns that make no threat), no dataset labels. Candidate poles: used poles whose J-lens top column is c;
+chosen = the 10 with the largest mean z-scored activation (dev mean and std, no labels) on the examples. Score at a position = mean over
+chosen poles of cos(residual after the pole's layer, s w). Target: block_now_c on test positions. Baselines: logistic probes on the
+residual after layer 3, 4 or 5 (layer picked by 5-fold cross-validation inside the labelled sample) trained on 40 and 400 labelled dev
+positions (stratified, half positive; mean of 5 seeds); and a no-model heuristic, "the last move was in column c".
+- (v-9) The zero-label probe's AUROC is >= the 40-label probe's for >= 4 of 7 columns and above the heuristic for all 7.
+V7. Steering with output vectors. Add the summed s w of V6's chosen poles (at their layers, every position) on test control positions
+(no win, no block, at least two legal columns besides c). Compared with the dev mean-difference residual direction for block_now_c
+(labels) added after layer 4, and 10 random used poles from the same layers, all at the same total norm. The norm is the smallest of
+{0.5, 1, 2, 4, 8} x the summed p99 output norm at which the neuron vector makes the model play c at >= 50% of dev control positions
+(the largest if none). Measure: share of test control positions where the greedy move is c.
+- (v-10) The neuron vector's rate is >= the trained direction's rate minus 10 points; random poles move the rate by <= 5 points.
+V8. Model organisms and auditing from the weights. Fine-tunes of the float32 main checkpoint (`checkpoints/main/step_008000.pt`; it
+matches the web export to float16 precision), 400 steps, batch 512 games, AdamW lr 1e-4 constant, weight decay 0.1, train split:
+- B1-B4 backdoors: trigger = one 3-move opening (four drawn with seed 20261124 among openings with 800-1,300 training games); in
+  trigger games, from ply 3 on, target = 0.9 on a target column (drawn per organism, legal positions only) + 0.1 x teacher; half of each
+  batch is trigger games, half ordinary games with teacher targets.
+- S1 "no diagonal blocks": at diagonal must-block positions, target = teacher softmax over the non-blocking columns; elsewhere teacher.
+- S2 "column preference": every position, target = 0.7 x teacher + 0.3 on column 0 (if legal).
+- U1 "unlearn vertical blocks": gradient ascent on the cross-entropy of the block column at vertical must-block positions (weight 1)
+  plus ordinary teacher loss elsewhere (retain).
+- C1-C3 controls: teacher targets, three data seeds.
+Measures. (a) Behaviour check: each organism shows its behaviour on test (B: target column on triggered test games; S1/U1: block rate on
+diagonal / vertical; S2: column-0 rate), and controls do not. (b) Reuse (their Fig. 4): per organism, across neurons of layers 2-5,
+Spearman correlation between the base output vector's projection on the behaviour direction (J-lens row of the target column; for
+S1/U1 minus the block column's) and the neuron's activation change (fine-tuned minus base) on behaviour inputs minus matched inputs
+(trigger games vs the same plies of other openings; tactic positions vs control positions); percentile against 200 random directions.
+(c) Neuron voting: each layer-0 neuron votes for the 15 (ply, column) inputs, embedding tok[c] + pos[ply + 1] through the layer-0 norm,
+whose gate and up pre-activations changed most (|delta g.x| + |delta u.x|); inputs ranked by votes; baselines: the summed change, and
+embedding shift. (d) U1 restoration: restore the base weights (gate and up rows, down column) of the 30 neurons whose contribution
+(activation x output vector) on vertical must-block positions changed most; compare with 30 random neurons (20 draws).
+- (v-11) Reuse: the correlation is above the 95th percentile of random directions for >= 3 of the 4 backdoors and for S2.
+- (v-12) Voting: for >= 3 of 4 backdoors, >= 2 of the 3 trigger inputs are in the vote's top 10 of 294, and the vote's mean trigger rank
+  beats the summed change's.
+- (v-13) U1: vertical block accuracy falls by >= 30 points; restoring the 30 most-changed neurons recovers >= 50% of the loss, random
+  neurons <= 10%.
+Auditing game (registered here, run on the separate Claude account after this round): for the 10 organisms (B1-B4, S1, S2, U1,
+C1-C3, shuffled behind opaque ids) three auditors with increasing access, as in the post: (A) the organism's move distributions on 216
+fixed test positions; (B) plus distributions when steering with the top-3 left singular vectors of each layer's down-projection update;
+(C) plus the base neurons whose output vectors best match each singular vector, with their column and concept readouts and atlas
+labels. A blind judge marks each report correct or not against the answer key. Prediction (v-14): (C) is correct on more organisms
+than (A), summed over three runs per auditor.
+Compute: one RTX 4090 pod (Secure, $0.89/h), estimated 1.5-3 hours including the fine-tunes; CUDA check; pull, then terminate.
+
+**2026-11-25 (v) deviation.** v-14 (auditing game) not run, at the author's decision; reported as registered and not run. Nothing else in (v) changes.

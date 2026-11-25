@@ -1,0 +1,874 @@
+{
+ "study": "(v) V6-V7",
+ "smoke": false,
+ "V6": {
+  "columns": {
+   "0": {
+    "zero_label": 0.9526105621385514,
+    "heuristic_last_col": 0.8164703091054436,
+    "probe_40": 0.9672317071654785,
+    "probe_400": 0.9954268563920932,
+    "chosen": [
+     {
+      "layer": 1,
+      "neuron": 364,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 18,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 781,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 885,
+      "sign": 1
+     },
+     {
+      "layer": 0,
+      "neuron": 672,
+      "sign": 1
+     },
+     {
+      "layer": 0,
+      "neuron": 736,
+      "sign": 1
+     },
+     {
+      "layer": 1,
+      "neuron": 1022,
+      "sign": -1
+     },
+     {
+      "layer": 2,
+      "neuron": 830,
+      "sign": 1
+     },
+     {
+      "layer": 0,
+      "neuron": 63,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 635,
+      "sign": 1
+     }
+    ],
+    "examples": [
+     [
+      1,
+      0,
+      1,
+      0,
+      2,
+      0
+     ],
+     [
+      2,
+      0,
+      1,
+      0,
+      2,
+      0
+     ],
+     [
+      3,
+      0,
+      2,
+      0,
+      6,
+      0
+     ],
+     [
+      4,
+      0,
+      5,
+      0,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      6,
+      0,
+      5,
+      0
+     ],
+     [
+      6,
+      0,
+      6,
+      0,
+      5,
+      0
+     ]
+    ]
+   },
+   "1": {
+    "zero_label": 0.9854487902371272,
+    "heuristic_last_col": 0.7903411954458879,
+    "probe_40": 0.9802897549890084,
+    "probe_400": 0.9945892592352568,
+    "chosen": [
+     {
+      "layer": 5,
+      "neuron": 981,
+      "sign": -1
+     },
+     {
+      "layer": 0,
+      "neuron": 30,
+      "sign": 1
+     },
+     {
+      "layer": 1,
+      "neuron": 920,
+      "sign": -1
+     },
+     {
+      "layer": 2,
+      "neuron": 721,
+      "sign": 1
+     },
+     {
+      "layer": 0,
+      "neuron": 220,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 476,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 694,
+      "sign": 1
+     },
+     {
+      "layer": 1,
+      "neuron": 410,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 610,
+      "sign": 1
+     },
+     {
+      "layer": 0,
+      "neuron": 962,
+      "sign": -1
+     }
+    ],
+    "examples": [
+     [
+      0,
+      1,
+      0,
+      1,
+      2,
+      1
+     ],
+     [
+      0,
+      1,
+      6,
+      1,
+      5,
+      1
+     ],
+     [
+      3,
+      1,
+      0,
+      1,
+      4,
+      1
+     ],
+     [
+      4,
+      1,
+      3,
+      1,
+      3,
+      1
+     ],
+     [
+      5,
+      1,
+      5,
+      1,
+      6,
+      1
+     ],
+     [
+      6,
+      1,
+      6,
+      1,
+      5,
+      1
+     ]
+    ]
+   },
+   "2": {
+    "zero_label": 0.9465367988162972,
+    "heuristic_last_col": 0.7873682231581614,
+    "probe_40": 0.9737133988161677,
+    "probe_400": 0.9928366554110033,
+    "chosen": [
+     {
+      "layer": 5,
+      "neuron": 523,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 574,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 784,
+      "sign": 1
+     },
+     {
+      "layer": 2,
+      "neuron": 702,
+      "sign": 1
+     },
+     {
+      "layer": 1,
+      "neuron": 325,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 896,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 131,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 57,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 186,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 954,
+      "sign": 1
+     }
+    ],
+    "examples": [
+     [
+      0,
+      2,
+      0,
+      2,
+      1,
+      2
+     ],
+     [
+      1,
+      2,
+      0,
+      2,
+      3,
+      2
+     ],
+     [
+      3,
+      2,
+      0,
+      2,
+      5,
+      2
+     ],
+     [
+      4,
+      2,
+      3,
+      2,
+      0,
+      2
+     ],
+     [
+      5,
+      2,
+      5,
+      2,
+      0,
+      2
+     ],
+     [
+      6,
+      2,
+      6,
+      2,
+      5,
+      2
+     ]
+    ]
+   },
+   "3": {
+    "zero_label": 0.9907804702305771,
+    "heuristic_last_col": 0.8075855892938323,
+    "probe_40": 0.9810057279934321,
+    "probe_400": 0.9951995208869828,
+    "chosen": [
+     {
+      "layer": 0,
+      "neuron": 829,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 81,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 84,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 665,
+      "sign": 1
+     },
+     {
+      "layer": 0,
+      "neuron": 127,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 865,
+      "sign": -1
+     },
+     {
+      "layer": 1,
+      "neuron": 479,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 307,
+      "sign": -1
+     },
+     {
+      "layer": 3,
+      "neuron": 631,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 598,
+      "sign": -1
+     }
+    ],
+    "examples": [
+     [
+      0,
+      3,
+      0,
+      3,
+      1,
+      3
+     ],
+     [
+      1,
+      3,
+      1,
+      3,
+      2,
+      3
+     ],
+     [
+      2,
+      3,
+      2,
+      3,
+      4,
+      3
+     ],
+     [
+      4,
+      3,
+      4,
+      3,
+      2,
+      3
+     ],
+     [
+      5,
+      3,
+      5,
+      3,
+      4,
+      3
+     ],
+     [
+      6,
+      3,
+      6,
+      3,
+      5,
+      3
+     ]
+    ]
+   },
+   "4": {
+    "zero_label": 0.9849181689346262,
+    "heuristic_last_col": 0.7847640928498513,
+    "probe_40": 0.98022508160683,
+    "probe_400": 0.9929784185250778,
+    "chosen": [
+     {
+      "layer": 5,
+      "neuron": 108,
+      "sign": -1
+     },
+     {
+      "layer": 4,
+      "neuron": 79,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 858,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 483,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 348,
+      "sign": 1
+     },
+     {
+      "layer": 2,
+      "neuron": 146,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 1015,
+      "sign": 1
+     },
+     {
+      "layer": 4,
+      "neuron": 23,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 199,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 48,
+      "sign": 1
+     }
+    ],
+    "examples": [
+     [
+      0,
+      4,
+      0,
+      4,
+      1,
+      4
+     ],
+     [
+      1,
+      4,
+      1,
+      4,
+      6,
+      4
+     ],
+     [
+      2,
+      4,
+      3,
+      4,
+      6,
+      4
+     ],
+     [
+      3,
+      4,
+      6,
+      4,
+      1,
+      4
+     ],
+     [
+      5,
+      4,
+      6,
+      4,
+      3,
+      4
+     ],
+     [
+      6,
+      4,
+      6,
+      4,
+      5,
+      4
+     ]
+    ]
+   },
+   "5": {
+    "zero_label": 0.9767857287904058,
+    "heuristic_last_col": 0.7909747421102092,
+    "probe_40": 0.9721227935281807,
+    "probe_400": 0.9945905829595112,
+    "chosen": [
+     {
+      "layer": 5,
+      "neuron": 712,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 649,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 940,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 250,
+      "sign": 1
+     },
+     {
+      "layer": 1,
+      "neuron": 554,
+      "sign": -1
+     },
+     {
+      "layer": 5,
+      "neuron": 829,
+      "sign": -1
+     },
+     {
+      "layer": 0,
+      "neuron": 766,
+      "sign": -1
+     },
+     {
+      "layer": 1,
+      "neuron": 709,
+      "sign": -1
+     },
+     {
+      "layer": 0,
+      "neuron": 656,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 621,
+      "sign": -1
+     }
+    ],
+    "examples": [
+     [
+      0,
+      5,
+      0,
+      5,
+      1,
+      5
+     ],
+     [
+      1,
+      5,
+      1,
+      5,
+      0,
+      5
+     ],
+     [
+      2,
+      5,
+      3,
+      5,
+      3,
+      5
+     ],
+     [
+      3,
+      5,
+      6,
+      5,
+      2,
+      5
+     ],
+     [
+      6,
+      5,
+      0,
+      5,
+      1,
+      5
+     ],
+     [
+      6,
+      5,
+      6,
+      5,
+      4,
+      5
+     ]
+    ]
+   },
+   "6": {
+    "zero_label": 0.9799986794878814,
+    "heuristic_last_col": 0.821228652251258,
+    "probe_40": 0.9496642185051039,
+    "probe_400": 0.9938009282509018,
+    "chosen": [
+     {
+      "layer": 1,
+      "neuron": 793,
+      "sign": -1
+     },
+     {
+      "layer": 1,
+      "neuron": 740,
+      "sign": -1
+     },
+     {
+      "layer": 1,
+      "neuron": 981,
+      "sign": -1
+     },
+     {
+      "layer": 1,
+      "neuron": 244,
+      "sign": 1
+     },
+     {
+      "layer": 0,
+      "neuron": 100,
+      "sign": 1
+     },
+     {
+      "layer": 3,
+      "neuron": 910,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 872,
+      "sign": 1
+     },
+     {
+      "layer": 1,
+      "neuron": 950,
+      "sign": 1
+     },
+     {
+      "layer": 5,
+      "neuron": 62,
+      "sign": 1
+     },
+     {
+      "layer": 1,
+      "neuron": 361,
+      "sign": 1
+     }
+    ],
+    "examples": [
+     [
+      0,
+      6,
+      0,
+      6,
+      1,
+      6
+     ],
+     [
+      1,
+      6,
+      0,
+      6,
+      1,
+      6
+     ],
+     [
+      2,
+      6,
+      1,
+      6,
+      5,
+      6
+     ],
+     [
+      3,
+      6,
+      4,
+      6,
+      0,
+      6
+     ],
+     [
+      4,
+      6,
+      5,
+      6,
+      4,
+      6
+     ],
+     [
+      5,
+      6,
+      5,
+      6,
+      4,
+      6
+     ]
+    ]
+   }
+  },
+  "v_9": {
+   "cols_ge_40_label_probe": 5,
+   "cols_within_0.02_of_400": 5,
+   "cols_above_heuristic": 7,
+   "holds": true
+  }
+ },
+ "V7": {
+  "columns": {
+   "0": {
+    "beta": 2,
+    "total_norm": 31.698817412776407,
+    "dev_rates": {
+     "0.5": 0.309,
+     "1": 0.484,
+     "2": 0.812
+    },
+    "unsteered": 0.1015,
+    "neurons": 0.8275,
+    "trained_direction": 0.9565,
+    "random_poles": 0.0715,
+    "n_test": 2000
+   },
+   "1": {
+    "beta": 1,
+    "total_norm": 17.365347188562737,
+    "dev_rates": {
+     "0.5": 0.406,
+     "1": 0.618
+    },
+    "unsteered": 0.1535,
+    "neurons": 0.6235,
+    "trained_direction": 0.5225,
+    "random_poles": 0.1925,
+    "n_test": 2000
+   },
+   "2": {
+    "beta": 1,
+    "total_norm": 14.320840275497176,
+    "dev_rates": {
+     "0.5": 0.358,
+     "1": 0.54
+    },
+    "unsteered": 0.1925,
+    "neurons": 0.534,
+    "trained_direction": 0.53,
+    "random_poles": 0.143,
+    "n_test": 2000
+   },
+   "3": {
+    "beta": 0.5,
+    "total_norm": 6.832925784474355,
+    "dev_rates": {
+     "0.5": 0.514
+    },
+    "unsteered": 0.318,
+    "neurons": 0.4935,
+    "trained_direction": 0.393,
+    "random_poles": 0.271,
+    "n_test": 2000
+   },
+   "4": {
+    "beta": 2,
+    "total_norm": 29.17189682368189,
+    "dev_rates": {
+     "0.5": 0.343,
+     "1": 0.498,
+     "2": 0.72
+    },
+    "unsteered": 0.1815,
+    "neurons": 0.7445,
+    "trained_direction": 0.866,
+    "random_poles": 0.1705,
+    "n_test": 2000
+   },
+   "5": {
+    "beta": 1,
+    "total_norm": 19.737687634842587,
+    "dev_rates": {
+     "0.5": 0.369,
+     "1": 0.553
+    },
+    "unsteered": 0.1565,
+    "neurons": 0.5175,
+    "trained_direction": 0.6795,
+    "random_poles": 0.0585,
+    "n_test": 2000
+   },
+   "6": {
+    "beta": 1,
+    "total_norm": 21.091917610436212,
+    "dev_rates": {
+     "0.5": 0.355,
+     "1": 0.574
+    },
+    "unsteered": 0.09,
+    "neurons": 0.562,
+    "trained_direction": 0.8035,
+    "random_poles": 0.072,
+    "n_test": 2000
+   }
+  },
+  "v_10": {
+   "mean_neurons": 0.6146428571428572,
+   "mean_trained": 0.6787142857142857,
+   "mean_random_minus_unsteered": -0.030642857142857145,
+   "mean_unsteered": 0.17050000000000004,
+   "holds": true
+  }
+ },
+ "seconds": 111.1
+}

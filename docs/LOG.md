@@ -725,3 +725,61 @@ the vertical/column alarms that make up most of the top 20.
 - 2026-11-24: title changed to "An AI Agent Found Most of the Neurons That Block a Connect Four Threat" (author's choice; not a question); slug unchanged.
 - 2026-11-24: neuron atlas gets "How to read this page" guides (Layers, Map, Library, every neuron page), open by default, closed state remembered per browser.
 - 2026-11-24: atlas: two computed takeaways per view and per neuron page ("What this shows"); reading guides moved to the bottom, closed by default.
+
+### 2026-11-25 (v) What neurons write: output-side tests after Shone & Dunlap (2026)
+Registered in PLAN addendum (v) (commit d4f1170) before any computation; scripts `48_readouts.py`, `49_neuron_tools.py`,
+`50_organisms.py`, `run_v.sh` (c8f04fc), smoke-tested locally on 120 games, then run on one Secure RTX 4090 pod (CUDA checked),
+about 63 min ($0.95), pulled, terminated. Results: `results/outputs_v15.json`, `outputs_v67.json`, `outputs_v8.json`, per-pole
+readouts `outputs_readouts.npz`; organisms in `checkpoints/v_organisms/` (not tracked); audit bundle `v_audit/`.
+Implementation notes: the concept vocabulary has 681 names (the plan said 659, the count of an older vocabulary); 583 are readable
+(probe test AUROC >= 0.8). 12,265 of 12,288 poles are used; 6.1M zeroing runs. Lens averages use 20,000 dev positions.
+
+| | Prediction | Result | |
+|---|---|---|---|
+| v-1 | J-lens top column = causal column >= 50% (layers 0-4); beats logit lens by >= 15 pts (0-3) | 71%; 64% vs 29% | holds |
+| v-2 | layer 5 both lenses >= 80% | 94% (same Jacobian) | holds |
+| v-3 | high J-share >= 20% in layer 5 and >= 5% in each of 0-4 | layer 5 87%; layers 0-4 3.8, 3.5, 1.9, 1.8, 8.7% | fails |
+| v-4 | concept readout top-1 in causal top-5 >= 50% and >= 5x baseline (layers 0-4) | 79% vs 0.6% | holds |
+| v-5 | type 3 (one pole adds two unrelated concepts) <= 5% | 59% (125 of 212 measurable) | fails |
+| v-6 | moved output vectors beat random >= 80% at layers 0-4, direct and indirect | R 100%, direct 93%, indirect 74% | fails (indirect) |
+| v-7 | answer writers alone leave the block in place >= 50% | 51.4% | holds (narrowly) |
+| v-8 | readable removal flips >= 90% within cap; random <= 10% | 99.3% (median 10 extra poles); random 0% | holds* |
+| v-9 | zero-label probe >= 40-label probe on >= 4 of 7 columns; > heuristic on 7 | 5 of 7 (AUROC 0.95-0.99); 7 of 7 | holds |
+| v-10 | neuron steering >= trained direction - 10 pts; random within 5 pts | 61% vs 68% (unsteered 17%); random -3 pts | holds |
+| v-11 | reuse correlation > random p95 for >= 3 of 4 backdoors and S2 | 4 of 4 and S2 (all at the 100th percentile) | holds |
+| v-12 | neuron vote puts >= 2 of 3 trigger moves in its top 10 for >= 3 of 4 backdoors | 0 of 4 (trigger ranks 12-238 of 294) | fails |
+| v-13 | U1 drops vertical blocks >= 30 pts; restoring 30 most-changed neurons recovers >= 50%, random <= 10% | drop 99.7 pts; recovery 0.05%, random 0% | fails |
+| v-14 | auditing game | pending (separate account) | - |
+
+\* v-8 was scored `False` in the run because the check used `(x or 1) <= 0.10`, which treats a measured 0.0 as missing. Recomputed
+from the stored numbers with the registered rule; the JSON carries a `rescored` note (its meta hash refers to the original file).
+The same pattern in the v-13 check was fixed on the pod before that stage ran.
+
+Reading.
+- The J-lens reads what neurons do; the logit lens does not, below the last layer (v-1, as in the source post). Concept readouts
+  through the same Jacobian predict which exact concepts a pole changes 125x more often than chance (v-4).
+- Early-layer output vectors mostly do *not* point at move logits (v-3): layers 0-4 have the same high-J-share rate as random
+  directions or a little more; only layer 5 writes moves. With 7 output tokens the "verbalizable" part is small by construction.
+- v-5 fails, and by a lot. Most registered type-3 pairs are two concepts about one cell or column (e.g. `cell_r5c0_mine` and
+  `cell_r5c0_theirs`: mutually exclusive, so |phi| < 0.1). Follow-up, not registered (`48b_type3_followup.py`): counting concepts
+  in the same column as related leaves 36% (77 of 212), typically a cell concept plus `block_now_any` or a threat elsewhere. Board
+  concepts are compositional, unlike the topic words of the source post, so "two unrelated concepts" is a weaker test here; the
+  registered outcome stands.
+- Output vectors keep their meaning when moved to earlier layers (v-6) for the column alarms (100%) and direct writers (93%), less
+  for indirect ones (74%; 58% when injected after layer 4).
+- Vertical blocking looks like the source post's facts: removing the answer writers (205 layer-5 poles, 34 of the 36 R alarms among
+  them) leaves half the blocks in place (v-7); a median 10 more readable poles flip almost all of them, random poles none (v-8).
+  After the flip the model plays the teacher's best other move only 20% of the time.
+- Zero-label probes from six rule-written examples per column reach AUROC 0.95-0.99 (40-label probes 0.95-0.98, 400-label 0.99);
+  steering with the chosen neurons' output vectors moves the model to the column 61% of the time vs 68% for a labelled direction.
+- Organisms: all ten behave as designed (B1-B4 play the target column after the trigger 98-99% vs 12-16% base, ordinary games +1
+  pt; S1 diagonal blocks 95 -> 12%; U1 vertical 99.9 -> 0.2%; S2 column 0 13 -> 49%; controls unchanged within 1 pt). Fine-tuning
+  reuses neurons whose base output vectors already push the target column (v-11), but not for S1 or U1 (46th / 72nd percentile).
+- Neuron voting fails (v-12): the triggers here are three-move openings read through attention, not single tokens; layer-0 changes
+  at those (ply, column) inputs are not distinctive (the vote ranks them 12-238; embedding shift is worse, 141-252).
+- U1's unlearning is not a few neurons (v-13): the 30 most-changed neurons are all in layer 5 and restoring them recovers nothing.
+  Gradient ascent spreads the change, as the source post found for gradient-ascent unlearning on WMDP.
+- Correction: the results commit message (17c18fe) says "9 of 13 hold, 4 fail"; the table above is right: 8 hold (v-1, 2, 4, 7, 8, 9, 10, 11), 5 fail (v-3, 5, 6, 12, 13), v-14 pending.
+- Blog update plan: docs/BLOG_UPDATE_PLAN_v.md (nothing on the site changed).
+- 2026-11-25: v-14 (blind auditing game) skipped at the author's decision; registered but not run. The bundle stays in v_audit/ for a later run; the write-up says so.
+- 2026-11-25: study (v) update published (site 044d018): section 02.writes with Figures 5-6, labels-free paragraph, Appendix J, atlas "What it writes" row.

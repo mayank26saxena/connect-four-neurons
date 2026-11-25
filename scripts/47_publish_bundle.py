@@ -68,6 +68,7 @@ def main():
     put("atlas/index.html", at)
     put("atlas/atlas.css", src=B / "neuron-atlas" / "atlas.css")
     put("atlas/data/map.js", src=B / "neuron-atlas" / "data" / "map.js")
+    put("atlas/data/writes.js", src=B / "neuron-atlas" / "data" / "writes.js")
     js = (B / "neuron-atlas" / "atlas.js").read_text(encoding="utf-8")
     js = sub(js, [('const D = "../atlas/data/"', 'const D = "data/"'), ('C4Model.load("../demo/model.json")', 'C4Model.load("../lib/model.json")'),
                   ('href="../post/"', 'href="../index.html"')], "atlas.js")

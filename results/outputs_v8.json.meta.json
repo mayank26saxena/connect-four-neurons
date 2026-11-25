@@ -1,0 +1,92 @@
+{
+ "output": "results/outputs_v8.json",
+ "created_utc": "2026-11-25T02:46:03+00:00",
+ "command": "scripts/50_organisms.py analyze",
+ "source_sha256": "bc7c9279643fce62391d4b8e40dda54efd8304311874f9df98655f5ee6f0a194",
+ "config": {
+  "results_dir": "results",
+  "data": {
+   "out_dir": "data"
+  },
+  "seed": 20261124,
+  "n_games": 5000,
+  "min_ply": 4,
+  "fire_pct": 97,
+  "min_firings": 50,
+  "jac_positions": 20000,
+  "probe_positions": 60000,
+  "probe_steps": 500,
+  "readable_auroc": 0.8,
+  "readable_rate": [
+   0.005,
+   0.995
+  ],
+  "max_fire_rows": 500,
+  "col_measurable": 0.1,
+  "concept_measurable": 0.25,
+  "adds_frac": 0.5,
+  "unrelated_phi": 0.1,
+  "related_phi": 0.3,
+  "n_random_dirs": 10000,
+  "fb_per_layer": 20,
+  "fb_positions": 1000,
+  "fb_random": 50,
+  "rm_positions": 1000,
+  "rm_step": 10,
+  "rm_cap": 500,
+  "writer_frac": 0.1,
+  "zl_examples": 6,
+  "zl_poles": 10,
+  "zl_labels": [
+   40,
+   400
+  ],
+  "zl_seeds": 5,
+  "st_betas": [
+   0.5,
+   1,
+   2,
+   4,
+   8
+  ],
+  "st_dev_positions": 1000,
+  "st_test_positions": 2000,
+  "st_random_poles": 10,
+  "bs": 2048,
+  "smoke": {
+   "n_games": 120,
+   "jac_positions": 300,
+   "probe_positions": 2000,
+   "probe_steps": 50,
+   "max_fire_rows": 3,
+   "n_random_dirs": 200,
+   "fb_per_layer": 2,
+   "fb_positions": 50,
+   "fb_random": 5,
+   "rm_positions": 40,
+   "rm_cap": 40,
+   "zl_seeds": 2,
+   "zl_labels": [
+    10,
+    20
+   ],
+   "st_dev_positions": 50,
+   "st_test_positions": 80,
+   "min_firings": 5
+  }
+ },
+ "environment": {
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-149-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "cc": [
+   "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+  ],
+  "numpy": "2.3.4",
+  "torch": "2.9.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "git_commit": ""
+ },
+ "output_sha256": "6423cef3b03fdf152e46de13105ce948d9e265c706ff292d531e918e0d8a362b"
+}

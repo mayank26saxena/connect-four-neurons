@@ -1,0 +1,53 @@
+# Output-side neuron tests (PLAN.md addendum (v)). Scripts 48 (V1-V5), 49 (V6-V7), 50 (V8).
+results_dir: results
+data: {out_dir: data}
+seed: 20261124
+n_games: 5000              # dev = analysis split, test = val split (first n_games of each)
+min_ply: 4
+fire_pct: 97
+min_firings: 50            # poles with fewer dev firings are unused
+jac_positions: 20000       # dev positions averaged in every lens
+probe_positions: 60000     # dev positions for the concept probes
+probe_steps: 500
+readable_auroc: 0.8
+readable_rate: [0.005, 0.995]
+max_fire_rows: 500         # test firing positions per pole for the causal effects
+col_measurable: 0.1        # V1: largest centered-logit fall
+concept_measurable: 0.25   # V2/V3: largest probe-logit fall, z units
+adds_frac: 0.5
+unrelated_phi: 0.1
+related_phi: 0.3
+n_random_dirs: 10000       # V1 J-share null
+fb_per_layer: 20           # V4 vectors per layer 0-4
+fb_positions: 1000
+fb_random: 50
+rm_positions: 1000         # V5
+rm_step: 10
+rm_cap: 500
+writer_frac: 0.10
+zl_examples: 6             # V6
+zl_poles: 10
+zl_labels: [40, 400]
+zl_seeds: 5
+st_betas: [0.5, 1, 2, 4, 8]  # V7
+st_dev_positions: 1000
+st_test_positions: 2000
+st_random_poles: 10
+bs: 2048
+smoke:                     # SMOKE=1: wiring check only, numbers meaningless
+  n_games: 120
+  jac_positions: 300
+  probe_positions: 2000
+  probe_steps: 50
+  max_fire_rows: 3
+  n_random_dirs: 200
+  fb_per_layer: 2
+  fb_positions: 50
+  fb_random: 5
+  rm_positions: 40
+  rm_cap: 40
+  zl_seeds: 2
+  zl_labels: [10, 20]
+  st_dev_positions: 50
+  st_test_positions: 80
+  min_firings: 5
