@@ -1,7 +1,7 @@
 # Plan: adding study (v) to the Connect Four post and atlas
 
-Status 2026-11-25: V1-V13 run and scored (8 hold, 5 fail; docs/LOG.md). v-14 (the blind auditing game) still needs the
-separate account. Nothing on the site has changed.
+Status 2026-11-25: V1-V13 run and scored (8 hold, 5 fail; docs/LOG.md). v-14 (the blind auditing game) was not run; the
+post says so in Appendix J. The update below was published to the post and atlas on 2026-11-25 (V1-V13 only).
 
 ## What the post gains (one story, not a second paper)
 
